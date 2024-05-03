@@ -1,0 +1,55 @@
+<launch>
+
+  <arg name="mtm" />
+  <arg name="psm" />
+  <arg name="config" />
+
+  <arg name="mtm_model" default="$(find dvrk_model)/urdf/$(arg mtm).urdf.xacro" />
+  <arg name="psm_model" default="$(find dvrk_model)/urdf/$(arg psm).urdf.xacro" />
+
+  <node name="dvrk_$(arg mtm)_$(arg psm)_node"
+        pkg="dvrk_robot"
+        type="dvrk_console_json"
+        args="-j $(arg config)"
+        output="screen"/>
+
+  <group ns="$(arg mtm)">
+    <arg name="gui" default="false" />
+    <arg name="rate" default="20" />
+
+    <param name="robot_description" command="rosrun xacro xacro $(arg mtm_model) prefix:=$(arg mtm)_"/>
+    <param name="use_gui" value="$(arg gui)"/>
+    <param name="rate" value="$(arg rate)"/>
+
+    <rosparam param="source_list" subst_value="True">
+      [/$(arg mtm)/measured_js,
+      /$(arg mtm)/jaw/measured_js,
+      /$(arg mtm)/gripper/measured_js]
+    </rosparam>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  </group>
+
+  <group ns="$(arg psm)">
+    <arg name="gui" default="false" />
+    <arg name="rate" default="20" />
+
+    <param name="robot_description" command="rosrun xacro xacro $(arg psm_model) prefix:=$(arg psm)_"/>
+    <param name="use_gui" value="$(arg gui)"/>
+    <param name="rate" value="$(arg rate)"/>
+
+    <rosparam param="source_list" subst_value="True">
+      [/$(arg psm)/measured_js,
+      /$(arg psm)/jaw/measured_js,
+      /$(arg psm)/gripper/measured_js]
+    </rosparam>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  </group>
+
+  <node name="rviz" pkg="rviz" type="rviz"
+	args="-d $(find dvrk_model)/rviz/$(arg mtm)-$(arg psm).rviz" />
+
+</launch>
