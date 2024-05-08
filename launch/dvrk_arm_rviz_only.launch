@@ -1,7 +1,8 @@
 <launch>
 
   <arg name="arm"/>
-  <arg name="model" default="$(find dvrk_model)/urdf/$(arg arm).urdf.xacro"/>
+  <arg name="generation"/>
+  <arg name="model" default="$(find dvrk_model)/urdf/$(arg generation)/$(arg arm).urdf.xacro"/>
   <arg name="joint_gui" default="false"/>
 
   <group ns="$(arg arm)">

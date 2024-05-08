@@ -1,8 +1,9 @@
 <launch>
 
   <arg name="arm"/>
+  <arg name="generation"/>
   <arg name="config" default="$(find dvrk_config)/console/console-$(arg arm)_KIN_SIMULATED.json"/>
-  <arg name="model" default="$(find dvrk_model)/urdf/$(arg arm).urdf.xacro"/>
+  <arg name="model" default="$(find dvrk_model)/urdf/$(arg generation)/$(arg arm).urdf.xacro"/>
   <arg name="joint_gui" default="false"/>
 
   <node name="dvrk_$(arg arm)_node"

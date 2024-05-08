@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="PSM1_" value="PSM1_"/>
+    <xacro:property name="PSM2_" value="PSM2_"/>
+    <xacro:property name="PSM3_" value="PSM3_"/>
+    <xacro:property name="ECM_" value="ECM_"/>
+
+    <xacro:property name="PSM1_tool" value="420006"/>
+    <xacro:property name="PSM2_tool" value="420006"/>
+    <xacro:property name="PSM3_tool" value="420006"/>
+    <xacro:property name="ECM_tool" value="SF826001"/>
+
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm.base.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ.tower.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
+
+    <xacro:suj_tower/>
+    <xacro:suj 
+        prefix="${PSM1_}"
+        parent_link="SUJ_tower"
+        xyz="0 0.228 0.528"
+        rpy="0 0 1.5708"/>
+    <xacro:psm_arm_active
+        prefix="${PSM1_}"
+        parent_link="${PSM1_}active_arm_parent"
+        xyz="0 0 0"
+        rpy="0 0 0"/>
+    <xacro:tool tool_name="P420006" prefix="${PSM1_}" parent_link="${PSM1_}tool_parent"/>
+
+    <xacro:suj 
+        prefix="${PSM2_}"
+        parent_link="SUJ_tower"
+        xyz="0 -0.228 0.528"
+        rpy="0 0 -1.5708" />
+    <xacro:psm_arm_active
+        prefix="${PSM2_}"
+        parent_link="${PSM2_}active_arm_parent"
+        xyz="0 0 0"
+        rpy="0 0 0"/>
+    <xacro:tool tool_name="P420006" prefix="${PSM2_}" parent_link="${PSM2_}tool_parent"/>
+
+    <xacro:suj 
+        prefix="${PSM3_}"
+        parent_link="SUJ_tower"
+        xyz="-0.223 0 0.528"
+        rpy="0 0 -3.1416"/>
+    <xacro:psm_arm_active
+        prefix="${PSM3_}"
+        parent_link="${PSM3_}active_arm_parent"
+        xyz="0 0 0"
+        rpy="0 0 0"/>
+    <xacro:tool tool_name="P420006" prefix="${PSM3_}" parent_link="${PSM3_}tool_parent"/>
+
+    <xacro:suj 
+        prefix="${ECM_}"
+        parent_link="SUJ_tower"
+        xyz="0.173 0 0.478"
+        rpy="0 0 0"/>
+    <xacro:psm_arm_active
+        prefix="${ECM_}"
+        parent_link="${ECM_}active_arm_parent"
+        xyz="0 0 0"
+        rpy="0 0 0"/>
+    <xacro:tool tool_name="SF826001" prefix="${ECM_}" parent_link="${ECM_}tool_parent"/>
+</robot>

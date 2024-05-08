@@ -76,11 +76,19 @@ def generate_launch_description():
             description="arm name.",
         )
     )
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            "generation",
+            description="Generation of dVRK(Classic/Si)",
+        )
+    )
     controllers_file = LaunchConfiguration("controllers_file")
     robot_controller = LaunchConfiguration("robot_controller")
     description_package = LaunchConfiguration("description_package")
     description_file = LaunchConfiguration("description_file")
     arm_name = LaunchConfiguration('arm')
+    generation = LaunchConfiguration('generation')
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)
 
@@ -88,7 +96,7 @@ def generate_launch_description():
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare(description_package), 'model', '']),
+            PathJoinSubstitution([FindPackageShare(description_package), 'urdf',generation ,'']),
             arm_name,
             '.urdf.xacro'
         ]),value_type=str)

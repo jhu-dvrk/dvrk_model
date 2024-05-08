@@ -41,12 +41,13 @@ class ArmSourceListSubstitution(Substitution):
 
 def generate_launch_description():
     arm_name = LaunchConfiguration('arm')
+    generation = LaunchConfiguration('generation')
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.  Funny enough joint and robot state publishers don't have the same name for that parameter :-(
     #start_joint_state_publisher=LaunchConfiguration('start_joint_state_publisher',default='true')
 
     robot_model_default = [
-        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'urdf', '']),
+        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'urdf', generation,'']),
         arm_name,
         '.urdf.xacro',
     ]

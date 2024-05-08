@@ -2,8 +2,9 @@
 
   <arg name="arm" />
   <arg name="config" />
+  <arg name="generation" default="Classic"/>
 
-  <arg name="model" default="$(find dvrk_model)/urdf/$(arg arm)_Snake.urdf.xacro" />
+  <arg name="model" default="$(find dvrk_model)/urdf/$(arg generation)/$(arg arm)_Snake.urdf.xacro" />
 
   <node name="dvrk_$(arg arm)_node"
         pkg="dvrk_robot"

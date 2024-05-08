@@ -2,10 +2,11 @@
 
   <arg name="mtm" />
   <arg name="psm" />
+  <arg name="generation"/>
   <arg name="config" />
 
-  <arg name="mtm_model" default="$(find dvrk_model)/urdf/$(arg mtm).urdf.xacro" />
-  <arg name="psm_model" default="$(find dvrk_model)/urdf/$(arg psm).urdf.xacro" />
+  <arg name="mtm_model" default="$(find dvrk_model)/urdf/Classic/$(arg mtm).urdf.xacro" />
+  <arg name="psm_model" default="$(find dvrk_model)/urdf/$(arg generation)/$(arg psm).urdf.xacro" />
 
   <node name="dvrk_$(arg mtm)_$(arg psm)_node"
         pkg="dvrk_robot"
