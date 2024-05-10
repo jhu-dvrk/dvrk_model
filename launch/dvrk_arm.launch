@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  
+  <arg name="arm"/>
+  <arg name="generation"/>
+  <arg name="simulated"
+       default="True"/>
+
+  <!-- internal "parameters" -->
+  <arg name="_console"
+       if="$(eval generation == 'Classic')"
+       default="$(find dvrk_config)/console/console-$(arg arm)_KIN_SIMULATED.json"/>
+  <arg name="_console"
+       unless="$(eval generation == 'Classic')"
+       default="$(find dvrk_config)/console/console-$(arg arm)_$(arg generation)_KIN_SIMULATED.json"/>
+  <arg name="_urdf" default="$(find dvrk_model)/urdf/$(arg generation)/$(arg arm).urdf.xacro"/>
+  
+  <node name="dvrk_$(arg arm)_node"
+        if="$(arg simulated)"
+        pkg="dvrk_robot"
+        type="dvrk_console_json"
+        args="-j $(arg _console)"
+        output="screen"/>
+  
+  <group ns="$(arg arm)">
+    <arg name="rate"
+         default="20"/>
+    <param name="robot_description"
+           command="rosrun xacro xacro $(arg _urdf) prefix:=$(arg arm)_"/>
+    <param name="rate"
+           value="$(arg rate)"/>
+    
+    <rosparam param="source_list" subst_value="True">
+      [/$(arg arm)/measured_js,
+      /$(arg arm)/jaw/measured_js,
+      /$(arg arm)/gripper/measured_js]
+    </rosparam>
+    
+    <node name="joint_state_publisher"
+          pkg="joint_state_publisher"
+          type="joint_state_publisher"/>
+    
+    <node name="robot_state_publisher"
+          pkg="robot_state_publisher"
+          type="robot_state_publisher"/>
+  </group>
+  
+  <node name="rviz"
+        pkg="rviz"
+        type="rviz"
+        args="-d $(find dvrk_model)/rviz/$(arg generation)/$(arg arm).rviz"/>
+  
+</launch>
