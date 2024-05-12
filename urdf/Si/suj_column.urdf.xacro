@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="suj_tower">
+    <xacro:macro name="suj_column">
         <link name="world"/>
         <joint
             name="world_fixed"
             type="fixed">
             <origin xyz="0 0 0" rpy="0 0 0" />
             <parent link="world" />
-            <child link="SUJ_tower" />
+            <child link="SUJ_column" />
         </joint>
 
-        <link name="SUJ_tower">
+        <link name="SUJ_column">
             <inertial>
             <origin
                 xyz="-1.969E-09 2.3996E-09 0.80012"

@@ -4,6 +4,14 @@
 
   <arg name="arm"/>
   <arg name="generation"/>
+  <arg name="suj_tf"
+       default="False"/>
+
+  <node name="$(arg arm)_suj_tf"
+        if="$(eval suj_tf)"
+        pkg="tf2_ros"
+        type="static_transform_publisher"
+        args="0 0 0 0 0 0 $(arg arm)_mounting_point $(arg arm)_link_0" />
 
   <arg name="_urdf"
        default="$(find dvrk_model)/urdf/$(arg generation)/$(arg arm).urdf.xacro"/>

@@ -44,7 +44,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j0"
+                name="SUJ_${prefix}J0"
                 type="prismatic">
                 <origin
                 xyz="${xyz}"
@@ -102,7 +102,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j1"
+                name="SUJ_${prefix}J1"
                 type="revolute">
                 <origin
                 xyz="-0.024998 0 0.59"
@@ -160,7 +160,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j2"
+                name="SUJ_${prefix}J2"
                 type="revolute">
                 <origin
                 xyz="0.4575 0 0.144"
@@ -218,7 +218,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j3"
+                name="SUJ_${prefix}J3"
                 type="revolute">
                 <origin
                 xyz="0.458 0 -0.01875"
@@ -235,7 +235,7 @@
                 effort="0"
                 velocity="0" />
             </joint>
-            <link name="${prefix}active_arm_parent"/>
+            <link name="${prefix}mounting_point"/>
             <joint
                 name="${prefix}fixed_psm"
                 type="fixed">
@@ -245,7 +245,7 @@
                 <parent
                 link="SUJ_${prefix}link_3" />
                 <child
-                link="${prefix}active_arm_parent" />
+                link="${prefix}mounting_point" />
             </joint>
         </xacro:if>
         
@@ -292,7 +292,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j0"
+                name="SUJ_${prefix}J0"
                 type="prismatic">
                 <origin
                 xyz="${xyz}"
@@ -350,7 +350,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j1"
+                name="SUJ_${prefix}J1"
                 type="revolute">
                 <origin
                 xyz="-0.024998 0 0.513"
@@ -408,7 +408,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j2"
+                name="SUJ_${prefix}J2"
                 type="revolute">
                 <origin
                 xyz="0.3429 0 -0.1942"
@@ -466,7 +466,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j3"
+                name="SUJ_${prefix}J3"
                 type="revolute">
                 <origin
                 xyz="0.4575 0 -0.0722"
@@ -524,7 +524,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j4"
+                name="SUJ_${prefix}J4"
                 type="revolute">
                 <origin
                 xyz="0.458 0 -0.01875"
@@ -541,7 +541,7 @@
                 effort="0"
                 velocity="0" />
             </joint>
-            <link name="${prefix}active_arm_parent"/>
+            <link name="${prefix}mounting_point"/>
             <joint
                 name="${prefix}fixed_psm"
                 type="fixed">
@@ -551,7 +551,7 @@
                 <parent
                 link="SUJ_${prefix}link_4" />
                 <child
-                link="${prefix}active_arm_parent" />
+                link="${prefix}mounting_point" />
             </joint>
         </xacro:if>
 
@@ -599,7 +599,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j0"
+                name="SUJ_${prefix}J0"
                 type="prismatic">
                 <origin
                 xyz="${xyz}"
@@ -657,7 +657,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j1"
+                name="SUJ_${prefix}J1"
                 type="revolute">
                 <origin
                 xyz="0.025 0 0.63722"
@@ -715,7 +715,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j2"
+                name="SUJ_${prefix}J2"
                 type="revolute">
                 <origin
                 xyz="0.3302 0 0.1313"
@@ -773,7 +773,7 @@
                 </collision>
             </link>
             <joint
-                name="SUJ_${prefix}j3"
+                name="SUJ_${prefix}J3"
                 type="revolute">
                 <origin
                 xyz="0.3302 0 0.064"
@@ -790,7 +790,7 @@
                 effort="0"
                 velocity="0" />
             </joint>
-            <link name="${prefix}active_arm_parent"/>
+            <link name="${prefix}mounting_point"/>
             <joint
                 name="${prefix}fixed_psm"
                 type="fixed">
@@ -800,7 +800,7 @@
                 <parent
                 link="SUJ_${prefix}link_3" />
                 <child
-                link="${prefix}active_arm_parent" />
+                link="${prefix}mounting_point" />
             </joint>
         </xacro:if>
     </xacro:macro>

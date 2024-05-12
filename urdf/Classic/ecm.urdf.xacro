@@ -7,43 +7,12 @@
   <xacro:macro name="ecm" params="prefix parent_link xyz rpy">
 
     <!-- Joint 0: Fixed to World-->
-    <joint name="setup_fixed_joint" type="fixed">
+    <joint name="fixed" type="fixed">
       <parent link="${parent_link}"/>
-      <child link="${prefix}_setup_base_link"/>
+      <child link="${prefix}_base_link"/>
       <origin rpy="${rpy}" xyz="${xyz}"/>
     </joint>
 
-    <link name="${prefix}_setup_base_link"/>
-
-    <joint name="setup_tip_joint" type="fixed">
-      <parent link="${prefix}_setup_base_link"/>
-      <child link="${prefix}_setup_link"/>
-      <origin rpy="-0.87046370379 0 -${PI/2}" xyz="0.91324 -0.02111 0.03166"/>
-      <axis xyz="0 0 1"/>
-    </joint>
-
-    <link name="${prefix}_setup_link">
-      <visual>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/ecm/Endo_Arm.STL"/>
-        </geometry>
-	<material name="DaVinciRed"/>
-      </visual>
-      <collision>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/ecm/Endo_Arm.STL"/>
-        </geometry>
-      </collision>
-    </link>
-
-    <!-- Joint 0: Fixed to Setup Joint-->
-    <joint name="fixed_joint" type="fixed">
-      <parent link="${prefix}_setup_link"/>
-      <child link="${prefix}_base_link"/>
-      <origin rpy="0 0 0" xyz="0 0.603 0"/>
-    </joint>
     <link name="${prefix}_base_link"/>
 
     <!-- Joint 1: Outer Yaw -->
