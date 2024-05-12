@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
-<robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="ECM" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:property name="ECM_" value="ECM_"/>
     <xacro:property name="ECM_tool" value="SF826001"/>
 
-    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm.base.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
     <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
 
     <link name="world"/>

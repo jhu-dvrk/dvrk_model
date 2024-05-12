@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
-<robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="PSM2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:property name="PSM2_" value="PSM2_"/>
     <xacro:property name="PSM2_tool" value="420006"/>
 
-    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm.base.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
     <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
 
     <link name="world"/>

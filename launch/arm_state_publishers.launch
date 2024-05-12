@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <arg name="arm"/>
+  <arg name="generation"/>
+
+  <arg name="_urdf"
+       default="$(find dvrk_model)/urdf/$(arg generation)/$(arg arm).urdf.xacro"/>
+
+  <group ns="$(arg arm)">
+    <arg name="rate"
+         default="20"/>
+    <param name="robot_description"
+           command="rosrun xacro xacro $(arg _urdf) prefix:=$(arg arm)_"/>
+    <param name="rate"
+           value="$(arg rate)"/>
+
+    <rosparam param="source_list" subst_value="True">
+      [/$(arg arm)/measured_js,
+      /$(arg arm)/jaw/measured_js,
+      /$(arg arm)/gripper/measured_js]
+    </rosparam>
+
+    <node name="joint_state_publisher"
+          pkg="joint_state_publisher"
+          type="joint_state_publisher"/>
+
+    <node name="robot_state_publisher"
+          pkg="robot_state_publisher"
+          type="robot_state_publisher"/>
+  </group>
+
+</launch>

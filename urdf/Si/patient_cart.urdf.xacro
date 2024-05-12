@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="patient_cart" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:property name="PSM1_" value="PSM1_"/>
     <xacro:property name="PSM2_" value="PSM2_"/>
@@ -13,11 +13,11 @@
 
     <xacro:include filename="$(find dvrk_model)/urdf/Si/psm.base.urdf.xacro"/>
     <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ.urdf.xacro"/>
-    <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ.tower.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ_tower.urdf.xacro"/>
     <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
 
     <xacro:suj_tower/>
-    <xacro:suj 
+    <xacro:suj
         prefix="${PSM1_}"
         parent_link="SUJ_tower"
         xyz="0 0.228 0.528"
@@ -29,7 +29,7 @@
         rpy="0 0 0"/>
     <xacro:tool tool_name="P420006" prefix="${PSM1_}" parent_link="${PSM1_}tool_parent"/>
 
-    <xacro:suj 
+    <xacro:suj
         prefix="${PSM2_}"
         parent_link="SUJ_tower"
         xyz="0 -0.228 0.528"
@@ -41,7 +41,7 @@
         rpy="0 0 0"/>
     <xacro:tool tool_name="P420006" prefix="${PSM2_}" parent_link="${PSM2_}tool_parent"/>
 
-    <xacro:suj 
+    <xacro:suj
         prefix="${PSM3_}"
         parent_link="SUJ_tower"
         xyz="-0.223 0 0.528"
@@ -53,7 +53,7 @@
         rpy="0 0 0"/>
     <xacro:tool tool_name="P420006" prefix="${PSM3_}" parent_link="${PSM3_}tool_parent"/>
 
-    <xacro:suj 
+    <xacro:suj
         prefix="${ECM_}"
         parent_link="SUJ_tower"
         xyz="0.173 0 0.478"
