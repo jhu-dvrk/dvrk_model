@@ -26,7 +26,7 @@
     <xacro:suj
         prefix="ECM_"
         parent_link="SUJ_column"
-        xyz="0.173 0 0.478"
+        xyz="0.223 0 0.528"
         rpy="0 0 0"/>
 
 </robot>

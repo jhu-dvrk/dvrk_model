@@ -3,14 +3,16 @@
 
   <xacro:property name="tool_name" default="P420006"/>
   <xacro:property name="arm" default="$(arg arm)"/>
+  <xacro:arg name="parent_link_" default="world"/>
+  <xacro:property name="parent_link" default="$(arg parent_link_)"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
 
-  <link name="${arm}_base_link"/>
+  <link name="${parent_link}"/>
   <xacro:psm_arm_active
       prefix="${arm}_"
-      parent_link="${arm}_base_link"/>
-  <xacro:tool tool_name="${tool_name}" prefix="${arm}" parent_link="${arm}_tool_parent"/>
+      parent_link="${parent_link}"/>
+  <xacro:tool tool_name="${tool_name}" prefix="${arm}_" parent_link="${arm}_tool_parent"/>
 
 </robot>

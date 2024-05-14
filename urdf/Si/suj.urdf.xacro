@@ -660,7 +660,7 @@
                 name="SUJ_${prefix}J1"
                 type="revolute">
                 <origin
-                xyz="0.025 0 0.63722"
+                xyz="-0.025 0.0 0.5232"
                 rpy="0 0 0" />
                 <parent
                 link="SUJ_${prefix}link_0" />
