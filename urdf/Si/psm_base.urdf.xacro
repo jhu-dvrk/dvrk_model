@@ -2,7 +2,7 @@
 
 <robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="psm_arm_active" params="prefix parent_link xyz rpy">
+  <xacro:macro name="psm_arm_active" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
     <link
         name="${prefix}link_0">
       <inertial>

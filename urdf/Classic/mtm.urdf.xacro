@@ -4,7 +4,7 @@
   <xacro:include filename="$(find dvrk_model)/urdf/Classic/common.urdf.xacro"/>
 
   <!-- Macro for the da Vinci Master Console -->
-  <xacro:macro name="master_console" params="prefix parent_link xyz rpy">
+  <xacro:macro name="master_console" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
     <joint name="base_fixed" type="fixed">
       <parent link="${parent_link}"/>
       <child link="${prefix}master_base_link"/>
@@ -18,7 +18,7 @@
   </xacro:macro>
 
   <!-- Macros for left and right MTMs -->
-  <xacro:macro name="mtm_left" params="prefix parent_link xyz rpy">
+  <xacro:macro name="mtm_left" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
     <xacro:mtm
         prefix="${prefix}"
         parent_link="${parent_link}"
@@ -26,7 +26,7 @@
     <xacro:mtm_platform_left prefix="${prefix}"/>
   </xacro:macro>
 
-  <xacro:macro name="mtm_right" params="prefix parent_link xyz rpy">
+  <xacro:macro name="mtm_right" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
     <xacro:mtm
 	prefix="${prefix}"
 	parent_link="${parent_link}"

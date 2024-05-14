@@ -4,23 +4,27 @@
 
   <arg name="arm"/>
   <arg name="generation"/>
+  <arg name="urdf_file"
+       default="$(arg arm)"/>
+
   <arg name="suj_tf"
        default="False"/>
 
-  <node name="$(arg arm)_suj_tf"
+  <node name="static_tf_suj_arm"
         if="$(eval suj_tf)"
+        ns="$(arg arm)"
         pkg="tf2_ros"
         type="static_transform_publisher"
-        args="0 0 0 0 0 0 $(arg arm)_mounting_point $(arg arm)_link_0" />
+        args="0 0 0 0 0 0 $(arg arm)_mounting_point $(arg arm)_base_link" />
 
   <arg name="_urdf"
-       default="$(find dvrk_model)/urdf/$(arg generation)/$(arg arm).urdf.xacro"/>
+       default="$(find dvrk_model)/urdf/$(arg generation)/$(arg urdf_file).urdf.xacro"/>
 
   <group ns="$(arg arm)">
     <arg name="rate"
          default="20"/>
     <param name="robot_description"
-           command="rosrun xacro xacro $(arg _urdf) prefix:=$(arg arm)_"/>
+           command="rosrun xacro xacro $(arg _urdf) arm:=$(arg arm)"/>
     <param name="rate"
            value="$(arg rate)"/>
 

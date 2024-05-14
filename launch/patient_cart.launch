@@ -49,6 +49,8 @@
          value="$(arg generation)"/>
     <arg name="arm"
          value="PSM1"/>
+    <arg name="urdf_file"
+         value="psm"/>
     <arg name="suj_tf"
          value="True"/>
   </include>
@@ -58,6 +60,8 @@
          value="$(arg generation)"/>
     <arg name="arm"
          value="PSM2"/>
+    <arg name="urdf_file"
+         value="psm"/>
     <arg name="suj_tf"
          value="True"/>
   </include>
@@ -67,6 +71,8 @@
          value="$(arg generation)"/>
     <arg name="arm"
          value="PSM3"/>
+    <arg name="urdf_file"
+         value="psm"/>
     <arg name="suj_tf"
          value="True"/>
   </include>
