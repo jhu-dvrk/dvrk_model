@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<robot name="PSM" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="tool_name" default="P420006"/>
+  <xacro:property name="arm" default="$(arg arm)"/>
+
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
+
+  <link name="${arm}_base_link"/>
+  <xacro:psm_arm_active
+      prefix="${arm}_"
+      parent_link="${arm}_base_link"/>
+  <xacro:tool tool_name="${tool_name}" prefix="${arm}" parent_link="${arm}_tool_parent"/>
+
+</robot>
