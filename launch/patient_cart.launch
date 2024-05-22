@@ -43,7 +43,7 @@
          value="PSM1"/>
     <arg name="urdf_file"
          value="psm"/>
-    <arg name="suj_tf"
+    <arg name="suj"
          value="True"/>
   </include>
 
@@ -54,7 +54,7 @@
          value="PSM2"/>
     <arg name="urdf_file"
          value="psm"/>
-    <arg name="suj_tf"
+    <arg name="suj"
          value="True"/>
   </include>
 
@@ -65,7 +65,18 @@
          value="PSM3"/>
     <arg name="urdf_file"
          value="psm"/>
-    <arg name="suj_tf"
+    <arg name="suj"
+         value="True"/>
+  </include>
+
+  <include file="$(find dvrk_model)/launch/arm_state_publishers.launch">
+    <arg name="generation"
+         value="$(arg generation)"/>
+    <arg name="arm"
+         value="ECM"/>
+    <arg name="urdf_file"
+         value="psm"/>
+    <arg name="suj"
          value="True"/>
   </include>
 
@@ -80,7 +91,6 @@
         if="$(arg simulated)"
         pkg="dvrk_robot"
         type="dvrk_console_json"
-        launch-prefix="bash -c 'sleep 5.0; $0 $@' "
         args="-j $(arg _console) "
         output="screen"/>
 

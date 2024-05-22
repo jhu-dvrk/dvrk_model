@@ -6,7 +6,7 @@
 
   <link name="world"/>
   <xacro:ecm
-      prefix="ecm"
+      prefix="ECM_"
       parent_link="world"
       xyz="0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 

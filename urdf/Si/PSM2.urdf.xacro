@@ -2,17 +2,13 @@
 <robot name="PSM2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:property name="tool_name" value="P420006"/>
-  <xacro:property name="PSM2" value="PSM2_"/>
-  <xacro:arg name="parent_link_" default="world"/>
-  <xacro:property name="parent_link" default="$(arg parent_link_)"/>
-
 
   <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
 
-  <link name="${parent_link}"/>
+  <link name="world"/>
   <xacro:psm_arm_active
-      prefix="${PSM2}"
-      parent_link="${parent_link}"/>
-  <xacro:tool tool_name="${tool_name}" prefix="${PSM2}" parent_link="${PSM2}tool_parent"/>
+      prefix="PSM2_"
+      parent_link="world"/>
+  <xacro:tool tool_name="${tool_name}" prefix="PSM2_" parent_link="PSM2_tool_parent"/>
 </robot>

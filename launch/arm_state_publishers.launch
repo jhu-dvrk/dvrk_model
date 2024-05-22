@@ -7,7 +7,7 @@
   <arg name="urdf_file"
        default="$(arg arm)"/>
 
-  <arg name="suj_tf"
+  <arg name="suj"
        default="False"/>
 
   <arg name="_urdf"
@@ -16,13 +16,13 @@
   <group ns="$(arg arm)">
     <arg name="rate"
          default="20"/>
-    <group if="$(eval suj_tf)">
-          <param name="robot_description"
-                    command="rosrun xacro xacro $(arg _urdf) arm:=$(arg arm) parent_link_:=$(arg arm)_mounting_point"/>
+    <group if="$(eval suj)">
+      <param name="robot_description"
+             command="rosrun xacro xacro $(arg _urdf) arm:=$(arg arm) parent_link_:=$(arg arm)_mounting_point"/>
     </group>
-    <group unless="$(eval suj_tf)">
-          <param name="robot_description"
-                    command="rosrun xacro xacro $(arg _urdf) arm:=$(arg arm)"/>
+    <group unless="$(eval suj)">
+      <param name="robot_description"
+             command="rosrun xacro xacro $(arg _urdf) arm:=$(arg arm)"/>
     </group>
     <param name="rate"
            value="$(arg rate)"/>
