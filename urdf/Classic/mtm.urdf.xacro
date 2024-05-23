@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="mtm" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!-- Colors -->
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
   <!-- Macro for the da Vinci Master Console -->
   <xacro:macro name="master_console" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
@@ -48,13 +48,13 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0.19037"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/Top_Panel.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/Top_Panel.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0.19037"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/Top_Panel.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/Top_Panel.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -82,13 +82,13 @@
       <visual>
         <origin rpy="0 0 0" xyz="0.025 0 0.19037"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/OutPitch_Shoulder.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/OutPitch_Shoulder.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0.025 0 0.19037"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/OutPitch_Shoulder.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/OutPitch_Shoulder.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -112,12 +112,12 @@
     <link name="${prefix}back_parallel_link">
       <visual>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/ArmParallel.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/ArmParallel.dae"/>
         </geometry>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/ArmParallel.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/ArmParallel.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -142,13 +142,13 @@
       <visual>
         <origin rpy="0 0 ${-PI/2}" xyz="0 0 0.065"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/ArmParallel1.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/ArmParallel1.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/ArmParallel1.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/ArmParallel1.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -172,12 +172,12 @@
     <link name="${prefix}bottom_parallel_link">
       <visual>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/BottomArm.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/BottomArm.dae"/>
         </geometry>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/BottomArm.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/BottomArm.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -247,12 +247,12 @@
     <link name="${prefix}wrist_platform_link">
       <visual>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPlatform.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPlatform.dae"/>
         </geometry>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPlatform.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPlatform.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -277,12 +277,12 @@
     <link name="${prefix}wrist_pitch_link">
       <visual>        <!-- defined from CAD file (increased in the y dir by .005-->
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPitch.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPitch.dae"/>
         </geometry>
       </visual>
       <collision>        <!-- defined from CAD file (increased in the y dir by .005-->
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPitch.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPitch.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -308,12 +308,12 @@
     <link name="${prefix}wrist_yaw_link">
       <visual>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristYaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristYaw.dae"/>
         </geometry>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristYaw.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristYaw.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -341,13 +341,13 @@
       <visual>
         <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristRoll.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristRoll.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristRoll.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristRoll.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -412,13 +412,13 @@
       <visual>
         <origin rpy="0 0 ${PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPlatform.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPlatform.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="0 0 ${PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPlatform.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPlatform.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -444,13 +444,13 @@
       <visual>        <!-- defined from CAD file (increased in the y dir by .005-->
         <origin rpy="0 ${PI} 0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPitch.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPitch.dae"/>
         </geometry>
       </visual>
       <collision>        <!-- defined from CAD file (increased in the y dir by .005-->
         <origin rpy="0 ${PI} 0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristPitch.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristPitch.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -476,12 +476,12 @@
     <link name="${prefix}wrist_yaw_link">
       <visual>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristYaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristYaw.dae"/>
         </geometry>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristYaw.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristYaw.stl"/>
         </geometry>
       </collision>
       <inertial>
@@ -509,13 +509,13 @@
       <visual>
         <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristRoll.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristRoll.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/mtm/WristRoll.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/MTM/WristRoll.stl"/>
         </geometry>
       </collision>
       <inertial>

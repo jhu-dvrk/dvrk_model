@@ -18,7 +18,7 @@
       <visual>
         <origin rpy="1.5708 0 0" xyz="0.0027 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/snake_tool/link_1.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/snake_tool/link_1.STL"/>
         </geometry>
       </visual>
     </link>
@@ -37,7 +37,7 @@
       <visual>
         <origin rpy="1.5708 0 0" xyz="0.0027 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/snake_tool/link_2.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/snake_tool/link_2.STL"/>
         </geometry>
       </visual>
     </link>
@@ -56,7 +56,7 @@
       <visual>
         <origin rpy="1.5708 0 0" xyz="0.0027 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/snake_tool/link_3.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/snake_tool/link_3.STL"/>
         </geometry>
       </visual>
     </link>
@@ -75,7 +75,7 @@
       <visual>
         <origin rpy="0 1.5708 0" xyz="0 -0.0027 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/snake_tool/link_4.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/snake_tool/link_4.STL"/>
         </geometry>
       </visual>
     </link>
@@ -116,7 +116,7 @@
       <visual>
         <origin rpy="-1.5708 -0.7854 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/snake_tool/gripper_2.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/snake_tool/gripper_2.STL"/>
         </geometry>
       </visual>
     </link>
@@ -136,7 +136,7 @@
       <visual>
         <origin rpy="-1.5708 2.3561 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/snake_tool/gripper_3.STL"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/snake_tool/gripper_3.STL"/>
         </geometry>
       </visual>
     </link>

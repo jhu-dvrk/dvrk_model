@@ -4,12 +4,11 @@
   <xacro:property name="tool_name" value="P420006"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_tool.urdf.xacro"/>
 
   <link name="world"/>
-  <xacro:psm_arm_active
+  <xacro:psm_base
       prefix="PSM1_"
       parent_link="world"/>
-
-  <xacro:tool tool_name="${tool_name}" prefix="PSM1_" parent_link="PSM1_tool_parent"/>
+  <xacro:psm_tool tool_name="${tool_name}" prefix="PSM1_" parent_link="PSM1_tool_parent"/>
 </robot>

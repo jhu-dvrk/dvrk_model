@@ -2,7 +2,7 @@
 
 <robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="tool" params="tool_name prefix parent_link">
+  <xacro:macro name="psm_tool" params="tool_name prefix parent_link">
 
     <xacro:if value="${tool_name == 'P420006'}">
       <link
@@ -485,8 +485,8 @@
         </collision>
       </link>
       <joint
-          name="wrist_pitch"
-          type="revolute">
+          name="insertion"
+          type="prismatic">
         <origin
             xyz="0 0 0"
             rpy="0 0 0" />
@@ -495,7 +495,7 @@
         <child
             link="${prefix}tool_main_link" />
         <axis
-            xyz="0 0 1" />
+            xyz="0 0 -1" />
         <limit
             lower="0"
             upper="0.2987"
@@ -543,7 +543,7 @@
         </collision>
       </link>
       <joint
-          name="wrist_yaw"
+          name="roll"
           type="revolute">
         <origin
             xyz="0.05591 0 -0.53039"

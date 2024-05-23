@@ -11,10 +11,10 @@
     <xacro:property name="PSM3_tool" value="420006"/>
     <xacro:property name="ECM_tool" value="SF826001"/>
 
-    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm.base.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
     <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ.urdf.xacro"/>
     <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ_tower.urdf.xacro"/>
-    <xacro:include filename="$(find dvrk_model)/urdf/Si/tools.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_tools.urdf.xacro"/>
 
     <xacro:suj_tower/>
     <xacro:suj

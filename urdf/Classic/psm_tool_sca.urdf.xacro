@@ -2,7 +2,7 @@
 <robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- This file contains different tool urdf -->
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
   <!-- sca  -->
   <xacro:macro name="psm_tool_sca" params="prefix">
@@ -22,7 +22,7 @@
         <!-- <origin rpy="0 3.1416 0" xyz="0 0 0"/> -->
         <origin rpy="1.5708 3.1416 0" xyz="0.0051 0.0032 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/tool_wrist_sca_link.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/tool_wrist_sca_link.dae"/>
         </geometry>
       </visual>
     </link>
@@ -42,7 +42,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 -0.0002 -0.0025"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/tool_wrist_sca_shaft_link.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae"/>
         </geometry>
       </visual>
     </link>
@@ -81,7 +81,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/tool_wrist_sca_link_2.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/tool_wrist_sca_link_2.dae"/>
         </geometry>
       </visual>
     </link>
@@ -101,7 +101,7 @@
       <visual>
         <origin rpy="0 3.1516 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/psm/tool_wrist_sca_link_2.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/tool_wrist_sca_link_2.dae"/>
         </geometry>
       </visual>
     </link>

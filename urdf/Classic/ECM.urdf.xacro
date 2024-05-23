@@ -1,11 +1,10 @@
 <?xml version="1.0" ?>
 <robot name="ecm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Macros -->
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/ecm.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Classic/ecm_base.urdf.xacro"/>
 
   <link name="world"/>
-  <xacro:ecm
+  <xacro:ecm_base
       prefix="ECM_"
       parent_link="world"
       xyz="0 0.0 0.0" rpy="0.0 0.0 0.0"/>

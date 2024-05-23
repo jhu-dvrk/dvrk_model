@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<robot name="PSM" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="ECM" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="tool_name" default="P420006"/>
+  <xacro:property name="tool_name" default="SF826001"/>
   <xacro:property name="arm" default="$(arg arm)"/>
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:property name="parent_link" default="$(arg parent_link_)"/>
