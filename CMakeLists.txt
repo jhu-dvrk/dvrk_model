@@ -16,9 +16,11 @@ else (catkin_FOUND)
     set (_to_be_installed meshes urdf ros2/rviz ros2/launch ros2/ros2_control ros2/config)
 
     foreach (_dir ${_to_be_installed})
-      install (DIRECTORY
-        ${_dir}
-        DESTINATION share/${PROJECT_NAME})
+      if (EXISTS "${_dir}") 
+        install (DIRECTORY
+          ${_dir}
+          DESTINATION share/${PROJECT_NAME})
+      endif ()
     endforeach ()
 
     ament_package ()
