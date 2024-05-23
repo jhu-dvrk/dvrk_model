@@ -24,7 +24,7 @@
     <param name="rate"
            value="$(arg rate)"/>
     <rosparam param="source_list" subst_value="True">
-      [/SUJ/PSM1/measured_js, /SUJ/PSM2/measured_js, /SUJ/PSM3/measured_js]
+      [/SUJ/PSM1/measured_js, /SUJ/PSM2/measured_js, /SUJ/PSM3/measured_js, /SUJ/ECM/measured_js]
     </rosparam>
     <node name="joint_state_publisher"
           pkg="joint_state_publisher"
@@ -75,7 +75,7 @@
     <arg name="arm"
          value="ECM"/>
     <arg name="urdf_file"
-         value="psm"/>
+         value="ecm"/>
     <arg name="suj"
          value="True"/>
   </include>
