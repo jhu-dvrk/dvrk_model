@@ -14,6 +14,7 @@ from launch.substitutions import (
 )
 
 def generate_launch_description():
+    generation = LaunchConfiguration('generation')
     simulated = LaunchConfiguration('simulated', default = 'true')
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.  Funny enough joint and robot state publishers don't have the same name for that parameter :-(
@@ -23,7 +24,10 @@ def generate_launch_description():
     # dVRK console
     console_json = [
         PathJoinSubstitution([FindPackageShare('dvrk_config'),
-                              'console/console-surgeon-console-simulated.json'])
+                              'console', '']),
+        'console-patient-cart-',
+        generation,
+        '-simulated.json'
     ]
     dvrk_node = Node(
         package = 'dvrk_robot',
@@ -35,10 +39,10 @@ def generate_launch_description():
     ld.add_action(dvrk_node)
 
     # Arm joint/robot state publishers
-    for arm in ['MTML', 'MTMR']:
+    for arm in ['ECM', 'PSM1', 'PSM2', 'PSM3']:
         model = [
             PathJoinSubstitution([FindPackageShare('dvrk_model'),
-                                  'urdf/Classic/'])
+                                  'urdf', generation, ''])
             , arm,
             '.urdf.xacro'
         ]
@@ -76,7 +80,8 @@ def generate_launch_description():
     # RViz
     rviz_config_file = [
         PathJoinSubstitution([FindPackageShare('dvrk_model'),
-                              'rviz/Classic/surgeon-console.rviz'])
+                              'rviz', generation, '']),
+        'patient_cart.rviz'
     ]
     rviz_node = Node(
         package = 'rviz2',

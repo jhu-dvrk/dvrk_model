@@ -5,14 +5,6 @@
   <arg name="simulated"
        default="True"/>
 
-  <!-- dVRK console -->
-  <arg name="_console"
-       if="$(eval generation == 'Classic')"
-       default="$(find dvrk_config)/console/console-patient-cart-classic-simulated.json"/>
-  <arg name="_console"
-       unless="$(eval generation == 'Classic')"
-       default="$(find dvrk_config)/console/console-patient-cart-si-simulated.json"/>
-
   <!-- state publishers -->
   <!-- SUJs -->
   <arg name="_urdf" default="$(find dvrk_model)/urdf/$(arg generation)/SUJ.urdf.xacro"/>
@@ -91,7 +83,7 @@
         if="$(arg simulated)"
         pkg="dvrk_robot"
         type="dvrk_console_json"
-        args="-j $(arg _console) "
+        args="-j $(find dvrk_config)/console/console-patient-cart-$(arg generation)-simulated.json"
         output="screen"/>
 
 </launch>
