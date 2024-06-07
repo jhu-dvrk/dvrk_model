@@ -76,7 +76,8 @@ def generate_launch_description():
     dvrk_node = Node(
         package = 'dvrk_robot',
         executable = 'dvrk_console_json',
-        arguments = ['-D', '-j', console_json],
+        condition = IfCondition(simulated),
+        arguments = ['-j', console_json],
         output = 'both',
     )
 
