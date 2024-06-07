@@ -1,7 +1,7 @@
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
-
+from launch.conditions import IfCondition
 from launch import LaunchContext, LaunchDescription, Substitution
 from typing import Text
 
@@ -42,21 +42,26 @@ class ArmSourceListSubstitution(Substitution):
 def generate_launch_description():
     arm_name = LaunchConfiguration('arm')
     generation = LaunchConfiguration('generation')
+    simulated = LaunchConfiguration('simulated', default = 'true')
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.  Funny enough joint and robot state publishers don't have the same name for that parameter :-(
-    #start_joint_state_publisher=LaunchConfiguration('start_joint_state_publisher',default='true')
+
+    console_json = [
+        PathJoinSubstitution([FindPackageShare('dvrk_config'), 'console', '']),
+        'console-', arm_name, '_', generation, '_KIN_SIMULATED.json',
+    ]
 
     robot_model_default = [
-        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'urdf', generation,'']),
+        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'urdf', generation, '']),
         arm_name,
         '.urdf.xacro',
     ]
 
     rviz_config_file = [
-        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'rviz', '']),
+        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'rviz', generation, '']),
         arm_name,
         '.rviz',
-    ]   
+    ]
 
     # Use xacro to process robot model at substitution time
     # Can't happen until substitution time when we know robot_model
@@ -68,6 +73,13 @@ def generate_launch_description():
     )
 
     # Declare nodes
+    dvrk_node = Node(
+        package = 'dvrk_robot',
+        executable = 'dvrk_console_json',
+        arguments = ['-D', '-j', console_json],
+        output = 'both',
+    )
+
     joint_state_publisher_node = Node(
         package = 'joint_state_publisher',
         namespace = arm_name,
@@ -99,6 +111,7 @@ def generate_launch_description():
     )
 
     ld = LaunchDescription([
+        dvrk_node,
         joint_state_publisher_node,
         robot_state_publisher_node,
         rviz_node,

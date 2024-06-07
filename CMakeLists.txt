@@ -16,7 +16,7 @@ else (catkin_FOUND)
     set (_to_be_installed meshes urdf ros2/rviz ros2/launch ros2/ros2_control ros2/config)
 
     foreach (_dir ${_to_be_installed})
-      if (EXISTS "${_dir}") 
+      if (EXISTS "${dvrk_model_SOURCE_DIR}/${_dir}") 
         install (DIRECTORY
           ${_dir}
           DESTINATION share/${PROJECT_NAME})

@@ -8,17 +8,11 @@
        default="True"/>
 
   <!-- dVRK console -->
-  <arg name="_console"
-       if="$(eval generation == 'Classic')"
-       default="$(find dvrk_config)/console/console-$(arg arm)_KIN_SIMULATED.json"/>
-  <arg name="_console"
-       unless="$(eval generation == 'Classic')"
-       default="$(find dvrk_config)/console/console-$(arg arm)_$(arg generation)_KIN_SIMULATED.json"/>
   <node name="dvrk_$(arg arm)_node"
         if="$(arg simulated)"
         pkg="dvrk_robot"
         type="dvrk_console_json"
-        args="-j $(arg _console)"
+        args="-j $(find dvrk_config)/console/console-$(arg arm)_$(arg generation)_KIN_SIMULATED.json"
         output="screen"/>
 
   <!-- state publishers -->
