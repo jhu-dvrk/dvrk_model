@@ -86,4 +86,9 @@
         args="-j $(find dvrk_config)/console/console-patient-cart-$(arg generation)-simulated.json"
         output="screen"/>
 
+  <!-- added fixed tf to make sure dVRK console TF are defined wrt world -->
+  <node name="tf_world_to_cart"
+        pkg="tf2_ros"
+        type="static_transform_publisher"
+        args="0 0 0.1678 0 0 0 world Cart" />
 </launch>

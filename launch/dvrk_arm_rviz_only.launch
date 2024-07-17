@@ -1,2 +1,2 @@
-<launch deprecated="use the dvrk_model dvrk_arm.launch file instead">
+<launch deprecated="use the dvrk_model arm.launch file instead">
 </launch>

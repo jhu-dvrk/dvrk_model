@@ -11,7 +11,6 @@ Panels:
         - /RobotModel3
         - /RobotModel4
         - /RobotModel5
-        - /RobotModel5/Status1
       Splitter Ratio: 0.5
     Tree Height: 567
   - Class: rviz/Selection
@@ -251,7 +250,36 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        PSM1_tool_tip_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         PSM1_tool_wrist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM1_tool_wrist_sca_ee_link_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM1_tool_wrist_sca_ee_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM1_tool_wrist_sca_ee_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM1_tool_wrist_sca_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM1_tool_wrist_sca_shaft_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -325,7 +353,36 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        PSM2_tool_tip_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         PSM2_tool_wrist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM2_tool_wrist_sca_ee_link_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM2_tool_wrist_sca_ee_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM2_tool_wrist_sca_ee_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM2_tool_wrist_sca_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM2_tool_wrist_sca_shaft_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -399,7 +456,36 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        PSM3_tool_tip_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         PSM3_tool_wrist_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM3_tool_wrist_sca_ee_link_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM3_tool_wrist_sca_ee_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM3_tool_wrist_sca_ee_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM3_tool_wrist_sca_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        PSM3_tool_wrist_sca_shaft_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -421,6 +507,64 @@ Visualization Manager:
       Enabled: true
       Links:
         All Links Enabled: true
+        ECM_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_end_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ECM_main_insertion_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_mounting_point:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ECM_pitch_back_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_pitch_bottom_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_pitch_end_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_pitch_front_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_pitch_top_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_remote_center_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_tool_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ECM_yaw_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -459,7 +603,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.5963454246520996
+      Distance: 4.017011642456055
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -467,17 +611,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.23977720737457275
-        Y: -0.18739669024944305
-        Z: 0.6590781211853027
+        X: -0.0683230310678482
+        Y: -0.07175172865390778
+        Z: 0.871324896812439
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3053983747959137
+      Pitch: 0.25539854168891907
       Target Frame: <Fixed Frame>
-      Yaw: 1.8603953123092651
+      Yaw: 1.6253923177719116
     Saved: ~
 Window Geometry:
   Displays:
@@ -495,5 +639,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1200
-  X: 531
-  Y: 60
+  X: 584
+  Y: 23

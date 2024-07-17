@@ -6,7 +6,6 @@
   <link name="world"/>
   <xacro:ecm_base
       prefix="ECM_"
-      parent_link="world"
-      xyz="0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      parent_link="world"/>
 
 </robot>
