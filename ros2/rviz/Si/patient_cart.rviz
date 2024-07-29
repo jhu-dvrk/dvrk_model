@@ -10,6 +10,7 @@ Panels:
         - /RobotModel2
         - /RobotModel3
         - /RobotModel4
+        - /RobotModel5
       Splitter Ratio: 0.5
     Tree Height: 567
   - Class: rviz_common/Selection
@@ -421,6 +422,139 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /SUJ/robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        ECM_mounting_point:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        PSM1_mounting_point:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        PSM2_mounting_point:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        PSM3_mounting_point:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        SUJ_ECM_link_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_ECM_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_ECM_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_ECM_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM1_link_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM1_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM1_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM1_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM2_link_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM2_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM2_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM2_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM3_link_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM3_link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM3_link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM3_link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_PSM3_link_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_column:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -467,25 +601,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 5.996953964233398
+      Distance: 3.969904899597168
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: -0.24542838335037231
+        Y: -0.09549099206924438
+        Z: 0.3187562823295593
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.6903982162475586
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 0.35039815306663513
     Saved: ~
 Window Geometry:
   Displays:
@@ -503,5 +637,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1200
-  X: 60
-  Y: 60
+  X: 670
+  Y: 141
