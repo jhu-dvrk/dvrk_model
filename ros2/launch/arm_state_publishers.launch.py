@@ -4,6 +4,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
+import launch_ros.descriptions
 from launch.actions import OpaqueFunction, SetLaunchConfiguration
 from launch import LaunchContext, LaunchDescription, Substitution
 from typing import Text
@@ -49,7 +50,7 @@ def create_robot_description(context):
     elif full_name == 'ECM':
         urdf_prefix = 'ecm'
     else:
-        urdf_prefix = 'to do for mtm. arm_state_publishers.launch.py'
+        urdf_prefix = full_name
     xacro_file = os.path.join(get_package_share_directory('dvrk_model'),
                               'urdf',
                               context.launch_configurations['generation'],
@@ -59,13 +60,12 @@ def create_robot_description(context):
     if context.launch_configurations['suj'] == 'true':
         mappings['parent_link_'] = context.launch_configurations['arm'] + '_mounting_point'
 
-    print(mappings)
     robot_description_config = xacro.process_file(xacro_file,
                                                   mappings = mappings)
     robot_description_xml = robot_description_config.toxml()
-    print(robot_description_xml)
     return [SetLaunchConfiguration(name = 'robot_description',
                                    value = robot_description_xml)]
+
 
 create_robot_description_arg = OpaqueFunction(function = create_robot_description)
 
@@ -86,7 +86,7 @@ def generate_launch_description():
         parameters = [{'use_sim_time': use_sim_time,
                        'source_list': ArmSourceListSubstitution(arm),
                        'rate': rate}],
-        output="both",
+        output = "both",
     )
 
     robot_state_publisher_node = Node(
@@ -95,9 +95,11 @@ def generate_launch_description():
         executable = 'robot_state_publisher',
         name = 'robot_state_publisher',
         parameters = [{'use_sim_time': use_sim_time,
-                       'robot_description': LaunchConfiguration('robot_description'),
+                       'robot_description': launch_ros.descriptions.ParameterValue(
+                           LaunchConfiguration('robot_description'),
+                           value_type = str),
                        'publish_frequency': rate}],
-        output="both",
+        output = "both",
     )
 
     ld = LaunchDescription([
