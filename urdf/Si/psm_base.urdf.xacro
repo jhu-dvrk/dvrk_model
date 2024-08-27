@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
   <xacro:macro name="psm_base" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
     <link
         name="${prefix}link_0">
@@ -93,25 +93,25 @@
         type="revolute">
       <origin
           xyz="0.158 0 0"
-          rpy="0 0 0" />
+          rpy="0.0 0.0 0.0" />
       <parent
           link="${prefix}link_0" />
       <child
           link="${prefix}link_1" />
       <axis
-          xyz="1 0 0" />
+          xyz="-1.0 0.0 0.0" />
       <limit
           lower="-3.14"
           upper="3.14"
-          effort="0"
-          velocity="0" />
+          effort="0.0"
+          velocity="0.0" />
     </joint>
     <link
         name="${prefix}link_2">
       <inertial>
         <origin
             xyz="0.083895 -0.00073113 -0.028998"
-            rpy="0 0 0" />
+            rpy="0.0 0.0 0.0" />
         <mass
             value="4.017" />
         <inertia

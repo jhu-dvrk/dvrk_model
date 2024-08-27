@@ -228,7 +228,7 @@
                 <child
                 link="SUJ_${prefix}link_3" />
                 <axis
-                xyz="0 0 -1" />
+                xyz="0.0 0.0 1.0" />
                 <limit
                 lower="-3.141"
                 upper="3.141"

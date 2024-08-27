@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
-
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
   <xacro:macro name="psm_base" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
 
     <!-- fixed joint -->
