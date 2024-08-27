@@ -1,32 +1,33 @@
 <?xml version="1.0" ?>
 <robot name="patient_cart" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find dvrk_model)/urdf/Si/suj.urdf.xacro"/>
-    <xacro:include filename="$(find dvrk_model)/urdf/Si/suj_column.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/suj.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/suj_column.urdf.xacro"/>
 
-    <xacro:suj_column/>
-    <xacro:suj
-        prefix="PSM1_"
-        parent_link="SUJ_column"
-        xyz="0 0.228 0.528"
-        rpy="0 0 1.5708"/>
+  <xacro:suj_column/>
+  <xacro:suj
+      prefix="PSM1_"
+      parent_link="SUJ_column"
+      xyz="0.0 0.228 0.528"
+      rpy="0.0 0.0 ${PI / 2.0}"/>
 
-    <xacro:suj
-        prefix="PSM2_"
-        parent_link="SUJ_column"
-        xyz="0 -0.228 0.528"
-        rpy="0 0 -1.5708" />
+  <xacro:suj
+      prefix="PSM2_"
+      parent_link="SUJ_column"
+      xyz="0.0 -0.228 0.528"
+      rpy="0.0 0.0 ${-PI / 2.0}" />
 
-    <xacro:suj
-        prefix="PSM3_"
-        parent_link="SUJ_column"
-        xyz="-0.223 0 0.528"
-        rpy="0 0 -3.1416"/>
+  <xacro:suj
+      prefix="PSM3_"
+      parent_link="SUJ_column"
+      xyz="-0.223 0.0 0.528"
+      rpy="0.0 0.0 ${-PI}"/>
 
-    <xacro:suj
-        prefix="ECM_"
-        parent_link="SUJ_column"
-        xyz="0.223 0 0.528"
-        rpy="0 0 0"/>
+  <xacro:suj
+      prefix="ECM_"
+      parent_link="SUJ_column"
+      xyz="0.223 0.0 0.528"
+      rpy="0.0 0.0 0.0"/>
 
 </robot>
