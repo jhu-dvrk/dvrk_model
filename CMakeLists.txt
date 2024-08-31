@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(dvrk_model VERSION 2.2.1)
+project(dvrk_model VERSION 2.3.0)
 
 find_package (
   catkin QUIET
@@ -16,7 +16,7 @@ else (catkin_FOUND)
     set (_to_be_installed meshes urdf ros2/rviz ros2/launch ros2/ros2_control ros2/config)
 
     foreach (_dir ${_to_be_installed})
-      if (EXISTS "${dvrk_model_SOURCE_DIR}/${_dir}") 
+      if (EXISTS "${dvrk_model_SOURCE_DIR}/${_dir}")
         install (DIRECTORY
           ${_dir}
           DESTINATION share/${PROJECT_NAME})
