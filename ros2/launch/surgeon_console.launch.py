@@ -81,7 +81,7 @@ def generate_launch_description():
     rviz_node = Node(
         package = 'rviz2',
         executable = 'rviz2',
-        name = 'rviz2',
+        name = 'rviz2_surgeon_console',
         arguments = ['-d', rviz_config_file],
         output = 'both',
     )

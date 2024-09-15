@@ -73,7 +73,7 @@
   </include>
 
   <!-- rviz -->
-  <node name="rviz"
+  <node name="rviz_patient_cart"
         pkg="rviz"
         type="rviz"
         args="-d $(find dvrk_model)/rviz/$(arg generation)/patient_cart.rviz"/>
