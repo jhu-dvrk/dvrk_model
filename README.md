@@ -32,10 +32,10 @@ files.
 
 There is also an optional `simulated` argument (default is `True`).
 When this argument is set the launch files starts the node `dvrk_robot
-dvrk_console_json` with a configuration file to simulate the dVRK.
-When `simulated:=False`, the dVRK console is not started.  This can be
+dvrk_system` with a configuration file to simulate the dVRK.
+When `simulated:=False`, the dVRK system node is not started.  This can be
 used to visualize the physical robot assuming the user has already
-started the dVRK console in a separate terminal.
+started the dVRK system node in a separate terminal.
 
 Examples:
 ```bash
@@ -61,7 +61,7 @@ rosrun xacro xacro mtm.urdf.xacro .... > result.urdf
 
 Parts:
 * `common.urdf.xacro`: general material info
-* `mtm.urdf.xacro`: definition of xacros for da Vinci MTMs 
+* `mtm.urdf.xacro`: definition of xacros for da Vinci MTMs
 
 Arms:
 * `PSM{1,2,3}.urdf.xacro`: definition of PSM1, PSM2 and PSM3 using xacros from psm*.urdf.xacro

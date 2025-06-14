@@ -82,11 +82,11 @@
   <node name="dvrk_patient_cart_node"
         if="$(arg simulated)"
         pkg="dvrk_robot"
-        type="dvrk_console_json"
-        args="-j $(find dvrk_config)/console/console-patient-cart-$(arg generation)-simulated.json"
+        type="dvrk_system"
+        args="-j $(find dvrk_config)/system/system-patient-cart-$(arg generation)-simulated.json"
         output="screen"/>
 
-  <!-- added fixed tf to make sure dVRK console TF are defined wrt world -->
+  <!-- added fixed tf to make sure dVRK system TF are defined wrt world -->
   <node name="tf_world_to_cart"
         pkg="tf2_ros"
         type="static_transform_publisher"

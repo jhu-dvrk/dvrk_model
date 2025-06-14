@@ -20,16 +20,16 @@ def generate_launch_description():
 
     ld = LaunchDescription()
 
-    # dVRK console
-    console_json = [
+    # dVRK system
+    system_json = [
         PathJoinSubstitution([FindPackageShare('dvrk_config'),
-                              'console/console-surgeon-console-simulated.json'])
+                              'system/system-surgeon-console-simulated.json'])
     ]
     dvrk_node = Node(
         package = 'dvrk_robot',
-        executable = 'dvrk_console_json',
+        executable = 'dvrk_system',
         condition = IfCondition(simulated),
-        arguments = ['-j', console_json],
+        arguments = ['-j', system_json],
         output = 'both',
     )
     ld.add_action(dvrk_node)
