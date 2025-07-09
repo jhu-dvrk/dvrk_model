@@ -16,9 +16,9 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.
 
-    console_json = [
-        PathJoinSubstitution([FindPackageShare('dvrk_config'), 'console', '']),
-        'console-', arm, '_', generation, '_KIN_SIMULATED.json',
+    system_json = [
+        PathJoinSubstitution([FindPackageShare('dvrk_config'), 'system', '']),
+        'system-', arm, '_', generation, '_KIN_SIMULATED.json',
     ]
 
     rviz_config_file = [
@@ -30,9 +30,9 @@ def generate_launch_description():
     # Declare nodes
     dvrk_node = Node(
         package = 'dvrk_robot',
-        executable = 'dvrk_console_json',
+        executable = 'dvrk_system',
         condition = IfCondition(simulated),
-        arguments = ['-j', console_json],
+        arguments = ['-j', system_json],
         output = 'both',
     )
 

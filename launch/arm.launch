@@ -7,12 +7,12 @@
   <arg name="simulated"
        default="True"/>
 
-  <!-- dVRK console -->
+  <!-- dVRK system -->
   <node name="dvrk_$(arg arm)_node"
         if="$(arg simulated)"
         pkg="dvrk_robot"
-        type="dvrk_console_json"
-        args="-j $(find dvrk_config)/console/console-$(arg arm)_$(arg generation)_KIN_SIMULATED.json"
+        type="dvrk_system"
+        args="-j $(find dvrk_config)/system/system-$(arg arm)_$(arg generation)_KIN_SIMULATED.json"
         output="screen"/>
 
   <!-- state publishers -->
@@ -24,7 +24,7 @@
   </include>
 
   <!-- rviz -->
-  <node name="rviz"
+  <node name="rviz_$(arg arm)"
         pkg="rviz"
         type="rviz"
         args="-d $(find dvrk_model)/rviz/$(arg generation)/$(arg arm).rviz"/>

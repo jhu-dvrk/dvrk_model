@@ -26,19 +26,19 @@ def generate_launch_description():
     ld = LaunchDescription()
 
 
-    # dVRK console
-    console_json = [
+    # dVRK system
+    system_json = [
         PathJoinSubstitution([FindPackageShare('dvrk_config'),
-                              'console', '']),
-        'console-patient-cart-',
+                              'system', '']),
+        'system-patient-cart-',
         generation,
         '-simulated.json'
     ]
     dvrk_node = Node(
         package = 'dvrk_robot',
-        executable = 'dvrk_console_json',
+        executable = 'dvrk_system',
         condition = IfCondition(simulated),
-        arguments = ['-j', console_json],
+        arguments = ['-j', system_json],
         output = 'both',
     )
     ld.add_action(dvrk_node)
@@ -112,7 +112,7 @@ def generate_launch_description():
     rviz_node = Node(
         package = 'rviz2',
         executable = 'rviz2',
-        name = 'rviz2',
+        name = 'rviz2_patient_cart',
         arguments = ['-d', rviz_config_file],
         output = 'both',
     )
