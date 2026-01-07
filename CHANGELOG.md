@@ -1,6 +1,12 @@
 Change log
 ==========
 
+2.4.0 (2025-12-18)
+==================
+
+* Updates for console -> system
+* Bumped CMake minimum required to 3.16
+
 2.3.0 (2024-08-31)
 ==================
 
