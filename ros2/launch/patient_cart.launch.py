@@ -30,7 +30,7 @@ def generate_launch_description():
     system_json = [
         PathJoinSubstitution([FindPackageShare('dvrk_config'),
                               'system', '']),
-        'system-patient-cart-',
+        '/system-patient-cart-',
         generation,
         '-simulated.json'
     ]
@@ -48,7 +48,7 @@ def generate_launch_description():
     model = [
         PathJoinSubstitution([FindPackageShare('dvrk_model'),
                               'urdf', generation, ''])
-        , 'SUJ.urdf.xacro'
+        , '/SUJ.urdf.xacro'
     ]
     # Use xacro to process robot model at substitution time
     # Can't happen until substitution time when we know robot_model
@@ -107,7 +107,7 @@ def generate_launch_description():
     rviz_config_file = [
         PathJoinSubstitution([FindPackageShare('dvrk_model'),
                               'rviz', generation, '']),
-        'patient_cart.rviz'
+        '/patient_cart.rviz'
     ]
     rviz_node = Node(
         package = 'rviz2',

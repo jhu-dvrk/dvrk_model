@@ -18,13 +18,12 @@ def generate_launch_description():
 
     system_json = [
         PathJoinSubstitution([FindPackageShare('dvrk_config'), 'system', '']),
-        'system-', arm, '_', generation, '_KIN_SIMULATED.json',
+        '/system-', arm, '_', generation, '_KIN_SIMULATED.json',
     ]
 
     rviz_config_file = [
         PathJoinSubstitution([FindPackageShare('dvrk_model'), 'rviz', generation, '']),
-        arm,
-        '.rviz',
+        '/', arm, '.rviz',
     ]
 
     # Declare nodes

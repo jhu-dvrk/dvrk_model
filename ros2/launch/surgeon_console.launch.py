@@ -23,7 +23,7 @@ def generate_launch_description():
     # dVRK system
     system_json = [
         PathJoinSubstitution([FindPackageShare('dvrk_config'),
-                              'system/system-surgeon-console-simulated.json'])
+                              '/system/system-surgeon-console-simulated.json'])
     ]
     dvrk_node = Node(
         package = 'dvrk_robot',
@@ -38,9 +38,8 @@ def generate_launch_description():
     for arm in ['MTML', 'MTMR']:
         model = [
             PathJoinSubstitution([FindPackageShare('dvrk_model'),
-                                  'urdf/Classic/'])
-            , arm,
-            '.urdf.xacro'
+                                  'urdf/Classic/']),
+            '/', arm, '.urdf.xacro'
         ]
         # Use xacro to process robot model at substitution time
         # Can't happen until substitution time when we know robot_model
