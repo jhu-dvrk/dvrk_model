@@ -40,10 +40,10 @@ started the dVRK system node in a separate terminal.
 Examples:
 ```bash
 roslaunch dvrk_model arm.launch arm:=PSM1 generation:=Si
-roslaunch dvrk_model arm.launch arm:=MTMR generation:=Classic simulated:=False
+roslaunch dvrk_model arm.launch arm:=MTMR generation:=Classic simulated:=True
 roslaunch dvrk_model arm.launch arm:=ECM generation:=Classic
 roslaunch dvrk_model patient_cart.launch generation:=Si
-roslaunch dvrk_model patient_cart.launch generation:=Classic simulated:=False
+roslaunch dvrk_model patient_cart.launch generation:=Classic simulated:=True
 roslaunch dvrk_model surgeon_console.launch
 ```
 
