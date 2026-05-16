@@ -31,7 +31,7 @@
     <xacro:property name="is_si" value="${str(instrument).startswith('42')}"/>
     
     <!-- Dynamically select the correct shaft length based on generation -->
-    <xacro:property name="shaft_length" value="${0.53559 if is_si else 0.4162}"/>
+    <xacro:property name="shaft_length" value="${0.53559 if is_si else 0.4162}"/> <!--0.4670 for Si as also in strucuture.md-->
 
     <!-- fixed joint to hold the shaft visual BEFORE the roll joint -->
     <joint name="instrument_base_fixed" type="fixed">
