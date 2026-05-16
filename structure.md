@@ -22,7 +22,7 @@ dvrk_model/
 │   ├── common/                           ← NEW: generation-agnostic macros
 │   │   ├── PSM_instrument.urdf.xacro     ← roll + shaft + tip dispatch (all generations)
 │   │   └── PSM_tips.urdf.xacro           ← all PSM tip family macros
-│   │
+│   │meshes
 │   ├── Classic/
 │   │   │  Entry points (UPPERCASE arm name):
 │   │   ├── ECM.urdf.xacro                ← standalone ECM (Classic)

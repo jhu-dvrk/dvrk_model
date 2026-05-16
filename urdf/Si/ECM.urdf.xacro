@@ -12,5 +12,5 @@
   <xacro:PSM_instrument prefix="ECM_"
                         parent_link="ECM_PSM_tool_parent_link"
                         shaft_length="0.4670"
-                        tool_model="SF0826001"/>
+                        instrument="SF0826001"/>
 </robot>

@@ -50,7 +50,7 @@ def create_robot_description(context):
                               context.launch_configurations['generation'],
                               full_name + '.urdf.xacro')
     assert os.path.exists(xacro_file), 'The urdf file doesnt exist: ' + str(xacro_file)
-    mappings = {'arm': full_name, 'tool_model': context.launch_configurations.get('instrument', '400006')}
+    mappings = {'arm': full_name, 'instrument': context.launch_configurations.get('instrument', '400006')}
     if context.launch_configurations.get('suj') == 'true':
         mappings['parent_link_'] = context.launch_configurations['arm'] + '_mounting_point'
 
