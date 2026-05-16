@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="PSM3" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:arg name="tool_model" default="400049"/>
+  <xacro:arg name="instrument" default="400049"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Classic/PSM_base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
@@ -9,10 +9,10 @@
 
   <xacro:PSM_base prefix="PSM3_"
                   parent_link="world"
-                  xyz="0.50 0.0 0.5" rpy="0.0 0.0 ${-pi}"/>
+                  xyz="0.50 0.0 0.5" rpy="0.0 0.0 ${-PI}"/>
 
   <xacro:PSM_instrument prefix="PSM3_"
                         parent_link="PSM3_PSM_tool_parent_link"
-                        tool_model="$(arg tool_model)"/>
+                        instrument="$(arg instrument)"/>
 
 </robot>

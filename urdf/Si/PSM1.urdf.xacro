@@ -2,9 +2,9 @@
 <robot name="PSM1" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!--
     Si PSM1 entry point.
-    arg tool_model: last 6 digits of instrument model number (default: 420006)
+    arg instrument: last 6 digits of instrument model number (default: 420006)
   -->
-  <xacro:arg name="tool_model" default="420006"/>
+  <xacro:arg name="instrument" default="420006"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Si/PSM_base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
@@ -16,6 +16,6 @@
 
   <xacro:PSM_instrument prefix="PSM1_"
                         parent_link="PSM1_PSM_tool_parent_link"
-                        tool_model="$(arg tool_model)"/>
+                        instrument="$(arg instrument)"/>
 
 </robot>

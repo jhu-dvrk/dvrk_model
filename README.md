@@ -39,12 +39,12 @@ started the dVRK system node in a separate terminal.
 
 Examples:
 ```bash
-roslaunch dvrk_model arm.launch arm:=PSM1 generation:=Si
-roslaunch dvrk_model arm.launch arm:=MTMR generation:=Classic simulated:=True
-roslaunch dvrk_model arm.launch arm:=ECM generation:=Classic
-roslaunch dvrk_model patient_cart.launch generation:=Si
-roslaunch dvrk_model patient_cart.launch generation:=Classic simulated:=True
-roslaunch dvrk_model surgeon_console.launch
+ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si
+ros2 launch dvrk_model arm.launch.py arm:=MTMR generation:=Classic simulated:=True
+ros2 launch dvrk_model arm.launch.py arm:=ECM generation:=Classic
+ros2 launch dvrk_model patient_cart.launch.py generation:=Si # invalid parameter shaft_length
+ros2 launch dvrk_model patient_cart.launch.py generation:=Classic simulated:=True
+ros2 launch dvrk_model surgeon_console.launch.py
 ```
 
 ## URDF files

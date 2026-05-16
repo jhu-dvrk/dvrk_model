@@ -4,12 +4,12 @@
     Virtual PSM1 entry point — simulator variant.
 
     args:
-      tool_model   — instrument model number (default: 420006 = Si large needle driver)
+      instrument   — instrument model number (default: 420006 = Si large needle driver)
       shaft_length — shaft length in metres  (0.4162 Classic, 0.4670 Si)
       rcm_xyz      — trocar position in world frame
       rcm_rpy      — trocar orientation in world frame
   -->
-  <xacro:arg name="tool_model"   default="420006"/>
+  <xacro:arg name="instrument"   default="420006"/>
   <xacro:arg name="rcm_xyz"      default="0 0 0"/>
   <xacro:arg name="rcm_rpy"      default="0 0 0"/>
 
@@ -26,6 +26,6 @@
   <!-- Instrument: identical to Classic/Si — attaches at PSM_tool_parent_link -->
   <xacro:PSM_instrument prefix="PSM1_"
                         parent_link="PSM1_PSM_tool_parent_link"
-                        tool_model="$(arg tool_model)"/>
+                        instrument="$(arg instrument)"/>
 
 </robot>

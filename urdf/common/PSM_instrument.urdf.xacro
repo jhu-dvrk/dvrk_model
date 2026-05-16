@@ -17,7 +17,7 @@
       prefix        — arm instance prefix, e.g. "PSM1_"
       parent_link   — must be ${prefix}PSM_tool_parent_link
       shaft_length  — D parameter of roll joint (Classic: 0.4162, Si: 0.4670)
-      tool_model    — last 6 digits of instrument model number (e.g. "420006")
+      instrument    — last 6 digits of instrument model number (e.g. "420006")
                       used to select the correct PSM_tip_XXX macro
   -->
 
@@ -25,10 +25,10 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_tips.urdf.xacro"/>
 
   <xacro:macro name="PSM_instrument"
-               params="prefix parent_link tool_model">
+               params="prefix parent_link instrument">
                
     <!-- Detect if this is an Si generation instrument (42xxxx) -->
-    <xacro:property name="is_si" value="${str(tool_model).startswith('42')}"/>
+    <xacro:property name="is_si" value="${str(instrument).startswith('42')}"/>
     
     <!-- Dynamically select the correct shaft length based on generation -->
     <xacro:property name="shaft_length" value="${0.53559 if is_si else 0.4162}"/>
@@ -161,7 +161,7 @@
     </link>
 
     <!--
-      Tip dispatch: select the correct wrist+jaw macro by tool_model.
+      Tip dispatch: select the correct wrist+jaw macro by instrument.
       Convention: last 3 digits of the model number identify the tip family.
         006 → standard SCA wrist (most instruments, A=0.0091)
         049 → Cadiere jaw (same wrist, different jaw geometry)
@@ -169,30 +169,30 @@
         117 → snake tool (5 mm shaft, extra coupled joints)
         183 → cautery / no-jaw tools
     -->
-    <xacro:if value="${str(tool_model) == '420006' or str(tool_model) == '400006' or
-                      str(tool_model) == '420036' or str(tool_model) == '400036' or
-                      str(tool_model) == '420093' or str(tool_model) == '400093' or
-                      str(tool_model) == '420168' or str(tool_model) == '400168'}">
+    <xacro:if value="${str(instrument) == '420006' or str(instrument) == '400006' or
+                      str(instrument) == '420036' or str(instrument) == '400036' or
+                      str(instrument) == '420093' or str(instrument) == '400093' or
+                      str(instrument) == '420168' or str(instrument) == '400168'}">
       <xacro:PSM_tip_006 prefix="${prefix}"
                          parent_link="${prefix}PSM_wrist_shaft_link"/>
     </xacro:if>
 
-    <xacro:if value="${str(tool_model) == '420049' or str(tool_model) == '400049'}">
+    <xacro:if value="${str(instrument) == '420049' or str(instrument) == '400049'}">
       <xacro:PSM_tip_049 prefix="${prefix}"
                          parent_link="${prefix}PSM_wrist_shaft_link"/>
     </xacro:if>
 
-    <xacro:if value="${str(tool_model) == '420172' or str(tool_model) == '400172'}">
+    <xacro:if value="${str(instrument) == '420172' or str(instrument) == '400172'}">
       <xacro:PSM_tip_172 prefix="${prefix}"
                          parent_link="${prefix}PSM_wrist_shaft_link"/>
     </xacro:if>
 
-    <xacro:if value="${str(tool_model) == '400117'}">
+    <xacro:if value="${str(instrument) == '400117'}">
       <xacro:PSM_tip_117 prefix="${prefix}"
                          parent_link="${prefix}PSM_wrist_shaft_link"/>
     </xacro:if>
 
-    <xacro:if value="${str(tool_model) == 'SF0826001'}">
+    <xacro:if value="${str(instrument) == 'SF0826001'}">
       <xacro:PSM_tip_ECM prefix="${prefix}"
                          parent_link="${prefix}PSM_wrist_shaft_link"/>
     </xacro:if>

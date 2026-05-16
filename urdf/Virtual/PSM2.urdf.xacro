@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="PSM2" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:arg name="tool_model"   default="420006"/>
+  <xacro:arg name="instrument"   default="420006"/>
   <xacro:arg name="rcm_xyz"      default="0 0 0"/>
   <xacro:arg name="rcm_rpy"      default="0 0 0"/>
 
@@ -15,6 +15,6 @@
 
   <xacro:PSM_instrument prefix="PSM2_"
                         parent_link="PSM2_PSM_tool_parent_link"
-                        tool_model="$(arg tool_model)"/>
+                        instrument="$(arg instrument)"/>
 
 </robot>
