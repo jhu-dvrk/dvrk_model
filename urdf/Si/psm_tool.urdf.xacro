@@ -162,7 +162,7 @@
         </collision>
       </link>
       <joint
-          name="${prefix}outer_roll_shaft"
+          name="${prefix}roll_shaft"
           type="fixed">
         <origin
             xyz="0 1E-05 0.009"
