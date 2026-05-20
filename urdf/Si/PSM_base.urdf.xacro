@@ -76,7 +76,7 @@
     </link>
 
     <!-- joint 1: yaw (outer yaw) -->
-    <joint name="yaw" type="revolute"> <!--yaw-->
+    <joint name="yaw" type="revolute">
       <origin xyz="0.158 0 0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}PSM_ECM_base_link"/>
       <child  link="${prefix}PSM_ECM_yaw_link"/>
@@ -109,7 +109,7 @@
     </link>
 
     <!-- joint 2: pitch (outer pitch) -->
-    <joint name="pitch" type="revolute"> <!--pitch-->
+    <joint name="pitch" type="revolute">
       <origin xyz="0.2987 0 -0.071222" rpy="0 -1.1345 -3.1416"/>
       <parent link="${prefix}PSM_ECM_yaw_link"/>
       <child  link="${prefix}PSM_ECM_pitch_link"/>

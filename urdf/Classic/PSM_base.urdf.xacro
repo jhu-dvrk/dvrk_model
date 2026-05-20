@@ -39,7 +39,7 @@
     </link>
 
     <!-- joint 1: yaw -->
-    <joint name="yaw" type="revolute"> <!--yaw-->
+    <joint name="yaw" type="revolute">
       <parent link="${prefix}PSM_base_link"/>
       <child  link="${prefix}PSM_yaw_link"/>
       <axis xyz="0 0 1"/>
@@ -62,7 +62,7 @@
       The pitch_link itself has no mesh; the visual is distributed
       across the 5 parallelogram sub-links below.
     -->
-    <joint name="pitch" type="revolute"> <!--pitch-->
+    <joint name="pitch" type="revolute">
       <parent link="${prefix}PSM_yaw_link"/>
       <child  link="${prefix}PSM_pitch_link"/>
       <axis xyz="0 0 1"/>

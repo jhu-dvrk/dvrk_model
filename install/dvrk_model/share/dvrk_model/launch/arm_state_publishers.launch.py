@@ -1,1 +1,0 @@
-/home/yzhang177/dvrk_model/ros2/launch/arm_state_publishers.launch.py

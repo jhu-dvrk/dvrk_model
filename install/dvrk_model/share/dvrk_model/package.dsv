@@ -1,8 +1,0 @@
-source;share/dvrk_model/hook/cmake_prefix_path.ps1
-source;share/dvrk_model/hook/cmake_prefix_path.dsv
-source;share/dvrk_model/hook/cmake_prefix_path.sh
-source;share/dvrk_model/local_setup.bash
-source;share/dvrk_model/local_setup.dsv
-source;share/dvrk_model/local_setup.ps1
-source;share/dvrk_model/local_setup.sh
-source;share/dvrk_model/local_setup.zsh
