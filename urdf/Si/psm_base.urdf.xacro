@@ -288,7 +288,7 @@
     </joint>
     <link name="${prefix}tool_parent"/>
     <joint
-        name="${prefix}outer_insertion_ref"
+        name="${prefix}insertion_ref"
         type="fixed">
       <origin
           xyz="0.05061 0 0.41911"

@@ -9,8 +9,8 @@
     This is sufficient for simulation when only the instrument matters.
 
     DOF layout (same joint names as full model — ROS-compatible):
-      Joint 1: outer_yaw   (revolute  z, ±π/2)
-      Joint 2: outer_pitch (revolute  y, ±π/4)
+      Joint 1: yaw   (revolute  z, ±π/2)
+      Joint 2: pitch (revolute  y, ±π/4)
       Joint 3: insertion   (prismatic z,  0–0.240 m)
 
     All three links share a small but non-zero inertia so physics
@@ -44,9 +44,9 @@
     <!-- RCM frame link — not a DOF, just a named coordinate frame -->
     <link name="${prefix}PSM_RCM_link"/>
 
-    <!-- ── Joint 1: outer_yaw ───────────────────────────────────────────── -->
+    <!-- ── Joint 1: yaw ───────────────────────────────────────────── -->
     <!--   Revolute about z at the RCM. Models the yaw of the PSM arm.      -->
-    <joint name="outer_yaw" type="revolute">
+    <joint name="yaw" type="revolute">
       <parent link="${prefix}PSM_RCM_link"/>
       <child  link="${prefix}PSM_RCM_yaw_link"/>
       <axis xyz="0 0 1"/>
@@ -64,9 +64,9 @@
       </inertial>
     </link>
 
-    <!-- ── Joint 2: outer_pitch ─────────────────────────────────────────── -->
+    <!-- ── Joint 2: pitch ─────────────────────────────────────────── -->
     <!--   Revolute about y at the RCM. Models the pitch of the PSM arm.    -->
-    <joint name="outer_pitch" type="revolute">
+    <joint name="pitch" type="revolute">
       <parent link="${prefix}PSM_RCM_yaw_link"/>
       <child  link="${prefix}PSM_RCM_pitch_link"/>
       <axis xyz="0 1 0"/>

@@ -79,36 +79,36 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        PSM1_outer_insertion_link:
+        PSM1_insertion_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_outer_pitch_back_link:
+        PSM1_pitch_back_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_outer_pitch_bottom_link:
+        PSM1_pitch_bottom_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_outer_pitch_front_link:
+        PSM1_pitch_front_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_outer_pitch_link:
+        PSM1_pitch_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        PSM1_outer_pitch_top_link:
+        PSM1_pitch_top_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_outer_yaw_link:
+        PSM1_yaw_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false

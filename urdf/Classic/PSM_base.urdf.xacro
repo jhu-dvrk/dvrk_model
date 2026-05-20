@@ -3,8 +3,8 @@
 
   <!--
     Classic PSM arm — 3 actuated DOF:
-      Joint 1: outer_yaw   (revolute)
-      Joint 2: outer_pitch  (revolute, parallelogram linkage)
+      Joint 1: yaw   (revolute)
+      Joint 2: pitch  (revolute, parallelogram linkage)
       Joint 3: insertion    (prismatic)
 
     Macro output: ends at ${prefix}PSM_tool_parent_link.
@@ -39,132 +39,132 @@
     </link>
 
     <!-- joint 1: yaw -->
-    <joint name="yaw" type="revolute"> <!--outer_yaw-->
+    <joint name="yaw" type="revolute"> <!--yaw-->
       <parent link="${prefix}PSM_base_link"/>
-      <child  link="${prefix}PSM_outer_yaw_link"/>
+      <child  link="${prefix}PSM_yaw_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 -1.5708 1.5708" xyz="0.0 0.0 0.0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
     </joint>
 
-    <!-- link 1: outer_yaw -->
-    <link name="${prefix}PSM_outer_yaw_link">
+    <!-- link 1: yaw -->
+    <link name="${prefix}PSM_yaw_link">
       <visual>
         <origin rpy="3.1416 0 1.5708" xyz="0.0125 0 0.5265"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_outer_yaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_yaw.dae"/>
         </geometry>
       </visual>
     </link>
 
     <!--
-      Joint 2: outer_pitch (revolute) with parallelogram linkage.
-      The outer_pitch_link itself has no mesh; the visual is distributed
+      Joint 2: pitch (revolute) with parallelogram linkage.
+      The pitch_link itself has no mesh; the visual is distributed
       across the 5 parallelogram sub-links below.
     -->
-    <joint name="pitch" type="revolute"> <!--outer_pitch-->
-      <parent link="${prefix}PSM_outer_yaw_link"/>
-      <child  link="${prefix}PSM_outer_pitch_link"/>
+    <joint name="pitch" type="revolute"> <!--pitch-->
+      <parent link="${prefix}PSM_yaw_link"/>
+      <child  link="${prefix}PSM_pitch_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0"/>
       <limit lower="-0.7854" upper="0.7854" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_outer_pitch_link"/>
+    <link name="${prefix}PSM_pitch_link"/>
 
     <!-- parallelogram sub-joint 1 -->
     <joint name="pitch_1" type="continuous">
-      <parent link="${prefix}PSM_outer_yaw_link"/>
-      <child  link="${prefix}PSM_outer_pitch_back_link"/>
+      <parent link="${prefix}PSM_yaw_link"/>
+      <child  link="${prefix}PSM_pitch_back_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-1.5708 -1.5708 0" xyz="0 0.0295 0.5185"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
-    <link name="${prefix}PSM_outer_pitch_back_link">
+    <link name="${prefix}PSM_pitch_back_link">
       <visual>
         <origin rpy="0 0 -0.27129" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_outer_pitch_back.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_back.dae"/>
         </geometry>
       </visual>
     </link>
 
     <!-- parallelogram sub-joint 2 -->
     <joint name="pitch_2" type="continuous">
-      <parent link="${prefix}PSM_outer_yaw_link"/>
-      <child  link="${prefix}PSM_outer_pitch_front_link"/>
+      <parent link="${prefix}PSM_yaw_link"/>
+      <child  link="${prefix}PSM_pitch_front_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-1.5708 -1.5708 0" xyz="0 0.0295 0.4285"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
-    <link name="${prefix}PSM_outer_pitch_front_link">
+    <link name="${prefix}PSM_pitch_front_link">
       <visual>
         <origin rpy="0 0 -0.27129" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_outer_pitch_front.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_front.dae"/>
         </geometry>
       </visual>
     </link>
 
     <!-- parallelogram sub-joint 3 -->
     <joint name="pitch_3" type="continuous">
-      <parent link="${prefix}PSM_outer_pitch_back_link"/>
-      <child  link="${prefix}PSM_outer_pitch_bottom_link"/>
+      <parent link="${prefix}PSM_pitch_back_link"/>
+      <child  link="${prefix}PSM_pitch_bottom_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0.04178 0.15007 -0.0137"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
-    <link name="${prefix}PSM_outer_pitch_bottom_link">
+    <link name="${prefix}PSM_pitch_bottom_link">
       <visual>
         <origin rpy="0 -1.5708 0" xyz="0.009 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_outer_pitch_bottom.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_bottom.dae"/>
         </geometry>
       </visual>
     </link>
 
     <!-- parallelogram sub-joint 4 -->
     <joint name="pitch_4" type="continuous">
-      <parent link="${prefix}PSM_outer_pitch_back_link"/>
-      <child  link="${prefix}PSM_outer_pitch_top_link"/>
+      <parent link="${prefix}PSM_pitch_back_link"/>
+      <child  link="${prefix}PSM_pitch_top_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0.04209 0.18695 -0.02412"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
-    <link name="${prefix}PSM_outer_pitch_top_link">
+    <link name="${prefix}PSM_pitch_top_link">
       <visual>
         <origin rpy="0 -1.5708 0" xyz="0.009 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_outer_pitch_top.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_top.dae"/>
         </geometry>
       </visual>
     </link>
 
     <!-- parallelogram sub-joint 5 -->
     <joint name="pitch_5" type="continuous">
-      <parent link="${prefix}PSM_outer_pitch_bottom_link"/>
-      <child  link="${prefix}PSM_outer_insertion_link"/>
+      <parent link="${prefix}PSM_pitch_bottom_link"/>
+      <child  link="${prefix}PSM_insertion_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="-0.520 0 -0.0155"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
-    <link name="${prefix}PSM_outer_insertion_link">
+    <link name="${prefix}PSM_insertion_link">
       <visual>
         <origin rpy="0 -1.5708 1.5708" xyz="0.02528 0.429 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_outer_insertion.dae"/>
+          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_insertion.dae"/>
         </geometry>
       </visual>
     </link>
 
     <!-- joint 3: insertion (prismatic) -->
     <joint name="insertion" type="prismatic">
-      <parent link="${prefix}PSM_outer_pitch_link"/>
+      <parent link="${prefix}PSM_pitch_link"/>
       <child  link="${prefix}PSM_tool_parent_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="1.5708 0 0" xyz="0 0.4318 0"/>

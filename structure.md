@@ -95,12 +95,12 @@ dvrk_model/
 │   │   ├── PSM/
 │   │   │   │  Arm meshes (used by Classic/PSM_base.urdf.xacro):
 │   │   │   ├── PSM_base.dae
-│   │   │   ├── PSM_outer_yaw.dae               (was outer_yaw.dae)
-│   │   │   ├── PSM_outer_pitch_back.dae        (was outer_pitch_back.dae)
-│   │   │   ├── PSM_outer_pitch_front.dae       (was outer_pitch_front.dae)
-│   │   │   ├── PSM_outer_pitch_bottom.dae      (was outer_pitch_bottom.dae)
-│   │   │   ├── PSM_outer_pitch_top.dae         (was outer_pitch_top.dae)
-│   │   │   ├── PSM_outer_insertion.dae         (was outer_insertion.dae)
+│   │   │   ├── PSM_yaw.dae               (was yaw.dae)
+│   │   │   ├── PSM_pitch_back.dae        (was pitch_back.dae)
+│   │   │   ├── PSM_pitch_front.dae       (was pitch_front.dae)
+│   │   │   ├── PSM_pitch_bottom.dae      (was pitch_bottom.dae)
+│   │   │   ├── PSM_pitch_top.dae         (was pitch_top.dae)
+│   │   │   ├── PSM_insertion.dae         (was insertion.dae)
 │   │   │   │
 │   │   │   │  Standard instrument meshes (8 mm shaft, shared tip geometry):
 │   │   │   ├── PSM_shaft.dae                   (was tool_main.dae)
@@ -141,10 +141,10 @@ dvrk_model/
 │   │   │
 │   │   ├── PSM_ECM/                            (shared arm body for Si PSM and ECM)
 │   │   │   ├── PSM_ECM_base.stl                (was link_0.STL)
-│   │   │   ├── PSM_ECM_outer_yaw.stl           (was link_1.STL)
-│   │   │   ├── PSM_ECM_outer_pitch.stl         (was link_2.STL)
-│   │   │   ├── PSM_ECM_outer_pitch_bottom.stl  (was link_3.STL)
-│   │   │   └── PSM_ECM_outer_pitch_top.stl     (was link_4.STL)
+│   │   │   ├── PSM_ECM_yaw.stl           (was link_1.STL)
+│   │   │   ├── PSM_ECM_pitch.stl         (was link_2.STL)
+│   │   │   ├── PSM_ECM_pitch_bottom.stl  (was link_3.STL)
+│   │   │   └── PSM_ECM_pitch_top.stl     (was link_4.STL)
 │   │   │
 │   │   └── SUJ/
 │   │       ├── ECM/
@@ -195,10 +195,10 @@ dvrk_model/
 | Element | Rule | Example |
 |---|---|---|
 | ARM acronym | Always UPPERCASE | `PSM`, `MTM`, `ECM`, `SUJ` |
-| Link name | `{ARM}_{description}_link` | `PSM_outer_yaw_link` |
-| Joint name | bare functional name (ROS compat) | `outer_yaw`, `wrist_pitch`, `jaw` |
+| Link name | `{ARM}_{description}_link` | `PSM_yaw_link` |
+| Joint name | bare functional name (ROS compat) | `yaw`, `wrist_pitch`, `jaw` |
 | Structural joints | descriptive + no suffix | `base_fixed`, `world_fixed` |
-| Mesh file | `{ARM}_{description}.stl` | `PSM_outer_yaw.stl` |
+| Mesh file | `{ARM}_{description}.stl` | `PSM_yaw.stl` |
 | Mesh extension | always lowercase | `.stl`, `.dae` |
 | Xacro prefix arg | arm instance | `PSM1_`, `ECM_`, `MTML_` |
 | URDF entry points | UPPERCASE arm name | `PSM1.urdf.xacro` |
@@ -217,8 +217,8 @@ Generation-specific:          Generation-agnostic (urdf/common/):
 │  PSM_base           │──────▶│  PSM_instrument                                    │
 │  (3 DOF)            │       │  params: shaft_length, tool_model                  │
 │                     │       │                                                     │
-│  Joint 1: outer_yaw │       │  Joint 4: roll  (D = shaft_length)                 │
-│  Joint 2: outer_pitch│      │     └── PSM_roll_link (shaft mesh)                 │
+│  Joint 1: yaw │       │  Joint 4: roll  (D = shaft_length)                 │
+│  Joint 2: pitch│      │     └── PSM_roll_link (shaft mesh)                 │
 │  Joint 3: insertion │       │           └── PSM_wrist_link                       │
 │                     │       │   ┌──────────────────────────────────────────┐     │
 │  Ends at:           │       │   │  PSM_tip_XXX macro (selected by model)   │     │
@@ -247,8 +247,8 @@ Joint limits and small inertia are provided for physics-simulator compatibility.
 
 | Joint | Type | Axis | Lower | Upper | Effort | Velocity |
 |---|---|---|---|---|---|---|
-| `outer_yaw` | revolute | z | −π/2 | π/2 | 50 N·m | 1 rad/s |
-| `outer_pitch` | revolute | y | −π/4 | π/4 | 50 N·m | 1 rad/s |
+| `yaw` | revolute | z | −π/2 | π/2 | 50 N·m | 1 rad/s |
+| `pitch` | revolute | y | −π/4 | π/4 | 50 N·m | 1 rad/s |
 | `insertion` | prismatic | z | 0.0 m | 0.240 m | 50 N | 0.4 m/s |
 
 All three virtual links: `mass=0.001 kg`, `ixx=iyy=izz=1e-6 kg·m²`.

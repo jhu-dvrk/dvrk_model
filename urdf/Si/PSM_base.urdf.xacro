@@ -51,8 +51,8 @@
       <origin rpy="${rpy}" xyz="${xyz}"/>
     </joint>
 
-    <!-- link 1: outer_yaw body -->
-    <link name="${prefix}PSM_ECM_outer_yaw_link">
+    <!-- link 1: yaw body -->
+    <link name="${prefix}PSM_ECM_yaw_link">
       <inertial>
         <origin xyz="0.1461 0.090363 -0.024957" rpy="0 0 0"/>
         <mass value="1.7571"/>
@@ -63,29 +63,29 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_yaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_yaw.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_yaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_yaw.stl"/>
         </geometry>
       </collision>
     </link>
 
     <!-- joint 1: yaw (outer yaw) -->
-    <joint name="yaw" type="revolute"> <!--outer_yaw-->
+    <joint name="yaw" type="revolute"> <!--yaw-->
       <origin xyz="0.158 0 0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}PSM_ECM_base_link"/>
-      <child  link="${prefix}PSM_ECM_outer_yaw_link"/>
+      <child  link="${prefix}PSM_ECM_yaw_link"/>
       <axis xyz="-1.0 0.0 0.0"/>
       <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/> <!--flagged placeholder and limits of ±π-->
     </joint>
 
     <!-- link 2: outer pitch arm -->
-    <link name="${prefix}PSM_ECM_outer_pitch_link">
+    <link name="${prefix}PSM_ECM_pitch_link">
       <inertial>
         <origin xyz="0.083895 -0.00073113 -0.028998" rpy="0.0 0.0 0.0"/>
         <mass value="4.017"/>
@@ -96,29 +96,29 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_pitch.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_pitch.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_pitch.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_pitch.stl"/>
         </geometry>
       </collision>
     </link>
 
     <!-- joint 2: pitch (outer pitch) -->
-    <joint name="pitch" type="revolute"> <!--outer_pitch-->
+    <joint name="pitch" type="revolute"> <!--pitch-->
       <origin xyz="0.2987 0 -0.071222" rpy="0 -1.1345 -3.1416"/>
-      <parent link="${prefix}PSM_ECM_outer_yaw_link"/>
-      <child  link="${prefix}PSM_ECM_outer_pitch_link"/>
+      <parent link="${prefix}PSM_ECM_yaw_link"/>
+      <child  link="${prefix}PSM_ECM_pitch_link"/>
       <axis xyz="0 -1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/> <!--flagged placeholder and limits of ±π-->
     </joint>
 
     <!-- link 3: pitch parallelogram arm (mimic pitch) -->
-    <link name="${prefix}PSM_ECM_outer_pitch_bottom_link">
+    <link name="${prefix}PSM_ECM_pitch_bottom_link">
       <inertial>
         <origin xyz="0.11824 1.9336E-19 0.12932" rpy="0 0 0"/>
         <mass value="2.1982"/>
@@ -129,29 +129,29 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_pitch_bottom.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_pitch_bottom.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_pitch_bottom.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_pitch_bottom.stl"/>
         </geometry>
       </collision>
     </link>
 
     <joint name="pitch_2" type="revolute">
       <origin xyz="0.2032 0 0" rpy="0 -0.90761 -3.1416"/>
-      <parent link="${prefix}PSM_ECM_outer_pitch_link"/>
-      <child  link="${prefix}PSM_ECM_outer_pitch_bottom_link"/>
+      <parent link="${prefix}PSM_ECM_pitch_link"/>
+      <child  link="${prefix}PSM_ECM_pitch_bottom_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/> <!--flagged placeholder and limits of ±π-->
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
     <!-- link 4: pitch parallelogram distal (mimic pitch) -->
-    <link name="${prefix}PSM_ECM_outer_pitch_top_link">
+    <link name="${prefix}PSM_ECM_pitch_top_link">
       <inertial>
         <origin xyz="0.041219 -9.0734E-08 0.13651" rpy="0 0 0"/>
         <mass value="0.75206"/>
@@ -162,22 +162,22 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_pitch_top.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_pitch_top.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_outer_pitch_top.stl"/>
+          <mesh filename="package://dvrk_model/meshes/Si/PSM_ECM/PSM_ECM_pitch_top.stl"/>
         </geometry>
       </collision>
     </link>
 
     <joint name="pitch_3" type="revolute">
       <origin xyz="0.35966 0 0.16013" rpy="0 -0.063963 0"/>
-      <parent link="${prefix}PSM_ECM_outer_pitch_bottom_link"/>
-      <child  link="${prefix}PSM_ECM_outer_pitch_top_link"/>
+      <parent link="${prefix}PSM_ECM_pitch_bottom_link"/>
+      <child  link="${prefix}PSM_ECM_pitch_top_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/> <!--flagged placeholder and limits of ±π-->
       <mimic joint="pitch" multiplier="1"/>
@@ -185,12 +185,12 @@
 
     <!--
       joint 3: insertion (prismatic) — moved here from psm_tool.
-      Origin from original outer_insertion_ref fixed joint (xyz 0.05061 0 0.41911)
+      Origin from original insertion_ref fixed joint (xyz 0.05061 0 0.41911)
       combined with the insertion joint offset.
     -->
     <joint name="insertion" type="prismatic">
       <origin xyz="0.05061 0 0.41911" rpy="${PI} 0 0"/>
-      <parent link="${prefix}PSM_ECM_outer_pitch_top_link"/>
+      <parent link="${prefix}PSM_ECM_pitch_top_link"/>
       <child  link="${prefix}PSM_tool_parent_link"/>
       <axis xyz="0 0 1"/>
       <limit lower="0.0" upper="0.299" velocity="0.4" effort="1000"/>
@@ -207,7 +207,7 @@
     <link name="${prefix}PSM_RCM_link"/>
     <joint name="${prefix}jrcm" type="fixed">
       <origin xyz="0.10643 0 -0.1731" rpy="3.1416 0 -1.5708"/>
-      <parent link="${prefix}PSM_ECM_outer_pitch_top_link"/>
+      <parent link="${prefix}PSM_ECM_pitch_top_link"/>
       <child  link="${prefix}PSM_RCM_link"/>
       <axis xyz="0 0 0"/>
     </joint>
