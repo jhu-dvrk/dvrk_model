@@ -1,9 +1,9 @@
 # Build / install folders
-*/lib/*
-*/build/*
-*/bin/*
+build/
 install/
 log/
+lib/
+bin/
 
 # ROS generated files
 */msg_gen/*
