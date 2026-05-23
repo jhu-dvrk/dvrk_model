@@ -15,8 +15,8 @@
       parent_link — link to attach the base to (typically "world")
       xyz / rpy   — placement of the arm base relative to parent_link
   -->
-<!--simplify to just base?-->
-  <xacro:macro name="PSM_base"
+
+  <xacro:macro name="base"
                params="prefix parent_link
                        xyz:='0.0 0.0 0.0'
                        rpy:='0.0 0.0 0.0'">

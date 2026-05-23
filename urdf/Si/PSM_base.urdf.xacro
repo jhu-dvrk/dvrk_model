@@ -15,7 +15,7 @@
     Inertial data retained from original Si CAD export.
   -->
 
-  <xacro:macro name="PSM_base"
+  <xacro:macro name="base"
                params="prefix parent_link
                        xyz:='0.0 0.0 0.0'
                        rpy:='0.0 0.0 0.0'">
