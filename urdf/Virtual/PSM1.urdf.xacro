@@ -19,7 +19,7 @@
   <link name="world"/>
 
   <!-- 3 virtual DOFs at the trocar — no arm geometry -->
-  <xacro:PSM_base_virtual prefix="PSM1_"
+  <xacro:base_virtual prefix="PSM1_"
                           rcm_xyz="$(arg rcm_xyz)"
                           rcm_rpy="$(arg rcm_rpy)"/>
 

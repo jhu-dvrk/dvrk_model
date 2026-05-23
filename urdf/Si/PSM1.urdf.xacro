@@ -11,7 +11,7 @@
 
   <link name="world"/>
 
-  <xacro:PSM_base prefix="PSM1_"
+  <xacro:base prefix="PSM1_"
                   parent_link="world"/>
 
   <xacro:PSM_instrument prefix="PSM1_"

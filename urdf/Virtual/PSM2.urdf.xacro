@@ -9,7 +9,7 @@
 
   <link name="world"/>
 
-  <xacro:PSM_base_virtual prefix="PSM2_"
+  <xacro:base_virtual prefix="PSM2_"
                           rcm_xyz="$(arg rcm_xyz)"
                           rcm_rpy="$(arg rcm_rpy)"/>
 

@@ -12,7 +12,7 @@
 
   <link name="world"/>
 
-  <xacro:PSM_base prefix="PSM1_"
+  <xacro:base prefix="PSM1_"
                   parent_link="world"
                   xyz="-0.25 0.0 0.5" rpy="0.0 0.0 ${PI}"/>
 

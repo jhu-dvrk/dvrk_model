@@ -6,7 +6,7 @@
 
   <link name="world"/>
 
-  <xacro:PSM_base prefix="ECM_"
+  <xacro:base prefix="ECM_"
                   parent_link="world"/>
 
   <xacro:PSM_instrument prefix="ECM_"

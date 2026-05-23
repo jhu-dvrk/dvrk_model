@@ -29,7 +29,7 @@
   <xacro:property name="virtual_mass"  value="0.001"/>  <!-- 1 gram -->
   <xacro:property name="virtual_inertia" value="1e-6"/>  <!-- 1e-6 kg·m² -->
 
-  <xacro:macro name="PSM_base_virtual"
+  <xacro:macro name="base_virtual"
                params="prefix
                        rcm_xyz:='0 0 0'
                        rcm_rpy:='0 0 0'">
