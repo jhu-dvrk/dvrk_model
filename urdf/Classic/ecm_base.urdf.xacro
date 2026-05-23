@@ -41,7 +41,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_outer_yaw.stl" />
+            filename="package://dvrk_model/meshes/Classic/ECM/ECM_yaw.stl" />
         </geometry>
       </visual>
       <collision>
@@ -50,7 +50,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_outer_yaw.stl" />
+            filename="package://dvrk_model/meshes/Classic/ECM/ECM_yaw.stl" />
         </geometry>
       </collision>
     </link>
