@@ -5,8 +5,8 @@
 
   <!--
     Si PSM arm — 3 actuated DOF:
-      Joint 1: yaw    (revolute, outer yaw)
-      Joint 2: pitch  (revolute, outer pitch, parallelogram linkage ×3)
+      Joint 1: yaw    (revolute, yaw)
+      Joint 2: pitch  (revolute, pitch, parallelogram linkage ×3)
       Joint 3: insertion (prismatic)
 
     Macro output: ends at ${prefix}PSM_tool_parent_link.
@@ -75,16 +75,16 @@
       </collision>
     </link>
 
-    <!-- joint 1: yaw (outer yaw) -->
+    <!-- joint 1: yaw -->
     <joint name="yaw" type="revolute">
       <origin xyz="0.158 0 0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}PSM_ECM_base_link"/>
       <child  link="${prefix}PSM_ECM_yaw_link"/>
       <axis xyz="-1.0 0.0 0.0"/>
-      <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/> <!--flagged placeholder and limits of ±π-->
+      <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/>
     </joint>
 
-    <!-- link 2: outer pitch arm -->
+    <!-- link 2: pitch arm -->
     <link name="${prefix}PSM_ECM_pitch_link">
       <inertial>
         <origin xyz="0.083895 -0.00073113 -0.028998" rpy="0.0 0.0 0.0"/>
@@ -108,13 +108,13 @@
       </collision>
     </link>
 
-    <!-- joint 2: pitch (outer pitch) -->
+    <!-- joint 2: pitch -->
     <joint name="pitch" type="revolute">
       <origin xyz="0.2987 0 -0.071222" rpy="0 -1.1345 -3.1416"/>
       <parent link="${prefix}PSM_ECM_yaw_link"/>
       <child  link="${prefix}PSM_ECM_pitch_link"/>
       <axis xyz="0 -1 0"/>
-      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/> <!--flagged placeholder and limits of ±π-->
+      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
     </joint>
 
     <!-- link 3: pitch parallelogram arm (mimic pitch) -->
@@ -146,7 +146,7 @@
       <parent link="${prefix}PSM_ECM_pitch_link"/>
       <child  link="${prefix}PSM_ECM_pitch_bottom_link"/>
       <axis xyz="0 1 0"/>
-      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/> <!--flagged placeholder and limits of ±π-->
+      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
@@ -179,7 +179,7 @@
       <parent link="${prefix}PSM_ECM_pitch_bottom_link"/>
       <child  link="${prefix}PSM_ECM_pitch_top_link"/>
       <axis xyz="0 1 0"/>
-      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/> <!--flagged placeholder and limits of ±π-->
+      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
