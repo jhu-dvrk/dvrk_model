@@ -16,7 +16,7 @@
     All three links share a small but non-zero inertia so physics
     simulators (Gazebo, Isaac) can integrate without singularities.
 
-    Output: ends at ${prefix}PSM_tool_parent_link — identical to the
+    Output: ends at ${prefix}tool_parent_link — identical to the
     full Classic/Si base so PSM_instrument attaches without modification.
 
     Parameters:
@@ -37,25 +37,25 @@
     <!-- Fixed anchor: world → RCM frame (trocar location) -->
     <joint name="${prefix}RCM_fixed" type="fixed">
       <parent link="world"/>
-      <child  link="${prefix}PSM_RCM_link"/>
+      <child  link="${prefix}RCM_link"/>
       <origin xyz="${rcm_xyz}" rpy="${rcm_rpy}"/>
     </joint>
 
     <!-- RCM frame link — not a DOF, just a named coordinate frame -->
-    <link name="${prefix}PSM_RCM_link"/>
+    <link name="${prefix}RCM_link"/>
 
     <!-- ── Joint 1: yaw ───────────────────────────────────────────── -->
     <!--   Revolute about z at the RCM. Models the yaw of the PSM arm.      -->
     <joint name="yaw" type="revolute">
-      <parent link="${prefix}PSM_RCM_link"/>
-      <child  link="${prefix}PSM_RCM_yaw_link"/>
+      <parent link="${prefix}RCM_link"/>
+      <child  link="${prefix}RCM_yaw_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <limit lower="-1.5707963" upper="1.5707963"
              effort="50" velocity="1.0"/>
     </joint>
 
-    <link name="${prefix}PSM_RCM_yaw_link">
+    <link name="${prefix}RCM_yaw_link">
       <inertial>
         <mass value="${virtual_mass}"/>
         <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
@@ -67,15 +67,15 @@
     <!-- ── Joint 2: pitch ─────────────────────────────────────────── -->
     <!--   Revolute about y at the RCM. Models the pitch of the PSM arm.    -->
     <joint name="pitch" type="revolute">
-      <parent link="${prefix}PSM_RCM_yaw_link"/>
-      <child  link="${prefix}PSM_RCM_pitch_link"/>
+      <parent link="${prefix}RCM_yaw_link"/>
+      <child  link="${prefix}RCM_pitch_link"/>
       <axis xyz="0 1 0"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <limit lower="-0.7853982" upper="0.7853982"
              effort="50" velocity="1.0"/>
     </joint>
 
-    <link name="${prefix}PSM_RCM_pitch_link">
+    <link name="${prefix}RCM_pitch_link">
       <inertial>
         <mass value="${virtual_mass}"/>
         <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
@@ -86,11 +86,11 @@
 
     <!-- ── Joint 3: insertion ───────────────────────────────────────────── -->
     <!--   Prismatic along z at the RCM. Models insertion depth.            -->
-    <!--   PSM_tool_parent_link serves as the insertion child AND the        -->
+    <!--   tool_parent_link serves as the insertion child AND the        -->
     <!--   handoff link to PSM_instrument (same name as in Classic/Si base). -->
     <joint name="insertion" type="prismatic">
-      <parent link="${prefix}PSM_RCM_pitch_link"/>
-      <child  link="${prefix}PSM_tool_parent_link"/>
+      <parent link="${prefix}RCM_pitch_link"/>
+      <child  link="${prefix}tool_parent_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <limit lower="0.0" upper="0.240"
@@ -98,10 +98,10 @@
     </joint>
 
     <!--
-      PSM_tool_parent_link — identical name to Classic/Si boundary link.
+      tool_parent_link — identical name to Classic/Si boundary link.
       PSM_instrument attaches here; no change needed for any generation.
     -->
-    <link name="${prefix}PSM_tool_parent_link">
+    <link name="${prefix}tool_parent_link">
       <inertial>
         <mass value="${virtual_mass}"/>
         <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"

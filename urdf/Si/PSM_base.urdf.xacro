@@ -9,7 +9,7 @@
       Joint 2: pitch  (revolute, pitch, parallelogram linkage ×3)
       Joint 3: insertion (prismatic)
 
-    Macro output: ends at ${prefix}PSM_tool_parent_link.
+    Macro output: ends at ${prefix}tool_parent_link.
     PSM_instrument attaches here and owns roll onward.
 
     Inertial data retained from original Si CAD export.
@@ -21,7 +21,7 @@
                        rpy:='0.0 0.0 0.0'">
 
     <!-- link 0: arm base -->
-    <link name="${prefix}USM_base_link">
+    <link name="${prefix}base_link">
       <inertial>
         <origin xyz="-0.080771 2.1131E-08 1.8613E-07" rpy="0 0 0"/>
         <mass value="1.5188"/>
@@ -47,12 +47,12 @@
     <!-- fixed joint: world → base -->
     <joint name="${prefix}base_fixed" type="fixed">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}USM_base_link"/>
+      <child  link="${prefix}base_link"/>
       <origin rpy="${rpy}" xyz="${xyz}"/>
     </joint>
 
     <!-- link 1: yaw body -->
-    <link name="${prefix}USM_yaw_link">
+    <link name="${prefix}yaw_link">
       <inertial>
         <origin xyz="0.1461 0.090363 -0.024957" rpy="0 0 0"/>
         <mass value="1.7571"/>
@@ -78,14 +78,14 @@
     <!-- joint 1: yaw -->
     <joint name="yaw" type="revolute">
       <origin xyz="0.158 0 0" rpy="0.0 0.0 0.0"/>
-      <parent link="${prefix}USM_base_link"/>
-      <child  link="${prefix}USM_yaw_link"/>
+      <parent link="${prefix}base_link"/>
+      <child  link="${prefix}yaw_link"/>
       <axis xyz="-1.0 0.0 0.0"/>
       <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/>
     </joint>
 
     <!-- link 2: pitch arm -->
-    <link name="${prefix}USM_pitch_link">
+    <link name="${prefix}pitch_link">
       <inertial>
         <origin xyz="0.083895 -0.00073113 -0.028998" rpy="0.0 0.0 0.0"/>
         <mass value="4.017"/>
@@ -111,14 +111,14 @@
     <!-- joint 2: pitch -->
     <joint name="pitch" type="revolute">
       <origin xyz="0.2987 0 -0.071222" rpy="0 -1.1345 -3.1416"/>
-      <parent link="${prefix}USM_yaw_link"/>
-      <child  link="${prefix}USM_pitch_link"/>
+      <parent link="${prefix}yaw_link"/>
+      <child  link="${prefix}pitch_link"/>
       <axis xyz="0 -1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
     </joint>
 
     <!-- link 3: pitch parallelogram arm (mimic pitch) -->
-    <link name="${prefix}USM_pitch_3_link">
+    <link name="${prefix}pitch_3_link">
       <inertial>
         <origin xyz="0.11824 1.9336E-19 0.12932" rpy="0 0 0"/>
         <mass value="2.1982"/>
@@ -143,15 +143,15 @@
 
     <joint name="pitch_2" type="revolute">
       <origin xyz="0.2032 0 0" rpy="0 -0.90761 -3.1416"/>
-      <parent link="${prefix}USM_pitch_link"/>
-      <child  link="${prefix}USM_pitch_3_link"/>
+      <parent link="${prefix}pitch_link"/>
+      <child  link="${prefix}pitch_3_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
     <!-- link 4: pitch parallelogram distal (mimic pitch) -->
-    <link name="${prefix}USM_pitch_4_link">
+    <link name="${prefix}pitch_4_link">
       <inertial>
         <origin xyz="0.041219 -9.0734E-08 0.13651" rpy="0 0 0"/>
         <mass value="0.75206"/>
@@ -176,8 +176,8 @@
 
     <joint name="pitch_3" type="revolute">
       <origin xyz="0.35966 0 0.16013" rpy="0 -0.063963 0"/>
-      <parent link="${prefix}USM_pitch_3_link"/>
-      <child  link="${prefix}USM_pitch_4_link"/>
+      <parent link="${prefix}pitch_3_link"/>
+      <child  link="${prefix}pitch_4_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="1"/>
@@ -190,25 +190,25 @@
     -->
     <joint name="insertion" type="prismatic">
       <origin xyz="0.05061 0 0.41911" rpy="${PI} 0 0"/>
-      <parent link="${prefix}USM_pitch_4_link"/>
-      <child  link="${prefix}PSM_tool_parent_link"/>
+      <parent link="${prefix}pitch_4_link"/>
+      <child  link="${prefix}tool_parent_link"/>
       <axis xyz="0 0 1"/>
       <limit lower="0.0" upper="0.299" velocity="0.4" effort="1000"/>
     </joint>
 
     <!--
-      PSM_tool_parent_link — boundary link; PSM_instrument attaches here.
+      tool_parent_link — boundary link; PSM_instrument attaches here.
       No geometry; same name as Classic and Virtual so PSM_instrument
       macro is generation-agnostic.
     -->
-    <link name="${prefix}PSM_tool_parent_link"/>
+    <link name="${prefix}tool_parent_link"/>
 
     <!-- RCM reference frame (kept for any downstream code that uses it) -->
-    <link name="${prefix}PSM_RCM_link"/>
+    <link name="${prefix}RCM_link"/>
     <joint name="${prefix}jrcm" type="fixed">
       <origin xyz="0.10643 0 -0.1731" rpy="3.1416 0 -1.5708"/>
-      <parent link="${prefix}USM_pitch_4_link"/>
-      <child  link="${prefix}PSM_RCM_link"/>
+      <parent link="${prefix}pitch_4_link"/>
+      <child  link="${prefix}RCM_link"/>
       <axis xyz="0 0 0"/>
     </joint>
 

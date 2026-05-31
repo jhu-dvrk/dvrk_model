@@ -14,7 +14,7 @@
                           rcm_rpy="$(arg rcm_rpy)"/>
 
   <xacro:PSM_instrument prefix="PSM3_"
-                        parent_link="PSM3_PSM_tool_parent_link"
+                        parent_link="PSM3_tool_parent_link"
                         instrument="$(arg instrument)"/>
 
 </robot>

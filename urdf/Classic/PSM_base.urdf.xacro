@@ -174,7 +174,7 @@
     <!--
       link 3: tool_parent_link
       Massless boundary link — handoff point to PSM_instrument.
-      No mesh; both Classic and Virtual use this exact link name
+      No mesh; both Si and Classic use this exact link name
       so PSM_instrument is generation-agnostic.
     -->
     <link name="${prefix}tool_parent_link"/>

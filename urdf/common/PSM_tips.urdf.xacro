@@ -4,7 +4,7 @@
   <!--
     PSM tip family macros — generation-agnostic.
 
-    All macros attach to ${parent_link} (= ${prefix}PSM_wrist_shaft_link).
+    All macros attach to ${parent_link} (= ${prefix}wrist_shaft_link).
     Tip families are identified by the last 3 digits of the instrument model:
 
       PSM_tip_006  — standard SCA wrist  (A=0.0091 m, most instruments)
@@ -25,13 +25,13 @@
     <!-- joint 5: wrist_pitch -->
     <joint name="wrist_pitch" type="revolute">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}PSM_tip_006_wrist_link"/>
+      <child  link="${prefix}tip_006_wrist_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-${PI_2} -${PI_2} 0" xyz="0 0 0"/>
       <limit lower="-${PI_2}" upper="${PI_2}" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_tip_006_wrist_link">
+    <link name="${prefix}tip_006_wrist_link">
       <visual>
         <origin rpy="${PI_2} ${PI} 0" xyz="0.0051 0.0032 0"/>
         <geometry>
@@ -42,14 +42,14 @@
 
     <!-- joint 6: wrist_yaw -->
     <joint name="wrist_yaw" type="revolute">
-      <parent link="${prefix}PSM_tip_006_wrist_link"/>
-      <child  link="${prefix}PSM_tip_006_shaft_link"/>
+      <parent link="${prefix}tip_006_wrist_link"/>
+      <child  link="${prefix}tip_006_shaft_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-${PI_2} -${PI_2} 0" xyz="0.0091 0 0"/>
       <limit lower="-1.3963" upper="1.3963" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_tip_006_shaft_link">
+    <link name="${prefix}tip_006_shaft_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 -0.0002 -0.0025"/>
         <geometry>
@@ -60,15 +60,15 @@
 
     <!-- joint 7-0: jaw (virtual centre — drives the mimics) -->
     <joint name="jaw" type="revolute">
-      <parent link="${prefix}PSM_tip_006_shaft_link"/>
-      <child  link="${prefix}PSM_jaw_link"/>
+      <parent link="${prefix}tip_006_shaft_link"/>
+      <child  link="${prefix}jaw_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="0" upper="${PI_2}" velocity=".4" effort="1000"/>
     </joint>
 
     <!-- virtual jaw link (zero-size, drives mimics) -->
-    <link name="${prefix}PSM_jaw_link">
+    <link name="${prefix}jaw_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry><box size="0 0 0"/></geometry>
@@ -77,15 +77,15 @@
 
     <!-- jaw mimic 1 — opens +0.5× -->
     <joint name="jaw_1" type="revolute">
-      <parent link="${prefix}PSM_tip_006_shaft_link"/>
-      <child  link="${prefix}PSM_jaw_1_link"/>
+      <parent link="${prefix}tip_006_shaft_link"/>
+      <child  link="${prefix}jaw_1_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="0.5"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_1_link">
+    <link name="${prefix}jaw_1_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -96,15 +96,15 @@
 
     <!-- jaw mimic 2 — opens −0.5× (symmetric) -->
     <joint name="jaw_2" type="revolute">
-      <parent link="${prefix}PSM_tip_006_shaft_link"/>
-      <child  link="${prefix}PSM_jaw_2_link"/>
+      <parent link="${prefix}tip_006_shaft_link"/>
+      <child  link="${prefix}jaw_2_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="-0.5"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_2_link">
+    <link name="${prefix}jaw_2_link">
       <visual>
         <origin rpy="0 ${PI} 0" xyz="0 0 0"/>
         <geometry>
@@ -115,11 +115,11 @@
 
     <!-- tool tip reference frame -->
     <joint name="tool_tip" type="fixed">
-      <parent link="${prefix}PSM_tip_006_shaft_link"/>
-      <child  link="${prefix}PSM_tool_tip_link"/>
+      <parent link="${prefix}tip_006_shaft_link"/>
+      <child  link="${prefix}tool_tip_link"/>
       <origin rpy="0 ${PI/2} ${PI/2}" xyz="0 0.0102 0"/>
     </joint>
-    <link name="${prefix}PSM_tool_tip_link"/>
+    <link name="${prefix}tool_tip_link"/>
 
   </xacro:macro>
 
@@ -131,13 +131,13 @@
 
     <joint name="wrist_pitch" type="revolute">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}PSM_tip_049_wrist_link"/>
+      <child  link="${prefix}tip_049_wrist_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-${PI_2} -${PI_2} 0" xyz="0 0 0"/>
       <limit lower="-${PI_2}" upper="${PI_2}" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_tip_049_wrist_link">
+    <link name="${prefix}tip_049_wrist_link">
       <visual>
         <origin rpy="0 -${PI_2} 0" xyz="-0.0024 0 0"/>
         <geometry>
@@ -147,14 +147,14 @@
     </link>
 
     <joint name="wrist_yaw" type="revolute">
-      <parent link="${prefix}PSM_tip_049_wrist_link"/>
-      <child  link="${prefix}PSM_tip_049_shaft_link"/>
+      <parent link="${prefix}tip_049_wrist_link"/>
+      <child  link="${prefix}tip_049_shaft_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 -${PI_2} -${PI_2}" xyz="0.0091 0 0"/>
       <limit lower="-1.3963" upper="1.3963" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_tip_049_shaft_link">
+    <link name="${prefix}tip_049_shaft_link">
       <visual>
         <origin rpy="0 ${PI_2} 0" xyz="0 -0.0002 0"/>
         <geometry>
@@ -164,14 +164,14 @@
     </link>
 
     <joint name="jaw" type="revolute">
-      <parent link="${prefix}PSM_tip_049_shaft_link"/>
-      <child link="${prefix}PSM_jaw_link"/>
+      <parent link="${prefix}tip_049_shaft_link"/>
+      <child link="${prefix}jaw_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="-0.349066" upper="1.5708" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_link">
+    <link name="${prefix}jaw_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry><box size="0 0 0"/></geometry>
@@ -179,15 +179,15 @@
     </link>
 
     <joint name="jaw_1" type="revolute">
-      <parent link="${prefix}PSM_tip_049_shaft_link"/>
-      <child link="${prefix}PSM_jaw_1_link"/>
+      <parent link="${prefix}tip_049_shaft_link"/>
+      <child link="${prefix}jaw_1_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="-0.349066" upper="1.5708" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="0.5"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_1_link">
+    <link name="${prefix}jaw_1_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0.00195"/>
         <geometry>
@@ -197,15 +197,15 @@
     </link>
 
     <joint name="jaw_2" type="revolute">
-      <parent link="${prefix}PSM_tip_049_shaft_link"/>
-      <child link="${prefix}PSM_jaw_2_link"/>
+      <parent link="${prefix}tip_049_shaft_link"/>
+      <child link="${prefix}jaw_2_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="${PI} 0 0" xyz="0 0 0"/>
       <limit lower="-0.349066" upper="1.5708" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="0.5"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_2_link">
+    <link name="${prefix}jaw_2_link">
       <visual>
         <origin rpy="0 0 -${PI}" xyz="0 0 0.00195"/>
         <geometry>
@@ -215,11 +215,11 @@
     </link>
 
     <joint name="tool_tip" type="fixed">
-      <parent link="${prefix}PSM_tip_049_shaft_link"/>
-      <child link="${prefix}PSM_tool_tip_link"/>
+      <parent link="${prefix}tip_049_shaft_link"/>
+      <child link="${prefix}tool_tip_link"/>
       <origin rpy="0 ${PI_2} ${PI_2}" xyz="0 0 0"/>
     </joint>
-    <link name="${prefix}PSM_tool_tip_link"/>
+    <link name="${prefix}tool_tip_link"/>
 
   </xacro:macro>
 
@@ -232,7 +232,7 @@
     <!-- joint 5: wrist_pitch -->
     <joint name="wrist_pitch" type="revolute">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}PSM_tip_172_wrist_link"/>
+      <child  link="${prefix}tip_172_wrist_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-${PI_2} -${PI_2} 0" xyz="0 0 0"/>
       <limit lower="-${PI_2}" upper="${PI_2}" velocity=".4" effort="1000"/>
@@ -242,7 +242,7 @@
       NOTE: Maryland wrist mesh — use PSM_tip_006_wrist.dae as placeholder
       until a dedicated Maryland wrist mesh is added to the repo.
     -->
-    <link name="${prefix}PSM_tip_172_wrist_link">
+    <link name="${prefix}tip_172_wrist_link">
       <visual>
         <origin rpy="${PI_2} ${PI} 0" xyz="0.0051 0.0032 0"/>
         <geometry>
@@ -253,14 +253,14 @@
 
     <!-- joint 6: wrist_yaw (A=0.0107 — Maryland specific) -->
     <joint name="wrist_yaw" type="revolute">
-      <parent link="${prefix}PSM_tip_172_wrist_link"/>
-      <child  link="${prefix}PSM_tip_172_shaft_link"/>
+      <parent link="${prefix}tip_172_wrist_link"/>
+      <child  link="${prefix}tip_172_shaft_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-${PI_2} -${PI_2} 0" xyz="0.0107 0 0"/>
       <limit lower="-1.3963" upper="1.3963" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_tip_172_shaft_link">
+    <link name="${prefix}tip_172_shaft_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 -0.0002 -0.0025"/>
         <geometry>
@@ -271,29 +271,29 @@
 
     <!-- jaw + symmetric mimics (same as tip_006) -->
     <joint name="jaw" type="revolute">
-      <parent link="${prefix}PSM_tip_172_shaft_link"/>
-      <child  link="${prefix}PSM_jaw_link"/>
+      <parent link="${prefix}tip_172_shaft_link"/>
+      <child  link="${prefix}jaw_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="0" upper="${PI_2}" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_link">
+    <link name="${prefix}jaw_link">
       <visual><origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry><box size="0 0 0"/></geometry>
       </visual>
     </link>
 
     <joint name="jaw_1" type="revolute">
-      <parent link="${prefix}PSM_tip_172_shaft_link"/>
-      <child  link="${prefix}PSM_jaw_1_link"/>
+      <parent link="${prefix}tip_172_shaft_link"/>
+      <child  link="${prefix}jaw_1_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="0.5"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_1_link">
+    <link name="${prefix}jaw_1_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -303,15 +303,15 @@
     </link>
 
     <joint name="jaw_2" type="revolute">
-      <parent link="${prefix}PSM_tip_172_shaft_link"/>
-      <child  link="${prefix}PSM_jaw_2_link"/>
+      <parent link="${prefix}tip_172_shaft_link"/>
+      <child  link="${prefix}jaw_2_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="-0.5"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_2_link">
+    <link name="${prefix}jaw_2_link">
       <visual>
         <origin rpy="0 ${PI} 0" xyz="0 0 0"/>
         <geometry>
@@ -321,11 +321,11 @@
     </link>
 
     <joint name="tool_tip" type="fixed">
-      <parent link="${prefix}PSM_tip_172_shaft_link"/>
-      <child  link="${prefix}PSM_tool_tip_link"/>
+      <parent link="${prefix}tip_172_shaft_link"/>
+      <child  link="${prefix}tool_tip_link"/>
       <origin rpy="0 ${PI/2} ${PI/2}" xyz="0 0.0107 0"/>
     </joint>
-    <link name="${prefix}PSM_tool_tip_link"/>
+    <link name="${prefix}tool_tip_link"/>
 
   </xacro:macro>
 
@@ -344,30 +344,30 @@
     -->
     <joint name="wrist_pitch" type="revolute">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}PSM_tip_117_wrist_link"/>
+      <child  link="${prefix}tip_117_wrist_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-${PI_2} -${PI_2} 0" xyz="0 0 0"/>
       <limit lower="-${PI_2}" upper="${PI_2}" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_tip_117_wrist_link"/>
+    <link name="${prefix}tip_117_wrist_link"/>
 
     <joint name="jaw" type="revolute">
-      <parent link="${prefix}PSM_tip_117_wrist_link"/>
-      <child  link="${prefix}PSM_jaw_link"/>
+      <parent link="${prefix}tip_117_wrist_link"/>
+      <child  link="${prefix}jaw_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <limit lower="0" upper="${PI_2}" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}PSM_jaw_link"/>
+    <link name="${prefix}jaw_link"/>
 
     <joint name="tool_tip" type="fixed">
-      <parent link="${prefix}PSM_tip_117_wrist_link"/>
-      <child  link="${prefix}PSM_tool_tip_link"/>
+      <parent link="${prefix}tip_117_wrist_link"/>
+      <child  link="${prefix}tool_tip_link"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
-    <link name="${prefix}PSM_tool_tip_link"/>
+    <link name="${prefix}tool_tip_link"/>
 
   </xacro:macro>
 
@@ -378,10 +378,10 @@
     <!-- Cautery tool has no jaw, just a fixed tip at the end of the shaft -->
     <joint name="tool_tip" type="fixed">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}PSM_tool_tip_link"/>
+      <child  link="${prefix}tool_tip_link"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
-    <link name="${prefix}PSM_tool_tip_link"/>
+    <link name="${prefix}tool_tip_link"/>
   </xacro:macro>
 
   <!-- ════════════════════════════════════════════════════════════════════ -->
@@ -391,13 +391,13 @@
 
     <joint name="wrist_pitch" type="revolute">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}ECM_tip_roll_link"/>
+      <child  link="${prefix}tip_roll_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}ECM_tip_roll_link">
+    <link name="${prefix}tip_roll_link">
       <visual>
         <origin rpy="0 -${PI_2} 0" xyz="0.0051 0.0032 0"/>
         <geometry>
@@ -407,11 +407,11 @@
     </link>
 
     <joint name="tool_tip" type="fixed">
-      <parent link="${prefix}ECM_tip_roll_link"/>
-      <child  link="${prefix}PSM_tool_tip_link"/>
+      <parent link="${prefix}tip_roll_link"/>
+      <child  link="${prefix}tool_tip_link"/>
       <origin rpy="0 0 0" xyz="0 0.0102 0"/>
     </joint>
-    <link name="${prefix}PSM_tool_tip_link"/>
+    <link name="${prefix}tool_tip_link"/>
 
   </xacro:macro>
 
