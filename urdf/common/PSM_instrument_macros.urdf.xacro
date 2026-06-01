@@ -51,10 +51,10 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
           <xacro:if value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/instruments/420006/PSM_shaft.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/shared/rolls/PSM_roll_8mm.stl"/>
           </xacro:if>
           <xacro:unless value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_shaft.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/shared/rolls/PSM_roll.dae"/>
           </xacro:unless>
         </geometry>
       </visual>
@@ -62,10 +62,10 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
           <xacro:if value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/instruments/420006/PSM_shaft.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/shared/rolls/PSM_roll_8mm.stl"/>
           </xacro:if>
           <xacro:unless value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_shaft.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/shared/rolls/PSM_roll.dae"/>
           </xacro:unless>
         </geometry>
       </collision>
@@ -99,7 +99,7 @@
           <!-- Si roll wrist piece is centered at the roll joint -->
           <origin rpy="-${PI} 0 0" xyz="0.05591 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/420006/PSM_wrist.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/shared/rolls/PSM_roll_housing_8mm.stl"/>
           </geometry>
           <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
         </xacro:if>
@@ -107,7 +107,7 @@
           <!-- Classic shaft spins with the wrist -->
           <origin rpy="0 0 0" xyz="0 0 -${shaft_length}"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_shaft.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/shared/rolls/PSM_roll.dae"/>
           </geometry>
         </xacro:unless>
       </visual>
@@ -115,13 +115,13 @@
         <xacro:if value="${is_si}">
           <origin rpy="-${PI} 0 0" xyz="0.05591 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/420006/PSM_wrist.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/shared/rolls/PSM_roll_housing_8mm.stl"/>
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="0 0 0" xyz="0 0 -${shaft_length}"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_shaft.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/shared/rolls/PSM_roll.dae"/>
           </geometry>
         </xacro:unless>
       </collision>
@@ -139,14 +139,14 @@
         <xacro:if value="${is_si}">
           <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/420006/PSM_wrist_shaft.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/shared/rolls/PSM_roll_connector_8mm.stl"/>
           </geometry>
           <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
         </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_wrist_shaft.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/shared/rolls/PSM_roll_connector.dae"/>
           </geometry>
         </xacro:unless>
       </visual>
@@ -154,13 +154,13 @@
         <xacro:if value="${is_si}">
           <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/420006/PSM_wrist_shaft.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/shared/rolls/PSM_roll_connector_8mm.stl"/>
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_wrist_shaft.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/shared/rolls/PSM_roll_connector.dae"/>
           </geometry>
         </xacro:unless>
       </collision>
