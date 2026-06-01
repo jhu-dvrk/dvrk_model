@@ -22,7 +22,7 @@
   -->
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_tips.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_tips_macros.urdf.xacro"/>
 
   <xacro:macro name="PSM_instrument"
                params="prefix parent_link instrument">
