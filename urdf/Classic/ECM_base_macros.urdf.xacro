@@ -20,7 +20,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_base.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_base.stl" />
         </geometry>
       </visual>
       <collision>
@@ -29,7 +29,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_base.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_base.stl" />
         </geometry>
       </collision>
     </link>
@@ -41,7 +41,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_yaw.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_yaw.stl" />
         </geometry>
       </visual>
       <collision>
@@ -50,7 +50,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_yaw.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_yaw.stl" />
         </geometry>
       </collision>
     </link>
@@ -80,7 +80,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_front.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_front.stl" />
         </geometry>
       </visual>
       <collision>
@@ -89,7 +89,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_front.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_front.stl" />
         </geometry>
       </collision>
     </link>
@@ -119,7 +119,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_bottom.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_bottom.stl" />
         </geometry>
       </visual>
       <collision>
@@ -128,7 +128,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_bottom.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_bottom.stl" />
         </geometry>
       </collision>
     </link>
@@ -159,7 +159,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_end.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_end.stl" />
         </geometry>
       </visual>
       <collision>
@@ -168,7 +168,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_end.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_end.stl" />
         </geometry>
       </collision>
     </link>
@@ -199,7 +199,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_main_insertion.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_main_insertion.stl" />
         </geometry>
       </visual>
       <collision>
@@ -208,7 +208,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_main_insertion.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_main_insertion.stl" />
         </geometry>
       </collision>
     </link>
@@ -238,7 +238,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_tool.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl" />
         </geometry>
       </visual>
       <collision>
@@ -247,7 +247,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_tool.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl" />
         </geometry>
       </collision>
     </link>
@@ -277,7 +277,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_top.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_top.stl" />
         </geometry>
       </visual>
       <collision>
@@ -286,7 +286,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_top.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_top.stl" />
         </geometry>
       </collision>
     </link>
@@ -317,7 +317,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_back.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_back.stl" />
         </geometry>
       </visual>
       <collision>
@@ -326,7 +326,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_pitch_back.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_back.stl" />
         </geometry>
       </collision>
     </link>
@@ -357,7 +357,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_RCM.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_RCM.stl" />
         </geometry>
       </visual>
       <collision>
@@ -366,7 +366,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://dvrk_model/meshes/Classic/ECM/ECM_RCM.stl" />
+            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_RCM.stl" />
         </geometry>
       </collision>
     </link>

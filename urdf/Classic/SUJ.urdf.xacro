@@ -21,7 +21,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_base.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_base.stl" />
       </geometry>
       <material
           name="">
@@ -35,7 +35,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_base.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_base.stl" />
       </geometry>
     </collision>
   </link>
@@ -47,7 +47,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_0.stl" />
       </geometry>
       <material
           name="">
@@ -61,7 +61,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_0.stl" />
       </geometry>
     </collision>
   </link>
@@ -91,7 +91,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_1.stl" />
       </geometry>
       <material
           name="">
@@ -105,7 +105,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_1.stl" />
       </geometry>
     </collision>
   </link>
@@ -130,7 +130,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_2.stl" />
       </geometry>
       <material
           name="">
@@ -144,7 +144,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_2.stl" />
       </geometry>
     </collision>
   </link>
@@ -169,7 +169,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_3.stl" />
       </geometry>
       <material
           name="">
@@ -183,7 +183,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_3.stl" />
       </geometry>
     </collision>
   </link>
@@ -208,7 +208,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_4.stl" />
       </geometry>
       <material
           name="">
@@ -222,7 +222,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM2_link_4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM2_link_4.stl" />
       </geometry>
     </collision>
   </link>
@@ -261,7 +261,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_0.stl" />
       </geometry>
       <material
           name="">
@@ -275,7 +275,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_0.stl" />
       </geometry>
     </collision>
   </link>
@@ -305,7 +305,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_1.stl" />
       </geometry>
       <material
           name="">
@@ -319,7 +319,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_1.stl" />
       </geometry>
     </collision>
   </link>
@@ -344,7 +344,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_2.stl" />
       </geometry>
       <material
           name="">
@@ -358,7 +358,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_2.stl" />
       </geometry>
     </collision>
   </link>
@@ -383,7 +383,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_3.stl" />
       </geometry>
       <material
           name="">
@@ -397,7 +397,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_ECM_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_link_3.stl" />
       </geometry>
     </collision>
   </link>
@@ -436,7 +436,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_0.stl" />
       </geometry>
       <material
           name="">
@@ -450,7 +450,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_0.stl" />
       </geometry>
     </collision>
   </link>
@@ -480,7 +480,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_1.stl" />
       </geometry>
       <material
           name="">
@@ -494,7 +494,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_1.stl" />
       </geometry>
     </collision>
   </link>
@@ -519,7 +519,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_2.stl" />
       </geometry>
       <material
           name="">
@@ -533,7 +533,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_2.stl" />
       </geometry>
     </collision>
   </link>
@@ -558,7 +558,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_3.stl" />
       </geometry>
       <material
           name="">
@@ -572,7 +572,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_3.stl" />
       </geometry>
     </collision>
   </link>
@@ -597,7 +597,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_4.stl" />
       </geometry>
       <material
           name="">
@@ -611,7 +611,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM1_link_4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM1_link_4.stl" />
       </geometry>
     </collision>
   </link>
@@ -650,7 +650,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_0.stl" />
       </geometry>
       <material
           name="">
@@ -664,7 +664,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_0.stl" />
       </geometry>
     </collision>
   </link>
@@ -694,7 +694,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_1.stl" />
       </geometry>
       <material
           name="">
@@ -708,7 +708,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_1.stl" />
       </geometry>
     </collision>
   </link>
@@ -733,7 +733,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_2.stl" />
       </geometry>
       <material
           name="">
@@ -747,7 +747,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_2.stl" />
       </geometry>
     </collision>
   </link>
@@ -772,7 +772,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_3.stl" />
       </geometry>
       <material
           name="">
@@ -786,7 +786,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_3.stl" />
       </geometry>
     </collision>
   </link>
@@ -811,7 +811,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_4.stl" />
       </geometry>
       <material
           name="">
@@ -825,7 +825,7 @@
           rpy="0 0 0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/SUJ_PSM3_link_4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_link_4.stl" />
       </geometry>
     </collision>
   </link>

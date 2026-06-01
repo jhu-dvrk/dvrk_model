@@ -33,7 +33,7 @@
       <visual>
         <origin rpy="1.5708 0 3.1416" xyz="0.039 -0.40788 -0.07879"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_base.dae"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_base.dae"/>
         </geometry>
       </visual>
     </link>
@@ -52,7 +52,7 @@
       <visual>
         <origin rpy="3.1416 0 1.5708" xyz="0.0125 0 0.5265"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_yaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_yaw.dae"/>
         </geometry>
       </visual>
     </link>
@@ -85,7 +85,7 @@
       <visual>
         <origin rpy="0 0 -0.27129" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_2.dae"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_2.dae"/>
         </geometry>
       </visual>
     </link>
@@ -103,7 +103,7 @@
       <visual>
         <origin rpy="0 0 -0.27129" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_3.dae"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_3.dae"/>
         </geometry>
       </visual>
     </link>
@@ -121,7 +121,7 @@
       <visual>
         <origin rpy="0 -1.5708 0" xyz="0.009 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_4.dae"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_4.dae"/>
         </geometry>
       </visual>
     </link>
@@ -139,7 +139,7 @@
       <visual>
         <origin rpy="0 -1.5708 0" xyz="0.009 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_pitch_5.dae"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_5.dae"/>
         </geometry>
       </visual>
     </link>
@@ -157,7 +157,7 @@
       <visual>
         <origin rpy="0 -1.5708 1.5708" xyz="0.02528 0.429 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Classic/PSM/PSM_insertion.dae"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_insertion.dae"/>
         </geometry>
       </visual>
     </link>
