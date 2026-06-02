@@ -2,10 +2,10 @@
 <robot name="PSM3" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:arg name="instrument" default="420006"/>
   <xacro:arg name="parent_link_" default="world"/>
-  <xacro:property name="parent_link" default="$(arg parent_link_)"/>
+  <xacro:property name="parent_link" value="$(arg parent_link_)"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Si/PSM_base_macros.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument_macros.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
 
   <link name="${parent_link}"/>
 

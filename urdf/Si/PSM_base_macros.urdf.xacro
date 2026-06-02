@@ -32,14 +32,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_base.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_base.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_base.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_base.stl"/>
         </geometry>
       </collision>
     </link>
@@ -63,14 +63,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_yaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_yaw.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_yaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_yaw.stl"/>
         </geometry>
       </collision>
     </link>
@@ -96,14 +96,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_pitch.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_pitch.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch.stl"/>
         </geometry>
       </collision>
     </link>
@@ -129,14 +129,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_pitch_3.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_3.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_pitch_3.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_3.stl"/>
         </geometry>
       </collision>
     </link>
@@ -162,14 +162,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_pitch_4.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_4.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/Si/USM/USM_pitch_4.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_4.stl"/>
         </geometry>
       </collision>
     </link>

@@ -1,0 +1,379 @@
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- Class dvrk_system: Configure: system using file "/home/yzhang177/dvrk_ws/install/dvrk_config/share/dvrk_config/system/system-ECM_Si_KIN_SIMULATED.json"
+----> content of configuration file: 
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+	"$id" : "dvrk-system.schema.json",
+	"$version" : "1",
+	"arms" : 
+	[
+		{
+			"arm_file" : "arm/ECM_Si_KIN_SIMULATED_STRAIGHT.json",
+			"name" : "ECM",
+			"simulation" : "KINEMATIC",
+			"type" : "ECM"
+		}
+	]
+}
+<----
+M- Class dvrk_system: Configure, loaded:
+------>
+{
+	"IOs" : null,
+	"ISI_focus_controller" : 
+	{
+		"IO" : "",
+		"IO_file" : "",
+		"name" : "ISI_focus_controller"
+	},
+	"arms" : 
+	[
+		{
+			"IO" : "",
+			"IO_file" : "",
+			"IO_gripper_file" : "",
+			"PID_file" : "",
+			"PID_period" : 0.0,
+			"arm_file" : "arm/ECM_Si_KIN_SIMULATED_STRAIGHT.json",
+			"base_frame" : 
+			{
+				"component" : "",
+				"interface" : "",
+				"reference_frame" : "",
+				"transform" : 
+				[
+					[
+						1.0,
+						0.0,
+						0.0,
+						0.0
+					],
+					[
+						0.0,
+						1.0,
+						0.0,
+						0.0
+					],
+					[
+						0.0,
+						0.0,
+						1.0,
+						0.0
+					],
+					[
+						0.0,
+						0.0,
+						0.0,
+						1.0
+					]
+				]
+			},
+			"component" : "",
+			"interface" : "",
+			"name" : "ECM",
+			"name_on_IO" : "",
+			"period" : 0.0006066666666666666,
+			"serial" : "",
+			"simulation" : "KINEMATIC",
+			"skip_ROS_bridge" : false,
+			"type" : "ECM"
+		}
+	],
+	"component_manager" : null,
+	"consoles" : null,
+	"settings" : 
+	{
+		"audio_volume" : 0.5,
+		"chatty" : false,
+		"path" : null
+	}
+}
+<------
+D- Class mtsIntuitiveResearchKitECM: AddStateTable: added state table "State" and corresponding interface "StateTableState" to task "ECM"
+D- Class mtsIntuitiveResearchKitECM: AddStateTable: added state table "Configuration" and corresponding interface "StateTableConfiguration" to task "ECM"
+-M Class mtsIntuitiveResearchKitECM: ECM:Arm: 1.78042e+09s, #1: ECM: desired state DISABLED
+-M Class mtsIntuitiveResearchKitECM: ECM:Arm: 1.78042e+09s, #2: ECM: current state DISABLED
+-M Class mtsIntuitiveResearchKitECM: RemoveInterfaceRequired: removed required interface "RobotIO"
+-M Class mtsIntuitiveResearchKitECM: RemoveInterfaceRequired: removed required interface "arm_clutch"
+M- Class mtsIntuitiveResearchKitECM: Configure: ECM using file "/home/yzhang177/dvrk_ws/src/cisst-saw/sawIntuitiveResearchKit/core/components/../../share/arm/ECM_Si_KIN_SIMULATED_STRAIGHT.json"
+----> content of configuration file: 
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+	"$id" : "dvrk-ecm.schema.json",
+	"$version" : "1",
+	"endoscope" : "Classic_SD_STRAIGHT",
+	"generation" : "Si",
+	"kinematic" : "kinematic/ECM_Si.json",
+	"mounting_pitch" : -1.22173 // -70.0 degrees
+}
+<----
+M- Class mtsIntuitiveResearchKitECM: ConfigureDH: ECM using file "/home/yzhang177/dvrk_ws/src/cisst-saw/sawIntuitiveResearchKit/core/components/../../share/kinematic/ECM_Si.json"
+----> content of kinematic (GC) configuration file: 
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+	// see dVRK user guide
+	"DH" : 
+	{
+		"convention" : "modified",
+		"links" : 
+		[
+			{
+				"A" : 0.0,
+				"D" : 0.0,
+				"alpha" : 1.5708,
+				"ftmax" : 17.084499999999998, // maxA / Nm_to_A from sawRobotIO
+				"mode" : "active",
+				// 1
+				"name" : "yaw",
+				"offset" : 1.5708,
+				"qmax" : 2.964,
+				"qmin" : -2.964,
+				"theta" : 0.0,
+				"type" : "revolute"
+			},
+			{
+				"A" : 0.0,
+				"D" : 0.0,
+				"alpha" : -1.5708,
+				"ftmax" : 34.084499999999998, // maxA / Nm_to_A from sawRobotIO
+				"mode" : "active",
+				// 2
+				"name" : "pitch",
+				"offset" : -1.5708,
+				"qmax" : 1.04,
+				"qmin" : -1.1000000000000001,
+				"theta" : 0.0,
+				"type" : "revolute"
+			},
+			{
+				"A" : 0.0,
+				"D" : 0.0,
+				"alpha" : 1.5708,
+				"ftmax" : 70.900000000000006, // maxA / Nm_to_A from sawRobotIO
+				"mode" : "active",
+				// 3
+				"name" : "insertion",
+				"offset" : -0.38219999999999998,
+				"qmax" : 0.25900000000000001, // meters
+				"qmin" : 0.001,
+				"theta" : 0.0,
+				"type" : "prismatic"
+			},
+			{
+				"A" : 0.0,
+				"D" : 0.38290000000000002,
+				"alpha" : 0.0,
+				"ftmax" : 6.8192300000000001, // maxA / Nm_to_A from sawRobotIO
+				"mode" : "active",
+				// 4
+				"name" : "roll",
+				"offset" : 0.0,
+				"qmax" : 1.54, // almost  90
+				"qmin" : -1.54, // almost -90
+				"theta" : 0.0,
+				"type" : "revolute"
+			}
+		]
+	}
+}
+<----
+M- Class mtsIntuitiveResearchKitECM: ConfigureDH ECM: loaded kinematics
+    MODIFIED DH    1.5708         0         0         0         hinge active        1.5708       -2.964        2.964      17.0845
+    MODIFIED DH   -1.5708         0         0         0         hinge active       -1.5708         -1.1         1.04      34.0845
+    MODIFIED DH    1.5708         0         0         0        slider active       -0.3822        0.001        0.259         70.9
+    MODIFIED DH         0         0         0    0.3829         hinge active             0        -1.54         1.54      6.81923
+
+M- Class mtsIntuitiveResearchKitECM: ConfigureDH ECM: saved base configuration file name: /home/yzhang177/dvrk_ws/src/cisst-saw/sawIntuitiveResearchKit/core/components/../../share/kinematic/ECM_Si.json
+M- Class mtsIntuitiveResearchKitECM: ConfigureECM: no GC kinematics specified, using default for ECM Si
+-M Class mtsIntuitiveResearchKitECM: ECM:Arm: 1.78042e+09s, #3: ECM: setting up for endoscope type "Classic_SD_STRAIGHT"
+M- ConfigurePID: no "PID" file name for arm "ECM", using default based on type and generation: "pid/sawControllersPID-ECM-Si.json"
+M- configure_PID: found file /home/yzhang177/dvrk_ws/src/cisst-saw/sawIntuitiveResearchKit/core/components/../../share/pid/sawControllersPID-ECM-Si.json
+D- Class mtsPID: AddStateTable: added state table "Configuration" and corresponding interface "StateTableConfiguration" to task "ECM_PID"
+M- Class mtsPID: ECM_PID Configure: using /home/yzhang177/dvrk_ws/src/cisst-saw/sawIntuitiveResearchKit/core/components/../../share/pid/sawControllersPID-ECM-Si.json
+M- Class mtsPID: Configure: ECM_PID using file "/home/yzhang177/dvrk_ws/src/cisst-saw/sawIntuitiveResearchKit/core/components/../../share/pid/sawControllersPID-ECM-Si.json"
+----> content of configuration file: 
+{
+	"$id" : "saw-controllers-pid.schema.json",
+	"$version" : "1",
+	"pid" : 
+	[
+		{
+			"d_gain" : 30.0,
+			"disturbance_cutoff" : 50.0,
+			"i_gain" : 0.0,
+			"index" : 0,
+			"name" : "yaw",
+			"nominal_mass" : 0.01,
+			"p_gain" : 600.0,
+			"p_measured_setpoint_tolerance" : 0.59999999999999998, // ~35 degrees
+			"pid_max_output" : 15.0,
+			"type" : "REVOLUTE",
+			"use_disturbance_observer" : true
+		},
+		{
+			"d_gain" : 30.0,
+			"disturbance_cutoff" : 50.0,
+			"i_gain" : 0.0,
+			"index" : 1,
+			"name" : "pitch",
+			"nominal_mass" : 0.01,
+			"p_gain" : 600.0,
+			"p_measured_setpoint_tolerance" : 0.59999999999999998, // ~35 degrees
+			"pid_max_output" : 15.0,
+			"type" : "REVOLUTE",
+			"use_disturbance_observer" : true
+		},
+		{
+			"d_gain" : 500.0,
+			"i_gain" : 0.0,
+			"index" : 2,
+			"name" : "insertion",
+			"p_gain" : 15000.0,
+			"p_measured_setpoint_tolerance" : 0.02, // 2 cm
+			"pid_max_output" : -1.0, // disabled, not supposed to be back drivable
+			"type" : "PRISMATIC"
+		},
+		{
+			"d_gain" : 3.0,
+			"i_gain" : 0.0,
+			"index" : 3,
+			"name" : "roll",
+			"p_gain" : 100.0,
+			"p_measured_setpoint_tolerance" : 0.25, // ~20 degrees
+			"pid_max_output" : 12.0,
+			"type" : "REVOLUTE"
+		}
+	]
+}
+<----
+-M Class mtsPID: ECM_PID reset_controller
+-M Class mtsPID: RemoveInterfaceRequired: removed required interface "RobotJointTorqueInterface"
+M- Class mtsPIDQtWidget: Configure: 
+M- Class mtsIntuitiveResearchKitECMQtWidget: Configure: 
+M- Class dvrk_system_ROS: add_topics_IO called
+-M Class mtsIntuitiveResearchKitECM: RemoveInterfaceRequired: removed required interface "ExecIn"
+M- Class mtsIntuitiveResearchKitECM: Create: creating thread for task ECM
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- Class mtsIntuitiveResearchKitECMQtWidget: Create: default create method for component "ECM_GUI"
+-M Class mtsPID: RemoveInterfaceRequired: removed required interface "ExecIn"
+M- Class mtsPID: Create: creating thread for task ECM_PID
+ Class mtsIntuitiveResearchKitECM: Starting StartupInternal (periodic) for ECM
+M- Class mtsIntuitiveResearchKitECM: StartupInternal: started for task "ECM"
+M- osaThread::CreateInternal: create thread named: Unnamed
+-M Class mtsIntuitiveResearchKitECM: ECM:Arm: 1.78042e+09s, #4: ECM: desired state DISABLED
+M-M- Class mtsPIDQtWidget: Create: default create method for component "ECM_PID_GUI"
+ Class mtsPID: Starting StartupInternal (periodic) for ECM_PID
+M- Class mtsPID: StartupInternal: started for task "ECM_PID"
+-M  Class osaThread::CreateInternal: create thread named: mtsIntuitiveResearchKitECMUnnamed: 
+ECM:Arm-M  5: ECM: current state DISABLED
+M- Class mtsPID: StartupInternal: ended for task "ECM_PID"
+M- Class mtsIntuitiveResearchKitECM: StartupInternal: ended for task "ECM"
+M- Class mtsIntuitiveResearchKitECM: StartupInternal: ended for task "ECM"
+ osaThread::CreateInternal: create thread named: Unnamed
+-M Class dvrk_system_ROS: RemoveInterfaceRequired: removed required interface "ExecIn"
+M- Class dvrk_system_ROS: Create: creating thread for task dvrk_robot
+M- osaThread::CreateInternal: create thread named: Unnamed
+M-M- osaThread::CreateInternal: create thread named: Unnamed
+M-M- osaThread::CreateInternal: create thread named: Unnamed
+ Class dvrk_system_ROS: Starting StartupInternal (periodic) for dvrk_robot
+M- Class dvrk_system_ROS: StartupInternal: started for task "dvrk_robot"
+M- Class dvrk_system_ROS: StartupInternal: ended for task "dvrk_robot"
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- osaThread::CreateInternal: create thread named: Unnamed
+-M Class dvrk_system: RemoveInterfaceRequired: removed required interface "ExecIn"
+M- Class dvrk_system: Create: creating thread for task system
+M- osaThread::CreateInternal: create thread named: Unnamed
+M- Class dvrk_system_Qt_widget: Create: default create method for component "system_widget"
+M- Class dvrk_system_Qt_widget: Create: default create method for component "system_widget"
+M- Class dvrk_system: RunInternal: begin task system
+M- Class dvrk_system: StartupInternal: started for task "system"
+-M Class dvrk_system: system:Main: 1.78042e+09s, #M-1: system started, dVRK 2.4.0 / cisst 1.4.0
+
+M- Class dvrk_system: StartupInternal: ended for task "system"
+M- Class dvrk_system: RunInternal: wait to start task "system"
+M- Class dvrk_system: RunInternal: wait to start task "system"
+M- Class mtsIntuitiveResearchKitECMQtWidget: WaitForState: called for component "ECM_GUI" for state "mtsComponentState
+  State:ready" has no effect for mtsComponent
+M- Class mtsPIDQtWidget: WaitForState: called for component "ECM_PID_GUI" for state "mtsComponentState
+  State:ready" has no effect for mtsComponent
+M- Class dvrk_system_Qt_widget: WaitForState: called for component "system_widget" for state "mtsComponentState
+  State:ready" has no effect for mtsComponent
+M- Class mtsIntuitiveResearchKitECM: Start: starting task ECM
+M- Class mtsIntuitiveResearchKitECM: Start: started task ECM
+M- Class mtsIntuitiveResearchKitECMQtWidget: Start: default start method for component "ECM_GUI"
+-M Class mtsIntuitiveResearchKitECM: ECM:Arm: 1.78042e+09s, #6: ECM: current state DISABLED
+M- Class dvrk_system: RunInternal: wait to start task "system"
+M- Class mtsPID: Start: starting task ECM_PID
+M- Class mtsPID: Start: started task ECM_PID
+M- Class mtsPIDQtWidget: Start: default start method for component "ECM_PID_GUI"
+M- Class mtsPIDQtWidget: mtsPIDQtWidget::Startup
+M- Class mtsPID: ECM_PID enforce_position_limits: using configuration prmConfigurationJoint
+Timestamp (auto): 0.00000 (invalid)
+  Name:[yaw, pitch, insertion, roll]  Type:[REVOLUTE, REVOLUTE, PRISMATIC, REVOLUTE]  PositionMin:[0, 0, 0, 0]  PositionMax:[0, 0, 0, 0]  VelocityMin:[]  VelocityMax:[]  AccelerationMin:[]  AccelerationMax:[]  EffortMin:[0, 0, 0, 0]  EffortMax:[0, 0, 0, 0]
+M- Class mtsPID: ECM_PID enforce_position_limits: using configuration prmConfigurationJoint
+Timestamp (auto): 0.00000 (invalid)
+  Name:[yaw, pitch, insertion, roll]  Type:[REVOLUTE, REVOLUTE, PRISMATIC, REVOLUTE]  PositionMin:[0, 0, 0, 0]  PositionMax:[0, 0, 0, 0]  VelocityMin:[]  VelocityMax:[]  AccelerationMin:[]  AccelerationMax:[]  EffortMin:[0, 0, 0, 0]  EffortMax:[0, 0, 0, 0]
+M- Class dvrk_system_ROS: Start: starting task dvrk_robot
+M- Class dvrk_system_ROS: Start: started task dvrk_robot
+M- Class dvrk_system: Start: starting task system
+M- Class dvrk_system: Start: started task system
+M- Class dvrk_system_Qt_widget: Start: default start method for component "system_widget"
+M- Class dvrk_system_Qt_widget: Startup
+-M Class dvrk_system: system:Main: 1.78042e+09s, #2: ECM: desired state DISABLED
+-M Class dvrk_system: system:Main: 1.78042e+09s, #3: ECM: current state DISABLED
+-M Class dvrk_system: system:Main: 1.78042e+09s, #4: ECM: current state DISABLED
+M- Class mtsIntuitiveResearchKitECMQtWidget: WaitForState: called for component "ECM_GUI" for state "mtsComponentState
+  State:active" has no effect for mtsComponent
+M- Class mtsPIDQtWidget: WaitForState: called for component "ECM_PID_GUI" for state "mtsComponentState
+  State:active" has no effect for mtsComponent
+M- Class dvrk_system_Qt_widget: WaitForState: called for component "system_widget" for state "mtsComponentState
+  State:active" has no effect for mtsComponent
+-M Class mtsIntuitiveResearchKitECM: ECM:Arm: 1.78042e+09s, #7: ECM: desired state DISABLED
+-M Class mtsIntuitiveResearchKitECM: ECM:Arm: 1.78042e+09s, #8: ECM: current state DISABLED
+M- Class mtsPID: ECM_PID enforce_position_limits: using configuration -M Class dvrk_system: prmConfigurationJoint
+Timestamp (auto): 0.00000 (invalid)
+  Name:[yaw, pitch, insertion, roll]  Type:[REVOLUTE, REVOLUTE, PRISMATIC, REVOLUTE]  PositionMin:[0, 0, 0, 0]  PositionMax:[0, 0, 0, 0]  VelocityMin:[]  VelocityMax:[]  AccelerationMin:[]  AccelerationMax:[]  EffortMin:[0, 0, 0, 0]  EffortMax:[0, 0, 0, 0]system:Main:  M- Class mtsPID: ECM_PID enforce_position_limits: using configuration -M Class dvrk_system: prmConfigurationJoint
+Timestamp (auto): 0.00000 (invalid)
+  Name:[yaw, pitch, insertion, roll]  Type:[REVOLUTE, REVOLUTE, PRISMATIC, REVOLUTE]  PositionMin:[0, 0, 0, 0]  PositionMax:[0, 0, 0, 0]  VelocityMin:[]  VelocityMax:[]  AccelerationMin:[]  AccelerationMax:[]  EffortMin:[0, 0, 0, 0]  EffortMax:[0, 0, 0, 0]system:Main:  1.78042e+09s, #5: ECM: desired state DISABLED
+-M Class dvrk_system: system:Main: 1.78042e+09s, #6: ECM: current state DISABLED
+M- Class mtsIntuitiveResearchKitECM: Kill: task "ECM", current state "mtsComponentState
+  State:active"
+M- Class mtsIntuitiveResearchKitECMQtWidget: Kill: default kill method for component "ECM_GUI"
+M- Class mtsPID: Kill: task "ECM_PID", current state "mtsComponentState
+  State:active"
+M- Class mtsPIDQtWidget: Kill: default kill method for component "ECM_PID_GUI"
+-M Class mtsPID: RunInternal: End of task ECM_PID
+M- Class mtsPIDQtWidget: mtsPIDQtWidget::Cleanup
+M- Class dvrk_system_ROS: Kill: task "dvrk_robot", current state "mtsComponentState
+  State:active"
+M- Class mtsPID: CleanupInternal: ended for task "ECM_PID"
+M- Class dvrk_system: Kill: task "system", current state "mtsComponentState
+  State:active"
+M- Class dvrk_system: Kill: task "system", current state "mtsComponentState
+  State:active"
+M- Class dvrk_system_Qt_widget: Kill: default kill method for component "system_widget"
+M- Class dvrk_system_Qt_widget: Cleanup
+M- Class mtsIntuitiveResearchKitECM: WaitForState: waiting for task "ECM" to enter state "mtsComponentState
+  State:finished"
+M- Class dvrk_system: RunInternal: end of task "system"
+M- Class dvrk_system: Cleanup
+M- Class dvrk_system: CleanupInternal: ended for task "system"
+-M Class mtsIntuitiveResearchKitECM: RunInternal: End of task ECM
+M- Class mtsIntuitiveResearchKitECM: ECM: Cleanup
+M- Class mtsIntuitiveResearchKitECM: CleanupInternal: ended for task "ECM"
+M- Class mtsIntuitiveResearchKitECMQtWidget: WaitForState: called for component "ECM_GUI" for state "mtsComponentState
+  State:finished" has no effect for mtsComponent
+M- Class mtsPIDQtWidget: WaitForState: called for component "ECM_PID_GUI" for state "mtsComponentState
+  State:finished" has no effect for mtsComponent
+M- Class dvrk_system_ROS: WaitForState: waiting for task "dvrk_robot" to enter state "mtsComponentState
+  State:finished"
+-M Class dvrk_system_ROS: RunInternal: End of task dvrk_robot
+M- Class dvrk_system_ROS: CleanupInternal: ended for task "dvrk_robot"
+M- Class dvrk_system_Qt_widget: WaitForState: called for component "system_widget" for state "mtsComponentState
+  State:finished" has no effect for mtsComponent
+M- Class cmnClassRegister: SetLogMaskClassAll: log mask has been set to "  " for the following classes: cmnBool, cmnChar, cmnCommandLineOptions, cmnDeSerializer, cmnDouble, cmnInt, cmnJointTypeProxy, cmnLoggerQtWidget, cmnLong, cmnLongLong, cmnPath, cmnSerializer, cmnShort, cmnUChar, cmnUInt, cmnULong, cmnULongLong, cmnUShort, dvrk_IO_configurationProxy, dvrk_IO_proxy_configurationProxy, dvrk_arm_configurationProxy, dvrk_arm_proxy_configurationProxy, dvrk_base_frameProxy, dvrk_console_Qt_widget, dvrk_console_configurationProxy, dvrk_system, dvrk_system_Qt, dvrk_system_Qt_widget, dvrk_system_ROS, dvrk_system_configurationProxy, dvrk_system_configuration_settingsProxy, dvrk_teleop_ECM_configurationProxy, dvrk_teleop_ECM_proxy_configurationProxy, dvrk_teleop_PSM_configurationProxy, dvrk_teleop_PSM_configuration_gripper_scalingProxy, dvrk_teleop_PSM_proxy_configurationProxy, dvrk_terminalProxy, ireTask, ireTaskConstructorArg, ireTaskConstructorArgProxy, mtsBool, mtsBool1, mtsBool2, mtsBool3, mtsBool4, mtsBool5, mtsBool6, mtsBoolMat, mtsBoolVec, mtsChar, mtsChar1, mtsChar2, mtsChar3, mtsChar4, mtsChar5, mtsChar6, mtsCharMat, mtsCharVec, mtsCollectorEvent, mtsCollectorFactory, mtsCollectorFactoryQtWidget, mtsCollectorState, mtsComponent, mtsComponentAddLatency, mtsComponentConstructorArg, mtsComponentConstructorArgProxy, mtsComponentConstructorNameAndDouble, mtsComponentConstructorNameAndInt, mtsComponentConstructorNameAndLong, mtsComponentConstructorNameAndString, mtsComponentConstructorNameAndUInt, mtsComponentConstructorNameAndULong, mtsComponentStateChangeProxy, mtsComponentStateProxy, mtsComponentStatusControlProxy, mtsComponentViewer, mtsConnection, mtsDaVinciEndoscopeFocus, mtsDaVinciEndoscopeFocusQtWidget, mtsDaVinciHeadSensor, mtsDescriptionComponentClassProxy, mtsDescriptionComponentClassVecProxy, mtsDescriptionComponentProxy, mtsDescriptionConnectionProxy, mtsDescriptionConnectionVecProxy, mtsDescriptionInterfaceFullNameProxy, mtsDescriptionInterfaceFullNameVecProxy, mtsDescriptionInterfaceProxy, mtsDescriptionLoadLibraryProxy, mtsDouble, mtsDouble1, mtsDouble2, mtsDouble3, mtsDouble4, mtsDouble5, mtsDouble6, mtsDoubleAnRot2, mtsDoubleAxAnRot3, mtsDoubleFrm4x4, mtsDoubleMat, mtsDoubleMatFrm3, mtsDoubleMatRot2, mtsDoubleMatRot3, mtsDoubleQuat, mtsDoubleQuatFrm3, mtsDoubleQuatRot3, mtsDoubleRodRot3, mtsDoubleVec, mtsEndUserInterfaceArgProxy, mtsEventHandlerList, mtsExecutionResultProxy, mtsFloat, mtsFloat1, mtsFloat2, mtsFloat3, mtsFloat4, mtsFloat5, mtsFloat6, mtsFloatAnRot2, mtsFloatAxAnRot3, mtsFloatFrm4x4, mtsFloatMat, mtsFloatMatFrm3, mtsFloatMatRot2, mtsFloatMatRot3, mtsFloatQuat, mtsFloatQuatFrm3, mtsFloatQuatRot3, mtsFloatRodRot3, mtsFloatVec, mtsHIDHeadSensor, mtsHIDHeadSensorConfigurationProxy, mtsInt, mtsInt1, mtsInt2, mtsInt3, mtsInt4, mtsInt5, mtsInt6, mtsIntMat, mtsIntVec, mtsInterfaceProvided, mtsInterfaceProvidedDescriptionProxy, mtsInterfaceRequired, mtsInterfaceRequiredDescriptionProxy, mtsIntervalStatistics, mtsIntervalStatisticsQtWidgetComponent, mtsIntuitiveResearchKitArm, mtsIntuitiveResearchKitArmQtWidget, mtsIntuitiveResearchKitControlTypesProxy, mtsIntuitiveResearchKitECM, mtsIntuitiveResearchKitECMQtWidget, mtsIntuitiveResearchKitEndoscopeTypesProxy, mtsIntuitiveResearchKitMTM, mtsIntuitiveResearchKitMTMQtWidget, mtsIntuitiveResearchKitPSM, mtsIntuitiveResearchKitPSMQtWidget, mtsIntuitiveResearchKitSUJ, mtsIntuitiveResearchKitSUJFixed, mtsIntuitiveResearchKitSUJQtWidget, mtsIntuitiveResearchKitSUJSi, mtsIntuitiveResearchKitToolDescriptionProxy, mtsIntuitiveResearchKitToolTypesProxy, mtsLogMessage, mtsLong, mtsLongLong, mtsLongMat, mtsLongVec, mtsManagerComponentBase, mtsManagerComponentClient, mtsManagerComponentServer, mtsManagerComponentServices, mtsManagerGlobal, mtsManagerGlobalInterface, mtsManagerLocal, mtsManagerLocalInterface, mtsMessageProxy, mtsMessageQtWidgetComponent, mtsPID, mtsPIDAxisConfigurationProxy, mtsPIDConfigurationProxy, mtsPIDQtWidget, mtsPSMCompensation, mtsQtApplication, mtsQtApplicationConstructorArg, mtsQtWidgetBoolRead, mtsQtWidgetBoolVecRead, mtsQtWidgetBoolVecWrite, mtsQtWidgetBoolWrite, mtsQtWidgetComponent, mtsQtWidgetDoubleRead, mtsQtWidgetDoubleVecRead, mtsQtWidgetDoubleVecWrite, mtsQtWidgetDoubleWrite, mtsQtWidgetEvent, mtsQtWidgetFunction, mtsQtWidgetIntRead, mtsQtWidgetIntWrite, mtsQtWidgetInterfaceRequired, mtsQtWidgetStateIndexRead, mtsQtWidgetStateIndexWrite, mtsQtWidgetStdStringRead, mtsQtWidgetStdStringWrite, mtsROSBridge, mtsRobot1394QtWidget, mtsRobotIO1394, mtsRobotIO1394QtWidgetFactory, mtsShort, mtsShortMat, mtsShortVec, mtsSocketProxyClient, mtsSocketProxyClientConstructorArg, mtsSocketProxyInitData, mtsSocketProxyServer, mtsSocketProxyServerConstructorArg, mtsStateIndex, mtsStateTable, mtsStateTableIndexRange, mtsStdCharVecProxy, mtsStdDoubleVecProxy, mtsStdString, mtsStdStringListProxy, mtsStdStringVec, mtsStdStringVecProxy, mtsStdVct3VecProxy, mtsSystemQtWidgetComponent, mtsTask, mtsTaskConstructorArg, mtsTaskConstructorArgProxy, mtsTaskContinuous, mtsTaskContinuousConstructorArg, mtsTaskContinuousConstructorArgProxy, mtsTaskFromCallback, mtsTaskFromCallbackAdapter, mtsTaskFromSignal, mtsTaskMain, mtsTaskPeriodic, mtsTaskPeriodicConstructorArg, mtsTaskPeriodicConstructorArgProxy, mtsTeleOperationECM, mtsTeleOperationECMQtWidget, mtsTeleOperationPSM, mtsTeleOperationPSMQtWidget, mtsTextToSpeech, mtsUChar, mtsUChar1, mtsUChar2, mtsUChar3, mtsUChar4, mtsUChar5, mtsUChar6, mtsUCharMat, mtsUCharVec, mtsUInt, mtsUInt1, mtsUInt2, mtsUInt3, mtsUInt4, mtsUInt5, mtsUInt6, mtsUIntMat, mtsUIntVec, mtsULong, mtsULongMat, mtsULongVec, mtsUShort, mtsUShortMat, mtsUShortVec, mtsVct1, mtsVct2, mtsVct2x2, mtsVct3, mtsVct3x3, mtsVct4, mtsVct4x4, mtsVct5, mtsVct6, mtsVct7, mtsVct8, mtsVct9, mtsVctBool1, mtsVctBool2, mtsVctBool3, mtsVctBool4, mtsVctBool5, mtsVctBool6, mtsVctBool7, mtsVctBool8, mtsVctBool9, mtsVctBoolVec, mtsVctChar1, mtsVctChar2, mtsVctChar3, mtsVctChar4, mtsVctChar5, mtsVctChar6, mtsVctChar7, mtsVctChar8, mtsVctChar9, mtsVctCharVec, mtsVctDoubleMat, mtsVctDoubleVec, mtsVctFloat1, mtsVctFloat2, mtsVctFloat3, mtsVctFloat4, mtsVctFloat5, mtsVctFloat6, mtsVctFloat7, mtsVctFloat8, mtsVctFloat9, mtsVctFloatMat, mtsVctFloatVec, mtsVctFrm3, mtsVctFrm4x4, mtsVctInt1, mtsVctInt2, mtsVctInt3, mtsVctInt4, mtsVctInt5, mtsVctInt6, mtsVctInt7, mtsVctInt8, mtsVctInt9, mtsVctIntMat, mtsVctIntVec, mtsVctLong1, mtsVctLong2, mtsVctLong3, mtsVctLong4, mtsVctLong5, mtsVctLong6, mtsVctLong7, mtsVctLong8, mtsVctLong9, mtsVctLongVec, mtsVctMatRot3, mtsVctShort1, mtsVctShort2, mtsVctShort3, mtsVctShort4, mtsVctShort5, mtsVctShort6, mtsVctShort7, mtsVctShort8, mtsVctShort9, mtsVctShortVec, mtsVctUChar1, mtsVctUChar2, mtsVctUChar3, mtsVctUChar4, mtsVctUChar5, mtsVctUChar6, mtsVctUChar7, mtsVctUChar8, mtsVctUChar9, mtsVctUCharVec, mtsVctUInt1, mtsVctUInt2, mtsVctUInt3, mtsVctUInt4, mtsVctUInt5, mtsVctUInt6, mtsVctUInt7, mtsVctUInt8, mtsVctUInt9, mtsVctUIntVec, mtsVctULong1, mtsVctULong2, mtsVctULong3, mtsVctULong4, mtsVctULong5, mtsVctULong6, mtsVctULong7, mtsVctULong8, mtsVctULong9, mtsVctULongVec, mtsVctUShort1, mtsVctUShort2, mtsVctUShort3, mtsVctUShort4, mtsVctUShort5, mtsVctUShort6, mtsVctUShort7, mtsVctUShort8, mtsVctUShort9, mtsVctUShortVec, mtsWatchdogClient, mtsWatchdogServer, mts_ros_crtk_bridge_provided, mts_ros_crtk_bridge_required, mts_ros_crtk_controllers_pid_bridge, mts_ros_crtk_robot_io_bridge, osa1394Proxy, osaSerialPort, osaSocket, osaSocketServer, osaTimeServer, prmActuatorJointCouplingProxy, prmActuatorParameters, prmActuatorState, prmCameraInfo, prmCameraInfoProxy, prmCartesianImpedance, prmCartesianImpedanceHalfPlaneGainsProxy, prmCartesianImpedanceProxy, prmConfigurationJoint, prmConfigurationJointProxy, prmDepthMap, prmDepthMapProxy, prmEventButton, prmEventButtonQtWidgetComponent, prmForceCartesianGet, prmForceCartesianGetQtWidgetComponent, prmForceCartesianSet, prmForceTorqueJointSet, prmForceTorqueJointSetProxy, prmForwardKinematicsRequest, prmForwardKinematicsRequestProxy, prmForwardKinematicsResponse, prmForwardKinematicsResponseProxy, prmGainParameters, prmIMUSensors, prmIMUSensorsProxy, prmImageFrame, prmImageFrameProxy, prmInputData, prmInputDataProxy, prmInputDataQtWidgetComponent, prmInverseKinematicsRequest, prmInverseKinematicsRequestProxy, prmInverseKinematicsResponse, prmInverseKinematicsResponseProxy, prmKeyValueProxy, prmMaskedBoolVec, prmMaskedCharVec, prmMaskedDoubleVec, prmMaskedFloatVec, prmMaskedIntVec, prmMaskedLongVec, prmMaskedShortVec, prmMaskedUCharVec, prmMaskedUIntVec, prmMaskedULongVec, prmMaskedUShortVec, prmOperatingState, prmOperatingStateProxy, prmPositionCartesianArrayGet, prmPositionCartesianArrayGetProxy, prmPositionCartesianArrayGetQtWidget, prmPositionCartesianGet, prmPositionCartesianGetProxy, prmPositionCartesianSet, prmPositionCartesianSetProxy, prmPositionJointGet, prmPositionJointGetProxy, prmPositionJointSet, prmPositionJointSetProxy, prmRobotState, prmServoCartesian, prmServoCartesianProxy, prmServoJoint, prmServoJointProxy, prmStateCartesian, prmStateCartesianProxy, prmStateJoint, prmStateJointProxy, prmStateRobotQtWidgetComponent, prmVelocityCartesianGet, prmVelocityCartesianGetProxy, prmVelocityCartesianSet, prmVelocityJointGet, prmVelocityJointSet, sawRobotIO1394_osaActuator1394ConfigurationProxy, sawRobotIO1394_osaActuatorMappingProxy, sawRobotIO1394_osaBrake1394ConfigurationProxy, sawRobotIO1394_osaBrakeMappingProxy, sawRobotIO1394_osaDallasChip1394ConfigurationProxy, sawRobotIO1394_osaDigitalInput1394ConfigurationProxy, sawRobotIO1394_osaDigitalOutput1394ConfigurationProxy, sawRobotIO1394_osaDrive1394ConfigurationProxy, sawRobotIO1394_osaEncoder1394ConfigurationProxy, sawRobotIO1394_osaLimitsProxy, sawRobotIO1394_osaLinearFunctionProxy, sawRobotIO1394_osaPort1394ConfigurationProxy, sawRobotIO1394_osaPotentiometer1394ConfigurationProxy, sawRobotIO1394_osaPotentiometerTolerance1394ConfigurationProxy, sawRobotIO1394_osaPotentiometers1394ConfigurationProxy, sawRobotIO1394_osaRobot1394ConfigurationProxy, 
+M- Class cmnLogger: SetMaskFunction: function mask set to "  "
