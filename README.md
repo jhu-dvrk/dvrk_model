@@ -116,8 +116,8 @@ ros2 run xacro xacro mtm.urdf.xacro > result.urdf
 ```
 urdf/
 ├── common/                    # Generation-agnostic instrument macros
-│   ├── PSM_instrument_macros.urdf.xacro
-│   └── PSM_tips_macros.urdf.xacro
+│   ├── PSM_instrument.urdf.xacro
+│   └── PSM_tips.urdf.xacro
 ├── Classic/                   # Classic arm definitions
 │   ├── ECM.urdf.xacro
 │   ├── MTML.urdf.xacro
@@ -150,8 +150,8 @@ urdf/
 ### Macros
 
 - `common.urdf.xacro`: Shared material/color definitions
-- `common/PSM_instrument_macros.urdf.xacro`: Instrument assembly (roll + wrist + tip)
-- `common/PSM_tips_macros.urdf.xacro`: All PSM tip variants (006, 049, etc.)
+- `common/PSM_instrument.urdf.xacro`: Instrument assembly (roll + wrist + tip)
+- `common/PSM_tips.urdf.xacro`: All PSM tip variants (006, 049, etc.)
 
 For detailed URDF architecture, see `structure.md`.
 

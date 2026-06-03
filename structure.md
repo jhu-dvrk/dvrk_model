@@ -20,8 +20,8 @@ dvrk_model/
 │   ├── common.urdf.xacro                 ← shared material/color macros
 │   │
 │   ├── common/                           ← generation-agnostic macros
-│   │   ├── PSM_instrument_macros.urdf.xacro
-│   │   └── PSM_tips_macros.urdf.xacro
+│   │   ├── PSM_instrument.urdf.xacro
+│   │   └── PSM_tips.urdf.xacro
 │   │
 │   ├── Classic/
 │   │   ├── ECM.urdf.xacro
