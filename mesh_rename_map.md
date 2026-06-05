@@ -110,14 +110,14 @@ This file groups mesh renames discovered in `yvonne-testing` for review. Each en
 | `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/housing/Classic/PSM_housing.dae` |
 
 Review:
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/tips/Classic/400049/PSM_tip_049_pitch.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/tips/Classic/400049/PSM_tip_049_yaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/tips/Classic/400049/PSM_tip_049_jaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/rolls/Classic/PSM_roll_housing.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/tips/Classic/400006/PSM_tip_006_pitch.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/tips/Classic/400006/PSM_tip_006_jaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/tips/Classic/400006/PSM_tip_006_yaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/rolls/Classic/PSM_roll_connector.dae` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/tips/Classic/400049/PSM_049_pitch.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/tips/Classic/400049/PSM_049_yaw.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/tips/Classic/400049/PSM_049_jaw.stl` |
+| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/rolls/Classic/PSM_roll.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/tips/Classic/400006/PSM_006_pitch.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/tips/Classic/400006/PSM_006_jaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/tips/Classic/400006/PSM_006_yaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/rolls/Classic/PSM_yaw.dae` |
 
 ## Si SUJ
 

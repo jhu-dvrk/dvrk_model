@@ -95,9 +95,9 @@ dvrk_model/
 | DH Joint | Function | Mesh Name Pattern | Example |
 |----------|----------|-------------------|---------|
 | Joint 0  | Roll     | `PSM_roll*.{dae,stl}` | `PSM_roll.dae` |
-| Joint 1  | Wrist pitch | `PSM_tip_*_pitch.{dae,stl}` | `PSM_tip_006_pitch.dae` |
-| Joint 2  | Wrist yaw   | `PSM_tip_*_yaw.{dae,stl}` | `PSM_tip_006_yaw.dae` |
-| Joint 3  | Jaw         | `PSM_tip_*_jaw*.{dae,stl}` | `PSM_tip_006_jaw.dae` |
+| Joint 1  | Wrist pitch | `PSM_*_pitch.{dae,stl}` | `PSM_006_pitch.dae` |
+| Joint 2  | Wrist yaw   | `PSM_*_yaw.{dae,stl}` | `PSM_006_yaw.dae` |
+| Joint 3  | Jaw         | `PSM_*_jaw*.{dae,stl}` | `PSM_006_jaw.dae` |
 
 ---
 
