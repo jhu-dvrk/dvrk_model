@@ -107,7 +107,7 @@ This file groups mesh renames discovered in `yvonne-testing` for review. Each en
 | `meshes/Classic/PSM/snake_tool/link_3.STL` | `meshes/arms/Classic/PSM/snake_tool/link_3.STL` |
 | `meshes/Classic/PSM/snake_tool/link_4.STL` | `meshes/arms/Classic/PSM/snake_tool/link_4.STL` |
 | `meshes/Classic/PSM/tool_adapter.dae` | `meshes/arms/Classic/PSM/tool_adapter.dae` |
-| `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/rolls/Classic/PSM_roll.dae` |
+| `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/housing/Classic/PSM_housing.dae` |
 
 Review:
 | `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/tips/Classic/400049/PSM_tip_049_pitch.stl` |

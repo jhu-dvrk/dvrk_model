@@ -54,7 +54,7 @@
             <mesh filename="package://dvrk_model/meshes/instruments/rolls/Si/PSM_roll_8mm.stl"/>
           </xacro:if>
           <xacro:unless value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/instruments/rolls/Classic/PSM_roll.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/PSM_housing.dae"/>
           </xacro:unless>
         </geometry>
       </visual>
@@ -65,7 +65,7 @@
             <mesh filename="package://dvrk_model/meshes/instruments/rolls/Si/PSM_roll_8mm.stl"/>
           </xacro:if>
           <xacro:unless value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/instruments/rolls/Classic/PSM_roll.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/PSM_housing.dae"/>
           </xacro:unless>
         </geometry>
       </collision>
@@ -107,7 +107,7 @@
           <!-- Classic shaft spins with the wrist -->
           <origin rpy="0 0 0" xyz="0 0 -${shaft_length}"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/rolls/Classic/PSM_roll.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/PSM_housing.dae"/>
           </geometry>
         </xacro:unless>
       </visual>
@@ -121,7 +121,7 @@
         <xacro:unless value="${is_si}">
           <origin rpy="0 0 0" xyz="0 0 -${shaft_length}"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/rolls/Classic/PSM_roll.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/PSM_housing.dae"/>
           </geometry>
         </xacro:unless>
       </collision>
