@@ -30,7 +30,7 @@
                 rpy="0 0 0" />
             <geometry>
                 <mesh
-                filename="package://dvrk_model/meshes/Si/tower.stl" />
+                filename="package://dvrk_model/meshes/tower.stl" />
             </geometry>
             <material
                 name="">
@@ -44,7 +44,7 @@
                 rpy="0 0 0" />
             <geometry>
                 <mesh
-                filename="package://dvrk_model/meshes/Si/tower.stl" />
+                filename="package://dvrk_model/meshes/tower.stl" />
             </geometry>
             </collision>
         </link>

@@ -151,7 +151,7 @@ Review:
 
 | Old mesh path | New mesh path |
 | --- | --- |
-| `meshes/Si/tower.STL` | `meshes/Si/tower.stl` |
+| `meshes/Si/tower.STL` | `meshes/tower.stl` |
 
 ## Instruments / Si
 
