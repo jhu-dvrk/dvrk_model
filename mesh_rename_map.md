@@ -194,3 +194,13 @@ colcon build
 # Source
 source install/setup.bash
 echo "Switched to: yvonne-testing"
+
+## Switch to main
+cd ~/dvrk_ws
+touch src/dvrk/dvrk_model/COLCON_IGNORE
+touch src/dvrk/dvrk_model_devel/COLCON_IGNORE
+rm -f src/dvrk/dvrk_model_main/COLCON_IGNORE
+rm -rf build/dvrk_model* install/dvrk_model* log
+colcon build
+source install/setup.bash
+echo "Active: main"
