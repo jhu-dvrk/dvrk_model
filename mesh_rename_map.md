@@ -110,14 +110,14 @@ This file groups mesh renames discovered in `yvonne-testing` for review. Each en
 | `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/housing/Classic/PSM_housing.dae` |
 
 Review:
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/tips/Classic/400049/PSM_049_pitch.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/tips/Classic/400049/PSM_049_yaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/tips/Classic/400049/PSM_049_jaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/rolls/Classic/PSM_roll.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/tips/Classic/400006/PSM_006_pitch.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/tips/Classic/400006/PSM_006_jaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/tips/Classic/400006/PSM_006_yaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/rolls/Classic/PSM_yaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/tip/Classic/400049/PSM_049_pitch.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/tip/Classic/400049/PSM_049_yaw.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/tip/Classic/400049/PSM_049_jaw.stl` |
+| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/roll/Classic/PSM_roll.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/tip/Classic/400006/PSM_006_pitch.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/tip/Classic/400006/PSM_006_jaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/tip/Classic/400006/PSM_006_yaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/roll/Classic/PSM_yaw.dae` |
 
 ## Si SUJ
 
@@ -157,14 +157,14 @@ Review:
 
 | Old mesh path | New mesh path |
 | --- | --- |
-| `meshes/instruments/420006/tool_main_link.STL` | `meshes/instruments/rolls/Si/PSM_roll_8mm.stl` |
-| `meshes/instruments/420006/tool_wrist_link.STL` | `meshes/instruments/rolls/Si/PSM_roll_housing_8mm.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_ee_link_1.STL` | `meshes/instruments/tips/Si/420006/PSM_tip_006_jaw_1.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_ee_link_2.STL` | `meshes/instruments/tips/Si/420006/PSM_tip_006_jaw_2.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_link.STL` | `meshes/instruments/tips/Si/420006/PSM_tip_006_pitch.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_shaft_link.STL` | `meshes/instruments/tips/Si/420006/PSM_tip_006_yaw.stl` |
+| `meshes/instruments/420006/tool_main_link.STL` | `meshes/instruments/roll/Si/PSM_roll_8mm.stl` |
+| `meshes/instruments/420006/tool_wrist_link.STL` | `meshes/instruments/roll/Si/PSM_roll_housing_8mm.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_ee_link_1.STL` | `meshes/instruments/tip/Si/420006/PSM_tip_006_jaw_1.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_ee_link_2.STL` | `meshes/instruments/tip/Si/420006/PSM_tip_006_jaw_2.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_link.STL` | `meshes/instruments/tip/Si/420006/PSM_tip_006_pitch.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_shaft_link.STL` | `meshes/instruments/tip/Si/420006/PSM_tip_006_yaw.stl` |
 | `meshes/instruments/420006/tool_wrist_scal_link.STL` | `meshes/_review/orphans/PSM_tip_006_left.stl` |
-| `meshes/instruments/420006/tool_wrist_shaft_link.STL` | `meshes/instruments/rolls/Si/PSM_roll_connector_8mm.stl` |
-| `meshes/instruments/SF0826001/tool_main_link.STL` | `meshes/instruments/tips/Si/SF0826001/ECM_shaft.stl` |
-| `meshes/instruments/SF0826001/tool_roll_link.STL` | `meshes/instruments/tips/Si/SF0826001/ECM_tip_roll.stl` |
+| `meshes/instruments/420006/tool_wrist_shaft_link.STL` | `meshes/instruments/roll/Si/PSM_roll_connector_8mm.stl` |
+| `meshes/instruments/SF0826001/tool_main_link.STL` | `meshes/instruments/tip/Si/SF0826001/ECM_shaft.stl` |
+| `meshes/instruments/SF0826001/tool_roll_link.STL` | `meshes/instruments/tip/Si/SF0826001/ECM_tip_roll.stl` |
 
