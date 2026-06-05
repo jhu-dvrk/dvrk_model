@@ -35,7 +35,7 @@
       <visual>
         <origin rpy="${PI_2} ${PI} 0" xyz="0.0051 0.0032 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_pitch.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/pitch/PSM_006_pitch.dae"/>
         </geometry>
       </visual>
     </link>
@@ -53,7 +53,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 -0.0002 -0.0025"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_yaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/yaw/PSM_006_yaw.dae"/>
         </geometry>
       </visual>
     </link>
@@ -89,7 +89,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_jaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/tip/PSM_006_jaw.dae"/>
         </geometry>
       </visual>
     </link>
@@ -108,7 +108,7 @@
       <visual>
         <origin rpy="0 ${PI} 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_jaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/tip/PSM_006_jaw.dae"/>
         </geometry>
       </visual>
     </link>
@@ -141,7 +141,7 @@
       <visual>
         <origin rpy="0 -${PI_2} 0" xyz="-0.0024 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400049/PSM_049_pitch.stl"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/pitch/PSM_049_pitch.stl"/>
         </geometry>
       </visual>
     </link>
@@ -158,7 +158,7 @@
       <visual>
         <origin rpy="0 ${PI_2} 0" xyz="0 -0.0002 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400049/PSM_049_yaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/yaw/PSM_049_yaw.stl"/>
         </geometry>
       </visual>
     </link>
@@ -191,7 +191,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0.00195"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400049/PSM_049_jaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/tip/PSM_049_jaw.stl"/>
         </geometry>
       </visual>
     </link>
@@ -209,7 +209,7 @@
       <visual>
         <origin rpy="0 0 -${PI}" xyz="0 0 0.00195"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400049/PSM_049_jaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/tip/PSM_049_jaw.stl"/>
         </geometry>
       </visual>
     </link>
@@ -246,7 +246,7 @@
       <visual>
         <origin rpy="${PI_2} ${PI} 0" xyz="0.0051 0.0032 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_pitch.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/pitch/PSM_006_pitch.dae"/>
         </geometry>
       </visual>
     </link>
@@ -264,7 +264,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 -0.0002 -0.0025"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_yaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/yaw/PSM_006_yaw.dae"/>
         </geometry>
       </visual>
     </link>
@@ -297,7 +297,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_jaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/tip/PSM_006_jaw.dae"/>
         </geometry>
       </visual>
     </link>
@@ -315,7 +315,7 @@
       <visual>
         <origin rpy="0 ${PI} 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Classic/400006/PSM_006_jaw.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/classic/tip/PSM_006_jaw.dae"/>
         </geometry>
       </visual>
     </link>
@@ -401,7 +401,7 @@
       <visual>
         <origin rpy="0 -${PI_2} 0" xyz="0.0051 0.0032 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/Si/SF0826001/ECM_tip_roll.stl"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/si/tip/ECM_tip_roll.stl"/>
         </geometry>
       </visual>
     </link>
