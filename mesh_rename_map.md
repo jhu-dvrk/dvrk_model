@@ -168,3 +168,29 @@ Review:
 | `meshes/instruments/SF0826001/tool_main_link.STL` | `meshes/instruments/Si/housing/ECM_housing.stl` |
 | `meshes/instruments/SF0826001/tool_roll_link.STL` | `meshes/instruments/Si/roll/ECM_roll.stl` |
 
+
+## Switch to devel
+cd ~/dvrk_ws
+# Enable devel, disable testing
+touch src/dvrk/dvrk_model/COLCON_IGNORE
+rm -f src/dvrk/dvrk_model_devel/COLCON_IGNORE
+# Clean build artifacts (important)
+rm -rf build/dvrk_model* install/dvrk_model* log
+# Build
+colcon build
+# Source
+source install/setup.bash
+echo "Switched to: devel"
+
+## Switch to yvonne-testing
+cd ~/dvrk_ws
+# Enable testing, disable devel
+rm -f src/dvrk/dvrk_model/COLCON_IGNORE
+touch src/dvrk/dvrk_model_devel/COLCON_IGNORE
+# Clean build artifacts (important)
+rm -rf build/dvrk_model* install/dvrk_model* log
+# Build
+colcon build
+# Source
+source install/setup.bash
+echo "Switched to: yvonne-testing"
