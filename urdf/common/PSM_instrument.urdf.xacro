@@ -51,7 +51,7 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
           <xacro:if value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/instruments/si/roll/PSM_roll_8mm.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.stl"/>
           </xacro:if>
           <xacro:unless value="${is_si}">
             <mesh filename="package://dvrk_model/meshes/instruments/classic/housing/PSM_housing.dae"/>
@@ -62,7 +62,7 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
           <xacro:if value="${is_si}">
-            <mesh filename="package://dvrk_model/meshes/instruments/si/roll/PSM_roll_8mm.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.stl"/>
           </xacro:if>
           <xacro:unless value="${is_si}">
             <mesh filename="package://dvrk_model/meshes/instruments/classic/housing/PSM_housing.dae"/>
@@ -99,7 +99,7 @@
           <!-- Si roll wrist piece is centered at the roll joint -->
           <origin rpy="-${PI} 0 0" xyz="0.05591 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/si/roll/PSM_roll_housing_8mm.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_housing_8mm.stl"/>
           </geometry>
           <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
         </xacro:if>
@@ -115,7 +115,7 @@
         <xacro:if value="${is_si}">
           <origin rpy="-${PI} 0 0" xyz="0.05591 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/si/roll/PSM_roll_housing_8mm.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_housing_8mm.stl"/>
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
@@ -139,7 +139,7 @@
         <xacro:if value="${is_si}">
           <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/si/roll/PSM_roll_connector_8mm.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl"/>
           </geometry>
           <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
         </xacro:if>
@@ -154,7 +154,7 @@
         <xacro:if value="${is_si}">
           <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/si/roll/PSM_roll_connector_8mm.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl"/>
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
