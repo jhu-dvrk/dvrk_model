@@ -401,7 +401,7 @@
       <visual>
         <origin rpy="0 -${PI_2} 0" xyz="0.0051 0.0032 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/ECM_tip_roll.stl"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/ECM_roll.stl"/>
         </geometry>
       </visual>
     </link>

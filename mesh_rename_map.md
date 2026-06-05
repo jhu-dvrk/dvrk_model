@@ -165,6 +165,6 @@ Review:
 | `meshes/instruments/420006/tool_wrist_sca_shaft_link.STL` | `meshes/instruments/Si/yaw/PSM_006_yaw.stl` |
 | `meshes/instruments/420006/tool_wrist_scal_link.STL` | `meshes/_review/orphans/PSM_tip_006_left.stl` |
 | `meshes/instruments/420006/tool_wrist_shaft_link.STL` | `meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl` |
-| `meshes/instruments/SF0826001/tool_main_link.STL` | `meshes/instruments/Si/tip/ECM_shaft.stl` |
-| `meshes/instruments/SF0826001/tool_roll_link.STL` | `meshes/instruments/Si/tip/ECM_tip_roll.stl` |
+| `meshes/instruments/SF0826001/tool_main_link.STL` | `meshes/instruments/Si/housing/ECM_housing.stl` |
+| `meshes/instruments/SF0826001/tool_roll_link.STL` | `meshes/instruments/Si/roll/ECM_roll.stl` |
 
