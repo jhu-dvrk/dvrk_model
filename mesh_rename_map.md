@@ -107,17 +107,17 @@ This file groups mesh renames discovered in `yvonne-testing` for review. Each en
 | `meshes/Classic/PSM/snake_tool/link_3.STL` | `meshes/arms/Classic/PSM/snake_tool/link_3.STL` |
 | `meshes/Classic/PSM/snake_tool/link_4.STL` | `meshes/arms/Classic/PSM/snake_tool/link_4.STL` |
 | `meshes/Classic/PSM/tool_adapter.dae` | `meshes/arms/Classic/PSM/tool_adapter.dae` |
-| `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/classic/housing/PSM_housing.dae` |
+| `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/Classic/housing/PSM_housing.dae` |
 
 Review:
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/classic/pitch/PSM_049_pitch.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/classic/yaw/PSM_049_yaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/classic/tip/PSM_049_jaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/classic/roll/PSM_roll.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/classic/pitch/PSM_006_pitch.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/classic/tip/PSM_006_jaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/classic/yaw/PSM_006_yaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/classic/roll/PSM_yaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/Classic/pitch/PSM_049_pitch.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/Classic/yaw/PSM_049_yaw.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/Classic/tip/PSM_049_jaw.stl` |
+| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/Classic/roll/PSM_roll.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/Classic/pitch/PSM_006_pitch.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/Classic/tip/PSM_006_jaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/Classic/yaw/PSM_006_yaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/Classic/roll/PSM_yaw.dae` |
 
 ## Si SUJ
 
