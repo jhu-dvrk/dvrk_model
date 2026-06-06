@@ -57,7 +57,7 @@
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
-          <origin rpy="0 0 1.5708" xyz="0 0 0.041"/>
+          <origin rpy="0 0 1.5708" xyz="0 0 0.0904"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
           </geometry>
@@ -71,7 +71,7 @@
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
-          <origin rpy="0 0 1.5708" xyz="0 0 0.041"/>
+          <origin rpy="0 0 1.5708" xyz="0 0 0.0904"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
           </geometry>
