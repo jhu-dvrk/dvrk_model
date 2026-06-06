@@ -171,36 +171,39 @@ Review:
 
 ## Switch to devel
 cd ~/dvrk_ws
-# Enable devel, disable testing
+# Disable yvonne-testing and main
 touch src/dvrk/dvrk_model/COLCON_IGNORE
+touch src/dvrk/dvrk_model_main/COLCON_IGNORE
+# Enable devel
 rm -f src/dvrk/dvrk_model_devel/COLCON_IGNORE
-# Clean build artifacts (important)
-rm -rf build/dvrk_model* install/dvrk_model* log
-# Build
+# Clean and rebuild
+rm -rf build install log
 colcon build
-# Source
 source install/setup.bash
-echo "Switched to: devel"
+echo "Active: devel"
 
 ## Switch to yvonne-testing
 cd ~/dvrk_ws
-# Enable testing, disable devel
+# Enable yvonne-testing
 rm -f src/dvrk/dvrk_model/COLCON_IGNORE
+# Disable devel and main
 touch src/dvrk/dvrk_model_devel/COLCON_IGNORE
-# Clean build artifacts (important)
-rm -rf build/dvrk_model* install/dvrk_model* log
-# Build
+touch src/dvrk/dvrk_model_main/COLCON_IGNORE
+# Clean and rebuild
+rm -rf build install log
 colcon build
-# Source
 source install/setup.bash
-echo "Switched to: yvonne-testing"
+echo "Active: yvonne-testing"
 
 ## Switch to main
 cd ~/dvrk_ws
+# Disable yvonne-testing and devel
 touch src/dvrk/dvrk_model/COLCON_IGNORE
 touch src/dvrk/dvrk_model_devel/COLCON_IGNORE
+# Enable main
 rm -f src/dvrk/dvrk_model_main/COLCON_IGNORE
-rm -rf build/dvrk_model* install/dvrk_model* log
+# Clean and rebuild
+rm -rf build install log
 colcon build
 source install/setup.bash
 echo "Active: main"

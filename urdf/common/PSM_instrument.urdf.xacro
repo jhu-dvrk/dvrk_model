@@ -38,6 +38,8 @@
         Si ECM (SF0826001)      → 0.4670   (camera tube is shorter than PSM shafts)
     -->
     <xacro:property name="shaft_length" value="${0.4670 if is_ecm else (0.53559 if is_si else 0.4162)}"/>
+    <xacro:property name="tool_main_offset" value="${0.0 if is_si else 0.041}"/>
+    <xacro:property name="roll_origin" value="${shaft_length + tool_main_offset}"/>
 
     <!-- fixed joint to hold the shaft visual BEFORE the roll joint -->
     <joint name="instrument_base_fixed" type="fixed">
@@ -48,26 +50,32 @@
 
     <link name="${prefix}instrument_base_link">
       <visual>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <xacro:if value="${is_si}">
+        <xacro:if value="${is_si}">
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_housing_8mm.stl"/>
-          </xacro:if>
-          <xacro:unless value="${is_si}">
+          </geometry>
+        </xacro:if>
+        <xacro:unless value="${is_si}">
+          <origin rpy="0 0 1.5708" xyz="0 0 0.041"/>
+          <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
-          </xacro:unless>
-        </geometry>
+          </geometry>
+        </xacro:unless>
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <xacro:if value="${is_si}">
+        <xacro:if value="${is_si}">
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/housing/PSM_housing.stl"/>
-          </xacro:if>
-          <xacro:unless value="${is_si}">
+          </geometry>
+        </xacro:if>
+        <xacro:unless value="${is_si}">
+          <origin rpy="0 0 1.5708" xyz="0 0 0.041"/>
+          <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
-          </xacro:unless>
-        </geometry>
+          </geometry>
+        </xacro:unless>
       </collision>
     </link>
 
@@ -76,7 +84,7 @@
       <parent link="${parent_link}"/>
       <child  link="${prefix}roll_link"/>
       <axis xyz="0 0 1"/>
-      <origin rpy="0 0 0" xyz="0 0 ${shaft_length}"/>
+      <origin rpy="0 0 0" xyz="0 0 ${roll_origin}"/>
       <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
     </joint>
 
@@ -104,10 +112,10 @@
           <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
         </xacro:if>
         <xacro:unless value="${is_si}">
-          <!-- Classic shaft spins with the wrist -->
-          <origin rpy="0 0 0" xyz="0 0 -${shaft_length}"/>
+          <!-- Classic wrist roll housing at the shaft end -->
+          <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/roll/PSM_roll.dae"/>
           </geometry>
         </xacro:unless>
       </visual>
@@ -119,9 +127,9 @@
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 -${shaft_length}"/>
+          <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/roll/PSM_roll.dae"/>
           </geometry>
         </xacro:unless>
       </collision>
