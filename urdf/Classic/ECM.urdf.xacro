@@ -3,7 +3,7 @@
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:property name="parent_link" default="$(arg parent_link_)"/>
 
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/ECM_base_macros.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Classic/ECM_base.urdf.xacro"/>
 
   <link name="${parent_link}"/>
   <xacro:ecm_base

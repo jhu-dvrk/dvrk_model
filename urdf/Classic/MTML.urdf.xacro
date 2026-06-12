@@ -2,7 +2,7 @@
 <robot name="MTML" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Macros -->
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/MTM_macros.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Classic/MTM.urdf.xacro"/>
 
   <link name="world"/>
   <xacro:mtm_left
