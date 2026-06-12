@@ -51,9 +51,9 @@
     <link name="${prefix}instrument_base_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <origin rpy="0 0 0" xyz="-0.05591 0 ${roll_origin}"/>
           <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_housing_8mm.stl"/>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/housing/PSM_housing.stl"/>
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si}">
@@ -65,7 +65,7 @@
       </visual>
       <collision>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <origin rpy="0 0 0" xyz="-0.05591 0 ${roll_origin}"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/housing/PSM_housing.stl"/>
           </geometry>
