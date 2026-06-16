@@ -9,8 +9,8 @@
 
     DOF layout:
       Joint 4: roll         (revolute, D = shaft_length along z)
-      Joint 5: wrist_pitch  (revolute)  ┐
-      Joint 6: wrist_yaw    (revolute)  ├── dispatched via PSM_tip_XXX macro
+      Joint 5: tip_pitch    (revolute)  ┐
+      Joint 6: tip_yaw      (revolute)  ├── dispatched via PSM_tip_XXX macro
       Joint 7: jaw + mimics (revolute)  ┘
 
     Parameters:
@@ -94,17 +94,17 @@
     -->
     <link name="${prefix}roll_link"/>
 
-    <!-- fixed joint to wrist body -->
+    <!-- fixed joint to roll housing -->
     <joint name="roll_fixed" type="fixed">
       <parent link="${prefix}roll_link"/>
-      <child  link="${prefix}wrist_link"/>
+      <child  link="${prefix}roll_housing_link"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
 
-    <link name="${prefix}wrist_link">
+    <link name="${prefix}roll_housing_link">
       <visual>
         <xacro:if value="${is_si}">
-          <!-- Si roll wrist piece is centered at the roll joint -->
+          <!-- Si roll housing piece is centered at the roll joint -->
           <origin rpy="-${PI} 0 0" xyz="0.05591 0 0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.stl"/>
@@ -112,7 +112,7 @@
           <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
         </xacro:if>
         <xacro:unless value="${is_si}">
-          <!-- Classic wrist roll housing at the shaft end -->
+          <!-- Classic roll housing at the shaft end -->
           <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Classic/roll/PSM_roll.dae"/>
@@ -135,14 +135,14 @@
       </collision>
     </link>
 
-    <!-- fixed joint to wrist shaft -->
-    <joint name="wrist_shaft_fixed" type="fixed">
-      <parent link="${prefix}wrist_link"/>
-      <child  link="${prefix}wrist_shaft_link"/>
+    <!-- fixed joint to shaft -->
+    <joint name="shaft_fixed" type="fixed">
+      <parent link="${prefix}roll_housing_link"/>
+      <child  link="${prefix}shaft_link"/>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
 
-    <link name="${prefix}wrist_shaft_link">
+    <link name="${prefix}shaft_link">
       <visual>
         <xacro:if value="${is_si}">
           <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -175,7 +175,7 @@
     </link>
 
     <!--
-      Tip dispatch: select the correct wrist+jaw macro by instrument.
+      Tip dispatch: select the correct tip+jaw macro by instrument.
       Convention: last 3 digits of the model number identify the tip family.
         006 → standard SCA wrist (most instruments, A=0.0091)
         049 → Cadiere jaw (same wrist, different jaw geometry)
@@ -189,31 +189,31 @@
                       str(instrument) == '420093' or str(instrument) == '400093' or
                       str(instrument) == '420168' or str(instrument) == '400168'}">
       <xacro:PSM_tip_006 prefix="${prefix}"
-                         parent_link="${prefix}wrist_shaft_link"/>
+                         parent_link="${prefix}shaft_link"/>
     </xacro:if>
 
     <!-- 049: Cadiere jaw -->
     <xacro:if value="${str(instrument) == '420049' or str(instrument) == '400049'}">
       <xacro:PSM_tip_049 prefix="${prefix}"
-                         parent_link="${prefix}wrist_shaft_link"/>
+                         parent_link="${prefix}shaft_link"/>
     </xacro:if>
 
     <!-- 172: Maryland wrist — currently reuses PSM_tip_006 placeholder meshes (see note in PSM_tips.urdf.xacro) -->
     <xacro:if value="${str(instrument) == '420172' or str(instrument) == '400172'}">
       <xacro:PSM_tip_172 prefix="${prefix}"
-                         parent_link="${prefix}wrist_shaft_link"/>
+                         parent_link="${prefix}shaft_link"/>
     </xacro:if>
 
     <!-- 117: snake tool — PSM_tip_117 is currently a kinematic stub only (no meshes, no jaw geometry, DOFs unconfirmed) -->
     <xacro:if value="${str(instrument) == '400117'}">
       <xacro:PSM_tip_117 prefix="${prefix}"
-                         parent_link="${prefix}wrist_shaft_link"/>
+                         parent_link="${prefix}shaft_link"/>
     </xacro:if>
 
     <!-- ECM: Si camera tip -->
     <xacro:if value="${str(instrument) == 'SF0826001'}">
       <xacro:PSM_tip_ECM prefix="${prefix}"
-                         parent_link="${prefix}wrist_shaft_link"/>
+                         parent_link="${prefix}shaft_link"/>
     </xacro:if>
 
     <!-- 183: cautery / no-jaw tools — PSM_tip_183 macro exists in PSM_tips.urdf.xacro but is not yet wired into this dispatch -->
