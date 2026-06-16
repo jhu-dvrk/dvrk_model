@@ -1,6 +1,6 @@
 # Blender v3.5.0 OBJ File: 'psm-not-joined_jack_mix_05.blend'
 # www.blender.org
-mtllib tool_roll_link.mtl
+mtllib PSM_roll_8mm.mtl
 o tool_roll_link_Shape_IndexedFaceSet
 v 0.004178 0.000001 0.206874
 v 0.004178 0.000001 -0.219465
