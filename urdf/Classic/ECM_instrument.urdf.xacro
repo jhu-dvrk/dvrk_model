@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_ecm_classic_instrument" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--
+    Classic ECM instrument macro.
+
+    Attaches to ${parent_link} (= ${prefix}tool_parent_link from ECM_base).
+
+    DOF layout:
+      Joint 4: roll  (revolute, axis 0 0 -1)
+      end_joint: fixed tip frame offset
+  -->
+
+  <xacro:macro name="ECM_instrument" params="prefix parent_link">
+
+    <!-- joint 4: roll -->
+    <joint name="roll" type="revolute">
+      <origin xyz="0.0609999999999996 0 0" rpy="0 0 0"/>
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}tool_link"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-1.552676" upper="1.566741" effort="1000" velocity="10"/>
+    </joint>
+
+    <link name="${prefix}tool_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}end_link"/>
+    <joint name="end_joint" type="fixed">
+      <origin xyz="0 0 0.37364" rpy="0 0 0"/>
+      <parent link="${prefix}tool_link"/>
+      <child  link="${prefix}end_link"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

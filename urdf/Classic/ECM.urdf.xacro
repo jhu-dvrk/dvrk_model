@@ -4,10 +4,15 @@
   <xacro:property name="parent_link" default="$(arg parent_link_)"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Classic/ECM_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Classic/ECM_instrument.urdf.xacro"/>
 
   <link name="${parent_link}"/>
   <xacro:ecm_base
       prefix="ECM_"
       parent_link="${parent_link}"/>
+
+  <xacro:ECM_instrument
+      prefix="ECM_"
+      parent_link="ECM_tool_parent_link"/>
 
 </robot>

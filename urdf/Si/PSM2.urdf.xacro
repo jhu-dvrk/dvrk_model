@@ -4,7 +4,7 @@
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:property name="parent_link" value="$(arg parent_link_)"/>
 
-  <xacro:include filename="$(find dvrk_model)/urdf/Si/PSM_base_macros.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/PSM_base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
 
   <link name="${parent_link}"/>

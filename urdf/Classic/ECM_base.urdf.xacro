@@ -191,8 +191,9 @@
         velocity="10" />
       <mimic joint="pitch" multiplier="1"/>
     </joint>
+    <!-- tool_parent_link — boundary link; ECM_instrument attaches here. -->
     <link
-      name="${prefix}main_insertion_link">
+      name="${prefix}tool_parent_link">
       <visual>
         <origin
           xyz="0 0 0"
@@ -221,7 +222,7 @@
       <parent
         link="${prefix}pitch_end_link" />
       <child
-        link="${prefix}main_insertion_link" />
+        link="${prefix}tool_parent_link" />
       <axis
         xyz="0 0 1" />
       <limit
@@ -229,45 +230,6 @@
         upper="0.254193"
         effort="50"
         velocity="100" />
-    </joint>
-    <link
-      name="${prefix}tool_link">
-      <visual>
-        <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl" />
-        </geometry>
-      </visual>
-      <collision>
-        <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
-        <geometry>
-          <mesh
-            filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl" />
-        </geometry>
-      </collision>
-    </link>
-    <joint
-      name="roll"
-      type="revolute">
-      <origin
-        xyz="0.0609999999999996 0 0"
-        rpy="0 0 0" />
-      <parent
-        link="${prefix}main_insertion_link" />
-      <child
-        link="${prefix}tool_link" />
-      <axis
-        xyz="0 0 -1" />
-      <limit
-        lower="-1.552676"
-        upper="1.566741"
-        effort="1000"
-        velocity="10" />
     </joint>
     <link
       name="${prefix}pitch_top_link">
@@ -383,21 +345,6 @@
       <axis
         xyz="0 0 0" />
     </joint>
-    <link name="${prefix}end_link"/>
-    <joint
-      name="end_joint"
-      type="fixed">
-      <origin
-        xyz="0 0 0.37364"
-        rpy="0 0 0" />
-      <parent
-        link="${prefix}tool_link" />
-      <child
-        link="${prefix}end_link" />
-      <axis
-        xyz="0 0 0" />
-    </joint>
-
   </xacro:macro>
 
 </robot>
