@@ -45,12 +45,20 @@ class ArmSourceListSubstitution(Substitution):
 
 def create_robot_description(context):
     full_name = context.launch_configurations['arm']
+    generation = context.launch_configurations['generation']
     xacro_file = os.path.join(get_package_share_directory('dvrk_model'),
                               'urdf',
-                              context.launch_configurations['generation'],
+                              generation,
                               full_name + '.urdf.xacro')
     assert os.path.exists(xacro_file), 'The urdf file doesnt exist: ' + str(xacro_file)
-    mappings = {'arm': full_name, 'instrument': context.launch_configurations.get('instrument', '400006')}
+    instrument = context.launch_configurations.get('instrument', '').strip()
+    generation_prefix = '420' if generation == 'Si' else '400'
+    if instrument == '':
+        instrument = generation_prefix + '006'
+    elif instrument.isdigit() and len(instrument) == 3:
+        instrument = generation_prefix + instrument
+
+    mappings = {'arm': full_name, 'instrument': instrument}
     if context.launch_configurations.get('suj') == 'true':
         mappings['parent_link_'] = context.launch_configurations['arm'] + '_mounting_point'
 
@@ -67,7 +75,7 @@ create_robot_description_arg = OpaqueFunction(function = create_robot_descriptio
 def generate_launch_description():
     arm = LaunchConfiguration('arm')
     generation = LaunchConfiguration('generation')
-    instrument = LaunchConfiguration('instrument', default='400006')
+    instrument = LaunchConfiguration('instrument', default='')
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     suj = LaunchConfiguration('suj', default='false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.

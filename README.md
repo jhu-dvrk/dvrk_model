@@ -85,10 +85,27 @@ There is also an optional `simulated` argument (default: `True`).
 - `simulated:=True` → starts the `dvrk_robot dvrk_system` node with a simulated configuration
 - `simulated:=False` → only visualization (assumes system node is running elsewhere)
 
+There is also an optional `instrument` argument for PSM arms.
+
+- `instrument:=420006` → explicit Si 006 selection
+- `instrument:=400006` → explicit Classic 006 selection
+- `instrument:=006` → shorthand; resolves to `420006` for `generation:=Si`, `400006` for `generation:=Classic`
+
+If `instrument` is omitted, `arm.launch.py` selects by generation:
+
+- `generation:=Si` defaults to `instrument:=420006`
+- `generation:=Classic` defaults to `instrument:=400006`
+
+For Si 420006, default mesh paths in URDF/Xacro use the current OBJ files
+(`PSM_housing.OBJ`, `PSM_roll_8mm.OBJ`, `PSM_006_pitch.OBJ`, `PSM_006_yaw.OBJ`,
+`PSM_006_jaw_1.OBJ`, `PSM_006_jaw_2.OBJ`) and not the `_archived.stl` files.
+
 ### Examples
 
 ```bash
-ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si
+ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si instrument:=420006
+ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si instrument:=006
+ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Classic instrument:=420006
 ros2 launch dvrk_model arm.launch.py arm:=MTMR generation:=Classic simulated:=True
 ros2 launch dvrk_model arm.launch.py arm:=ECM generation:=Classic
 ros2 launch dvrk_model patient_cart.launch.py generation:=Si
