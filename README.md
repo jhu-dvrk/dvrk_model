@@ -111,6 +111,8 @@ ros2 launch dvrk_model arm.launch.py arm:=ECM generation:=Classic
 ros2 launch dvrk_model patient_cart.launch.py generation:=Si
 ros2 launch dvrk_model patient_cart.launch.py generation:=Classic simulated:=True
 ros2 launch dvrk_model surgeon_console.launch.py
+# Mesh-frame debug for Si 420006
+ros2 run xacro xacro $(ros2 pkg prefix dvrk_model)/share/dvrk_model/urdf/Si/PSM_420006_zero_check.urdf.xacro > /tmp/psm_420006_zero_check.urdf
 ```
 
 ---

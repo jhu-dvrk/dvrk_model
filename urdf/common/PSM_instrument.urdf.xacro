@@ -34,24 +34,26 @@
     <!--
       Shaft length (D parameter of the roll joint):
         Classic PSM instruments → 0.4162
-        Si PSM instruments      → 0.53559
-        Si ECM (SF0826001)      → 0.4670   (camera tube is shorter than PSM shafts)
+        Si instruments          → 0.4670
+        Classic instruments     → 0.4162
     -->
-    <xacro:property name="shaft_length" value="${0.4670 if is_ecm else (0.53559 if is_si else 0.4162)}"/>
+    <xacro:property name="shaft_length" value="${0.4670 if is_si else 0.4162}"/>
     <xacro:property name="tool_main_offset" value="${0.0 if is_si else 0.041}"/>
     <xacro:property name="roll_origin" value="${shaft_length + tool_main_offset}"/>
+    <xacro:property name="tip_parent_link" value="${prefix + ('roll_link' if is_si else 'shaft_link')}"/>
 
     <!-- fixed joint to hold the shaft visual BEFORE the roll joint -->
     <joint name="instrument_base_fixed" type="fixed">
       <parent link="${parent_link}"/>
       <child  link="${prefix}instrument_base_link"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
     </joint>
 
     <link name="${prefix}instrument_base_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="-0.05591 0 ${roll_origin}"/>
+          <!-- Si housing lives at the proximal tool base (not along the shaft). -->
+          <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/housing/PSM_housing.OBJ"/>
           </geometry>
@@ -65,7 +67,7 @@
       </visual>
       <collision>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="-0.05591 0 ${roll_origin}"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/housing/PSM_housing.OBJ"/>
           </geometry>
@@ -92,7 +94,25 @@
       PSM_roll_link — carries the inner shaft rotation.
       The outer shaft mesh (above) does not roll or shift.
     -->
-    <link name="${prefix}roll_link"/>
+    <link name="${prefix}roll_link">
+      <visual>
+        <xacro:if value="${is_si}">
+          <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
+          </geometry>
+          <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
+        </xacro:if>
+      </visual>
+      <collision>
+        <xacro:if value="${is_si}">
+          <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
+          </geometry>
+        </xacro:if>
+      </collision>
+    </link>
 
     <!-- fixed joint to roll housing -->
     <joint name="roll_fixed" type="fixed">
@@ -103,14 +123,7 @@
 
     <link name="${prefix}roll_housing_link">
       <visual>
-        <xacro:if value="${is_si}">
-          <!-- Si roll housing piece is centered at the roll joint -->
-          <origin rpy="-${PI} 0 0" xyz="0.05591 0 0"/>
-          <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
-          </geometry>
-          <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
-        </xacro:if>
+        <!-- Si: structural link only, no duplicate shaft visual here. -->
         <xacro:unless value="${is_si}">
           <!-- Classic roll housing at the shaft end -->
           <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
@@ -120,12 +133,6 @@
         </xacro:unless>
       </visual>
       <collision>
-        <xacro:if value="${is_si}">
-          <origin rpy="-${PI} 0 0" xyz="0.05591 0 0"/>
-          <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
-          </geometry>
-        </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
           <geometry>
@@ -144,13 +151,6 @@
 
     <link name="${prefix}shaft_link">
       <visual>
-        <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 0"/>
-          <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
-          </geometry>
-          <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
-        </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
           <geometry>
@@ -159,12 +159,6 @@
         </xacro:unless>
       </visual>
       <collision>
-        <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 0"/>
-          <geometry>
-            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
-          </geometry>
-        </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
           <geometry>
@@ -189,32 +183,32 @@
                       str(instrument) == '420093' or str(instrument) == '400093' or
                       str(instrument) == '420168' or str(instrument) == '400168'}">
       <xacro:PSM_tip_006 prefix="${prefix}"
-                         parent_link="${prefix}shaft_link"
+                         parent_link="${tip_parent_link}"
                          is_si="${is_si}"/>
     </xacro:if>
 
     <!-- 049: Cadiere jaw -->
     <xacro:if value="${str(instrument) == '420049' or str(instrument) == '400049'}">
       <xacro:PSM_tip_049 prefix="${prefix}"
-                         parent_link="${prefix}shaft_link"/>
+                         parent_link="${tip_parent_link}"/>
     </xacro:if>
 
     <!-- 172: Maryland wrist — currently reuses PSM_tip_006 placeholder meshes (see note in PSM_tips.urdf.xacro) -->
     <xacro:if value="${str(instrument) == '420172' or str(instrument) == '400172'}">
       <xacro:PSM_tip_172 prefix="${prefix}"
-                         parent_link="${prefix}shaft_link"/>
+                         parent_link="${tip_parent_link}"/>
     </xacro:if>
 
     <!-- 117: snake tool — PSM_tip_117 is currently a kinematic stub only (no meshes, no jaw geometry, DOFs unconfirmed) -->
     <xacro:if value="${str(instrument) == '400117'}">
       <xacro:PSM_tip_117 prefix="${prefix}"
-                         parent_link="${prefix}shaft_link"/>
+                         parent_link="${tip_parent_link}"/>
     </xacro:if>
 
     <!-- ECM: Si camera tip -->
     <xacro:if value="${str(instrument) == 'SF0826001'}">
       <xacro:PSM_tip_ECM prefix="${prefix}"
-                         parent_link="${prefix}shaft_link"/>
+                         parent_link="${tip_parent_link}"/>
     </xacro:if>
 
     <!-- 183: cautery / no-jaw tools — PSM_tip_183 macro exists in PSM_tips.urdf.xacro but is not yet wired into this dispatch -->

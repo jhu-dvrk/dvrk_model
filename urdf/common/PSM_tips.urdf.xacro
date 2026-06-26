@@ -34,7 +34,7 @@
     <link name="${prefix}tip_006_pitch_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="${PI_2} ${PI} 0" xyz="0.0051 0.0032 0"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/pitch/PSM_006_pitch.OBJ"/>
           </geometry>
@@ -60,7 +60,7 @@
     <link name="${prefix}tip_006_yaw_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 -0.0002 -0.0025"/>
+          <origin rpy="0 0 0" xyz="0 0 -0.000236"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
           </geometry>
@@ -104,7 +104,7 @@
     <link name="${prefix}jaw_1_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <origin rpy="0 0 0" xyz="0 0 -0.000936"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_1.OBJ"/>
           </geometry>
@@ -131,7 +131,7 @@
     <link name="${prefix}jaw_2_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <origin rpy="0 0 0" xyz="0 0 0.000961"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_2.OBJ"/>
           </geometry>
