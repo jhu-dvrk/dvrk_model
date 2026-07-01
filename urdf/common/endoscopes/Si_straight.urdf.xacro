@@ -3,92 +3,71 @@
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
-  <xacro:macro name="endoscope"
-               params="prefix:='ECM_' parent_link:='ECM_tool_parent_link'">
-    <joint name="instrument_base_fixed" type="fixed">
-      <parent link="${parent_link}"/>
-      <child  link="${prefix}instrument_base_link"/>
-      <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
-    </joint>
+  <!--
+    Si straight endoscope.
+    Attaches to ${prefix}roll_link (last link of ECM_base).
+    Provides its own meshes and a fixed camera tip reference frame.
 
-    <link name="${prefix}instrument_base_link">
+    Future variants Si_down and Si_up will add a 30-degree rotation
+    before the endoscope_tip joint.
+  -->
+  <xacro:macro name="endoscope"
+               params="prefix:='ECM_' parent_link:='ECM_roll_link'">
+
+    <!-- Endoscope body: housing + shaft + camera tip, fixed to roll_link -->
+    <joint name="endoscope_body" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}endoscope_body_link"/>
+    </joint>
+    <link name="${prefix}endoscope_body_link">
       <visual>
-        <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
+        <!-- z=0.2577 compensates for roll_link moving 0.2577 m further above RCM -->
+        <!-- housing -->
+        <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0.2577"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_housing.stl"/>
         </geometry>
       </visual>
-      <collision>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_housing.stl"/>
-        </geometry>
-      </collision>
-    </link>
-
-    <joint name="roll" type="revolute">
-      <parent link="${parent_link}"/>
-      <child  link="${prefix}roll_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="0 0 0" xyz="0 0 0.4670"/>
-      <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
-    </joint>
-
-    <link name="${prefix}roll_link">
       <visual>
-        <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+        <!-- shaft -->
+        <origin rpy="0 0 0" xyz="0 0 0.0417"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_shaft.stl"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
+      <visual>
+        <!-- camera -->
+        <origin rpy="0 0 0" xyz="0 0 0.2577"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_roll.stl"/>
+        </geometry>
+      </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+        <origin rpy="0 0 0" xyz="0 0 0.0417"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_shaft.stl"/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="roll_fixed" type="fixed">
-      <parent link="${prefix}roll_link"/>
-      <child  link="${prefix}roll_housing_link"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </joint>
-
-    <link name="${prefix}roll_housing_link"/>
-
-    <joint name="shaft_fixed" type="fixed">
-      <parent link="${prefix}roll_housing_link"/>
-      <child  link="${prefix}shaft_link"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-    </joint>
-
-    <link name="${prefix}shaft_link"/>
-
-    <joint name="tip_pitch" type="revolute">
-      <parent link="${prefix}roll_link"/>
-      <child  link="${prefix}tip_roll_link"/>
-      <axis xyz="0 0 1"/>
+    <!-- Convert from roll_link into camera reference frame -->
+    <joint name="endoscope_frame" type="fixed">
       <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0"/>
-      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+      <parent link="${prefix}endoscope_body_link"/>
+      <child  link="${prefix}endoscope_frame_link"/>
     </joint>
+    <link name="${prefix}endoscope_frame_link"/>
 
-    <link name="${prefix}tip_roll_link">
-      <visual>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_roll.stl"/>
-        </geometry>
-      </visual>
-    </link>
-
-    <joint name="tool_tip" type="fixed">
-      <parent link="${prefix}tip_roll_link"/>
-      <child  link="${prefix}tool_tip_link"/>
-      <origin rpy="0 0 0" xyz="0 0.0102 0"/>
+    <!-- Offset to physical camera tip -->
+    <joint name="endoscope_tip" type="fixed">
+      <origin xyz="0 0.0102 0" rpy="0 0 0"/>
+      <parent link="${prefix}endoscope_frame_link"/>
+      <child  link="${prefix}endoscope_tip_link"/>
     </joint>
-    <link name="${prefix}tool_tip_link"/>
+    <link name="${prefix}endoscope_tip_link"/>
+
   </xacro:macro>
 
 </robot>

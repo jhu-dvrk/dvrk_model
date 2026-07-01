@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
+
   <!--
     Classic PSM arm — 3 actuated DOF:
       Joint 1: yaw   (revolute)
@@ -21,9 +23,18 @@
                        xyz:='0.0 0.0 0.0'
                        rpy:='0.0 0.0 0.0'">
 
-    <!-- fixed joint: world → base -->
-    <joint name="${prefix}base_fixed" type="fixed">
+    <!-- RCM reference frame (root of the arm when loaded directly) -->
+    <link name="${prefix}RCM_link"/>
+
+    <joint name="${prefix}rcm_fixed" type="fixed">
       <parent link="${parent_link}"/>
+      <child  link="${prefix}RCM_link"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    </joint>
+
+    <!-- fixed joint: RCM_link → base_link -->
+    <joint name="${prefix}base_fixed" type="fixed">
+      <parent link="${prefix}RCM_link"/>
       <child  link="${prefix}base_link"/>
       <origin rpy="${rpy}" xyz="${xyz}"/>
     </joint>
@@ -178,6 +189,11 @@
       so PSM_instrument is generation-agnostic.
     -->
     <link name="${prefix}tool_parent_link"/>
+
+    <!-- Instantiate RCM visual if show_rcm is enabled -->
+    <xacro:if value="$(arg show_rcm)">
+      <xacro:rcm_visual prefix="${prefix}" parent_link="${prefix}RCM_link"/>
+    </xacro:if>
 
   </xacro:macro>
 

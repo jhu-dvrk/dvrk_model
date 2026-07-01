@@ -2,17 +2,18 @@
 <robot name="dvrk_ecm_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
 
   <!--
-    Si ECM arm base — 3 actuated DOF:
-      Joint 1: yaw    (revolute, yaw)
-      Joint 2: pitch  (revolute, pitch, parallelogram linkage ×3)
+    Si ECM arm — 4 actuated DOF:
+      Joint 1: yaw       (revolute)
+      Joint 2: pitch     (revolute, parallelogram linkage ×3)
       Joint 3: insertion (prismatic)
+      Joint 4: roll      (revolute)
 
-    Macro output: ends at ${prefix}tool_parent_link.
-    ECM_instrument attaches here and owns roll onward.
-
-    Inertial data retained from original Si CAD export.
+    Parallelogram mimic joints: pitch_2, pitch_3
+    Macro output: ends at ${prefix}roll_link.
+    Endoscope macro attaches here and adds only a fixed tip transform.
   -->
 
   <xacro:macro name="ecm_base"
@@ -44,11 +45,20 @@
       </collision>
     </link>
 
-    <!-- fixed joint: world → base -->
-    <joint name="${prefix}base_fixed" type="fixed">
+    <!-- RCM reference frame (root of the arm when loaded directly) -->
+    <link name="${prefix}RCM_link"/>
+
+    <joint name="${prefix}rcm_fixed" type="fixed">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}base_link"/>
+      <child  link="${prefix}RCM_link"/>
       <origin rpy="${rpy}" xyz="${xyz}"/>
+    </joint>
+
+    <!-- fixed joint: RCM_link → base_link -->
+    <joint name="${prefix}base_fixed" type="fixed">
+      <parent link="${prefix}RCM_link"/>
+      <child  link="${prefix}base_link"/>
+      <origin xyz="-0.84316314 0.0 0.0" rpy="0.0 0.0 0.0"/>
     </joint>
 
     <!-- link 1: yaw body -->
@@ -117,8 +127,8 @@
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
     </joint>
 
-    <!-- link 3: pitch parallelogram arm (mimic pitch) -->
-    <link name="${prefix}pitch_3_link">
+    <!-- parallelogram sub-joint 2 (mimic pitch) -->
+    <link name="${prefix}pitch_2_link">
       <inertial>
         <origin xyz="0.11824 1.9336E-19 0.12932" rpy="0 0 0"/>
         <mass value="2.1982"/>
@@ -140,18 +150,17 @@
         </geometry>
       </collision>
     </link>
-
     <joint name="pitch_2" type="revolute">
       <origin xyz="0.2032 0 0" rpy="0 -0.90761 -3.1416"/>
       <parent link="${prefix}pitch_link"/>
-      <child  link="${prefix}pitch_3_link"/>
+      <child  link="${prefix}pitch_2_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
-    <!-- link 4: pitch parallelogram distal (mimic pitch) -->
-    <link name="${prefix}pitch_4_link">
+    <!-- parallelogram sub-joint 3 (mimic pitch) -->
+    <link name="${prefix}pitch_3_link">
       <inertial>
         <origin xyz="0.041219 -9.0734E-08 0.13651" rpy="0 0 0"/>
         <mass value="0.75206"/>
@@ -173,44 +182,47 @@
         </geometry>
       </collision>
     </link>
-
     <joint name="pitch_3" type="revolute">
       <origin xyz="0.35966 0 0.16013" rpy="0 -0.063963 0"/>
-      <parent link="${prefix}pitch_3_link"/>
-      <child  link="${prefix}pitch_4_link"/>
+      <parent link="${prefix}pitch_2_link"/>
+      <child  link="${prefix}pitch_3_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
-    <!--
-      joint 3: insertion (prismatic) — moved here from psm_tool.
-      Origin from original insertion_ref fixed joint (xyz 0.05061 0 0.41911)
-      combined with the insertion joint offset.
-    -->
+    <!-- joint 3: insertion -->
     <joint name="insertion" type="prismatic">
       <origin xyz="0.05061 0 0.41911" rpy="${PI} 0 0"/>
-      <parent link="${prefix}pitch_4_link"/>
-      <child  link="${prefix}tool_parent_link"/>
+      <parent link="${prefix}pitch_3_link"/>
+      <child  link="${prefix}insertion_link"/>
       <axis xyz="0 0 1"/>
       <limit lower="0.0" upper="0.299" velocity="0.4" effort="1000"/>
     </joint>
 
-    <!--
-      tool_parent_link — boundary link; PSM_instrument attaches here.
-      No geometry; same name as Classic and Virtual so PSM_instrument
-      macro is generation-agnostic.
-    -->
-    <link name="${prefix}tool_parent_link"/>
+    <!-- link 3: insertion — boundary before roll -->
+    <link name="${prefix}insertion_link"/>
 
-    <!-- RCM reference frame (kept for any downstream code that uses it) -->
-    <link name="${prefix}RCM_link"/>
-    <joint name="${prefix}jrcm" type="fixed">
-      <origin xyz="0.10643 0 -0.1731" rpy="3.1416 0 -1.5708"/>
-      <parent link="${prefix}pitch_4_link"/>
-      <child  link="${prefix}RCM_link"/>
-      <axis xyz="0 0 0"/>
+    <!-- joint 4: roll -->
+    <!-- origin z=0.2093 places roll_link exactly 0.3829 m above RCM (was 0.1252 m at z=0.4670) -->
+    <joint name="roll" type="revolute">
+      <origin xyz="0 0 0.2093" rpy="0 0 0"/>
+      <parent link="${prefix}insertion_link"/>
+      <child  link="${prefix}roll_link"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
     </joint>
+
+    <!--
+      link 4: roll — last link of ECM base.
+      Mesh-free: the endoscope macro owns all visuals to allow endoscope swapping.
+    -->
+    <link name="${prefix}roll_link"/>
+
+    <!-- Instantiate RCM visual if show_rcm is enabled -->
+    <xacro:if value="$(arg show_rcm)">
+      <xacro:rcm_visual prefix="${prefix}" parent_link="${prefix}RCM_link"/>
+    </xacro:if>
 
   </xacro:macro>
 

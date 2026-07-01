@@ -51,7 +51,8 @@ def generate_launch_description():
             'endoscope': endoscope,
             'use_sim_time': use_sim_time,
             'rate': rate,
-            'suj': 'false'
+            'suj': 'false',
+            'show_rcm': LaunchConfiguration('show_rcm')
         }.items()
     )
 
@@ -71,6 +72,7 @@ def generate_launch_description():
         DeclareLaunchArgument('simulated', default_value='true'),
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         DeclareLaunchArgument('rate', default_value='50.0'),
+        DeclareLaunchArgument('show_rcm', default_value='true'),
         dvrk_node,
         publisher_nodes,
         rviz_node,

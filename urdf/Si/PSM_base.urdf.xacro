@@ -2,6 +2,7 @@
 <robot name="dvrk_psm_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
 
   <!--
     Si PSM arm — 3 actuated DOF:
@@ -44,11 +45,20 @@
       </collision>
     </link>
 
-    <!-- fixed joint: world → base -->
-    <joint name="${prefix}base_fixed" type="fixed">
+    <!-- RCM reference frame (root of the arm when loaded directly) -->
+    <link name="${prefix}RCM_link"/>
+
+    <joint name="${prefix}rcm_fixed" type="fixed">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}base_link"/>
+      <child  link="${prefix}RCM_link"/>
       <origin rpy="${rpy}" xyz="${xyz}"/>
+    </joint>
+
+    <!-- fixed joint: RCM_link → base_link -->
+    <joint name="${prefix}base_fixed" type="fixed">
+      <parent link="${prefix}RCM_link"/>
+      <child  link="${prefix}base_link"/>
+      <origin xyz="-0.84316314 0.0 0.0" rpy="0.0 0.0 0.0"/>
     </joint>
 
     <!-- link 1: yaw body -->
@@ -117,8 +127,8 @@
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
     </joint>
 
-    <!-- link 3: pitch parallelogram arm (mimic pitch) -->
-    <link name="${prefix}pitch_3_link">
+    <!-- link 3: pitch parallelogram arm (mimic pitch) —— child of pitch_2 joint -->
+    <link name="${prefix}pitch_2_link">
       <inertial>
         <origin xyz="0.11824 1.9336E-19 0.12932" rpy="0 0 0"/>
         <mass value="2.1982"/>
@@ -144,14 +154,14 @@
     <joint name="pitch_2" type="revolute">
       <origin xyz="0.2032 0 0" rpy="0 -0.90761 -3.1416"/>
       <parent link="${prefix}pitch_link"/>
-      <child  link="${prefix}pitch_3_link"/>
+      <child  link="${prefix}pitch_2_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
-    <!-- link 4: pitch parallelogram distal (mimic pitch) -->
-    <link name="${prefix}pitch_4_link">
+    <!-- link 4: pitch parallelogram distal (mimic pitch) — child of pitch_3 joint -->
+    <link name="${prefix}pitch_3_link">
       <inertial>
         <origin xyz="0.041219 -9.0734E-08 0.13651" rpy="0 0 0"/>
         <mass value="0.75206"/>
@@ -176,8 +186,8 @@
 
     <joint name="pitch_3" type="revolute">
       <origin xyz="0.35966 0 0.16013" rpy="0 -0.063963 0"/>
-      <parent link="${prefix}pitch_3_link"/>
-      <child  link="${prefix}pitch_4_link"/>
+      <parent link="${prefix}pitch_2_link"/>
+      <child  link="${prefix}pitch_3_link"/>
       <axis xyz="0 1 0"/>
       <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
       <mimic joint="pitch" multiplier="1"/>
@@ -190,7 +200,7 @@
     -->
     <joint name="insertion" type="prismatic">
       <origin xyz="0.05061 0 0.41911" rpy="${PI} 0 0"/>
-      <parent link="${prefix}pitch_4_link"/>
+      <parent link="${prefix}pitch_3_link"/>
       <child  link="${prefix}tool_parent_link"/>
       <axis xyz="0 0 1"/>
       <limit lower="0.0" upper="0.299" velocity="0.4" effort="1000"/>
@@ -203,14 +213,10 @@
     -->
     <link name="${prefix}tool_parent_link"/>
 
-    <!-- RCM reference frame (kept for any downstream code that uses it) -->
-    <link name="${prefix}RCM_link"/>
-    <joint name="${prefix}jrcm" type="fixed">
-      <origin xyz="0.10643 0 -0.1731" rpy="3.1416 0 -1.5708"/>
-      <parent link="${prefix}pitch_4_link"/>
-      <child  link="${prefix}RCM_link"/>
-      <axis xyz="0 0 0"/>
-    </joint>
+    <!-- Instantiate RCM visual if show_rcm is enabled -->
+    <xacro:if value="$(arg show_rcm)">
+      <xacro:rcm_visual prefix="${prefix}" parent_link="${prefix}RCM_link"/>
+    </xacro:if>
 
   </xacro:macro>
 

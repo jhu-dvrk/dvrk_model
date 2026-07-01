@@ -9,8 +9,8 @@
 
     DOF layout:
       Joint 4: roll         (revolute, D = shaft_length along z)
-      Joint 5: tip_pitch    (revolute)  ┐
-      Joint 6: tip_yaw      (revolute)  ├── dispatched via PSM_tip_XXX macro
+      Joint 5: wrist_pitch  (revolute)  ┐
+      Joint 6: wrist_yaw    (revolute)  ├── dispatched via PSM_tip_XXX macro
       Joint 7: jaw + mimics (revolute)  ┘
 
     Parameters:

@@ -3,19 +3,24 @@
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
+  <!--
+    Classic SD straight endoscope.
+    Attaches to ${prefix}roll_link (last link of ECM_base).
+    Provides its own mesh and a fixed endoscope_tip reference frame.
+  -->
   <xacro:macro name="endoscope"
-               params="prefix:='ECM_' parent_link:='ECM_tool_parent_link'">
-    <joint name="roll" type="revolute">
-      <origin xyz="0.0609999999999996 0 0" rpy="0 0 0"/>
-      <parent link="${parent_link}"/>
-      <child  link="${prefix}tool_link"/>
-      <axis xyz="0 0 -1"/>
-      <limit lower="-1.552676" upper="1.566741" effort="1000" velocity="10"/>
-    </joint>
+               params="prefix:='ECM_' parent_link:='ECM_roll_link'">
 
-    <link name="${prefix}tool_link">
+    <!-- Endoscope body: fixed to roll_link, rotates with roll -->
+    <joint name="endoscope_body" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}endoscope_body_link"/>
+    </joint>
+    <link name="${prefix}endoscope_body_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <!-- z=0.010 compensates for roll_link moving 0.010 m further above RCM -->
+        <origin xyz="0 0 0.010" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/endoscopes/Classic_SD_straight/ECM_tool.stl"/>
         </geometry>
@@ -29,12 +34,14 @@
       </collision>
     </link>
 
-    <link name="${prefix}end_link"/>
-    <joint name="end_joint" type="fixed">
+    <!-- Fixed transform to endoscope tip reference frame -->
+    <joint name="endoscope_tip" type="fixed">
       <origin xyz="0 0 0.37364" rpy="0 0 0"/>
-      <parent link="${prefix}tool_link"/>
-      <child  link="${prefix}end_link"/>
+      <parent link="${prefix}endoscope_body_link"/>
+      <child  link="${prefix}endoscope_tip_link"/>
     </joint>
+    <link name="${prefix}endoscope_tip_link"/>
+
   </xacro:macro>
 
 </robot>

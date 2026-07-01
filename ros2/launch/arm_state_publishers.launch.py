@@ -59,7 +59,8 @@ def create_robot_description(context):
     elif instrument.isdigit() and len(instrument) == 3:
         instrument = generation_prefix + instrument
 
-    mappings = {'arm': full_name, 'instrument': instrument}
+    show_rcm = context.launch_configurations.get('show_rcm', 'true').strip()
+    mappings = {'arm': full_name, 'instrument': instrument, 'show_rcm': show_rcm}
     if full_name == 'ECM' and endoscope != '':
         mappings['endoscope'] = endoscope
     if context.launch_configurations.get('suj') == 'true':
@@ -117,6 +118,7 @@ def generate_launch_description():
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         DeclareLaunchArgument('suj', default_value='false'),
         DeclareLaunchArgument('rate', default_value='50.0'),
+        DeclareLaunchArgument('show_rcm', default_value='true'),
         create_robot_description_arg,
         joint_state_publisher_node,
         robot_state_publisher_node,
