@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
 import launch_ros.descriptions
-from launch.actions import OpaqueFunction, SetLaunchConfiguration
+from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch import LaunchContext, LaunchDescription, Substitution
 from typing import Text
 import xacro
@@ -52,6 +52,7 @@ def create_robot_description(context):
                               full_name + '.urdf.xacro')
     assert os.path.exists(xacro_file), 'The urdf file doesnt exist: ' + str(xacro_file)
     instrument = context.launch_configurations.get('instrument', '').strip()
+    endoscope = context.launch_configurations.get('endoscope', '').strip()
     generation_prefix = '420' if generation == 'Si' else '400'
     if instrument == '':
         instrument = generation_prefix + '006'
@@ -59,6 +60,8 @@ def create_robot_description(context):
         instrument = generation_prefix + instrument
 
     mappings = {'arm': full_name, 'instrument': instrument}
+    if full_name == 'ECM' and endoscope != '':
+        mappings['endoscope'] = endoscope
     if context.launch_configurations.get('suj') == 'true':
         mappings['parent_link_'] = context.launch_configurations['arm'] + '_mounting_point'
 
@@ -76,6 +79,7 @@ def generate_launch_description():
     arm = LaunchConfiguration('arm')
     generation = LaunchConfiguration('generation')
     instrument = LaunchConfiguration('instrument', default='')
+    endoscope = LaunchConfiguration('endoscope', default='')
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     suj = LaunchConfiguration('suj', default='false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.
@@ -106,6 +110,13 @@ def generate_launch_description():
     )
 
     ld = LaunchDescription([
+        DeclareLaunchArgument('arm'),
+        DeclareLaunchArgument('generation'),
+        DeclareLaunchArgument('instrument', default_value=''),
+        DeclareLaunchArgument('endoscope', default_value=''),
+        DeclareLaunchArgument('use_sim_time', default_value='false'),
+        DeclareLaunchArgument('suj', default_value='false'),
+        DeclareLaunchArgument('rate', default_value='50.0'),
         create_robot_description_arg,
         joint_state_publisher_node,
         robot_state_publisher_node,

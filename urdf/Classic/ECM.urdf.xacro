@@ -1,17 +1,19 @@
 <?xml version="1.0" ?>
 <robot name="ECM" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="endoscope" default="Classic_SD_straight"/>
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:property name="parent_link" default="$(arg parent_link_)"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Classic/ECM_base.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/ECM_instrument.urdf.xacro"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/common/endoscope.urdf.xacro"/>
 
   <link name="${parent_link}"/>
+  <xacro:dvrk_materials/>
   <xacro:ecm_base
       prefix="ECM_"
       parent_link="${parent_link}"/>
 
-  <xacro:ECM_instrument
+  <xacro:endoscope
       prefix="ECM_"
       parent_link="ECM_tool_parent_link"/>
 

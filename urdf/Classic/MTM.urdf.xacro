@@ -54,7 +54,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0.19037"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_top_panel.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_top_panel.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -88,7 +88,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0.025 0 0.19037"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_outer_yaw.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_outer_yaw.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -117,7 +117,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -148,7 +148,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch_parallel.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch_parallel.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -177,7 +177,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_elbow_pitch.stl"/>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_elbow_pitch.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -251,8 +251,8 @@
         </geometry>
       </visual>
       <collision>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.stl"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -281,8 +281,8 @@
         </geometry>
       </visual>
       <collision>        <!-- defined from CAD file (increased in the y dir by .005-->
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.stl"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -312,8 +312,8 @@
         </geometry>
       </visual>
       <collision>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_yaw.stl"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_yaw.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -346,8 +346,8 @@
       </visual>
       <collision>
         <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.stl"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -412,13 +412,13 @@
       <visual>
         <origin rpy="0 0 ${PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.dae"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="0 0 ${PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.stl"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -444,13 +444,13 @@
       <visual>        <!-- defined from CAD file (increased in the y dir by .005-->
         <origin rpy="0 ${PI} 0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.dae"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.dae"/>
         </geometry>
       </visual>
       <collision>        <!-- defined from CAD file (increased in the y dir by .005-->
         <origin rpy="0 ${PI} 0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.stl"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -476,12 +476,12 @@
     <link name="${prefix}wrist_yaw_link">
       <visual>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_yaw.dae"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_yaw.dae"/>
         </geometry>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_yaw.stl"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_yaw.dae"/>
         </geometry>
       </collision>
       <inertial>
@@ -509,13 +509,13 @@
       <visual>
         <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.stl"/>
+            <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
         </geometry>
       </collision>
       <inertial>

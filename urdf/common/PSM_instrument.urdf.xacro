@@ -27,9 +27,8 @@
   <xacro:macro name="PSM_instrument"
                params="prefix parent_link instrument">
                
-    <!-- Detect generation. ECM (SF0826001) uses Si-style mesh format. -->
-    <xacro:property name="is_ecm" value="${str(instrument) == 'SF0826001'}"/>
-    <xacro:property name="is_si"  value="${str(instrument).startswith('42') or is_ecm}"/>
+    <!-- Detect generation. Si instruments use Si-style mesh format. -->
+    <xacro:property name="is_si"  value="${str(instrument).startswith('42')}"/>
 
     <!--
       Shaft length (D parameter of the roll joint):
@@ -202,12 +201,6 @@
     <!-- 117: snake tool — PSM_tip_117 is currently a kinematic stub only (no meshes, no jaw geometry, DOFs unconfirmed) -->
     <xacro:if value="${str(instrument) == '400117'}">
       <xacro:PSM_tip_117 prefix="${prefix}"
-                         parent_link="${tip_parent_link}"/>
-    </xacro:if>
-
-    <!-- ECM: Si camera tip -->
-    <xacro:if value="${str(instrument) == 'SF0826001'}">
-      <xacro:PSM_tip_ECM prefix="${prefix}"
                          parent_link="${tip_parent_link}"/>
     </xacro:if>
 

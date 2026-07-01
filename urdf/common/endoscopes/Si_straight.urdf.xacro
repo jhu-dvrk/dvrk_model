@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_endoscope_si_straight" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
+  <xacro:macro name="endoscope"
+               params="prefix:='ECM_' parent_link:='ECM_tool_parent_link'">
+    <joint name="instrument_base_fixed" type="fixed">
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}instrument_base_link"/>
+      <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
+    </joint>
+
+    <link name="${prefix}instrument_base_link">
+      <visual>
+        <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_housing.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_housing.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="roll" type="revolute">
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}roll_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="0 0 0" xyz="0 0 0.4670"/>
+      <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
+    </joint>
+
+    <link name="${prefix}roll_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_shaft.stl"/>
+        </geometry>
+        <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_shaft.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="roll_fixed" type="fixed">
+      <parent link="${prefix}roll_link"/>
+      <child  link="${prefix}roll_housing_link"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <link name="${prefix}roll_housing_link"/>
+
+    <joint name="shaft_fixed" type="fixed">
+      <parent link="${prefix}roll_housing_link"/>
+      <child  link="${prefix}shaft_link"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <link name="${prefix}shaft_link"/>
+
+    <joint name="tip_pitch" type="revolute">
+      <parent link="${prefix}roll_link"/>
+      <child  link="${prefix}tip_roll_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0"/>
+      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+    </joint>
+
+    <link name="${prefix}tip_roll_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_roll.stl"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="tool_tip" type="fixed">
+      <parent link="${prefix}tip_roll_link"/>
+      <child  link="${prefix}tool_tip_link"/>
+      <origin rpy="0 0 0" xyz="0 0.0102 0"/>
+    </joint>
+    <link name="${prefix}tool_tip_link"/>
+  </xacro:macro>
+
+</robot>

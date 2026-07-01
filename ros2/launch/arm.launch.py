@@ -8,11 +8,13 @@ from launch_ros.substitutions import FindPackageShare
 from launch.conditions import IfCondition
 from launch import LaunchContext, LaunchDescription
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.actions import DeclareLaunchArgument
 
 def generate_launch_description():
     arm = LaunchConfiguration('arm')
     generation = LaunchConfiguration('generation')
     instrument = LaunchConfiguration('instrument', default='')
+    endoscope = LaunchConfiguration('endoscope', default='')
     simulated = LaunchConfiguration('simulated', default = 'true')
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.
@@ -46,6 +48,7 @@ def generate_launch_description():
             'arm': arm,
             'generation': generation,
             'instrument': instrument,
+            'endoscope': endoscope,
             'use_sim_time': use_sim_time,
             'rate': rate,
             'suj': 'false'
@@ -61,6 +64,13 @@ def generate_launch_description():
     )
 
     ld = LaunchDescription([
+        DeclareLaunchArgument('arm'),
+        DeclareLaunchArgument('generation'),
+        DeclareLaunchArgument('instrument', default_value=''),
+        DeclareLaunchArgument('endoscope', default_value=''),
+        DeclareLaunchArgument('simulated', default_value='true'),
+        DeclareLaunchArgument('use_sim_time', default_value='false'),
+        DeclareLaunchArgument('rate', default_value='50.0'),
         dvrk_node,
         publisher_nodes,
         rviz_node,

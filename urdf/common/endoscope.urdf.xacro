@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_endoscope" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="endoscope" value="$(arg endoscope)"/>
+
+  <xacro:if value="${str(endoscope) == 'Classic_SD_straight'}">
+    <xacro:include filename="$(find dvrk_model)/urdf/common/endoscopes/Classic_SD_straight.urdf.xacro"/>
+  </xacro:if>
+  <xacro:if value="${str(endoscope) == 'Si_straight'}">
+    <xacro:include filename="$(find dvrk_model)/urdf/common/endoscopes/Si_straight.urdf.xacro"/>
+  </xacro:if>
+</robot>

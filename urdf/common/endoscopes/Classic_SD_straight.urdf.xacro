@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="dvrk_ecm_classic_instrument" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="dvrk_endoscope_classic_sd_straight" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!--
-    Classic ECM instrument macro.
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
-    Attaches to ${parent_link} (= ${prefix}tool_parent_link from ECM_base).
-
-    DOF layout:
-      Joint 4: roll  (revolute, axis 0 0 -1)
-      end_joint: fixed tip frame offset
-  -->
-
-  <xacro:macro name="ECM_instrument" params="prefix parent_link">
-
-    <!-- joint 4: roll -->
+  <xacro:macro name="endoscope"
+               params="prefix:='ECM_' parent_link:='ECM_tool_parent_link'">
     <joint name="roll" type="revolute">
       <origin xyz="0.0609999999999996 0 0" rpy="0 0 0"/>
       <parent link="${parent_link}"/>
@@ -26,13 +17,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl"/>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Classic_SD_straight/ECM_tool.stl"/>
         </geometry>
+        <material name="DaVinciLightGray"><color rgba="0.7 0.7 0.7 1"/></material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_tool.stl"/>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Classic_SD_straight/ECM_tool.stl"/>
         </geometry>
       </collision>
     </link>
@@ -43,7 +35,6 @@
       <parent link="${prefix}tool_link"/>
       <child  link="${prefix}end_link"/>
     </joint>
-
   </xacro:macro>
 
 </robot>

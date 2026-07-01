@@ -22,6 +22,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_base.stl" />
         </geometry>
+        <material name="DaVinciLightGray"><color rgba="0.64706 0.61961 0.58824 1"/></material>
       </visual>
       <collision>
         <origin
@@ -43,6 +44,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_yaw.stl" />
         </geometry>
+        <material name="DaVinciLightGray"><color rgba="0.64706 0.61961 0.58824 1"/></material>
       </visual>
       <collision>
         <origin
@@ -82,6 +84,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_front.stl" />
         </geometry>
+        <material name="DaVinciLightGray"><color rgba="0.64706 0.61961 0.58824 1"/></material>
       </visual>
       <collision>
         <origin
@@ -121,6 +124,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_bottom.stl" />
         </geometry>
+        <material name="DaVinciDarkGray"><color rgba="0.25098 0.25098 0.25098 1"/></material>
       </visual>
       <collision>
         <origin
@@ -161,6 +165,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_end.stl" />
         </geometry>
+        <material name="DaVinciWhite"><color rgba="0.89804 0.91765 0.92941 1"/></material>
       </visual>
       <collision>
         <origin
@@ -202,6 +207,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_main_insertion.stl" />
         </geometry>
+        <material name="DaVinciDarkGray"><color rgba="0.25 0.25 0.25 1"/></material>
       </visual>
       <collision>
         <origin
@@ -241,6 +247,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_top.stl" />
         </geometry>
+        <material name="DaVinciRed"><color rgba="0.64706 0.51765 0 1"/></material>
       </visual>
       <collision>
         <origin
@@ -281,6 +288,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_back.stl" />
         </geometry>
+        <material name="DaVinciRed"><color rgba="0.64706 0.51765 0 1"/></material>
       </visual>
       <collision>
         <origin
@@ -321,6 +329,7 @@
           <mesh
             filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_RCM.stl" />
         </geometry>
+        <material name="DaVinciRed"><color rgba="1.0 0.7 0.7 1"/></material>
       </visual>
       <collision>
         <origin
