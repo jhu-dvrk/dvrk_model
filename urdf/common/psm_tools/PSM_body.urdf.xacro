@@ -75,6 +75,12 @@
 
     <link name="${prefix}roll_housing_link">
       <visual>
+        <xacro:if value="${is_si}">
+          <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl"/>
+          </geometry>
+        </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
           <geometry>
@@ -83,6 +89,12 @@
         </xacro:unless>
       </visual>
       <collision>
+        <xacro:if value="${is_si}">
+          <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl"/>
+          </geometry>
+        </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
           <geometry>
@@ -100,6 +112,12 @@
 
     <link name="${prefix}shaft_link">
       <visual>
+        <xacro:if value="${is_si}">
+          <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
+          </geometry>
+        </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
           <geometry>
@@ -108,6 +126,12 @@
         </xacro:unless>
       </visual>
       <collision>
+        <xacro:if value="${is_si}">
+          <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
+          </geometry>
+        </xacro:if>
         <xacro:unless value="${is_si}">
           <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
           <geometry>
