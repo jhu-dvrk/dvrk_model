@@ -29,7 +29,7 @@
     <link name="${prefix}jaw_1_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 -0.000936"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_1.OBJ"/>
           </geometry>
@@ -55,7 +55,7 @@
     <link name="${prefix}jaw_2_link">
       <visual>
         <xacro:if value="${is_si}">
-          <origin rpy="0 0 0" xyz="0 0 0.000961"/>
+          <origin rpy="0 0 0" xyz="0 0 0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_2.OBJ"/>
           </geometry>
