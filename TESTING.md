@@ -18,6 +18,14 @@ ros2 launch dvrk_model arm.launch.py arm:=PSM3 generation:=Classic instrument:=4
 ros2 launch dvrk_model arm.launch.py arm:=PSM3 generation:=Classic instrument:=400049
 ```
 
+### Cross-generation tool compatibility on Classic arms
+
+```bash
+ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Classic instrument:=420006
+ros2 launch dvrk_model arm.launch.py arm:=PSM2 generation:=Classic instrument:=420006
+ros2 launch dvrk_model arm.launch.py arm:=PSM3 generation:=Classic instrument:=420006
+```
+
 ---
 
 ## Single PSM Arms - Si Generation
@@ -79,4 +87,18 @@ ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si simulated:=True
 ```bash
 ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Classic simulated:=False
 ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si simulated:=False
+```
+
+---
+
+## Virtual PSM Xacro Checks
+
+Virtual PSM entry points are not exposed through `generation:=Virtual` in ROS 2 launch files.
+Validate using direct xacro expansion:
+
+```bash
+ros2 run xacro xacro urdf/Virtual/PSM1.urdf.xacro instrument:=400006 > /tmp/virtual_psm1_400006.urdf
+ros2 run xacro xacro urdf/Virtual/PSM1.urdf.xacro instrument:=420006 > /tmp/virtual_psm1_420006.urdf
+ros2 run xacro xacro urdf/Virtual/PSM2.urdf.xacro instrument:=400049 > /tmp/virtual_psm2_400049.urdf
+ros2 run xacro xacro urdf/Virtual/PSM3.urdf.xacro instrument:=420168 > /tmp/virtual_psm3_420168.urdf
 ```

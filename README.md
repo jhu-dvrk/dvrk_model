@@ -119,6 +119,9 @@ All launch files require a `generation` argument:
 - `generation:=Classic`
 - `generation:=Si`
 
+The current ROS 2 launch mapping exposes `Classic` and `Si` generations.
+Virtual PSM files are available under `urdf/Virtual/` for direct xacro use.
+
 As of 2024, the MTMs and the surgeon's console can only be "Classic", so the `generation` argument is not used for those launch files.
 
 There is also an optional `simulated` argument (default: `True`).
@@ -178,7 +181,7 @@ urdf/
 ├── common/                    # Generation-agnostic instrument macros
 │   ├── PSM_instrument.urdf.xacro
 │   └── psm_tools/             # PSM instrument-tool stages and families only
-│       ├── PSM_body.urdf.xacro # Shared housing + roll + shaft stage
+│       ├── PSM_body.urdf.xacro  # Shared housing + roll + shaft stage
 │       ├── wrist/             # Combined wrist stages by family
 │       ├── tip/               # Jaw and end-effector stages by family
 │       ├── PSM_006.urdf.xacro
@@ -188,13 +191,18 @@ urdf/
 │   ├── MTML.urdf.xacro
 │   ├── MTMR.urdf.xacro
 │   ├── PSM{1,2,3}.urdf.xacro
+│   ├── PSM1_snake.urdf.xacro
+│   ├── archive/               # Legacy snake/old tool macros kept for compatibility
 │   ├── SUJ.urdf.xacro
-│   └── *_macros.urdf.xacro
-└── si_arm/                    # Si arm definitions
-    ├── ECM.urdf.xacro
+│   └── *base*.urdf.xacro
+├── si_arm/                    # Si arm definitions
+│   ├── ECM.urdf.xacro
+│   ├── PSM{1,2,3}.urdf.xacro
+│   ├── SUJ.urdf.xacro
+│   └── *base*.urdf.xacro
+└── Virtual/                   # Virtual PSM entry points and base
     ├── PSM{1,2,3}.urdf.xacro
-    ├── SUJ.urdf.xacro
-    └── *_macros.urdf.xacro
+    └── PSM_base_virtual.urdf.xacro
 ```
 
 ---
@@ -204,6 +212,7 @@ urdf/
 ### Entry points (standalone arms)
 
 - `PSM{1,2,3}.urdf.xacro`: PSM arm with instrument (arg: `instrument`, default: 400006 Classic, 420006 Si)
+- `Virtual/PSM{1,2,3}.urdf.xacro`: Virtual PSM entry points using shared `common/PSM_instrument.urdf.xacro`
 - `MTM{L,R}.urdf.xacro`: Master Tool Manipulator (left/right)
 - `ECM.urdf.xacro`: Endoscope Camera Manipulator
 

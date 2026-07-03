@@ -30,29 +30,29 @@ dvrk_model/
 │   │
 │   ├── classic_arm/
 │   │   ├── ECM.urdf.xacro
+│   │   ├── ECM_base.urdf.xacro
+│   │   ├── MTM.urdf.xacro
 │   │   ├── MTML.urdf.xacro
 │   │   ├── MTMR.urdf.xacro
 │   │   ├── PSM1.urdf.xacro
 │   │   ├── PSM2.urdf.xacro
 │   │   ├── PSM3.urdf.xacro
 │   │   ├── PSM1_snake.urdf.xacro
+│   │   ├── PSM_base.urdf.xacro
 │   │   ├── SUJ.urdf.xacro
-│   │   ├── ECM_base_macros.urdf.xacro
-│   │   ├── MTM_macros.urdf.xacro
-│   │   ├── PSM_base_macros.urdf.xacro
-│   │   └── psm_tool_*.urdf.xacro
+│   │   └── archive/
 │   │
 │   ├── si_arm/
 │   │   ├── ECM.urdf.xacro
+│   │   ├── ECM_base.urdf.xacro
 │   │   ├── PSM1.urdf.xacro
 │   │   ├── PSM2.urdf.xacro
 │   │   ├── PSM3.urdf.xacro
+│   │   ├── PSM_420006_zero_check.urdf.xacro
+│   │   ├── PSM_base.urdf.xacro
 │   │   ├── SUJ.urdf.xacro
-│   │   ├── patient_cart.urdf.xacro
-│   │   ├── ECM_base_macros.urdf.xacro
-│   │   ├── PSM_base_macros.urdf.xacro
-│   │   ├── SUJ_base_macros.urdf.xacro
-│   │   └── SUJ_column_macros.urdf.xacro
+│   │   ├── SUJ_base.urdf.xacro
+│   │   └── SUJ_column.urdf.xacro
 │   │
 │   └── Virtual/
 │       ├── PSM1.urdf.xacro
@@ -72,17 +72,24 @@ dvrk_model/
 │   │       └── USM/
 │   │
 │   ├── instruments/
-│   │   ├── rolls/
-│   │   ├── covers/
-│   │   └── tips/
+│   │   ├── Classic/
+│   │   │   ├── housing/
+│   │   │   ├── pitch/
+│   │   │   ├── roll/
+│   │   │   ├── tip/
+│   │   │   └── yaw/
+│   │   └── Si/
+│   │       ├── housing/
+│   │       ├── pitch/
+│   │       ├── roll/
+│   │       ├── tip/
+│   │       └── yaw/
 │   │
 │   ├── SUJ/
 │   │   ├── Classic/
 │   │   └── Si/
 │   │
-│   ├── Si/
-│   │   └── tower.stl
-│   │
+│   ├── tower.stl
 │   └── _review/
 │       └── orphans/
 │
@@ -122,7 +129,7 @@ dvrk_model/
 ## PSM/ECM Macro Architecture
 
 ```text
-PSM_base_macros (Classic/Si)
+PSM_base (Classic/Si)
         │
         ▼
 PSM_instrument_macros (common/)
@@ -143,6 +150,10 @@ PSM_instrument_macros (common/)
 | yaw | revolute | -π/2 to π/2 |
 | pitch | revolute | -π/4 to π/4 |
 | insertion | prismatic | 0 to 0.24 m |
+
+Virtual PSM entry files call `common/PSM_instrument.urdf.xacro` directly, so
+tool-family dispatch and Classic/Si instrument compatibility remain identical
+to the physical-arm paths.
 
 ---
 
@@ -177,8 +188,8 @@ The implemented layout follows the physical instrument breakdown directly: share
 
 ## Legacy Files
 
-- psm_base.urdf.xacro (deprecated)
-- psm_tool_*.urdf.xacro (legacy tools)
+- urdf/classic_arm/archive/psm_base.urdf.xacro (legacy snake base)
+- urdf/classic_arm/archive/psm_tool_*.urdf.xacro (legacy snake/old tool files)
 - snake_tool meshes (review pending)
 - _review/orphans (unclassified assets)
 
