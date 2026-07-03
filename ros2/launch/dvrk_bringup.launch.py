@@ -3,7 +3,7 @@ from launch import LaunchContext, LaunchDescription, Substitution
 from launch.actions import DeclareLaunchArgument, RegisterEventHandler, IncludeLaunchDescription
 from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration,TextSubstitution, PathJoinSubstitution
+from launch.substitutions import Command, FindExecutable, LaunchConfiguration,TextSubstitution, PathJoinSubstitution, PythonExpression
 
 import os
 from typing import Text
@@ -89,6 +89,7 @@ def generate_launch_description():
     description_file = LaunchConfiguration("description_file")
     arm_name = LaunchConfiguration('arm')
     generation = LaunchConfiguration('generation')
+    urdf_generation = PythonExpression(["'si_arm' if '", generation, "' == 'Si' else 'classic_arm'"])
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)
 
@@ -96,7 +97,7 @@ def generate_launch_description():
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare(description_package), 'urdf',generation ,'']),
+            PathJoinSubstitution([FindPackageShare(description_package), 'urdf', urdf_generation ,'']),
             arm_name,
             '.urdf.xacro'
         ]),value_type=str)

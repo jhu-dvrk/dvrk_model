@@ -15,10 +15,12 @@ from launch.substitutions import (
     FindExecutable,
     LaunchConfiguration,
     PathJoinSubstitution,
+    PythonExpression,
 )
 
 def generate_launch_description():
     generation = LaunchConfiguration('generation')
+    urdf_generation = PythonExpression(["'si_arm' if '", generation, "' == 'Si' else 'classic_arm'"])
     simulated = LaunchConfiguration('simulated', default = 'true')
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.  Funny enough joint and robot state publishers don't have the same name for that parameter :-(
@@ -47,7 +49,7 @@ def generate_launch_description():
     # SUJ
     model = [
         PathJoinSubstitution([FindPackageShare('dvrk_model'),
-                              'urdf', generation, ''])
+                              'urdf', urdf_generation, ''])
         , '/SUJ.urdf.xacro'
     ]
     # Use xacro to process robot model at substitution time

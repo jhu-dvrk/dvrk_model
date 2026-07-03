@@ -4,7 +4,7 @@
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:property name="parent_link" default="$(arg parent_link_)"/>
 
-  <xacro:include filename="$(find dvrk_model)/urdf/Si/ECM_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/si_arm/ECM_base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/endoscope.urdf.xacro"/>
 
   <link name="${parent_link}"/>

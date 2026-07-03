@@ -46,9 +46,10 @@ class ArmSourceListSubstitution(Substitution):
 def create_robot_description(context):
     full_name = context.launch_configurations['arm']
     generation = context.launch_configurations['generation']
+    urdf_generation = 'si_arm' if generation == 'Si' else 'classic_arm'
     xacro_file = os.path.join(get_package_share_directory('dvrk_model'),
                               'urdf',
-                              generation,
+                              urdf_generation,
                               full_name + '.urdf.xacro')
     assert os.path.exists(xacro_file), 'The urdf file doesnt exist: ' + str(xacro_file)
     instrument = context.launch_configurations.get('instrument', '').strip()

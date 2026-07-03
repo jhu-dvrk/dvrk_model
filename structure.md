@@ -21,9 +21,14 @@ dvrk_model/
 │   │
 │   ├── common/                           ← generation-agnostic macros
 │   │   ├── PSM_instrument.urdf.xacro
-│   │   └── PSM_tips.urdf.xacro
+│   │   └── psm_tools/
+│   │       ├── PSM_body.urdf.xacro
+│   │       ├── wrist/
+│   │       ├── tip/
+│   │       ├── PSM_006.urdf.xacro
+│   │       └── PSM_049.urdf.xacro
 │   │
-│   ├── Classic/
+│   ├── classic_arm/
 │   │   ├── ECM.urdf.xacro
 │   │   ├── MTML.urdf.xacro
 │   │   ├── MTMR.urdf.xacro
@@ -37,7 +42,7 @@ dvrk_model/
 │   │   ├── PSM_base_macros.urdf.xacro
 │   │   └── psm_tool_*.urdf.xacro
 │   │
-│   ├── Si/
+│   ├── si_arm/
 │   │   ├── ECM.urdf.xacro
 │   │   ├── PSM1.urdf.xacro
 │   │   ├── PSM2.urdf.xacro
@@ -122,10 +127,11 @@ PSM_base_macros (Classic/Si)
         ▼
 PSM_instrument_macros (common/)
         │
-        ├── roll (shaft)
-        ├── wrist_pitch
-        ├── wrist_yaw
-        └── jaw
+        ├── body stage (common/psm_tools/PSM_body.urdf.xacro)
+        └── tool family (common/psm_tools/PSM_*.urdf.xacro)
+                │
+                ├── wrist stage (common/psm_tools/wrist)
+                └── tip stage (common/psm_tools/tip)
 ```
 
 ---
@@ -146,9 +152,16 @@ PSM_instrument_macros (common/)
 |-----|------|
 | 006 | standard needle driver |
 | 049 | cadiere forceps |
-| 117 | 5mm snake tool |
-| 183 | no jaw variants |
 | ECM | camera tool |
+
+Only mesh-backed PSM tool families are active in the current URDF dispatch. Placeholder families without complete meshes are excluded from the supported set until assets and dimensions are verified.
+
+Unsupported-family notes are kept in the docs only:
+- 117: prior support was only a parsing stub; kinematics are unverified.
+- 172: no dedicated 172 meshes are present; prior versions reused 006 geometry as a placeholder.
+- 183: no verified cautery or no-jaw production mesh set is wired in the active dispatcher.
+
+The implemented layout follows the physical instrument breakdown directly: shared body stage (housing plus roll and shaft), then wrist and tip stage files, with one small family file per supported tool code to call the common stages.
 
 ---
 

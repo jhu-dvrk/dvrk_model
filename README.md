@@ -30,27 +30,53 @@ ros2 launch dvrk_model ...
 
 ## Mesh Organization
 
-As of 2026, meshes are organized by **function** rather than generation:
+Meshes are organized by subsystem and then by reusable instrument stage:
 
 ```
 meshes/
-├── arms/              # Robot arm bodies (fixed to cart)
-│   ├── Classic/       # Classic PSM, ECM, MTM arm mechanisms
-│   └── Si/            # Si USM arm mechanism
-├── instruments/       # Replaceable surgical tools
-│   ├── rolls/         # Shared roll assemblies (Classic 5mm, Si 8mm)
-│   ├── covers/        # Sterile adapter covers
-│   └── tips/          # Tool-specific wrist/jaw assemblies
-│       ├── Classic/400006/  # Large Needle Driver
-│       ├── Classic/400049/  # Cadiere Forceps
-│       └── Si/420006/       # Large Needle Driver Si
-├── SUJ/               # Setup joints (cart positioning hardware)
+├── arms/              # Robot arm bodies fixed to the cart
 │   ├── Classic/
 │   └── Si/
-└── Si/                # Si-specific components (tower)
+├── instruments/       # Replaceable surgical tools
+│   ├── Classic/
+│   │   ├── housing/
+│   │   ├── pitch/
+│   │   ├── roll/
+│   │   ├── tip/
+│   │   └── yaw/
+│   └── Si/
+│       ├── housing/
+│       ├── pitch/
+│       ├── roll/
+│       ├── tip/
+│       └── yaw/
+├── SUJ/               # Setup joints and cart positioning hardware
+│   ├── Classic/
+│   └── Si/
+└── Si/                # Si-specific fixed hardware such as the tower
 ```
 
 ---
+
+## Supported PSM Tool Families
+
+Only mesh-backed PSM tool families are wired into the current URDF:
+
+| Family | Instrument codes | Mesh support | Verified dimensions |
+|--------|------------------|--------------|---------------------|
+| 006 | `400006`, `420006`, `400036`, `420036`, `400093`, `420093`, `400168`, `420168` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0102 m` |
+| 049 | `400049` | Classic meshes only | wrist yaw offset `A = 0.0091 m` |
+
+Shared roll dimensions remain generation-specific in [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro):
+
+- Classic roll origin `D = 0.4162 m`
+- Si roll origin `D = 0.4670 m`
+
+Families `172`, `117`, and `183` are intentionally not wired because this repository does not contain complete production meshes for them.
+Current unsupported-family notes:
+- `117`: prior support was only a parsing stub; wrist and jaw kinematics for the 5 mm snake tool are not validated here.
+- `172`: no dedicated 172 meshes are present; prior versions reused 006 geometry as a placeholder.
+- `183`: no verified cautery or no-jaw production mesh set is wired in the current dispatcher.
 
 ## Instrument Mesh Naming
 
@@ -63,7 +89,22 @@ Instrument meshes follow **DH parameter naming** for clarity:
 | Joint 2  | Wrist yaw      | `PSM_*_yaw.{dae,stl}`      | `PSM_006_yaw.dae` |
 | Joint 3  | Jaw open/close | `PSM_*_jaw*.{dae,stl}`     | `PSM_006_jaw.dae` |
 
-For detailed mesh structure documentation, see [`structure.md`](structure.md).
+For detailed mesh structure documentation, see [structure.md](structure.md).
+
+## Adding a New Instrument Mesh Family
+
+When adding a new tool family, keep common geometry shared and only add new files when the physical part is actually different.
+
+1. Add the mesh files under the existing stage folders in `meshes/instruments/<Generation>/`:
+  - `roll/` for a new rolling shaft or connector
+  - `pitch/` and `yaw/` for the meshes that make up a wrist stage
+  - `tip/` for jaw or end-effector meshes
+2. Use the established naming pattern, for example `PSM_XXX_pitch`, `PSM_XXX_yaw`, `PSM_XXX_jaw_1`, `PSM_XXX_jaw_2`.
+3. Reuse the existing roll and shaft assembly in [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro) unless the shaft length or roll geometry truly changes.
+4. Add a new family file in `urdf/common/psm_tools/` only when the tool needs a distinct wrist or tip combination.
+5. Reuse the shared files in `urdf/common/psm_tools/`, `wrist/`, and `tip/` wherever the mechanical build matches an existing stage.
+6. Add one explicit dispatch branch in [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro) for the new instrument code.
+7. Validate the result by expanding the xacro for at least one Classic or Si arm that uses the new code.
 
 ---
 
@@ -112,7 +153,7 @@ ros2 launch dvrk_model patient_cart.launch.py generation:=Si
 ros2 launch dvrk_model patient_cart.launch.py generation:=Classic simulated:=True
 ros2 launch dvrk_model surgeon_console.launch.py
 # Mesh-frame debug for Si 420006
-ros2 run xacro xacro $(ros2 pkg prefix dvrk_model)/share/dvrk_model/urdf/Si/PSM_420006_zero_check.urdf.xacro > /tmp/psm_420006_zero_check.urdf
+ros2 run xacro xacro $(ros2 pkg prefix dvrk_model)/share/dvrk_model/urdf/si_arm/PSM_420006_zero_check.urdf.xacro > /tmp/psm_420006_zero_check.urdf
 ```
 
 ---
@@ -136,15 +177,20 @@ ros2 run xacro xacro mtm.urdf.xacro > result.urdf
 urdf/
 ├── common/                    # Generation-agnostic instrument macros
 │   ├── PSM_instrument.urdf.xacro
-│   └── PSM_tips.urdf.xacro
-├── Classic/                   # Classic arm definitions
+│   └── psm_tools/             # PSM instrument-tool stages and families only
+│       ├── PSM_body.urdf.xacro # Shared housing + roll + shaft stage
+│       ├── wrist/             # Combined wrist stages by family
+│       ├── tip/               # Jaw and end-effector stages by family
+│       ├── PSM_006.urdf.xacro
+│       └── PSM_049.urdf.xacro
+├── classic_arm/               # Classic arm definitions
 │   ├── ECM.urdf.xacro
 │   ├── MTML.urdf.xacro
 │   ├── MTMR.urdf.xacro
 │   ├── PSM{1,2,3}.urdf.xacro
 │   ├── SUJ.urdf.xacro
 │   └── *_macros.urdf.xacro
-└── Si/                        # Si arm definitions
+└── si_arm/                    # Si arm definitions
     ├── ECM.urdf.xacro
     ├── PSM{1,2,3}.urdf.xacro
     ├── SUJ.urdf.xacro
@@ -169,8 +215,21 @@ urdf/
 ### Macros
 
 - `common.urdf.xacro`: Shared material/color definitions
-- `common/PSM_instrument.urdf.xacro`: Instrument assembly (roll + wrist + tip)
-- `common/PSM_tips.urdf.xacro`: All PSM tip variants (006, 049, etc.)
+- `common/PSM_instrument.urdf.xacro`: Shared instrument assembly and instrument-code dispatch
+- `common/psm_tools/PSM_body.urdf.xacro`: Shared housing + roll + shaft stage
+- `common/psm_tools/wrist/*`, `common/psm_tools/tip/*`: Stage files by tool family
+- `common/psm_tools/PSM_*.urdf.xacro`: Tool-family files that call the shared stage files
+
+### Hybrid PSM Layout
+
+The current PSM instrument layout is split by responsibility:
+
+- [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro) owns generation detection, shaft and roll geometry, and dispatch by instrument code.
+- `common/psm_tools/` contains PSM instrument tool stages and family files only.
+- `common/psm_tools/PSM_body.urdf.xacro`, `wrist/`, and `tip/` follow the physical subassemblies that get reused between tools.
+- `common/psm_tools/PSM_006.urdf.xacro` and `common/psm_tools/PSM_049.urdf.xacro` are the family files that call the shared stage files.
+
+This keeps the active layout centered on common mechanical stages, while wrist files still reference the underlying `pitch/` and `yaw/` meshes they are built from.
 
 For detailed URDF architecture, see `structure.md`.
 

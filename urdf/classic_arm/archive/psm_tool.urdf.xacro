@@ -2,10 +2,10 @@
 <robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Macros -->
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/psm_base.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/psm_tool_sca.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/psm_tool_caudier.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Classic/psm_tool_snake.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/classic_arm/archive/psm_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/classic_arm/archive/psm_tool_sca.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/classic_arm/archive/psm_tool_caudier.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/classic_arm/archive/psm_tool_snake.urdf.xacro"/>
 
   <xacro:macro name="psm_tool" params="tool_name prefix">
 

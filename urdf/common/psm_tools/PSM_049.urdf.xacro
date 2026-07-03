@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_psm_049" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/wrist/PSM_049_wrist.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/tip/PSM_049_tip.urdf.xacro"/>
+
+  <xacro:macro name="PSM_tip_049" params="prefix parent_link">
+    <xacro:PSM_wrist_049 prefix="${prefix}"
+                         parent_link="${parent_link}"/>
+    <xacro:PSM_tool_tip_049 prefix="${prefix}"
+                            parent_link="${prefix}wrist_049_yaw_link"/>
+  </xacro:macro>
+
+</robot>

@@ -2,8 +2,8 @@
 <robot name="patient_cart" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ_base.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Si/SUJ_column.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/si_arm/SUJ_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/si_arm/SUJ_column.urdf.xacro"/>
 
   <xacro:suj_column/>
   <xacro:suj
