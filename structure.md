@@ -52,7 +52,7 @@ dvrk_model/
 │   │   ├── PSM_base.urdf.xacro
 │   │   ├── SUJ.urdf.xacro
 │   │   ├── SUJ_base.urdf.xacro
-│   │   └── SUJ_column.urdf.xacro
+│   │   └── SUJ_cart.urdf.xacro
 │   │
 │   └── Virtual/
 │       ├── PSM1.urdf.xacro
@@ -123,6 +123,147 @@ dvrk_model/
 | Mesh file | `{ARM}_{desc}.{stl,dae}` | PSM_yaw.stl |
 | URDF entry | UPPERCASE arm | PSM1.urdf.xacro |
 | Macros | lowercase | psm_base_macros |
+
+---
+
+## Patient Cart Link Trees
+
+These trees describe the expanded patient cart URDFs.  They use the format:
+
+```text
+parent_link --[joint_name (joint_type)]--> child_link
+```
+
+The SUJ patient cart uses this naming contract:
+
+| Element | Rule | Example |
+|---------|------|---------|
+| Cart root link | `SUJ_cart` | `SUJ_cart` |
+| SUJ arm link | `SUJ_{ARM}_L#` | `SUJ_PSM1_L2` |
+| SUJ moving joint | `SUJ_{ARM}_J#` | `SUJ_PSM1_J2` |
+| SUJ fixed numbered joint | `SUJ_{ARM}_fixed_J#` | `SUJ_PSM1_fixed_J4` |
+| SUJ fixed RCM joint | `SUJ_{ARM}_fixed_RCM` | `SUJ_PSM1_fixed_RCM` |
+| SUJ RCM link | `SUJ_{ARM}_RCM` | `SUJ_PSM1_RCM` |
+
+The SUJ-to-arm attachment frames are `SUJ_PSM1_RCM`, `SUJ_PSM2_RCM`,
+`SUJ_PSM3_RCM`, and `SUJ_ECM_RCM`. Standalone PSM/ECM arm URDFs should attach
+their arm root to these frames when the patient cart is present.
+
+### Si Patient Cart
+
+```text
+world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
+  SUJ_cart --[SUJ_ECM_J0 (prismatic)]--> SUJ_ECM_L0
+    SUJ_ECM_L0 --[SUJ_ECM_J1 (revolute)]--> SUJ_ECM_L1
+      SUJ_ECM_L1 --[SUJ_ECM_J2 (revolute)]--> SUJ_ECM_L2
+        SUJ_ECM_L2 --[SUJ_ECM_J3 (revolute)]--> SUJ_ECM_L3
+          SUJ_ECM_L3 --[SUJ_ECM_fixed_J4 (fixed)]--> SUJ_ECM_L4
+            SUJ_ECM_L4 --[SUJ_ECM_fixed_RCM (fixed)]--> SUJ_ECM_RCM
+              SUJ_ECM_RCM --[ECM_rcm_fixed (fixed)]--> ECM_RCM_link
+                ECM_RCM_link --[ECM_base_fixed (fixed)]--> ECM_base_link
+                  ECM_base_link --[yaw (revolute)]--> ECM_yaw_link
+                    ECM_yaw_link --[pitch (revolute)]--> ECM_pitch_link
+                      ECM_pitch_link --[pitch_2 (revolute)]--> ECM_pitch_2_link
+                        ECM_pitch_2_link --[pitch_3 (revolute)]--> ECM_pitch_3_link
+                          ECM_pitch_3_link --[insertion (prismatic)]--> ECM_insertion_link
+                            ECM_insertion_link --[roll (revolute)]--> ECM_roll_link
+                              ECM_roll_link --[endoscope_body (fixed)]--> ECM_endoscope_body_link
+                                ECM_endoscope_body_link --[endoscope_frame (fixed)]--> ECM_endoscope_frame_link
+                                  ECM_endoscope_frame_link --[endoscope_tip (fixed)]--> ECM_endoscope_tip_link
+
+  SUJ_cart --[SUJ_PSM1_J0 (prismatic)]--> SUJ_PSM1_L0
+    SUJ_PSM1_L0 --[SUJ_PSM1_J1 (revolute)]--> SUJ_PSM1_L1
+      SUJ_PSM1_L1 --[SUJ_PSM1_J2 (revolute)]--> SUJ_PSM1_L2
+        SUJ_PSM1_L2 --[SUJ_PSM1_J3 (revolute)]--> SUJ_PSM1_L3
+          SUJ_PSM1_L3 --[SUJ_PSM1_fixed_J4 (fixed)]--> SUJ_PSM1_L4
+            SUJ_PSM1_L4 --[SUJ_PSM1_fixed_RCM (fixed)]--> SUJ_PSM1_RCM
+              SUJ_PSM1_RCM --[PSM1_rcm_fixed (fixed)]--> PSM1_RCM_link
+                PSM1_RCM_link --[PSM1_base_fixed (fixed)]--> PSM1_base_link
+                  PSM1_base_link --[yaw (revolute)]--> PSM1_yaw_link
+                    PSM1_yaw_link --[pitch (revolute)]--> PSM1_pitch_link
+                      PSM1_pitch_link --[pitch_2 (revolute)]--> PSM1_pitch_2_link
+                        PSM1_pitch_2_link --[pitch_3 (revolute)]--> PSM1_pitch_3_link
+                          PSM1_pitch_3_link --[insertion (prismatic)]--> PSM1_tool_parent_link
+                            PSM1_tool_parent_link --[instrument_base_fixed (fixed)]--> PSM1_instrument_base_link
+                              PSM1_instrument_base_link --[roll (revolute)]--> PSM1_roll_link
+                                PSM1_roll_link --[roll_fixed (fixed)]--> PSM1_roll_housing_link
+                                  PSM1_roll_housing_link --[shaft_fixed (fixed)]--> PSM1_shaft_link
+                                PSM1_roll_link --[wrist_pitch (revolute)]--> PSM1_wrist_pitch_0091m_link
+                                  PSM1_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM1_wrist_yaw_0091m_link
+
+  SUJ_cart --[SUJ_PSM2_J0 (prismatic)]--> SUJ_PSM2_L0
+    SUJ_PSM2_L0 --[SUJ_PSM2_J1 (revolute)]--> SUJ_PSM2_L1
+      SUJ_PSM2_L1 --[SUJ_PSM2_J2 (revolute)]--> SUJ_PSM2_L2
+        SUJ_PSM2_L2 --[SUJ_PSM2_J3 (revolute)]--> SUJ_PSM2_L3
+          SUJ_PSM2_L3 --[SUJ_PSM2_fixed_J4 (fixed)]--> SUJ_PSM2_L4
+            SUJ_PSM2_L4 --[SUJ_PSM2_fixed_RCM (fixed)]--> SUJ_PSM2_RCM
+              SUJ_PSM2_RCM --[PSM2_rcm_fixed (fixed)]--> PSM2_RCM_link
+                PSM2_RCM_link --[PSM2_base_fixed (fixed)]--> PSM2_base_link
+                  PSM2_base_link --[yaw (revolute)]--> PSM2_yaw_link
+                    PSM2_yaw_link --[pitch (revolute)]--> PSM2_pitch_link
+                      PSM2_pitch_link --[pitch_2 (revolute)]--> PSM2_pitch_2_link
+                        PSM2_pitch_2_link --[pitch_3 (revolute)]--> PSM2_pitch_3_link
+                          PSM2_pitch_3_link --[insertion (prismatic)]--> PSM2_tool_parent_link
+                            PSM2_tool_parent_link --[instrument_base_fixed (fixed)]--> PSM2_instrument_base_link
+                              PSM2_instrument_base_link --[roll (revolute)]--> PSM2_roll_link
+                                PSM2_roll_link --[roll_fixed (fixed)]--> PSM2_roll_housing_link
+                                  PSM2_roll_housing_link --[shaft_fixed (fixed)]--> PSM2_shaft_link
+                                PSM2_roll_link --[wrist_pitch (revolute)]--> PSM2_wrist_pitch_0091m_link
+                                  PSM2_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM2_wrist_yaw_0091m_link
+
+  SUJ_cart --[SUJ_PSM3_J0 (prismatic)]--> SUJ_PSM3_L0
+    SUJ_PSM3_L0 --[SUJ_PSM3_J1 (revolute)]--> SUJ_PSM3_L1
+      SUJ_PSM3_L1 --[SUJ_PSM3_J2 (revolute)]--> SUJ_PSM3_L2
+        SUJ_PSM3_L2 --[SUJ_PSM3_J3 (revolute)]--> SUJ_PSM3_L3
+          SUJ_PSM3_L3 --[SUJ_PSM3_J4 (revolute)]--> SUJ_PSM3_L4
+            SUJ_PSM3_L4 --[SUJ_PSM3_fixed_J5 (fixed)]--> SUJ_PSM3_L5
+              SUJ_PSM3_L5 --[SUJ_PSM3_fixed_RCM (fixed)]--> SUJ_PSM3_RCM
+                SUJ_PSM3_RCM --[PSM3_rcm_fixed (fixed)]--> PSM3_RCM_link
+                  PSM3_RCM_link --[PSM3_base_fixed (fixed)]--> PSM3_base_link
+                    PSM3_base_link --[yaw (revolute)]--> PSM3_yaw_link
+                      PSM3_yaw_link --[pitch (revolute)]--> PSM3_pitch_link
+                        PSM3_pitch_link --[pitch_2 (revolute)]--> PSM3_pitch_2_link
+                          PSM3_pitch_2_link --[pitch_3 (revolute)]--> PSM3_pitch_3_link
+                            PSM3_pitch_3_link --[insertion (prismatic)]--> PSM3_tool_parent_link
+                              PSM3_tool_parent_link --[instrument_base_fixed (fixed)]--> PSM3_instrument_base_link
+                                PSM3_instrument_base_link --[roll (revolute)]--> PSM3_roll_link
+                                  PSM3_roll_link --[roll_fixed (fixed)]--> PSM3_roll_housing_link
+                                    PSM3_roll_housing_link --[shaft_fixed (fixed)]--> PSM3_shaft_link
+                                  PSM3_roll_link --[wrist_pitch (revolute)]--> PSM3_wrist_pitch_0091m_link
+                                    PSM3_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM3_wrist_yaw_0091m_link
+```
+
+### Classic Patient Cart
+
+```text
+world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
+  SUJ_cart --[SUJ_ECM_J0 (prismatic)]--> SUJ_ECM_L0
+    SUJ_ECM_L0 --[SUJ_ECM_J1 (continuous)]--> SUJ_ECM_L1
+      SUJ_ECM_L1 --[SUJ_ECM_J2 (continuous)]--> SUJ_ECM_L2
+        SUJ_ECM_L2 --[SUJ_ECM_J3 (continuous)]--> SUJ_ECM_L3
+          SUJ_ECM_L3 --[SUJ_ECM_fixed_RCM (fixed)]--> SUJ_ECM_RCM
+
+  SUJ_cart --[SUJ_PSM1_J0 (prismatic)]--> SUJ_PSM1_L0
+    SUJ_PSM1_L0 --[SUJ_PSM1_J1 (continuous)]--> SUJ_PSM1_L1
+      SUJ_PSM1_L1 --[SUJ_PSM1_J2 (continuous)]--> SUJ_PSM1_L2
+        SUJ_PSM1_L2 --[SUJ_PSM1_J3 (continuous)]--> SUJ_PSM1_L3
+          SUJ_PSM1_L3 --[SUJ_PSM1_J4 (continuous)]--> SUJ_PSM1_L4
+            SUJ_PSM1_L4 --[SUJ_PSM1_fixed_RCM (fixed)]--> SUJ_PSM1_RCM
+
+  SUJ_cart --[SUJ_PSM2_J0 (prismatic)]--> SUJ_PSM2_L0
+    SUJ_PSM2_L0 --[SUJ_PSM2_J1 (continuous)]--> SUJ_PSM2_L1
+      SUJ_PSM2_L1 --[SUJ_PSM2_J2 (continuous)]--> SUJ_PSM2_L2
+        SUJ_PSM2_L2 --[SUJ_PSM2_J3 (continuous)]--> SUJ_PSM2_L3
+          SUJ_PSM2_L3 --[SUJ_PSM2_J4 (continuous)]--> SUJ_PSM2_L4
+            SUJ_PSM2_L4 --[SUJ_PSM2_fixed_RCM (fixed)]--> SUJ_PSM2_RCM
+
+  SUJ_cart --[SUJ_PSM3_J0 (prismatic)]--> SUJ_PSM3_L0
+    SUJ_PSM3_L0 --[SUJ_PSM3_J1 (continuous)]--> SUJ_PSM3_L1
+      SUJ_PSM3_L1 --[SUJ_PSM3_J2 (continuous)]--> SUJ_PSM3_L2
+        SUJ_PSM3_L2 --[SUJ_PSM3_J3 (continuous)]--> SUJ_PSM3_L3
+          SUJ_PSM3_L3 --[SUJ_PSM3_J4 (continuous)]--> SUJ_PSM3_L4
+            SUJ_PSM3_L4 --[SUJ_PSM3_fixed_RCM (fixed)]--> SUJ_PSM3_RCM
+```
 
 ---
 

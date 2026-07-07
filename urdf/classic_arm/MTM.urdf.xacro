@@ -46,19 +46,19 @@
 
     <link name="${prefix}top_panel">
       <visual>
-        <origin rpy="0 0 0" xyz="0 0 0.19037"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.19037"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_top_panel.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="0 0 0.19037"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.19037"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_top_panel.dae"/>
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <mass value=".9"/>
         <inertia ixx="9.0" ixy="0.0" ixz="0.0"
                  iyy="9.0" iyz="0.0"
@@ -70,8 +70,8 @@
     <joint name="outer_yaw" type="revolute">
       <parent link="${prefix}top_panel"/>
       <child link="${prefix}outer_yaw_link"/>
-      <origin rpy="0 0 ${PI/2}" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="0.0 0.0 ${PI/2}" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--rotates about z axis-->
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="50.0" lower="${-75/180*PI}" upper="${PI/4}" velocity="2"/>
@@ -80,13 +80,13 @@
 
     <link name="${prefix}outer_yaw_link">
       <visual>
-        <origin rpy="0 0 0" xyz="0.025 0 0.19037"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.025 0.0 0.19037"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_outer_yaw.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="0.025 0 0.19037"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.025 0.0 0.19037"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_outer_yaw.dae"/>
         </geometry>
@@ -102,8 +102,8 @@
     <joint name="shoulder_pitch" type="revolute">
       <parent link="${prefix}outer_yaw_link"/>
       <child link="${prefix}back_parallel_link"/>  <!-- xyz= 0 0 -.19037-->
-      <origin rpy="${-PI/2} ${-PI/2} 0" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${-PI/2} ${-PI/2} 0.0" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-PI/4}" upper="${PI/4}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
@@ -129,8 +129,8 @@
     <joint name="shoulder_pitch_parallel" type="revolute">
       <parent link="${prefix}outer_yaw_link"/>
       <child link="${prefix}top_parallel_link"/>
-      <origin rpy="${-PI/2} ${-PI/2} 0" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${-PI/2} ${-PI/2} 0.0" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--rotates about  x axis-->
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-PI/2}" upper="${PI/2}" velocity="10"/>
@@ -140,13 +140,13 @@
 
     <link name="${prefix}top_parallel_link">
       <visual>
-        <origin rpy="0 0 ${-PI/2}" xyz="0 0 0.065"/>
+        <origin rpy="0.0 0.0 ${-PI/2}" xyz="0.0 0.0 0.065"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch_parallel.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch_parallel.dae"/>
         </geometry>
@@ -162,8 +162,8 @@
     <joint name="elbow_pitch" type="revolute">
       <parent link="${prefix}back_parallel_link"/>
       <child link="${prefix}bottom_parallel_link"/>  <!-- xyz= -->
-      <origin rpy="0 0 ${PI/2}" xyz="-0.2794 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="0.0 0.0 ${PI/2}" xyz="-0.2794 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-PI/4}" upper="${PI/4}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
@@ -236,8 +236,8 @@
     <joint name="wrist_platform" type="revolute">
       <parent link="${prefix}bottom_parallel_link"/>
       <child link="${prefix}wrist_platform_link"/>
-      <origin rpy="${PI/2} 0 0" xyz="-0.3645 -0.1506 0.0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${PI/2} 0.0 0.0" xyz="-0.3645 -0.1506 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--rotates about z axis-->
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-60/180*PI}" upper="${245/180*PI}" velocity="10"/>
@@ -267,8 +267,8 @@
     <joint name="wrist_pitch" type="revolute">
       <parent link="${prefix}wrist_platform_link"/>
       <child link="${prefix}wrist_pitch_link"/>
-      <origin rpy="${-PI/2} 0 0" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${-PI/2} 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-PI/2}" upper="${PI}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
@@ -297,8 +297,8 @@
     <joint name="wrist_yaw" type="revolute">
       <parent link="${prefix}wrist_pitch_link"/>
       <child link="${prefix}wrist_yaw_link"/>    <!--  defined from CAD file-->
-      <origin rpy="${PI/2} ${-PI/2} 0" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${PI/2} ${-PI/2} 0.0" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--rotates about z axis-->
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0"  lower="${-PI/4}" upper="${PI/4}" velocity="10"/>
@@ -329,9 +329,9 @@
     <joint name="wrist_roll" type="revolute">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}wrist_roll_link"/>  <!-- -.039 & .055 defined from CAD file-->
-      <!-- <origin rpy="${-PI/2} ${PI/2} 0" xyz="0 -.039 0"/> -->
-      <origin rpy="0 ${-PI/2} ${PI/2}" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <!-- <origin rpy="${-PI/2} ${PI/2} 0.0" xyz="0.0 -.039 0.0"/> -->
+      <origin rpy="0.0 ${-PI/2} ${PI/2}" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-1.5*PI}" upper="${1.5*PI}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
@@ -339,13 +339,13 @@
 
     <link name="${prefix}wrist_roll_link">
       <visual>
-        <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
+        <origin rpy="${PI} 0.0 0.0" xyz="0.0 0.0 0.039"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
+        <origin rpy="${PI} 0.0 0.0" xyz="0.0 0.0 0.039"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
         </geometry>
@@ -400,8 +400,8 @@
     <joint name="wrist_platform" type="revolute">
       <parent link="${prefix}bottom_parallel_link"/>
       <child link="${prefix}wrist_platform_link"/>
-      <origin rpy="${PI/2} 0 0" xyz="-0.3645 -0.1506 0.0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${PI/2} 0.0 0.0" xyz="-0.3645 -0.1506 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--rotates about z axis-->
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-60/180*PI}" upper="${245/180*PI}" velocity="10"/>
@@ -410,13 +410,13 @@
 
     <link name="${prefix}wrist_platform_link">
       <visual>
-        <origin rpy="0 0 ${PI}" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 0.0 ${PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
             <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 ${PI}" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 0.0 ${PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
             <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_platform.dae"/>
         </geometry>
@@ -433,8 +433,8 @@
     <joint name="wrist_pitch" type="revolute">
       <parent link="${prefix}wrist_platform_link"/>
       <child link="${prefix}wrist_pitch_link"/>
-      <origin rpy="${-PI/2} 0 0" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${-PI/2} 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-PI/2}" upper="${PI}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
@@ -442,13 +442,13 @@
 
     <link name="${prefix}wrist_pitch_link">
       <visual>        <!-- defined from CAD file (increased in the y dir by .005-->
-        <origin rpy="0 ${PI} 0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 ${PI} 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
             <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.dae"/>
         </geometry>
       </visual>
       <collision>        <!-- defined from CAD file (increased in the y dir by .005-->
-        <origin rpy="0 ${PI} 0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 ${PI} 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
             <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_pitch.dae"/>
         </geometry>
@@ -465,8 +465,8 @@
     <joint name="wrist_yaw" type="revolute">
       <parent link="${prefix}wrist_pitch_link"/>
       <child link="${prefix}wrist_yaw_link"/>    <!--  defined from CAD file-->
-      <origin rpy="${PI/2} ${-PI/2} 0" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <origin rpy="${PI/2} ${-PI/2} 0.0" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--rotates about z axis-->
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0"  lower="${-PI/4}" upper="${PI/4}" velocity="10"/>
@@ -497,9 +497,9 @@
     <joint name="wrist_roll" type="revolute">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}wrist_roll_link"/>  <!-- -.039 & .055 defined from CAD file-->
-      <!-- <origin rpy="${-PI/2} ${PI/2} 0" xyz="0 -.039 0"/> -->
-      <origin rpy="0 ${-PI/2} ${PI/2}" xyz="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <!-- <origin rpy="${-PI/2} ${PI/2} 0.0" xyz="0.0 -.039 0.0"/> -->
+      <origin rpy="0.0 ${-PI/2} ${PI/2}" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
       <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-1.5*PI}" upper="${1.5*PI}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
@@ -507,13 +507,13 @@
 
     <link name="${prefix}wrist_roll_link">
       <visual>
-        <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
+        <origin rpy="${PI} 0.0 0.0" xyz="0.0 0.0 0.039"/>
         <geometry>
             <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="${PI} 0 0" xyz="0 0 0.039"/>
+        <origin rpy="${PI} 0.0 0.0" xyz="0.0 0.0 0.039"/>
         <geometry>
             <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_wrist_roll.dae"/>
         </geometry>

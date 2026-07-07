@@ -6,21 +6,21 @@
     <joint name="roll" type="revolute">
       <parent link="${parent_link}"/>
       <child  link="${prefix}roll_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="0 0 0" xyz="0 0 ${roll_origin}"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 ${roll_origin}"/>
       <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
     </joint>
 
     <link name="${prefix}roll_link">
       <visual>
-        <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.216"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
         </geometry>
         <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
       </visual>
       <collision>
-        <origin rpy="0 0 0" xyz="0 0 -0.216"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.216"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
         </geometry>
@@ -30,18 +30,18 @@
     <joint name="roll_fixed" type="fixed">
       <parent link="${prefix}roll_link"/>
       <child  link="${prefix}roll_housing_link"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
     </joint>
 
     <link name="${prefix}roll_housing_link">
       <visual>
-        <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
+        <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 -0.0091"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
+        <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 -0.0091"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl"/>
         </geometry>
@@ -51,18 +51,18 @@
     <joint name="shaft_fixed" type="fixed">
       <parent link="${prefix}roll_housing_link"/>
       <child  link="${prefix}shaft_link"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
     </joint>
 
     <link name="${prefix}shaft_link">
       <visual>
-        <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
+        <origin rpy="${PI_2} 0.0 0.0" xyz="0.0 0.00401 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
+        <origin rpy="${PI_2} 0.0 0.0" xyz="0.0 0.00401 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
         </geometry>
@@ -75,8 +75,8 @@
     <joint name="roll" type="revolute">
       <parent link="${parent_link}"/>
       <child  link="${prefix}roll_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="0 0 0" xyz="0 0 ${roll_origin}"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 ${roll_origin}"/>
       <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
     </joint>
 
@@ -85,18 +85,18 @@
     <joint name="roll_fixed" type="fixed">
       <parent link="${prefix}roll_link"/>
       <child  link="${prefix}roll_housing_link"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
     </joint>
 
     <link name="${prefix}roll_housing_link">
       <visual>
-        <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
+        <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 -0.0091"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Classic/roll/PSM_roll.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0 0 1.5708" xyz="0 0 -0.0091"/>
+        <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 -0.0091"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Classic/roll/PSM_roll.dae"/>
         </geometry>
@@ -106,18 +106,18 @@
     <joint name="shaft_fixed" type="fixed">
       <parent link="${prefix}roll_housing_link"/>
       <child  link="${prefix}shaft_link"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
     </joint>
 
     <link name="${prefix}shaft_link">
       <visual>
-        <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
+        <origin rpy="${PI_2} 0.0 0.0" xyz="0.0 0.00401 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Classic/yaw/PSM_yaw.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="${PI_2} 0 0" xyz="0 0.00401 0"/>
+        <origin rpy="${PI_2} 0.0 0.0" xyz="0.0 0.00401 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/Classic/yaw/PSM_yaw.dae"/>
         </geometry>

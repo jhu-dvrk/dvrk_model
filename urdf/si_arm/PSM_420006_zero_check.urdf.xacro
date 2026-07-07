@@ -13,36 +13,36 @@
   <joint name="zero_check_fixed" type="fixed">
     <parent link="${parent_link}"/>
     <child link="assembly_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
   </joint>
 
   <link name="assembly_link">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
         <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
       </geometry>
     </visual>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
         <mesh filename="package://dvrk_model/meshes/instruments/Si/pitch/PSM_006_pitch.OBJ"/>
       </geometry>
     </visual>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
         <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
       </geometry>
     </visual>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
         <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_1.OBJ"/>
       </geometry>
     </visual>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
         <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_2.OBJ"/>
       </geometry>

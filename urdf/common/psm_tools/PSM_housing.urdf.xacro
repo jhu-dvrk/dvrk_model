@@ -7,19 +7,19 @@
     <joint name="instrument_base_fixed" type="fixed">
       <parent link="${parent_link}"/>
       <child  link="${prefix}instrument_base_link"/>
-      <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
+      <origin rpy="-1.5708 0.0 -1.5708" xyz="0.0 0.0 0.0"/>
     </joint>
 
     <link name="${prefix}instrument_base_link">
       <visual>
         <xacro:if value="${is_si_housing}">
-          <origin rpy="-1.5708 0 -1.5708" xyz="0 0 0"/>
+          <origin rpy="-1.5708 0.0 -1.5708" xyz="0.0 0.0 0.0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/housing/PSM_housing.OBJ"/>
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si_housing}">
-          <origin rpy="0 0 1.5708" xyz="0 0 0.0904"/>
+          <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 0.0904"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
           </geometry>
@@ -27,13 +27,13 @@
       </visual>
       <collision>
         <xacro:if value="${is_si_housing}">
-          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Si/housing/PSM_housing.OBJ"/>
           </geometry>
         </xacro:if>
         <xacro:unless value="${is_si_housing}">
-          <origin rpy="0 0 1.5708" xyz="0 0 0.0904"/>
+          <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 0.0904"/>
           <geometry>
             <mesh filename="package://dvrk_model/meshes/instruments/Classic/housing/PSM_housing.dae"/>
           </geometry>

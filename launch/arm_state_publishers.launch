@@ -18,7 +18,7 @@
          default="20"/>
     <group if="$(eval suj)">
       <param name="robot_description"
-             command="rosrun xacro xacro $(arg _urdf) arm:=$(arg arm) parent_link_:=$(arg arm)_mounting_point"/>
+             command="rosrun xacro xacro $(arg _urdf) arm:=$(arg arm) parent_link_:=SUJ_$(arg arm)_RCM"/>
     </group>
     <group unless="$(eval suj)">
       <param name="robot_description"

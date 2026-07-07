@@ -22,26 +22,26 @@ This file groups mesh renames discovered in `yvonne-testing` for review. Each en
 
 | Old mesh path | New mesh path |
 | --- | --- |
-| `meshes/Classic/SUJ/base_link.stl` | `meshes/SUJ/Classic/SUJ_base.stl` |
-| `meshes/Classic/SUJ/suj_ecm_L0.stl` | `meshes/SUJ/Classic/SUJ_ECM_link_0.stl` |
-| `meshes/Classic/SUJ/suj_ecm_L1.stl` | `meshes/SUJ/Classic/SUJ_ECM_link_1.stl` |
-| `meshes/Classic/SUJ/suj_ecm_L2.stl` | `meshes/SUJ/Classic/SUJ_ECM_link_2.stl` |
-| `meshes/Classic/SUJ/suj_ecm_L3.stl` | `meshes/SUJ/Classic/SUJ_ECM_link_3.stl` |
-| `meshes/Classic/SUJ/suj_psm1_L0.stl` | `meshes/SUJ/Classic/SUJ_PSM1_link_0.stl` |
-| `meshes/Classic/SUJ/suj_psm1_L1.stl` | `meshes/SUJ/Classic/SUJ_PSM1_link_1.stl` |
-| `meshes/Classic/SUJ/suj_psm1_L2.stl` | `meshes/SUJ/Classic/SUJ_PSM1_link_2.stl` |
-| `meshes/Classic/SUJ/suj_psm1_L3.stl` | `meshes/SUJ/Classic/SUJ_PSM1_link_3.stl` |
-| `meshes/Classic/SUJ/suj_psm1_L4.stl` | `meshes/SUJ/Classic/SUJ_PSM1_link_4.stl` |
-| `meshes/Classic/SUJ/suj_psm2_L0.stl` | `meshes/SUJ/Classic/SUJ_PSM2_link_0.stl` |
-| `meshes/Classic/SUJ/suj_psm2_L1.stl` | `meshes/SUJ/Classic/SUJ_PSM2_link_1.stl` |
-| `meshes/Classic/SUJ/suj_psm2_L2.stl` | `meshes/SUJ/Classic/SUJ_PSM2_link_2.stl` |
-| `meshes/Classic/SUJ/suj_psm2_L3.stl` | `meshes/SUJ/Classic/SUJ_PSM2_link_3.stl` |
-| `meshes/Classic/SUJ/suj_psm2_L4.stl` | `meshes/SUJ/Classic/SUJ_PSM2_link_4.stl` |
-| `meshes/Classic/SUJ/suj_psm3_L0.stl` | `meshes/SUJ/Classic/SUJ_PSM3_link_0.stl` |
-| `meshes/Classic/SUJ/suj_psm3_L1.stl` | `meshes/SUJ/Classic/SUJ_PSM3_link_1.stl` |
-| `meshes/Classic/SUJ/suj_psm3_L2.stl` | `meshes/SUJ/Classic/SUJ_PSM3_link_2.stl` |
-| `meshes/Classic/SUJ/suj_psm3_L3.stl` | `meshes/SUJ/Classic/SUJ_PSM3_link_3.stl` |
-| `meshes/Classic/SUJ/suj_psm3_L4.stl` | `meshes/SUJ/Classic/SUJ_PSM3_link_4.stl` |
+| `meshes/Classic/SUJ/base_link.stl` | `meshes/SUJ/Classic/SUJ_cart.stl` |
+| `meshes/Classic/SUJ/suj_ecm_L0.stl` | `meshes/SUJ/Classic/SUJ_Classic_L0.stl` |
+| `meshes/Classic/SUJ/suj_ecm_L1.stl` | `meshes/SUJ/Classic/SUJ_Classic_L1.stl` |
+| `meshes/Classic/SUJ/suj_ecm_L2.stl` | `meshes/SUJ/Classic/SUJ_Classic_L2.stl` |
+| `meshes/Classic/SUJ/suj_ecm_L3.stl` | `meshes/SUJ/Classic/SUJ_ECM_L3.stl` |
+| `meshes/Classic/SUJ/suj_psm1_L0.stl` | `meshes/SUJ/Classic/SUJ_Classic_L0.stl` |
+| `meshes/Classic/SUJ/suj_psm1_L1.stl` | `meshes/SUJ/Classic/SUJ_Classic_L1.stl` |
+| `meshes/Classic/SUJ/suj_psm1_L2.stl` | `meshes/SUJ/Classic/SUJ_Classic_L2.stl` |
+| `meshes/Classic/SUJ/suj_psm1_L3.stl` | `meshes/SUJ/Classic/SUJ_Classic_PSM12_L3.stl` |
+| `meshes/Classic/SUJ/suj_psm1_L4.stl` | `meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl` |
+| `meshes/Classic/SUJ/suj_psm2_L0.stl` | `meshes/SUJ/Classic/SUJ_Classic_L0.stl` |
+| `meshes/Classic/SUJ/suj_psm2_L1.stl` | `meshes/SUJ/Classic/SUJ_Classic_L1.stl` |
+| `meshes/Classic/SUJ/suj_psm2_L2.stl` | `meshes/SUJ/Classic/SUJ_Classic_L2.stl` |
+| `meshes/Classic/SUJ/suj_psm2_L3.stl` | `meshes/SUJ/Classic/SUJ_Classic_PSM12_L3.stl` |
+| `meshes/Classic/SUJ/suj_psm2_L4.stl` | `meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl` |
+| `meshes/Classic/SUJ/suj_psm3_L0.stl` | `meshes/SUJ/Classic/SUJ_PSM3_L0.stl` |
+| `meshes/Classic/SUJ/suj_psm3_L1.stl` | `meshes/SUJ/Classic/SUJ_PSM3_L1.stl` |
+| `meshes/Classic/SUJ/suj_psm3_L2.stl` | `meshes/SUJ/Classic/SUJ_Classic_L2.stl` |
+| `meshes/Classic/SUJ/suj_psm3_L3.stl` | `meshes/SUJ/Classic/SUJ_PSM3_L3.stl` |
+| `meshes/Classic/SUJ/suj_psm3_L4.stl` | `meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl` |
 
 ## Classic ECM
 
@@ -123,19 +123,19 @@ Review:
 
 | Old mesh path | New mesh path |
 | --- | --- |
-| `meshes/Si/SUJ/ECM/link_0.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_link_0.stl` |
-| `meshes/Si/SUJ/ECM/link_1.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_link_1.stl` |
-| `meshes/Si/SUJ/ECM/link_2.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_link_2.stl` |
-| `meshes/Si/SUJ/ECM/link_3.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_link_3.stl` |
-| `meshes/Si/SUJ/PSM/12/link_0.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM_link_0.stl` | <!-- Why is it PSM 12? Separate? -->
-| `meshes/Si/SUJ/PSM/12/link_1.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM_link_1.stl` |
-| `meshes/Si/SUJ/PSM/12/link_2.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM_link_2.stl` |
-| `meshes/Si/SUJ/PSM/12/link_3.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM_link_3.stl` |
-| `meshes/Si/SUJ/PSM/3/link_0.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM_link_0.stl` |
-| `meshes/Si/SUJ/PSM/3/link_1.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM_link_1.stl` |
-| `meshes/Si/SUJ/PSM/3/link_2.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM_link_2.stl` |
-| `meshes/Si/SUJ/PSM/3/link_3.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM_link_3.stl` |
-| `meshes/Si/SUJ/PSM/3/link_4.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM_link_4.stl` |
+| `meshes/Si/SUJ/ECM/link_0.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_L0.stl` |
+| `meshes/Si/SUJ/ECM/link_1.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_L1.stl` |
+| `meshes/Si/SUJ/ECM/link_2.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_L2.stl` |
+| `meshes/Si/SUJ/ECM/link_3.STL` | `meshes/SUJ/Si/ECM/SUJ_ECM_L3.stl` |
+| `meshes/Si/SUJ/PSM/12/link_0.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L0.stl` |
+| `meshes/Si/SUJ/PSM/12/link_1.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L1.stl` |
+| `meshes/Si/SUJ/PSM/12/link_2.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L2.stl` |
+| `meshes/Si/SUJ/PSM/12/link_3.STL` | `meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L3.stl` |
+| `meshes/Si/SUJ/PSM/3/link_0.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L0.stl` |
+| `meshes/Si/SUJ/PSM/3/link_1.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L1.stl` |
+| `meshes/Si/SUJ/PSM/3/link_2.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L2.stl` |
+| `meshes/Si/SUJ/PSM/3/link_3.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L3.stl` |
+| `meshes/Si/SUJ/PSM/3/link_4.STL` | `meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L4.stl` |
 
 ## Si USM
 

@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="suj_column">
+    <xacro:macro name="SUJ_cart">
         <link name="world"/>
         <joint
-            name="world_fixed"
+            name="SUJ_fixed_cart"
             type="fixed">
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
             <parent link="world" />
-            <child link="SUJ_column" />
+            <child link="SUJ_cart" />
         </joint>
 
-        <link name="SUJ_column">
+        <link name="SUJ_cart">
             <inertial>
             <origin
-                xyz="-1.969E-09 2.3996E-09 0.80012"
-                rpy="0 0 0" />
+                xyz="0.0 0.0 0.80012"
+                rpy="0.0 0.0 0.0" />
             <mass value="71.07" />
             <inertia
                 ixx="16.038"
@@ -26,8 +26,8 @@
             </inertial>
             <visual>
             <origin
-                xyz="0 0 0"
-                rpy="0 0 0" />
+                xyz="0.0 0.0 0.0"
+                rpy="0.0 0.0 0.0" />
             <geometry>
                 <mesh
                 filename="package://dvrk_model/meshes/tower.stl" />
@@ -40,8 +40,8 @@
             </visual>
             <collision>
             <origin
-                xyz="0 0 0"
-                rpy="0 0 0" />
+                xyz="0.0 0.0 0.0"
+                rpy="0.0 0.0 0.0" />
             <geometry>
                 <mesh
                 filename="package://dvrk_model/meshes/tower.stl" />

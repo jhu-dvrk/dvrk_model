@@ -18,7 +18,9 @@
   <xacro:macro name="ecm_base" params="prefix parent_link xyz:='0.0 0.0 0.0' rpy:='0.0 0.0 0.0'">
 
     <!-- RCM reference frame (root of the arm when loaded directly) -->
-    <link name="${prefix}RCM_link"/>
+    <link name="${prefix}RCM_link">
+      <xacro:rcm_visual/>
+    </link>
 
     <joint name="${prefix}rcm_fixed" type="fixed">
       <parent link="${parent_link}"/>
@@ -35,14 +37,14 @@
     <!-- link 0: base -->
     <link name="${prefix}base_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_base.stl"/>
         </geometry>
         <material name="DaVinciLightGray"><color rgba="0.64706 0.61961 0.58824 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_base.stl"/>
         </geometry>
@@ -52,14 +54,14 @@
     <!-- link 1: yaw -->
     <link name="${prefix}yaw_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_yaw.stl"/>
         </geometry>
         <material name="DaVinciLightGray"><color rgba="0.64706 0.61961 0.58824 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_yaw.stl"/>
         </geometry>
@@ -68,24 +70,24 @@
 
     <!-- joint 1: yaw -->
     <joint name="yaw" type="revolute">
-      <origin xyz="0.0731999999999783 0 0.101460000000185" rpy="${PI_2} 0 ${PI_2}"/>
+      <origin xyz="0.0731999999999783 0.0 0.101460000000185" rpy="${PI_2} 0.0 ${PI_2}"/>
       <parent link="${prefix}base_link"/>
       <child  link="${prefix}yaw_link"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="-1.595183" upper="1.581733" effort="1000" velocity="10"/>
     </joint>
 
     <!-- link 2: pitch (primary arm, carries the pitch visual) -->
     <link name="${prefix}pitch_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch.stl"/>
         </geometry>
         <material name="DaVinciLightGray"><color rgba="0.64706 0.61961 0.58824 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch.stl"/>
         </geometry>
@@ -94,34 +96,34 @@
 
     <!-- joint 2: pitch -->
     <joint name="pitch" type="revolute">
-      <origin xyz="0 0 0.199000000000014" rpy="${PI} -${PI_2} 0"/>
+      <origin xyz="0.0 0.0 0.199000000000014" rpy="${PI} -${PI_2} 0.0"/>
       <parent link="${prefix}yaw_link"/>
       <child  link="${prefix}pitch_link"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="-0.783710" upper="1.157657" effort="1000" velocity="10"/>
     </joint>
 
     <!-- parallelogram sub-joint 2: bottom -->
     <link name="${prefix}pitch_2_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_2.stl"/>
         </geometry>
         <material name="DaVinciDarkGray"><color rgba="0.25098 0.25098 0.25098 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_2.stl"/>
         </geometry>
       </collision>
     </link>
     <joint name="pitch_2" type="revolute">
-      <origin xyz="-0.103000865501078 -0.286804989831434 0" rpy="0 0 0"/>
+      <origin xyz="-0.103000865501078 -0.286804989831434 0.0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}pitch_link"/>
       <child  link="${prefix}pitch_2_link"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="-1.157657" upper="0.783710" effort="1000" velocity="10"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
@@ -129,24 +131,24 @@
     <!-- parallelogram sub-joint 3: end (carries insertion) -->
     <link name="${prefix}pitch_3_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_3.stl"/>
         </geometry>
         <material name="DaVinciWhite"><color rgba="0.89804 0.91765 0.92941 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_3.stl"/>
         </geometry>
       </collision>
     </link>
     <joint name="pitch_3" type="revolute">
-      <origin xyz="0.340400072983362 -0.000135620545844151 0" rpy="0 0 0"/>
+      <origin xyz="0.340400072983362 -0.000135620545844151 0.0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}pitch_2_link"/>
       <child  link="${prefix}pitch_3_link"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="-0.783710" upper="1.157657" effort="1000" velocity="10"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
@@ -154,24 +156,24 @@
     <!-- parallelogram sub-joint 4: top -->
     <link name="${prefix}pitch_4_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_4.stl"/>
         </geometry>
         <material name="DaVinciRed"><color rgba="0.64706 0.51765 0 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_4.stl"/>
         </geometry>
       </collision>
     </link>
     <joint name="pitch_4" type="revolute">
-      <origin xyz="-0.10847228839493 -0.324257434492051 0" rpy="0 0 0"/>
+      <origin xyz="-0.10847228839493 -0.324257434492051 0.0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}pitch_link"/>
       <child  link="${prefix}pitch_4_link"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="-1.157657" upper="0.783710" effort="1000" velocity="10"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
@@ -179,24 +181,24 @@
     <!-- parallelogram sub-joint 5: back -->
     <link name="${prefix}pitch_5_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_5.stl"/>
         </geometry>
         <material name="DaVinciRed"><color rgba="0.64706 0.51765 0 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_pitch_5.stl"/>
         </geometry>
       </collision>
     </link>
     <joint name="pitch_5" type="revolute">
-      <origin xyz="0 -0.00979999999999302 0.162430000000002" rpy="${PI} -${PI_2} 0"/>
+      <origin xyz="0.0 -0.00979999999999302 0.162430000000002" rpy="${PI} -${PI_2} 0.0"/>
       <parent link="${prefix}yaw_link"/>
       <child  link="${prefix}pitch_5_link"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="-0.783710" upper="1.157657" effort="1000" velocity="10"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
@@ -204,14 +206,14 @@
     <!-- link 3: insertion (carries the main insertion tube visual) -->
     <link name="${prefix}insertion_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_main_insertion.stl"/>
         </geometry>
         <material name="DaVinciDarkGray"><color rgba="0.25 0.25 0.25 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/ECM/ECM_main_insertion.stl"/>
         </geometry>
@@ -220,10 +222,10 @@
 
     <!-- joint 3: insertion -->
     <joint name="insertion" type="prismatic">
-      <origin xyz="0.042 -0.086143 0" rpy="-${PI_2} 0 0"/>
+      <origin xyz="0.042 -0.086143 0.0" rpy="-${PI_2} 0.0 0.0"/>
       <parent link="${prefix}pitch_3_link"/>
       <child  link="${prefix}insertion_link"/>
-      <axis xyz="0 0 1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="0" upper="0.254193" effort="50" velocity="100"/>
     </joint>
 
@@ -234,10 +236,10 @@
     <!-- joint 4: roll -->
     <!-- origin z=-0.010 shifts roll_link to exactly 0.3829 m above RCM (was 0.3729 m) -->
     <joint name="roll" type="revolute">
-      <origin xyz="0.0609999999999996 0 -0.010" rpy="0 0 0"/>
+      <origin xyz="0.0609999999999996 0.0 -0.010" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}insertion_link"/>
       <child  link="${prefix}roll_link"/>
-      <axis xyz="0 0 -1"/>
+      <axis xyz="0.0 0.0 -1"/>
       <limit lower="-1.552676" upper="1.566741" effort="1000" velocity="10"/>
     </joint>
 
@@ -246,13 +248,8 @@
     <joint name="${prefix}remote_center_alias" type="fixed">
       <parent link="${prefix}RCM_link"/>
       <child  link="${prefix}remote_center_link"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
     </joint>
-
-    <!-- Instantiate RCM visual if show_rcm is enabled -->
-    <xacro:if value="$(arg show_rcm)">
-      <xacro:rcm_visual prefix="${prefix}" parent_link="${prefix}RCM_link"/>
-    </xacro:if>
 
   </xacro:macro>
 

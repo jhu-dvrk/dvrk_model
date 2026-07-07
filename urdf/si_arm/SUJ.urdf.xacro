@@ -3,30 +3,30 @@
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/si_arm/SUJ_base.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/si_arm/SUJ_column.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/si_arm/SUJ_cart.urdf.xacro"/>
 
-  <xacro:suj_column/>
-  <xacro:suj
+  <xacro:SUJ_cart/>
+  <xacro:SUJ
       prefix="PSM1_"
-      parent_link="SUJ_column"
+      parent_link="SUJ_cart"
       xyz="0.0 0.228 0.528"
       rpy="0.0 0.0 ${PI / 2.0}"/>
 
-  <xacro:suj
+  <xacro:SUJ
       prefix="PSM2_"
-      parent_link="SUJ_column"
+      parent_link="SUJ_cart"
       xyz="0.0 -0.228 0.528"
       rpy="0.0 0.0 ${-PI / 2.0}" />
 
-  <xacro:suj
+  <xacro:SUJ
       prefix="PSM3_"
-      parent_link="SUJ_column"
+      parent_link="SUJ_cart"
       xyz="-0.223 0.0 0.528"
       rpy="0.0 0.0 ${-PI}"/>
 
-  <xacro:suj
+  <xacro:SUJ
       prefix="ECM_"
-      parent_link="SUJ_column"
+      parent_link="SUJ_cart"
       xyz="0.223 0.0 0.528"
       rpy="0.0 0.0 0.0"/>
 

@@ -4,11 +4,11 @@
   <!-- Declare the global argument for showing/hiding RCM -->
   <xacro:arg name="show_rcm" default="true"/>
 
-  <xacro:macro name="rcm_visual" params="prefix parent_link:='RCM_link'">
-    <!-- A semi-transparent red sphere to visualize the Remote Center of Motion -->
-    <link name="${prefix}RCM_visual_link">
+  <xacro:macro name="rcm_visual" params="prefix:='' parent_link:='RCM_link'">
+    <xacro:if value="$(arg show_rcm)">
+      <!-- A semi-transparent red sphere to visualize the Remote Center of Motion -->
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <geometry>
           <sphere radius="0.015"/>
         </geometry>
@@ -16,12 +16,7 @@
           <color rgba="0.8 0.1 0.1 0.6"/>
         </material>
       </visual>
-    </link>
-    <joint name="${prefix}RCM_visual_joint" type="fixed">
-      <parent link="${parent_link}"/>
-      <child  link="${prefix}RCM_visual_link"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-    </joint>
+    </xacro:if>
   </xacro:macro>
 
 </robot>

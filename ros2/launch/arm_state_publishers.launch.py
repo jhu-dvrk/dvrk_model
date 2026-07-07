@@ -65,7 +65,7 @@ def create_robot_description(context):
     if full_name == 'ECM' and endoscope != '':
         mappings['endoscope'] = endoscope
     if context.launch_configurations.get('suj') == 'true':
-        mappings['parent_link_'] = context.launch_configurations['arm'] + '_mounting_point'
+        mappings['parent_link_'] = 'SUJ_' + full_name + '_RCM'
 
     robot_description_config = xacro.process_file(xacro_file,
                                                   mappings = mappings)

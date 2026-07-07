@@ -24,7 +24,9 @@
                        rpy:='0.0 0.0 0.0'">
 
     <!-- RCM reference frame (root of the arm when loaded directly) -->
-    <link name="${prefix}RCM_link"/>
+    <link name="${prefix}RCM_link">
+      <xacro:rcm_visual/>
+    </link>
 
     <joint name="${prefix}rcm_fixed" type="fixed">
       <parent link="${parent_link}"/>
@@ -42,7 +44,7 @@
     <!-- link 0: base -->
     <link name="${prefix}base_link">
       <visual>
-        <origin rpy="1.5708 0 3.1416" xyz="0.039 -0.40788 -0.07879"/>
+        <origin rpy="1.5708 0.0 3.1416" xyz="0.039 -0.40788 -0.07879"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_base.dae"/>
         </geometry>
@@ -53,15 +55,15 @@
     <joint name="yaw" type="revolute">
       <parent link="${prefix}base_link"/>
       <child  link="${prefix}yaw_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="0 -1.5708 1.5708" xyz="0.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="0.0 -1.5708 1.5708" xyz="0.0 0.0 0.0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
     </joint>
 
     <!-- link 1: yaw -->
     <link name="${prefix}yaw_link">
       <visual>
-        <origin rpy="3.1416 0 1.5708" xyz="0.0125 0 0.5265"/>
+        <origin rpy="3.1416 0.0 1.5708" xyz="0.0125 0.0 0.5265"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_yaw.dae"/>
         </geometry>
@@ -76,8 +78,8 @@
     <joint name="pitch" type="revolute">
       <parent link="${prefix}yaw_link"/>
       <child  link="${prefix}pitch_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="-1.5708 -1.5708 0.0" xyz="0.0 0.0 0.0"/>
       <limit lower="-0.7854" upper="0.7854" velocity=".4" effort="1000"/>
     </joint>
 
@@ -87,14 +89,14 @@
     <joint name="pitch_2" type="continuous">
       <parent link="${prefix}yaw_link"/>
       <child  link="${prefix}pitch_2_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="-1.5708 -1.5708 0" xyz="0 0.0295 0.5185"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="-1.5708 -1.5708 0.0" xyz="0.0 0.0295 0.5185"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
     <link name="${prefix}pitch_2_link">
       <visual>
-        <origin rpy="0 0 -0.27129" xyz="0 0 0"/>
+        <origin rpy="0.0 0.0 -0.27129" xyz="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_2.dae"/>
         </geometry>
@@ -105,14 +107,14 @@
     <joint name="pitch_3" type="continuous">
       <parent link="${prefix}yaw_link"/>
       <child  link="${prefix}pitch_3_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="-1.5708 -1.5708 0" xyz="0 0.0295 0.4285"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="-1.5708 -1.5708 0.0" xyz="0.0 0.0295 0.4285"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
     <link name="${prefix}pitch_3_link">
       <visual>
-        <origin rpy="0 0 -0.27129" xyz="0 0 0"/>
+        <origin rpy="0.0 0.0 -0.27129" xyz="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_3.dae"/>
         </geometry>
@@ -123,14 +125,14 @@
     <joint name="pitch_4" type="continuous">
       <parent link="${prefix}pitch_2_link"/>
       <child  link="${prefix}pitch_4_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="0 0 0" xyz="0.04178 0.15007 -0.0137"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.04178 0.15007 -0.0137"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
     <link name="${prefix}pitch_4_link">
       <visual>
-        <origin rpy="0 -1.5708 0" xyz="0.009 0 0"/>
+        <origin rpy="0.0 -1.5708 0.0" xyz="0.009 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_4.dae"/>
         </geometry>
@@ -141,14 +143,14 @@
     <joint name="pitch_5" type="continuous">
       <parent link="${prefix}pitch_2_link"/>
       <child  link="${prefix}pitch_5_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="0 0 0" xyz="0.04209 0.18695 -0.02412"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.04209 0.18695 -0.02412"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
     <link name="${prefix}pitch_5_link">
       <visual>
-        <origin rpy="0 -1.5708 0" xyz="0.009 0 0"/>
+        <origin rpy="0.0 -1.5708 0.0" xyz="0.009 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_5.dae"/>
         </geometry>
@@ -159,14 +161,14 @@
     <joint name="pitch_6" type="continuous">
       <parent link="${prefix}pitch_4_link"/>
       <child  link="${prefix}insertion_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="0 0 0" xyz="-0.520 0 -0.0155"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="-0.520 0.0 -0.0155"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
     <link name="${prefix}insertion_link">
       <visual>
-        <origin rpy="0 -1.5708 1.5708" xyz="0.02528 0.429 0"/>
+        <origin rpy="0.0 -1.5708 1.5708" xyz="0.02528 0.429 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_insertion.dae"/>
         </geometry>
@@ -177,8 +179,8 @@
     <joint name="insertion" type="prismatic">
       <parent link="${prefix}pitch_link"/>
       <child  link="${prefix}tool_parent_link"/>
-      <axis xyz="0 0 1"/>
-      <origin rpy="1.5708 0 0" xyz="0 0.4318 0"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="1.5708 0.0 0.0" xyz="0.0 0.4318 0.0"/>
       <limit lower="0" upper="0.240" velocity=".4" effort="1000"/>
     </joint>
 
@@ -189,11 +191,6 @@
       so PSM_instrument is generation-agnostic.
     -->
     <link name="${prefix}tool_parent_link"/>
-
-    <!-- Instantiate RCM visual if show_rcm is enabled -->
-    <xacro:if value="$(arg show_rcm)">
-      <xacro:rcm_visual prefix="${prefix}" parent_link="${prefix}RCM_link"/>
-    </xacro:if>
 
   </xacro:macro>
 
