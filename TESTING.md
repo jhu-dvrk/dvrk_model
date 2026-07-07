@@ -100,5 +100,5 @@ Validate using direct xacro expansion:
 ros2 run xacro xacro urdf/Virtual/PSM1.urdf.xacro instrument:=400006 > /tmp/virtual_psm1_400006.urdf
 ros2 run xacro xacro urdf/Virtual/PSM1.urdf.xacro instrument:=420006 > /tmp/virtual_psm1_420006.urdf
 ros2 run xacro xacro urdf/Virtual/PSM2.urdf.xacro instrument:=400049 > /tmp/virtual_psm2_400049.urdf
-ros2 run xacro xacro urdf/Virtual/PSM3.urdf.xacro instrument:=420168 > /tmp/virtual_psm3_420168.urdf
+ros2 run xacro xacro urdf/Virtual/PSM3.urdf.xacro instrument:=420006 > /tmp/virtual_psm3_420006.urdf
 ```

@@ -9,70 +9,97 @@
 
     DOF layout:
       Joint 4: roll         (revolute, D = shaft_length along z)
-      Joint 5: wrist_pitch  (revolute)  ┐
-      Joint 6: wrist_yaw    (revolute)  ├── dispatched via PSM_tip_XXX macro
-      Joint 7: jaw + mimics (revolute)  ┘
+      Joint 5: wrist_pitch  (revolute)
+      Joint 6: wrist_yaw    (revolute)  
+      Joint 7: jaw + mimics (revolute)
 
     Parameters:
       prefix        — arm instance prefix, e.g. "PSM1_"
       parent_link   — must be ${prefix}tool_parent_link
       shaft_length  — D parameter of roll joint (Classic: 0.4162, Si: 0.4670)
       instrument    — last 6 digits of instrument model number (e.g. "420006")
-                      used to select the correct PSM_tip_XXX macro
+                      used to select the correct full instrument assembly
   -->
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/PSM_body.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/PSM_006.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/PSM_049.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/PSM_housing.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/PSM_roll.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/wrist/PSM_0091m_wrist.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/tip/PSM_006_tip.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/tip/PSM_049_tip.urdf.xacro"/>
+
+  <xacro:macro name="PSM_instrument_variant"
+               params="prefix parent_link generation roll_origin wrist_parent_link wrist_0091m_variant tip_style is_si:=false">
+    <xacro:PSM_instrument_housing prefix="${prefix}"
+                                  parent_link="${parent_link}"
+                                  housing_family="${generation}"/>
+
+    <xacro:if value="${generation == 'Si'}">
+      <xacro:PSM_instrument_si_roll_shaft prefix="${prefix}"
+                                          parent_link="${prefix}instrument_base_link"
+                                          roll_origin="${roll_origin}"/>
+    </xacro:if>
+
+    <xacro:if value="${generation == 'Classic'}">
+      <xacro:PSM_instrument_classic_roll_shaft prefix="${prefix}"
+                                               parent_link="${prefix}instrument_base_link"
+                                               roll_origin="${roll_origin}"/>
+    </xacro:if>
+
+    <xacro:PSM_wrist_0091m prefix="${prefix}"
+                           parent_link="${wrist_parent_link}"
+                           wrist_0091m_variant="${wrist_0091m_variant}"
+                           is_si="${is_si}"/>
+
+    <xacro:if value="${tip_style == '006'}">
+      <xacro:PSM_tool_tip_006 prefix="${prefix}"
+                              parent_link="${prefix}wrist_yaw_0091m_link"
+                              is_si="${is_si}"/>
+    </xacro:if>
+
+    <xacro:if value="${tip_style == '049'}">
+      <xacro:PSM_tool_tip_049 prefix="${prefix}"
+                              parent_link="${prefix}wrist_yaw_0091m_link"/>
+    </xacro:if>
+  </xacro:macro>
 
   <xacro:macro name="PSM_instrument"
                params="prefix parent_link instrument">
                
-    <!-- Detect generation. Si instruments use Si-style mesh format. -->
-    <xacro:property name="is_si"  value="${str(instrument).startswith('42')}"/>
-
-    <!--
-      Shaft length (D parameter of the roll joint):
-        Classic PSM instruments → 0.4162
-        Si instruments          → 0.4670
-        Classic instruments     → 0.4162
-    -->
-    <xacro:property name="shaft_length" value="${0.4670 if is_si else 0.4162}"/>
-    <xacro:property name="tool_main_offset" value="${0.0 if is_si else 0.041}"/>
-    <xacro:property name="roll_origin" value="${shaft_length + tool_main_offset}"/>
-    <xacro:property name="tip_parent_link" value="${prefix + ('roll_link' if is_si else 'shaft_link')}"/>
-
-    <xacro:PSM_instrument_body prefix="${prefix}"
-                   parent_link="${parent_link}"
-                   is_si="${is_si}"
-                   roll_origin="${roll_origin}"/>
-
-    <!--
-      Tip dispatch: select the correct tip+jaw macro by instrument.
-      Convention: last 3 digits of the model number identify the tip family.
-        006 → standard SCA wrist (A=0.0091)
-        049 → Cadiere jaw (A=0.0091)
-      Verified common dimensions:
-        roll D  → 0.4162 Classic, 0.4670 Si
-        006 tip → tool_tip at y=0.0102
-    -->
-    <!-- 006: standard SCA wrist -->
-    <xacro:if value="${str(instrument) == '420006' or str(instrument) == '400006' or
-                      str(instrument) == '420036' or str(instrument) == '400036' or
-                      str(instrument) == '420093' or str(instrument) == '400093' or
-                      str(instrument) == '420168' or str(instrument) == '400168'}">
-      <xacro:PSM_tip_006 prefix="${prefix}"
-                         parent_link="${tip_parent_link}"
-                         is_si="${is_si}"/>
+    <!-- 420006: Si 006 -->
+    <xacro:if value="${str(instrument) == '420006'}">
+      <xacro:PSM_instrument_variant prefix="${prefix}"
+                                    parent_link="${parent_link}"
+                                    generation="Si"
+                                    roll_origin="${0.4670}"
+                                    wrist_parent_link="${prefix}roll_link"
+                                    wrist_0091m_variant="sca"
+                                    tip_style="006"
+                                    is_si="true"/>
     </xacro:if>
 
-    <!-- 049: Cadiere jaw -->
+    <!-- 400006: Classic 006 -->
+    <xacro:if value="${str(instrument) == '400006'}">
+      <xacro:PSM_instrument_variant prefix="${prefix}"
+                                    parent_link="${parent_link}"
+                                    generation="Classic"
+                                    roll_origin="${0.4572}"
+                                    wrist_parent_link="${prefix}shaft_link"
+                                    wrist_0091m_variant="sca"
+                                    tip_style="006"
+                                    is_si="false"/>
+    </xacro:if>
+
+    <!-- 400049: Classic 049 -->
     <xacro:if value="${str(instrument) == '400049'}">
-      <xacro:PSM_tip_049 prefix="${prefix}"
-                         parent_link="${tip_parent_link}"/>
+      <xacro:PSM_instrument_variant prefix="${prefix}"
+                                    parent_link="${parent_link}"
+                                    generation="Classic"
+                                    roll_origin="${0.4572}"
+                                    wrist_parent_link="${prefix}shaft_link"
+                                    wrist_0091m_variant="cadiere"
+                                    tip_style="049"/>
     </xacro:if>
-
 
   </xacro:macro>
 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_psm_0091m_wrist" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="PSM_wrist_0091m"
+               params="prefix parent_link wrist_0091m_variant:=sca is_si:=false">
+    <!-- 0091m fixes the wrist spacing; the variant stays because SCA and Cadiere use different meshes. -->
+    <joint name="wrist_pitch" type="revolute">
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}wrist_pitch_0091m_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="-${PI_2} -${PI_2} 0" xyz="0 0 0"/>
+      <limit lower="-${PI_2}" upper="${PI_2}" velocity=".4" effort="1000"/>
+    </joint>
+
+    <link name="${prefix}wrist_pitch_0091m_link">
+      <visual>
+        <xacro:if value="${wrist_0091m_variant == 'sca' and is_si}">
+          <origin rpy="0 0 0" xyz="0 0 0"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/pitch/PSM_006_pitch.OBJ"/>
+          </geometry>
+        </xacro:if>
+        <xacro:if value="${wrist_0091m_variant == 'sca' and not is_si}">
+          <origin rpy="${PI_2} ${PI} 0" xyz="0.0051 0.0032 0"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/pitch/PSM_006_pitch.dae"/>
+          </geometry>
+        </xacro:if>
+        <xacro:if value="${wrist_0091m_variant == 'cadiere'}">
+          <origin rpy="0 -${PI_2} 0" xyz="-0.0024 0 0"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/pitch/PSM_049_pitch.stl"/>
+          </geometry>
+        </xacro:if>
+      </visual>
+    </link>
+
+    <joint name="wrist_yaw" type="revolute">
+      <parent link="${prefix}wrist_pitch_0091m_link"/>
+      <child  link="${prefix}wrist_yaw_0091m_link"/>
+      <axis xyz="0 0 1"/>
+      <origin rpy="-${PI_2} -${PI_2} 0" xyz="0.0091 0 0"/>
+      <limit lower="-1.3963" upper="1.3963" velocity=".4" effort="1000"/>
+    </joint>
+
+    <link name="${prefix}wrist_yaw_0091m_link">
+      <visual>
+        <xacro:if value="${wrist_0091m_variant == 'sca' and is_si}">
+          <origin rpy="0 0 0" xyz="0 0 -0.000236"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
+          </geometry>
+        </xacro:if>
+        <xacro:if value="${wrist_0091m_variant == 'sca' and not is_si}">
+          <origin rpy="0 0 0" xyz="0 -0.0002 -0.0025"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/yaw/PSM_006_yaw.dae"/>
+          </geometry>
+        </xacro:if>
+        <xacro:if value="${wrist_0091m_variant == 'cadiere'}">
+          <origin rpy="0 ${PI_2} 0" xyz="0 -0.0002 0"/>
+          <geometry>
+            <mesh filename="package://dvrk_model/meshes/instruments/Classic/yaw/PSM_049_yaw.stl"/>
+          </geometry>
+        </xacro:if>
+      </visual>
+    </link>
+  </xacro:macro>
+
+</robot>

@@ -22,11 +22,11 @@ dvrk_model/
 │   ├── common/                           ← generation-agnostic macros
 │   │   ├── PSM_instrument.urdf.xacro
 │   │   └── psm_tools/
-│   │       ├── PSM_body.urdf.xacro
+│   │       ├── PSM_housing.urdf.xacro
+│   │       ├── PSM_roll.urdf.xacro
 │   │       ├── wrist/
 │   │       ├── tip/
-│   │       ├── PSM_006.urdf.xacro
-│   │       └── PSM_049.urdf.xacro
+│   │       └── PSM_0091m_wrist.urdf.xacro
 │   │
 │   ├── classic_arm/
 │   │   ├── ECM.urdf.xacro
@@ -134,11 +134,10 @@ PSM_base (Classic/Si)
         ▼
 PSM_instrument_macros (common/)
         │
-        ├── body stage (common/psm_tools/PSM_body.urdf.xacro)
-        └── tool family (common/psm_tools/PSM_*.urdf.xacro)
-                │
-                ├── wrist stage (common/psm_tools/wrist)
-                └── tip stage (common/psm_tools/tip)
+        ├── housing stage (common/psm_tools/PSM_housing.urdf.xacro)
+        ├── roll/shaft stage (common/psm_tools/PSM_roll.urdf.xacro)
+        ├── wrist stage (common/psm_tools/wrist)
+        └── tip stage (common/psm_tools/tip)
 ```
 
 ---
