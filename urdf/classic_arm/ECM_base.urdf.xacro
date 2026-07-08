@@ -31,7 +31,7 @@
     <joint name="${prefix}base_fixed" type="fixed">
       <parent link="${prefix}RCM_link"/>
       <child  link="${prefix}base_link"/>
-      <origin xyz="0.0 -0.612599207482277 -0.101460" rpy="0.0 0.0 ${PI_2}"/>
+      <origin xyz="-0.612599207482277 0.0 -0.101460" rpy="0.0 0.0 0.0"/>
     </joint>
 
     <!-- link 0: base -->
