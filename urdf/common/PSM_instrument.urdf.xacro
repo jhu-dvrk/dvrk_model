@@ -83,7 +83,7 @@
                                     parent_link="${parent_link}"
                                     generation="Classic"
                                     roll_origin="${0.4572}"
-                                    wrist_parent_link="${prefix}shaft_link"
+                                    wrist_parent_link="${prefix}roll_link"
                                     wrist_0091m_variant="sca"
                                     tip_style="006"
                                     is_si="false"/>
@@ -95,7 +95,7 @@
                                     parent_link="${parent_link}"
                                     generation="Classic"
                                     roll_origin="${0.4572}"
-                                    wrist_parent_link="${prefix}shaft_link"
+                                    wrist_parent_link="${prefix}roll_link"
                                     wrist_0091m_variant="cadiere"
                                     tip_style="049"/>
     </xacro:if>
