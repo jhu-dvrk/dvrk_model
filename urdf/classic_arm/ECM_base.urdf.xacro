@@ -243,6 +243,13 @@
       <limit lower="-1.552676" upper="1.566741" effort="1000" velocity="10"/>
     </joint>
 
+    <joint name="${prefix}adaptor_fixed" type="fixed">
+      <parent link="${prefix}roll_link"/>
+      <child  link="${prefix}adaptor_link"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </joint>
+    <link name="${prefix}adaptor_link"/>
+
     <!-- Alias link for backward compatibility with older rviz configs referencing remote_center_link -->
     <link name="${prefix}remote_center_link"/>
     <joint name="${prefix}remote_center_alias" type="fixed">

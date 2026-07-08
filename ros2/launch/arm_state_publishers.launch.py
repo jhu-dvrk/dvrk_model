@@ -17,6 +17,42 @@ from launch.substitutions import (
     PathJoinSubstitution,
 )
 
+VALID_GENERATIONS = ['Classic', 'Si']
+VALID_ENDOSCOPES = ['Classic_SD_straight', 'Si_straight']
+VALID_INSTRUMENTS = ['400006', '400049', '420006']
+
+
+def valid_arm_names(package_share, urdf_generation):
+    urdf_dir = os.path.join(package_share, 'urdf', urdf_generation)
+    rviz_generation = 'Si' if urdf_generation == 'si_arm' else 'Classic'
+    rviz_dir = os.path.join(package_share, 'rviz', rviz_generation)
+    rviz_names = {
+        os.path.splitext(name)[0]
+        for name in os.listdir(rviz_dir)
+        if name.endswith('.rviz')
+    }
+    return sorted(
+        os.path.splitext(os.path.splitext(name)[0])[0]
+        for name in os.listdir(urdf_dir)
+        if name.endswith('.urdf.xacro')
+        and os.path.splitext(os.path.splitext(name)[0])[0] in rviz_names
+        and not name.endswith('_base.urdf.xacro')
+        and not name.endswith('_zero_check.urdf.xacro')
+        and name not in ['SUJ.urdf.xacro']
+    )
+
+
+def valid_options_message(options):
+    return ', '.join(options)
+
+
+def require_choice(name, value, options):
+    if value not in options:
+        raise RuntimeError(
+            "Invalid {} '{}'. Valid options: {}".format(
+                name, value, valid_options_message(options)))
+
+
 # Create a list of ROS topics that will provide all the joint states
 # from the dVRK main node to the joint_state_publisher
 class ArmSourceListSubstitution(Substitution):
@@ -46,12 +82,17 @@ class ArmSourceListSubstitution(Substitution):
 def create_robot_description(context):
     full_name = context.launch_configurations['arm']
     generation = context.launch_configurations['generation']
+    require_choice('generation', generation, VALID_GENERATIONS)
+
     urdf_generation = 'si_arm' if generation == 'Si' else 'classic_arm'
-    xacro_file = os.path.join(get_package_share_directory('dvrk_model'),
+    dvrk_model_share = get_package_share_directory('dvrk_model')
+    valid_arms = valid_arm_names(dvrk_model_share, urdf_generation)
+    require_choice('arm', full_name, valid_arms)
+
+    xacro_file = os.path.join(dvrk_model_share,
                               'urdf',
                               urdf_generation,
                               full_name + '.urdf.xacro')
-    assert os.path.exists(xacro_file), 'The urdf file doesnt exist: ' + str(xacro_file)
     instrument = context.launch_configurations.get('instrument', '').strip()
     endoscope = context.launch_configurations.get('endoscope', '').strip()
     generation_prefix = '420' if generation == 'Si' else '400'
@@ -59,6 +100,21 @@ def create_robot_description(context):
         instrument = generation_prefix + '006'
     elif instrument.isdigit() and len(instrument) == 3:
         instrument = generation_prefix + instrument
+
+    if full_name == 'ECM':
+        if endoscope != '':
+            require_choice('endoscope', endoscope, VALID_ENDOSCOPES)
+    elif endoscope != '':
+        raise RuntimeError(
+            "Invalid endoscope '{}' for arm '{}'. The endoscope argument is only valid for ECM. Valid ECM endoscopes: {}".format(
+                endoscope, full_name, valid_options_message(VALID_ENDOSCOPES)))
+
+    if full_name.startswith('PSM'):
+        require_choice('instrument', instrument, VALID_INSTRUMENTS)
+    elif context.launch_configurations.get('instrument', '').strip() != '':
+        raise RuntimeError(
+            "Invalid instrument '{}' for arm '{}'. The instrument argument is only valid for PSM arms. Valid PSM instruments: {}".format(
+                instrument, full_name, valid_options_message(VALID_INSTRUMENTS)))
 
     show_rcm = context.launch_configurations.get('show_rcm', 'true').strip()
     mappings = {'arm': full_name, 'instrument': instrument, 'show_rcm': show_rcm}

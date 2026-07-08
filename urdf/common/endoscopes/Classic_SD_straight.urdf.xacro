@@ -5,21 +5,21 @@
 
   <!--
     Classic SD straight endoscope.
-    Attaches to ${prefix}roll_link (last link of ECM_base).
-    Provides its own mesh and a fixed endoscope_tip reference frame.
+    Attaches to ${prefix}adaptor_link.
+    Provides its own mesh and a fixed tip reference frame.
   -->
   <xacro:macro name="endoscope"
-               params="prefix:='ECM_' parent_link:='ECM_roll_link'">
+               params="prefix:='ECM_' parent_link:='ECM_adaptor_link'">
 
-    <!-- Endoscope body: fixed to roll_link, rotates with roll -->
-    <joint name="endoscope_body" type="fixed">
+    <!-- Endoscope body: fixed to adaptor_link, rotates with roll -->
+    <joint name="endoscope" type="fixed">
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <parent link="${parent_link}"/>
-      <child  link="${prefix}endoscope_body_link"/>
+      <child  link="${prefix}endoscope_link"/>
     </joint>
-    <link name="${prefix}endoscope_body_link">
+    <link name="${prefix}endoscope_link">
       <visual>
-        <!-- z=0.010 compensates for roll_link moving 0.010 m further above RCM -->
+        <!-- z=0.010 compensates for adaptor_link moving 0.010 m further above RCM -->
         <origin xyz="0.0 0.0 0.010" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/endoscopes/Classic_SD_straight/ECM_tool.stl"/>
@@ -35,12 +35,12 @@
     </link>
 
     <!-- Fixed transform to endoscope tip reference frame -->
-    <joint name="endoscope_tip" type="fixed">
+    <joint name="tip" type="fixed">
       <origin xyz="0.0 0.0 0.37364" rpy="0.0 0.0 0.0"/>
-      <parent link="${prefix}endoscope_body_link"/>
-      <child  link="${prefix}endoscope_tip_link"/>
+      <parent link="${prefix}endoscope_link"/>
+      <child  link="${prefix}tip_link"/>
     </joint>
-    <link name="${prefix}endoscope_tip_link"/>
+    <link name="${prefix}tip_link"/>
 
   </xacro:macro>
 

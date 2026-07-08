@@ -14,5 +14,5 @@
                   parent_link="${parent_link}"/>
 
   <xacro:endoscope prefix="ECM_"
-                   parent_link="ECM_roll_link"/>
+                   parent_link="ECM_adaptor_link"/>
 </robot>

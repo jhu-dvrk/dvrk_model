@@ -5,24 +5,24 @@
 
   <!--
     Si straight endoscope.
-    Attaches to ${prefix}roll_link (last link of ECM_base).
+    Attaches to ${prefix}adaptor_link.
     Provides its own meshes and a fixed camera tip reference frame.
 
     Future variants Si_down and Si_up will add a 30-degree rotation
-    before the endoscope_tip joint.
+    before the tip joint.
   -->
   <xacro:macro name="endoscope"
-               params="prefix:='ECM_' parent_link:='ECM_roll_link'">
+               params="prefix:='ECM_' parent_link:='ECM_adaptor_link'">
 
-    <!-- Endoscope body: housing + shaft + camera tip, fixed to roll_link -->
-    <joint name="endoscope_body" type="fixed">
+    <!-- Endoscope body: housing + shaft + camera tip, fixed to adaptor_link -->
+    <joint name="endoscope" type="fixed">
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <parent link="${parent_link}"/>
-      <child  link="${prefix}endoscope_body_link"/>
+      <child  link="${prefix}endoscope_link"/>
     </joint>
-    <link name="${prefix}endoscope_body_link">
+    <link name="${prefix}endoscope_link">
       <visual>
-        <!-- z=0.2577 compensates for roll_link moving 0.2577 m further above RCM -->
+        <!-- z=0.2577 compensates for adaptor_link moving 0.2577 m further above RCM -->
         <!-- housing -->
         <origin rpy="-1.5708 0.0 -1.5708" xyz="0.0 0.0 0.2577"/>
         <geometry>
@@ -52,21 +52,21 @@
       </collision>
     </link>
 
-    <!-- Convert from roll_link into camera reference frame -->
+    <!-- Convert from adaptor_link into camera reference frame -->
     <joint name="endoscope_frame" type="fixed">
       <origin rpy="-1.5708 -1.5708 0.0" xyz="0.0 0.0 0.0"/>
-      <parent link="${prefix}endoscope_body_link"/>
+      <parent link="${prefix}endoscope_link"/>
       <child  link="${prefix}endoscope_frame_link"/>
     </joint>
     <link name="${prefix}endoscope_frame_link"/>
 
     <!-- Offset to physical camera tip -->
-    <joint name="endoscope_tip" type="fixed">
+    <joint name="tip" type="fixed">
       <origin xyz="0.0 0.0102 0.0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}endoscope_frame_link"/>
-      <child  link="${prefix}endoscope_tip_link"/>
+      <child  link="${prefix}tip_link"/>
     </joint>
-    <link name="${prefix}endoscope_tip_link"/>
+    <link name="${prefix}tip_link"/>
 
   </xacro:macro>
 

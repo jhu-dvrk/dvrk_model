@@ -208,7 +208,7 @@
     <!-- joint 4: roll -->
     <!-- origin z=0.2093 places roll_link exactly 0.3829 m above RCM (was 0.1252 m at z=0.4670) -->
     <joint name="roll" type="revolute">
-      <origin xyz="0.0 0.0 0.2093" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.06462752 0.0 0.2093" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}insertion_link"/>
       <child  link="${prefix}roll_link"/>
       <axis xyz="0.0 0.0 1"/>
@@ -220,6 +220,13 @@
       Mesh-free: the endoscope macro owns all visuals to allow endoscope swapping.
     -->
     <link name="${prefix}roll_link"/>
+
+    <joint name="${prefix}adaptor_fixed" type="fixed">
+      <parent link="${prefix}roll_link"/>
+      <child  link="${prefix}adaptor_link"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </joint>
+    <link name="${prefix}adaptor_link"/>
 
   </xacro:macro>
 
