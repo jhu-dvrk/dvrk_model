@@ -17,7 +17,7 @@
                   parent_link="${parent_link}"/>
 
   <xacro:PSM_instrument prefix="PSM1_"
-                        parent_link="PSM1_tool_parent_link"
+                        parent_link="PSM1_adaptor_link"
                         instrument="$(arg instrument)"/>
 
 </robot>

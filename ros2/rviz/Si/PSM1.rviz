@@ -101,7 +101,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_tool_parent:
+        PSM1_adaptor:
           Alpha: 1
           Show Axes: false
           Show Trail: false

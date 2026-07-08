@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
 
   <!--
@@ -9,7 +10,7 @@
       Joint 2: pitch  (revolute, parallelogram linkage)
       Joint 3: insertion    (prismatic)
 
-    Macro output: ends at ${prefix}tool_parent_link.
+    Macro output: ends at ${prefix}adaptor_link.
     The instrument macro (PSM_instrument) attaches here and owns roll onward.
 
     Parameters:
@@ -178,19 +179,19 @@
     <!-- joint 3: insertion (prismatic) -->
     <joint name="insertion" type="prismatic">
       <parent link="${prefix}pitch_link"/>
-      <child  link="${prefix}tool_parent_link"/>
+      <child  link="${prefix}adaptor_link"/>
       <axis xyz="0.0 0.0 1"/>
-      <origin rpy="1.5708 0.0 0.0" xyz="0.0 0.4318 0.0"/>
+      <origin rpy="${PI_2} 0.0 0.0" xyz="0.0 0.4318 0.0"/>
       <limit lower="0" upper="0.240" velocity=".4" effort="1000"/>
     </joint>
 
     <!--
-      link 3: tool_parent_link
+      link 3: adaptor_link
       Massless boundary link — handoff point to PSM_instrument.
-      No mesh; both Si and Classic use this exact link name
-      so PSM_instrument is generation-agnostic.
+      This is the instrument_base frame from the kinematic JSON: aligned
+      with the insertion/roll axis and offset 0.4318 m from the RCM.
     -->
-    <link name="${prefix}tool_parent_link"/>
+    <link name="${prefix}adaptor_link"/>
 
   </xacro:macro>
 

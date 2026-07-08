@@ -4,13 +4,13 @@
   <xacro:macro name="PSM_instrument_housing"
                params="prefix parent_link housing_family:=Classic">
     <xacro:property name="is_si_housing" value="${housing_family == 'Si'}"/>
-    <joint name="instrument_base_fixed" type="fixed">
+    <joint name="${prefix}instrument_housing_fixed" type="fixed">
       <parent link="${parent_link}"/>
-      <child  link="${prefix}instrument_base_link"/>
+      <child  link="${prefix}instrument_housing_link"/>
       <origin rpy="-1.5708 0.0 -1.5708" xyz="0.0 0.0 0.0"/>
     </joint>
 
-    <link name="${prefix}instrument_base_link">
+    <link name="${prefix}instrument_housing_link">
       <visual>
         <xacro:if value="${is_si_housing}">
           <origin rpy="-1.5708 0.0 -1.5708" xyz="0.0 0.0 0.0"/>

@@ -9,8 +9,10 @@
                      using the instrument code (Classic 40xxxx, Si 42xxxx)
       rcm_xyz      — trocar position in world frame
       rcm_rpy      — trocar orientation in world frame
+      adaptor_offset — instrument_base offset from the RCM
   -->
   <xacro:arg name="instrument"   default="420006"/>
+  <xacro:arg name="adaptor_offset" default="0.4826"/>
   <xacro:arg name="rcm_xyz"      default="0 0 0"/>
   <xacro:arg name="rcm_rpy"      default="0 0 0"/>
 
@@ -21,12 +23,13 @@
 
   <!-- 3 virtual DOFs at the trocar — no arm geometry -->
   <xacro:base_virtual prefix="PSM1_"
+                          adaptor_offset="$(arg adaptor_offset)"
                           rcm_xyz="$(arg rcm_xyz)"
                           rcm_rpy="$(arg rcm_rpy)"/>
 
-  <!-- Instrument: identical to Classic/Si — attaches at PSM_tool_parent_link -->
+  <!-- Instrument: identical to Classic/Si — attaches at PSM_adaptor_link -->
   <xacro:PSM_instrument prefix="PSM1_"
-                        parent_link="PSM1_tool_parent_link"
+                        parent_link="PSM1_adaptor_link"
                         instrument="$(arg instrument)"/>
 
 </robot>

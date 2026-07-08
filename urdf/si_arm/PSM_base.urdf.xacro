@@ -10,7 +10,7 @@
       Joint 2: pitch  (revolute, pitch, parallelogram linkage ×3)
       Joint 3: insertion (prismatic)
 
-    Macro output: ends at ${prefix}tool_parent_link.
+    Macro output: ends at ${prefix}adaptor_link.
     PSM_instrument attaches here and owns roll onward.
 
     Inertial data retained from original Si CAD export.
@@ -196,24 +196,25 @@
     </joint>
 
     <!--
-      joint 3: insertion (prismatic) — moved here from psm_tool.
-      Origin from original insertion_ref fixed joint (xyz 0.05061 0 0.41911)
-      combined with the insertion joint offset.
+      joint 3: insertion (prismatic)
+      The adaptor link is the instrument_base frame from PSM_Si.json.
+      This local transform keeps the adaptor on the insertion/roll axis,
+      0.4826 m from the RCM at zero insertion.
     -->
     <joint name="insertion" type="prismatic">
-      <origin xyz="0.05061 0.0 0.41911" rpy="${PI} 0.0 0.0"/>
+      <origin xyz="0.11523752 0.0 0.31095531" rpy="${PI} 0.0 ${-PI}"/>
       <parent link="${prefix}pitch_3_link"/>
-      <child  link="${prefix}tool_parent_link"/>
+      <child  link="${prefix}adaptor_link"/>
       <axis xyz="0.0 0.0 1"/>
       <limit lower="0.0" upper="0.299" velocity="0.4" effort="1000"/>
     </joint>
 
     <!--
-      tool_parent_link — boundary link; PSM_instrument attaches here.
-      No geometry; same name as Classic and Virtual so PSM_instrument
-      macro is generation-agnostic.
+      adaptor_link — boundary link; PSM_instrument attaches here.
+      No geometry; same name as Classic so PSM_instrument is
+      generation-agnostic.
     -->
-    <link name="${prefix}tool_parent_link"/>
+    <link name="${prefix}adaptor_link"/>
 
   </xacro:macro>
 

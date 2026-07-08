@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="dvrk_psm_virtual" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
   <!--
     Virtual PSM base — simulator variant.
 
@@ -16,11 +18,13 @@
     All three links share a small but non-zero inertia so physics
     simulators (Gazebo, Isaac) can integrate without singularities.
 
-    Output: ends at ${prefix}tool_parent_link — identical to the
+    Output: ends at ${prefix}adaptor_link — identical to the
     full Classic/Si base so PSM_instrument attaches without modification.
 
     Parameters:
       prefix    — arm instance prefix, e.g. "PSM1_"
+      adaptor_offset — instrument_base offset from RCM (Classic: 0.4318,
+                       Si: 0.4826)
       rcm_xyz   — trocar position in world frame (default: origin)
       rcm_rpy   — trocar orientation in world frame (default: identity)
                   rpy convention: roll-pitch-yaw (radians)
@@ -31,6 +35,7 @@
 
   <xacro:macro name="base_virtual"
                params="prefix
+                       adaptor_offset:='0.4826'
                        rcm_xyz:='0 0 0'
                        rcm_rpy:='0 0 0'">
 
@@ -85,23 +90,23 @@
     </link>
 
     <!-- ── Joint 3: insertion ───────────────────────────────────────────── -->
-    <!--   Prismatic along z at the RCM. Models insertion depth.            -->
-    <!--   tool_parent_link serves as the insertion child AND the        -->
-    <!--   handoff link to PSM_instrument (same name as in Classic/Si base). -->
+    <!--   Prismatic along the PSM DH insertion axis. Models insertion depth. -->
+    <!--   adaptor_link serves as the insertion child AND the handoff link -->
+    <!--   to PSM_instrument (same name as in Classic/Si base).            -->
     <joint name="insertion" type="prismatic">
       <parent link="${prefix}RCM_pitch_link"/>
-      <child  link="${prefix}tool_parent_link"/>
+      <child  link="${prefix}adaptor_link"/>
       <axis xyz="0.0 0.0 1"/>
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 ${adaptor_offset}" rpy="${PI} 0.0 ${-PI_2}"/>
       <limit lower="0.0" upper="0.240"
              effort="50" velocity="0.4"/>
     </joint>
 
     <!--
-      tool_parent_link — identical name to Classic/Si boundary link.
+      adaptor_link — identical name to Classic/Si boundary link.
       PSM_instrument attaches here; no change needed for any generation.
     -->
-    <link name="${prefix}tool_parent_link">
+    <link name="${prefix}adaptor_link">
       <inertial>
         <mass value="${virtual_mass}"/>
         <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"

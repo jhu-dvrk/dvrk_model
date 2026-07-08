@@ -4,8 +4,7 @@
   <!--
     PSM instrument macro — generation-agnostic.
 
-    Attaches to ${parent_link} (= ${prefix}tool_parent_link from any
-    PSM_base variant: Classic, Si, or Virtual).
+    Attaches to ${parent_link} (= ${prefix}adaptor_link from the PSM base).
 
     DOF layout:
       Joint 4: roll         (revolute, D = shaft_length along z)
@@ -15,7 +14,7 @@
 
     Parameters:
       prefix        — arm instance prefix, e.g. "PSM1_"
-      parent_link   — must be ${prefix}tool_parent_link
+      parent_link   — must be ${prefix}adaptor_link
       shaft_length  — D parameter of roll joint (Classic: 0.4162, Si: 0.4670)
       instrument    — last 6 digits of instrument model number (e.g. "420006")
                       used to select the correct full instrument assembly
@@ -36,13 +35,13 @@
 
     <xacro:if value="${generation == 'Si'}">
       <xacro:PSM_instrument_si_roll_shaft prefix="${prefix}"
-                                          parent_link="${prefix}instrument_base_link"
+                                          parent_link="${parent_link}"
                                           roll_origin="${roll_origin}"/>
     </xacro:if>
 
     <xacro:if value="${generation == 'Classic'}">
       <xacro:PSM_instrument_classic_roll_shaft prefix="${prefix}"
-                                               parent_link="${prefix}instrument_base_link"
+                                               parent_link="${parent_link}"
                                                roll_origin="${roll_origin}"/>
     </xacro:if>
 
