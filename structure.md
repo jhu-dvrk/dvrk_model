@@ -184,10 +184,8 @@ world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
                       PSM1_pitch_link --[pitch_2 (revolute)]--> PSM1_pitch_2_link
                         PSM1_pitch_2_link --[pitch_3 (revolute)]--> PSM1_pitch_3_link
                           PSM1_pitch_3_link --[insertion (prismatic)]--> PSM1_adaptor_link
-                            PSM1_adaptor_link --[PSM1_instrument_housing_fixed (fixed)]--> PSM1_instrument_housing_link
+                            PSM1_adaptor_link --[PSM1_housing_fixed (fixed)]--> PSM1_housing_link
                             PSM1_adaptor_link --[roll (revolute)]--> PSM1_roll_link
-                              PSM1_roll_link --[roll_fixed (fixed)]--> PSM1_roll_housing_link
-                                PSM1_roll_housing_link --[shaft_fixed (fixed)]--> PSM1_shaft_link
                               PSM1_roll_link --[wrist_pitch (revolute)]--> PSM1_wrist_pitch_0091m_link
                                 PSM1_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM1_wrist_yaw_0091m_link
 
@@ -204,10 +202,8 @@ world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
                       PSM2_pitch_link --[pitch_2 (revolute)]--> PSM2_pitch_2_link
                         PSM2_pitch_2_link --[pitch_3 (revolute)]--> PSM2_pitch_3_link
                           PSM2_pitch_3_link --[insertion (prismatic)]--> PSM2_adaptor_link
-                            PSM2_adaptor_link --[PSM2_instrument_housing_fixed (fixed)]--> PSM2_instrument_housing_link
+                            PSM2_adaptor_link --[PSM2_housing_fixed (fixed)]--> PSM2_housing_link
                             PSM2_adaptor_link --[roll (revolute)]--> PSM2_roll_link
-                              PSM2_roll_link --[roll_fixed (fixed)]--> PSM2_roll_housing_link
-                                PSM2_roll_housing_link --[shaft_fixed (fixed)]--> PSM2_shaft_link
                               PSM2_roll_link --[wrist_pitch (revolute)]--> PSM2_wrist_pitch_0091m_link
                                 PSM2_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM2_wrist_yaw_0091m_link
 
@@ -225,10 +221,8 @@ world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
                         PSM3_pitch_link --[pitch_2 (revolute)]--> PSM3_pitch_2_link
                           PSM3_pitch_2_link --[pitch_3 (revolute)]--> PSM3_pitch_3_link
                             PSM3_pitch_3_link --[insertion (prismatic)]--> PSM3_adaptor_link
-                              PSM3_adaptor_link --[PSM3_instrument_housing_fixed (fixed)]--> PSM3_instrument_housing_link
+                              PSM3_adaptor_link --[PSM3_housing_fixed (fixed)]--> PSM3_housing_link
                               PSM3_adaptor_link --[roll (revolute)]--> PSM3_roll_link
-                                PSM3_roll_link --[roll_fixed (fixed)]--> PSM3_roll_housing_link
-                                  PSM3_roll_housing_link --[shaft_fixed (fixed)]--> PSM3_shaft_link
                                 PSM3_roll_link --[wrist_pitch (revolute)]--> PSM3_wrist_pitch_0091m_link
                                   PSM3_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM3_wrist_yaw_0091m_link
 ```
