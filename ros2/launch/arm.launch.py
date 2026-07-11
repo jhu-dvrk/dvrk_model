@@ -10,6 +10,16 @@ from launch import LaunchContext, LaunchDescription
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch.actions import DeclareLaunchArgument
 
+SUPPORTED_PSM_INSTRUMENTS = [
+    '400001', '400003', '400006', '400007', '400033', '400035',
+    '400036', '400048', '400049', '400093', '400127', '400172',
+    '400178', '400179', '400181', '400189', '400205', '400207',
+    '400208', '400230', '400296',
+    '420001', '420006', '420007', '420033', '420036', '420048',
+    '420049', '420093', '420172', '420178', '420179', '420181',
+    '420205', '420230', '420296', '420327',
+]
+
 def generate_launch_description():
     arm = LaunchConfiguration('arm')
     generation = LaunchConfiguration('generation')
@@ -67,7 +77,11 @@ def generate_launch_description():
     ld = LaunchDescription([
         DeclareLaunchArgument('arm'),
         DeclareLaunchArgument('generation'),
-        DeclareLaunchArgument('instrument', default_value=''),
+        DeclareLaunchArgument(
+            'instrument',
+            default_value='',
+            description='PSM instrument model. Supported: {}'.format(
+                ', '.join(SUPPORTED_PSM_INSTRUMENTS))),
         DeclareLaunchArgument('endoscope', default_value=''),
         DeclareLaunchArgument('simulated', default_value='true'),
         DeclareLaunchArgument('use_sim_time', default_value='false'),

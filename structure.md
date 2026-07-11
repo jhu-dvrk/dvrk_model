@@ -37,12 +37,15 @@ dvrk_model/
 │   │       │   ├── roll_4162.urdf.xacro
 │   │       │   └── roll_4670.urdf.xacro
 │   │       ├── wrist_pitch/
-│   │       │   └── wrist_pitch_0091.urdf.xacro
+│   │       │   ├── wrist_pitch_0091.urdf.xacro
+│   │       │   └── wrist_pitch_0107.urdf.xacro
 │   │       ├── wrist_yaw/
-│   │       │   └── wrist_yaw_0091.urdf.xacro
+│   │       │   ├── wrist_yaw_0091.urdf.xacro
+│   │       │   └── wrist_yaw_0107.urdf.xacro
 │   │       └── tip/
 │   │           ├── tip_006.urdf.xacro
-│   │           └── tip_049.urdf.xacro
+│   │           ├── tip_049.urdf.xacro
+│   │           └── tip_placeholder.urdf.xacro
 │   │
 │   ├── Classic/
 │   │   ├── ECM.urdf.xacro
@@ -369,16 +372,19 @@ to the physical-arm paths.
 |-----|------|
 | 006 | standard needle driver |
 | 049 | cadiere forceps |
+| placeholder | 5 mm box visuals for supported tools without tip meshes |
 | ECM | camera tool |
 
-Only mesh-backed PSM tool families are active in the current URDF dispatch. Placeholder families without complete meshes are excluded from the supported set until assets and dimensions are verified.
+Many tool families are active in the current URDF dispatch using JSON-derived roll and wrist yaw dimensions. Tips without production meshes use 5 mm box placeholders until assets are added.
 
 Unsupported-family notes are kept in the docs only:
-- 117: prior support was only a parsing stub; kinematics are unverified.
-- 172: no dedicated 172 meshes are present; prior versions reused 006 geometry as a placeholder.
-- 183: no verified cautery or no-jaw production mesh set is wired in the active dispatcher.
+- 117 and 143: JSON files do not use the standard wrist_pitch/wrist_yaw joints.
+- 183 and 184: wrist yaw offset A = 0.0093 m.
+- 194: wrist yaw offset A = 0.0112 m.
+- 309: wrist yaw offset A = 0.0100 m.
+- 410298: stapler-specific roll and wrist geometry.
 
-The implemented layout follows the physical instrument breakdown directly: shared body stage (housing plus roll and shaft), then wrist and tip stage files, with one small family file per supported tool code to call the common stages.
+The implemented layout follows the physical instrument breakdown directly: shared body stage (housing plus roll and shaft), then wrist and tip stage files. Tool families with missing tip meshes share `tip_placeholder.urdf.xacro`.
 
 ---
 

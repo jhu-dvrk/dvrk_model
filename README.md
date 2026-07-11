@@ -46,18 +46,11 @@ meshes/
 │   │   └── 4670/
 │   ├── wrist_pitch/
 │   │   └── 0091/
-│   │       ├── Classic/
-│   │       └── Si/
 │   ├── wrist_yaw/
 │   │   └── 0091/
-│   │       ├── Classic/
-│   │       └── Si/
 │   └── tip/
 │       ├── 006/
-│       │   ├── Classic/
-│       │   └── Si/
 │       └── 049/
-│           └── Classic/
 ├── SUJ/               # Setup joints and cart positioning hardware
 │   ├── Classic/
 │   └── Si/
@@ -69,23 +62,26 @@ meshes/
 
 ## Supported PSM Tool Families
 
-Only mesh-backed PSM tool families are wired into the current URDF:
+PSM tool families currently wired into the URDF:
 
 | Family | Instrument codes | Mesh support | Verified dimensions |
 |--------|------------------|--------------|---------------------|
 | 006 | `400006`, `420006` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0102 m` |
-| 049 | `400049` | Classic meshes only | wrist yaw offset `A = 0.0091 m` |
+| 049 | `400049`, `420049` | shared 049 mesh | wrist yaw offset `A = 0.0091 m` |
+| Placeholder tips | `400001`, `400003`, `400007`, `400033`, `400035`, `400036`, `400048`, `400093`, `400127`, `400172`, `400178`, `400179`, `400181`, `400189`, `400205`, `400207`, `400208`, `400230`, `400296`, `420001`, `420007`, `420033`, `420036`, `420048`, `420093`, `420172`, `420178`, `420179`, `420181`, `420205`, `420230`, `420296`, `420327` | 5 mm box placeholders for missing tip meshes | JSON-derived roll and wrist yaw offsets using existing part IDs |
 
 Shared roll dimensions remain generation-specific in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro):
 
 - Classic roll origin `D = 0.4162 m`
 - Si roll origin `D = 0.4670 m`
 
-Families `172`, `117`, and `183` are intentionally not wired because this repository does not contain complete production meshes for them.
+Families that need new roll or wrist geometry are intentionally not wired yet.
 Current unsupported-family notes:
-- `117`: prior support was only a parsing stub; wrist and jaw kinematics for the 5 mm snake tool are not validated here.
-- `172`: no dedicated 172 meshes are present; prior versions reused 006 geometry as a placeholder.
-- `183`: no verified cautery or no-jaw production mesh set is wired in the current dispatcher.
+- `117` and `143`: JSON files do not use the standard wrist_pitch/wrist_yaw joints.
+- `183` and `184`: wrist yaw offset `A = 0.0093 m`.
+- `194`: wrist yaw offset `A = 0.0112 m`.
+- `309`: wrist yaw offset `A = 0.0100 m`.
+- `410298`: stapler-specific roll and wrist geometry.
 
 ## Instrument Mesh Naming
 
