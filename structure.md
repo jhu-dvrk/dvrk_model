@@ -30,13 +30,19 @@ dvrk_model/
 │   │   │   ├── Classic_SD_straight.urdf.xacro
 │   │   │   └── Si_straight.urdf.xacro
 │   │   └── instruments/
-│   │       ├── housing.urdf.xacro
-│   │       ├── roll.urdf.xacro
-│   │       ├── wrist/
-│   │       │   └── 0091m_wrist.urdf.xacro
+│   │       ├── housing/
+│   │       │   ├── housing_Classic.urdf.xacro
+│   │       │   └── housing_Si.urdf.xacro
+│   │       ├── roll/
+│   │       │   ├── roll_4162.urdf.xacro
+│   │       │   └── roll_4670.urdf.xacro
+│   │       ├── wrist_pitch/
+│   │       │   └── wrist_pitch_0091.urdf.xacro
+│   │       ├── wrist_yaw/
+│   │       │   └── wrist_yaw_0091.urdf.xacro
 │   │       └── tip/
-│   │           ├── 006_tip.urdf.xacro
-│   │           └── 049_tip.urdf.xacro
+│   │           ├── tip_006.urdf.xacro
+│   │           └── tip_049.urdf.xacro
 │   │
 │   ├── Classic/
 │   │   ├── ECM.urdf.xacro
@@ -82,18 +88,50 @@ dvrk_model/
 │   │       └── USM/
 │   │
 │   ├── instruments/
-│   │   ├── Classic/
-│   │   │   ├── housing/
-│   │   │   ├── pitch/
-│   │   │   ├── roll/
-│   │   │   ├── tip/
-│   │   │   └── yaw/
-│   │   └── Si/
-│   │       ├── housing/
-│   │       ├── pitch/
-│   │       ├── roll/
-│   │       ├── tip/
-│   │       └── yaw/
+│   │   ├── housing/
+│   │   │   ├── Classic/
+│   │   │   │   └── housing_Classic.dae
+│   │   │   └── Si/
+│   │   │       ├── housing_Si.obj
+│   │   │       ├── housing_Si.mtl
+│   │   │       ├── housing_Si_archived.stl
+│   │   │       └── housing_Si_ecm.stl
+│   │   ├── roll/
+│   │   │   ├── 4162/
+│   │   │   │   ├── roll_4162.dae
+│   │   │   │   └── roll_4162_yaw.dae
+│   │   │   └── 4670/
+│   │   │       ├── roll_4670.obj
+│   │   │       ├── roll_4670.mtl
+│   │   │       ├── roll_4670_connector.stl
+│   │   │       ├── roll_4670_archived.stl
+│   │   │       └── roll_4670_ecm.stl
+│   │   ├── wrist_pitch/
+│   │   │   └── 0091/
+│   │   │       ├── wrist_pitch_0091.obj
+│   │   │       ├── wrist_pitch_0091.mtl
+│   │   │       ├── wrist_pitch_0091_archived.stl
+│   │   │       ├── wrist_pitch_0091.dae
+│   │   │       └── wrist_pitch_0091.stl
+│   │   ├── wrist_yaw/
+│   │   │   └── 0091/
+│   │   │       ├── wrist_yaw_0091.obj
+│   │   │       ├── wrist_yaw_0091.mtl
+│   │   │       ├── wrist_yaw_0091_archived.stl
+│   │   │       ├── wrist_yaw_0091.dae
+│   │   │       └── wrist_yaw_0091.stl
+│   │   └── tip/
+│   │       ├── 006/
+│   │       │   ├── tip_006_1.obj
+│   │       │   ├── tip_006_1.mtl
+│   │       │   ├── tip_006_1_archived.stl
+│   │       │   ├── tip_006_2.obj
+│   │       │   ├── tip_006_2.mtl
+│   │       │   ├── tip_006_2_archived.stl
+│   │       │   └── Classic/
+│   │       │       └── tip_006.dae
+│   │       └── 049/
+│   │           └── tip_049.stl
 │   │
 │   ├── endoscopes/
 │   │   ├── Classic_SD_straight/
@@ -126,10 +164,10 @@ dvrk_model/
 
 | DH Joint | Function | Mesh Name Pattern | Example |
 |----------|----------|-------------------|---------|
-| Joint 0  | Roll     | `PSM_roll*.{dae,stl}` | `PSM_roll.dae` |
-| Joint 1  | Wrist pitch | `PSM_*_pitch.{dae,stl}` | `PSM_006_pitch.dae` |
-| Joint 2  | Wrist yaw   | `PSM_*_yaw.{dae,stl}` | `PSM_006_yaw.dae` |
-| Joint 3  | Jaw         | `PSM_*_jaw*.{dae,stl}` | `PSM_006_jaw.dae` |
+| Joint 0  | Roll     | `roll_<D>.{dae,obj,stl}` | `roll_4670.obj` |
+| Joint 1  | Wrist pitch | `wrist_pitch_<A>.{dae,obj,stl}` | `wrist_pitch_0091.obj` |
+| Joint 2  | Wrist yaw   | `wrist_yaw_<A>.{dae,obj,stl}` | `wrist_yaw_0091.obj` |
+| Joint 3  | Jaw         | `tip_<code>*.{dae,obj,stl}` | `tip_006_1.obj` |
 
 ---
 
@@ -140,7 +178,7 @@ dvrk_model/
 | ARM acronym | UPPERCASE | PSM, MTM, ECM |
 | Link name | `{ARM}_{desc}_link` | PSM_yaw_link |
 | Joint name | functional | yaw, pitch, jaw |
-| Mesh file | `{ARM}_{desc}.{stl,dae}` | PSM_yaw.stl |
+| Mesh file | `<part>_<id>.{stl,dae,obj}` for shared instrument parts | wrist_yaw_0091.obj |
 | URDF entry | UPPERCASE arm | PSM1.urdf.xacro |
 | Macros | lowercase | instrument |
 
@@ -206,8 +244,8 @@ world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
                           PSM1_pitch_3_link --[insertion (prismatic)]--> PSM1_adaptor_link
                             PSM1_adaptor_link --[PSM1_housing_fixed (fixed)]--> PSM1_housing_link
                             PSM1_adaptor_link --[roll (revolute)]--> PSM1_roll_link
-                              PSM1_roll_link --[wrist_pitch (revolute)]--> PSM1_wrist_pitch_0091m_link
-                                PSM1_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM1_wrist_yaw_0091m_link
+                              PSM1_roll_link --[wrist_pitch (revolute)]--> PSM1_wrist_pitch_link
+                                PSM1_wrist_pitch_link --[wrist_yaw (revolute)]--> PSM1_wrist_yaw_link
 
   SUJ_cart --[SUJ_PSM2_J0 (prismatic)]--> SUJ_PSM2_L0
     SUJ_PSM2_L0 --[SUJ_PSM2_J1 (revolute)]--> SUJ_PSM2_L1
@@ -224,8 +262,8 @@ world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
                           PSM2_pitch_3_link --[insertion (prismatic)]--> PSM2_adaptor_link
                             PSM2_adaptor_link --[PSM2_housing_fixed (fixed)]--> PSM2_housing_link
                             PSM2_adaptor_link --[roll (revolute)]--> PSM2_roll_link
-                              PSM2_roll_link --[wrist_pitch (revolute)]--> PSM2_wrist_pitch_0091m_link
-                                PSM2_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM2_wrist_yaw_0091m_link
+                              PSM2_roll_link --[wrist_pitch (revolute)]--> PSM2_wrist_pitch_link
+                                PSM2_wrist_pitch_link --[wrist_yaw (revolute)]--> PSM2_wrist_yaw_link
 
   SUJ_cart --[SUJ_PSM3_J0 (prismatic)]--> SUJ_PSM3_L0
     SUJ_PSM3_L0 --[SUJ_PSM3_J1 (revolute)]--> SUJ_PSM3_L1
@@ -243,8 +281,8 @@ world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
                             PSM3_pitch_3_link --[insertion (prismatic)]--> PSM3_adaptor_link
                               PSM3_adaptor_link --[PSM3_housing_fixed (fixed)]--> PSM3_housing_link
                               PSM3_adaptor_link --[roll (revolute)]--> PSM3_roll_link
-                                PSM3_roll_link --[wrist_pitch (revolute)]--> PSM3_wrist_pitch_0091m_link
-                                  PSM3_wrist_pitch_0091m_link --[wrist_yaw (revolute)]--> PSM3_wrist_yaw_0091m_link
+                                PSM3_roll_link --[wrist_pitch (revolute)]--> PSM3_wrist_pitch_link
+                                  PSM3_wrist_pitch_link --[wrist_yaw (revolute)]--> PSM3_wrist_yaw_link
 ```
 
 ### Classic Patient Cart
@@ -289,9 +327,10 @@ PSM_base (Classic/Si)
         ▼
 instrument (common/instrument.urdf.xacro)
         │
-        ├── housing stage (common/instruments/housing.urdf.xacro)
-        ├── roll/shaft stage (common/instruments/roll.urdf.xacro)
-        ├── wrist stage (common/instruments/wrist)
+        ├── housing stage (common/instruments/housing)
+        ├── roll/shaft stage (common/instruments/roll)
+        ├── wrist_pitch stage (common/instruments/wrist_pitch)
+        ├── wrist_yaw stage (common/instruments/wrist_yaw)
         └── tip stage (common/instruments/tip)
 
 ECM_base (Classic/Si)

@@ -20,31 +20,31 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://dvrk_model/meshes/instruments/Si/roll/PSM_roll_8mm.OBJ"/>
+        <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj"/>
       </geometry>
     </visual>
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://dvrk_model/meshes/instruments/Si/pitch/PSM_006_pitch.OBJ"/>
+        <mesh filename="package://dvrk_model/meshes/instruments/wrist_pitch/0091/wrist_pitch_0091.obj"/>
       </geometry>
     </visual>
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://dvrk_model/meshes/instruments/Si/yaw/PSM_006_yaw.OBJ"/>
+        <mesh filename="package://dvrk_model/meshes/instruments/wrist_yaw/0091/wrist_yaw_0091.obj"/>
       </geometry>
     </visual>
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_1.OBJ"/>
+        <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_1.obj"/>
       </geometry>
     </visual>
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://dvrk_model/meshes/instruments/Si/tip/PSM_006_jaw_2.OBJ"/>
+        <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_2.obj"/>
       </geometry>
     </visual>
   </link>

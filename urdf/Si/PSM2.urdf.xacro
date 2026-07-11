@@ -13,7 +13,6 @@
                   parent_link="${parent_link}"/>
 
   <xacro:instrument prefix="PSM2_"
-                        parent_link="PSM2_adaptor_link"
                         instrument="$(arg instrument)"/>
 
 </robot>

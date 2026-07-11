@@ -29,7 +29,6 @@
 
   <!-- Instrument: identical to Classic/Si — attaches at PSM_adaptor_link -->
   <xacro:instrument prefix="PSM1_"
-                        parent_link="PSM1_adaptor_link"
                         instrument="$(arg instrument)"/>
 
 </robot>

@@ -14,7 +14,6 @@
                   xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 
   <xacro:instrument prefix="PSM3_"
-                        parent_link="PSM3_adaptor_link"
                         instrument="$(arg instrument)"/>
 
 </robot>

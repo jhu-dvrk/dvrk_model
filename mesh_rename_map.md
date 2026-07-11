@@ -107,17 +107,17 @@ This file groups mesh renames discovered in `yvonne-testing` for review. Each en
 | `meshes/Classic/PSM/snake_tool/link_3.STL` | `meshes/arms/Classic/PSM/snake_tool/link_3.STL` |
 | `meshes/Classic/PSM/snake_tool/link_4.STL` | `meshes/arms/Classic/PSM/snake_tool/link_4.STL` |
 | `meshes/Classic/PSM/tool_adapter.dae` | `meshes/arms/Classic/PSM/tool_adapter.dae` |
-| `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/Classic/housing/PSM_housing.dae` |
+| `meshes/Classic/PSM/tool_main.dae` | `meshes/instruments/housing/Classic/housing_Classic.dae` |
 
 Review:
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/Classic/pitch/PSM_049_pitch.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/Classic/yaw/PSM_049_yaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/Classic/tip/PSM_049_jaw.stl` |
-| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/Classic/roll/PSM_roll.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/Classic/pitch/PSM_006_pitch.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/Classic/tip/PSM_006_jaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/Classic/yaw/PSM_006_yaw.dae` |
-| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/Classic/roll/PSM_yaw.dae` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1.stl` | `meshes/instruments/wrist_pitch/0091/wrist_pitch_0091.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_1_shaft.stl` | `meshes/instruments/wrist_yaw/0091/wrist_yaw_0091.stl` |
+| `meshes/Classic/PSM/tool_wrist_caudier_link_2.stl` | `meshes/instruments/tip/049/tip_049.stl` |
+| `meshes/Classic/PSM/tool_wrist_link.dae` | `meshes/instruments/roll/4162/roll_4162.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link.dae` | `meshes/instruments/wrist_pitch/0091/wrist_pitch_0091.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_link_2.dae` | `meshes/instruments/tip/006/Classic/tip_006.dae` |
+| `meshes/Classic/PSM/tool_wrist_sca_shaft_link.dae` | `meshes/instruments/wrist_yaw/0091/wrist_yaw_0091.dae` |
+| `meshes/Classic/PSM/tool_wrist_shaft_link.dae` | `meshes/instruments/roll/4162/roll_4162_yaw.dae` |
 
 ## Si SUJ
 
@@ -157,16 +157,16 @@ Review:
 
 | Old mesh path | New mesh path |
 | --- | --- |
-| `meshes/instruments/420006/tool_main_link.STL` | `meshes/instruments/Si/housing/PSM_housing.stl` |
-| `meshes/instruments/420006/tool_wrist_link.STL` | `meshes/instruments/Si/roll/PSM_roll_housing_8mm.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_ee_link_1.STL` | `meshes/instruments/Si/tip/PSM_006_jaw_1.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_ee_link_2.STL` | `meshes/instruments/Si/tip/PSM_006_jaw_2.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_link.STL` | `meshes/instruments/Si/pitch/PSM_006_pitch.stl` |
-| `meshes/instruments/420006/tool_wrist_sca_shaft_link.STL` | `meshes/instruments/Si/yaw/PSM_006_yaw.stl` |
+| `meshes/instruments/420006/tool_main_link.STL` | `meshes/instruments/housing/Si/housing_Si_archived.stl` |
+| `meshes/instruments/420006/tool_wrist_link.STL` | `meshes/instruments/roll/4670/roll_4670_archived.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_ee_link_1.STL` | `meshes/instruments/tip/006/tip_006_1_archived.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_ee_link_2.STL` | `meshes/instruments/tip/006/tip_006_2_archived.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_link.STL` | `meshes/instruments/wrist_pitch/0091/wrist_pitch_0091_archived.stl` |
+| `meshes/instruments/420006/tool_wrist_sca_shaft_link.STL` | `meshes/instruments/wrist_yaw/0091/wrist_yaw_0091_archived.stl` |
 | `meshes/instruments/420006/tool_wrist_scal_link.STL` | `meshes/_review/orphans/PSM_tip_006_left.stl` |
-| `meshes/instruments/420006/tool_wrist_shaft_link.STL` | `meshes/instruments/Si/roll/PSM_roll_connector_8mm.stl` |
-| `meshes/instruments/SF0826001/tool_main_link.STL` | `meshes/instruments/Si/housing/ECM_housing.stl` |
-| `meshes/instruments/SF0826001/tool_roll_link.STL` | `meshes/instruments/Si/roll/ECM_roll.stl` |
+| `meshes/instruments/420006/tool_wrist_shaft_link.STL` | `meshes/instruments/roll/4670/roll_4670_connector.stl` |
+| `meshes/instruments/SF0826001/tool_main_link.STL` | `meshes/instruments/housing/Si/housing_Si_ecm.stl` |
+| `meshes/instruments/SF0826001/tool_roll_link.STL` | `meshes/instruments/roll/4670/roll_4670_ecm.stl` |
 
 
 ## Switch to devel
