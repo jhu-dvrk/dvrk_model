@@ -11,7 +11,7 @@
       Joint 3: insertion    (prismatic)
 
     Macro output: ends at ${prefix}adaptor_link.
-    The instrument macro (PSM_instrument) attaches here and owns roll onward.
+    The instrument macro (instrument) attaches here and owns roll onward.
 
     Parameters:
       prefix      — arm instance prefix, e.g. "PSM1_"
@@ -187,7 +187,7 @@
 
     <!--
       link 3: adaptor_link
-      Massless boundary link — handoff point to PSM_instrument.
+      Massless boundary link — handoff point to instrument.
       This is the instrument_base frame from the kinematic JSON: aligned
       with the insertion/roll axis and offset 0.4318 m from the RCM.
     -->

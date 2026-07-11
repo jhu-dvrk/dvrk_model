@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="dvrk_psm_006_tip" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="dvrk_instrument_006_tip" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="PSM_tool_tip_006" params="prefix parent_link is_si:=false">
+  <xacro:macro name="tool_tip_006" params="prefix parent_link is_si:=false">
     <joint name="jaw" type="revolute">
       <parent link="${parent_link}"/>
       <child  link="${prefix}jaw_link"/>

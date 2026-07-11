@@ -5,7 +5,7 @@
 
     args:
       instrument   — instrument model number (default: 420006 = Si large needle driver)
-                     shaft/roll geometry is selected in common/PSM_instrument
+                     shaft/roll geometry is selected in common/instrument
                      using the instrument code (Classic 40xxxx, Si 42xxxx)
       rcm_xyz      — trocar position in world frame
       rcm_rpy      — trocar orientation in world frame
@@ -17,7 +17,7 @@
   <xacro:arg name="rcm_rpy"      default="0 0 0"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Virtual/PSM_base_virtual.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instrument.urdf.xacro"/>
 
   <link name="world"/>
 
@@ -28,7 +28,7 @@
                           rcm_rpy="$(arg rcm_rpy)"/>
 
   <!-- Instrument: identical to Classic/Si — attaches at PSM_adaptor_link -->
-  <xacro:PSM_instrument prefix="PSM1_"
+  <xacro:instrument prefix="PSM1_"
                         parent_link="PSM1_adaptor_link"
                         instrument="$(arg instrument)"/>
 

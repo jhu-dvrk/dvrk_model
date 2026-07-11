@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="dvrk_psm_housing" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="dvrk_instrument_housing" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
-  <xacro:macro name="PSM_instrument_housing"
+  <xacro:macro name="instrument_housing"
                params="prefix parent_link housing_family:=Classic">
     <xacro:property name="is_si_housing" value="${housing_family == 'Si'}"/>
     <joint name="${prefix}housing_fixed" type="fixed">

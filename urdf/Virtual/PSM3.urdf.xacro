@@ -6,7 +6,7 @@
   <xacro:arg name="rcm_rpy"      default="0 0 0"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Virtual/PSM_base_virtual.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instrument.urdf.xacro"/>
 
   <link name="world"/>
 
@@ -15,7 +15,7 @@
                           rcm_xyz="$(arg rcm_xyz)"
                           rcm_rpy="$(arg rcm_rpy)"/>
 
-  <xacro:PSM_instrument prefix="PSM3_"
+  <xacro:instrument prefix="PSM3_"
                         parent_link="PSM3_adaptor_link"
                         instrument="$(arg instrument)"/>
 

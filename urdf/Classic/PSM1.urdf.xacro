@@ -10,7 +10,7 @@
   <xacro:property name="parent_link" value="$(arg parent_link_)"/>
 
   <xacro:include filename="$(find dvrk_model)/urdf/Classic/PSM_base.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instrument.urdf.xacro"/>
 
   <link name="${parent_link}"/>
 
@@ -18,7 +18,7 @@
                   parent_link="${parent_link}"
                   xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
 
-  <xacro:PSM_instrument prefix="PSM1_"
+  <xacro:instrument prefix="PSM1_"
                         parent_link="PSM1_adaptor_link"
                         instrument="$(arg instrument)"/>
 

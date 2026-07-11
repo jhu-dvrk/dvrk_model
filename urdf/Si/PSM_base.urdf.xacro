@@ -11,7 +11,7 @@
       Joint 3: insertion (prismatic)
 
     Macro output: ends at ${prefix}adaptor_link.
-    PSM_instrument attaches here and owns roll onward.
+    instrument attaches here and owns roll onward.
 
     Inertial data retained from original Si CAD export.
   -->
@@ -210,8 +210,8 @@
     </joint>
 
     <!--
-      adaptor_link — boundary link; PSM_instrument attaches here.
-      No geometry; same name as Classic so PSM_instrument is
+      adaptor_link — boundary link; instrument attaches here.
+      No geometry; same name as Classic so instrument is
       generation-agnostic.
     -->
     <link name="${prefix}adaptor_link"/>

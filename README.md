@@ -67,7 +67,7 @@ Only mesh-backed PSM tool families are wired into the current URDF:
 | 006 | `400006`, `420006` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0102 m` |
 | 049 | `400049` | Classic meshes only | wrist yaw offset `A = 0.0091 m` |
 
-Shared roll dimensions remain generation-specific in [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro):
+Shared roll dimensions remain generation-specific in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro):
 
 - Classic roll origin `D = 0.4162 m`
 - Si roll origin `D = 0.4670 m`
@@ -100,10 +100,10 @@ When adding a new tool family, keep common geometry shared and only add new file
   - `pitch/` and `yaw/` for the meshes that make up a wrist stage
   - `tip/` for jaw or end-effector meshes
 2. Use the established naming pattern, for example `PSM_XXX_pitch`, `PSM_XXX_yaw`, `PSM_XXX_jaw_1`, `PSM_XXX_jaw_2`.
-3. Reuse the existing roll and shaft assembly in [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro) unless the shaft length or roll geometry truly changes.
-4. Add a new family file in `urdf/common/psm_tools/` only when the tool needs a distinct wrist or tip combination.
-5. Reuse the shared files in `urdf/common/psm_tools/`, `wrist/`, and `tip/` wherever the mechanical build matches an existing stage.
-6. Add one explicit dispatch branch in [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro) for the new instrument code.
+3. Reuse the existing roll and shaft assembly in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro) unless the shaft length or roll geometry truly changes.
+4. Add a new family file in `urdf/common/instruments/` only when the tool needs a distinct wrist or tip combination.
+5. Reuse the shared files in `urdf/common/instruments/`, `wrist/`, and `tip/` wherever the mechanical build matches an existing stage.
+6. Add one explicit dispatch branch in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro) for the new instrument code.
 7. Validate the result by expanding the xacro for at least one Classic or Si arm that uses the new code.
 
 ---
@@ -179,10 +179,10 @@ ros2 run xacro xacro mtm.urdf.xacro > result.urdf
 ```
 urdf/
 ├── common/                    # Generation-agnostic instrument macros
-│   ├── PSM_instrument.urdf.xacro
-│   └── psm_tools/             # PSM instrument-tool subassemblies only
-│       ├── PSM_housing.urdf.xacro
-│       ├── PSM_roll.urdf.xacro
+│   ├── instrument.urdf.xacro
+│   └── instruments/           # Instrument subassemblies only
+│       ├── housing.urdf.xacro
+│       ├── roll.urdf.xacro
 │       ├── wrist/             # Combined wrist stages by dimension/style
 │       └── tip/               # Jaw and end-effector stages by family
 ├── Classic/                   # Classic arm definitions
@@ -211,7 +211,7 @@ urdf/
 ### Entry points (standalone arms)
 
 - `PSM{1,2,3}.urdf.xacro`: PSM arm with instrument (arg: `instrument`, default: 400006 Classic, 420006 Si)
-- `Virtual/PSM{1,2,3}.urdf.xacro`: Virtual PSM entry points using shared `common/PSM_instrument.urdf.xacro`
+- `Virtual/PSM{1,2,3}.urdf.xacro`: Virtual PSM entry points using shared `common/instrument.urdf.xacro`
 - `MTM{L,R}.urdf.xacro`: Master Tool Manipulator (left/right)
 - `ECM.urdf.xacro`: Endoscope Camera Manipulator
 
@@ -223,18 +223,18 @@ urdf/
 ### Macros
 
 - `common.urdf.xacro`: Shared material/color definitions
-- `common/PSM_instrument.urdf.xacro`: Shared instrument assembly and instrument-code dispatch
-- `common/psm_tools/PSM_housing.urdf.xacro`: Instrument housing stage
-- `common/psm_tools/PSM_roll.urdf.xacro`: Generation-specific roll and shaft stage
-- `common/psm_tools/wrist/*`, `common/psm_tools/tip/*`: Stage files reused by supported instruments
+- `common/instrument.urdf.xacro`: Shared instrument assembly and instrument-code dispatch
+- `common/instruments/housing.urdf.xacro`: Instrument housing stage
+- `common/instruments/roll.urdf.xacro`: Generation-specific roll and shaft stage
+- `common/instruments/wrist/*`, `common/instruments/tip/*`: Stage files reused by supported instruments
 
 ### Hybrid PSM Layout
 
 The current PSM instrument layout is split by responsibility:
 
-- [urdf/common/PSM_instrument.urdf.xacro](urdf/common/PSM_instrument.urdf.xacro) is the single top-level assembly path for supported PSM instruments.
-- `common/psm_tools/` contains the reusable physical subassemblies only.
-- `common/psm_tools/PSM_housing.urdf.xacro`, `common/psm_tools/PSM_roll.urdf.xacro`, `wrist/`, and `tip/` follow the mechanical stages reused between instruments.
+- [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro) is the single top-level assembly path for supported PSM instruments.
+- `common/instruments/` contains the reusable physical subassemblies only.
+- `common/instruments/housing.urdf.xacro`, `common/instruments/roll.urdf.xacro`, `wrist/`, and `tip/` follow the mechanical stages reused between instruments.
 
 This keeps the active layout centered on common mechanical stages, while wrist files still reference the underlying `pitch/` and `yaw/` meshes they are built from.
 

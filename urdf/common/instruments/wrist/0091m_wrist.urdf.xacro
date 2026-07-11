@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="dvrk_psm_0091m_wrist" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="dvrk_instrument_0091m_wrist" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="PSM_wrist_0091m"
+  <xacro:macro name="wrist_0091m"
                params="prefix parent_link wrist_0091m_variant:=sca is_si:=false">
     <!-- 0091m fixes the wrist spacing; the variant stays because SCA and Cadiere use different meshes. -->
     <joint name="wrist_pitch" type="revolute">

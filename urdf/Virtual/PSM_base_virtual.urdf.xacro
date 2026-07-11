@@ -19,7 +19,7 @@
     simulators (Gazebo, Isaac) can integrate without singularities.
 
     Output: ends at ${prefix}adaptor_link — identical to the
-    full Classic/Si base so PSM_instrument attaches without modification.
+    full Classic/Si base so instrument attaches without modification.
 
     Parameters:
       prefix    — arm instance prefix, e.g. "PSM1_"
@@ -92,7 +92,7 @@
     <!-- ── Joint 3: insertion ───────────────────────────────────────────── -->
     <!--   Prismatic along the PSM DH insertion axis. Models insertion depth. -->
     <!--   adaptor_link serves as the insertion child AND the handoff link -->
-    <!--   to PSM_instrument (same name as in Classic/Si base).            -->
+    <!--   to instrument (same name as in Classic/Si base).            -->
     <joint name="insertion" type="prismatic">
       <parent link="${prefix}RCM_pitch_link"/>
       <child  link="${prefix}adaptor_link"/>
@@ -104,7 +104,7 @@
 
     <!--
       adaptor_link — identical name to Classic/Si boundary link.
-      PSM_instrument attaches here; no change needed for any generation.
+      instrument attaches here; no change needed for any generation.
     -->
     <link name="${prefix}adaptor_link">
       <inertial>

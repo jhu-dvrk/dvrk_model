@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="dvrk_psm_instrument" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="dvrk_instrument" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!--
-    PSM instrument macro — generation-agnostic.
+    Instrument macro — generation-agnostic.
 
     Attaches to ${parent_link} (= ${prefix}adaptor_link from the PSM base).
 
@@ -21,53 +21,53 @@
   -->
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/PSM_housing.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/PSM_roll.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/wrist/PSM_0091m_wrist.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/tip/PSM_006_tip.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/psm_tools/tip/PSM_049_tip.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/housing.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist/0091m_wrist.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/006_tip.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/049_tip.urdf.xacro"/>
 
-  <xacro:macro name="PSM_instrument_variant"
+  <xacro:macro name="instrument_variant"
                params="prefix parent_link generation roll_origin wrist_parent_link wrist_0091m_variant tip_style is_si:=false">
-    <xacro:PSM_instrument_housing prefix="${prefix}"
+    <xacro:instrument_housing prefix="${prefix}"
                                   parent_link="${parent_link}"
                                   housing_family="${generation}"/>
 
     <xacro:if value="${generation == 'Si'}">
-      <xacro:PSM_instrument_si_roll_shaft prefix="${prefix}"
+      <xacro:instrument_si_roll_shaft prefix="${prefix}"
                                           parent_link="${parent_link}"
                                           roll_origin="${roll_origin}"/>
     </xacro:if>
 
     <xacro:if value="${generation == 'Classic'}">
-      <xacro:PSM_instrument_classic_roll_shaft prefix="${prefix}"
+      <xacro:instrument_classic_roll_shaft prefix="${prefix}"
                                                parent_link="${parent_link}"
                                                roll_origin="${roll_origin}"/>
     </xacro:if>
 
-    <xacro:PSM_wrist_0091m prefix="${prefix}"
+    <xacro:wrist_0091m prefix="${prefix}"
                            parent_link="${wrist_parent_link}"
                            wrist_0091m_variant="${wrist_0091m_variant}"
                            is_si="${is_si}"/>
 
     <xacro:if value="${tip_style == '006'}">
-      <xacro:PSM_tool_tip_006 prefix="${prefix}"
+      <xacro:tool_tip_006 prefix="${prefix}"
                               parent_link="${prefix}wrist_yaw_0091m_link"
                               is_si="${is_si}"/>
     </xacro:if>
 
     <xacro:if value="${tip_style == '049'}">
-      <xacro:PSM_tool_tip_049 prefix="${prefix}"
+      <xacro:tool_tip_049 prefix="${prefix}"
                               parent_link="${prefix}wrist_yaw_0091m_link"/>
     </xacro:if>
   </xacro:macro>
 
-  <xacro:macro name="PSM_instrument"
+  <xacro:macro name="instrument"
                params="prefix parent_link instrument">
                
     <!-- 420006: Si 006 -->
     <xacro:if value="${str(instrument) == '420006'}">
-      <xacro:PSM_instrument_variant prefix="${prefix}"
+      <xacro:instrument_variant prefix="${prefix}"
                                     parent_link="${parent_link}"
                                     generation="Si"
                                     roll_origin="${0.4670}"
@@ -79,7 +79,7 @@
 
     <!-- 400006: Classic 006 -->
     <xacro:if value="${str(instrument) == '400006'}">
-      <xacro:PSM_instrument_variant prefix="${prefix}"
+      <xacro:instrument_variant prefix="${prefix}"
                                     parent_link="${parent_link}"
                                     generation="Classic"
                                     roll_origin="${0.4572}"
@@ -91,7 +91,7 @@
 
     <!-- 400049: Classic 049 -->
     <xacro:if value="${str(instrument) == '400049'}">
-      <xacro:PSM_instrument_variant prefix="${prefix}"
+      <xacro:instrument_variant prefix="${prefix}"
                                     parent_link="${parent_link}"
                                     generation="Classic"
                                     roll_origin="${0.4572}"

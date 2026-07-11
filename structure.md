@@ -1,6 +1,6 @@
-# dvrk_model — Target File Structure
+# dvrk_model — Current File Structure
 
-This document describes the **target state** of the package after the naming and
+This document describes the current package layout after the naming and
 architecture refactor. It is the authoritative reference for where files live and
 why.
 
@@ -15,18 +15,28 @@ dvrk_model/
 ├── README.md
 ├── structure.md                          ← this file
 ├── CHANGELOG.md
+├── LICENSE
+├── TESTING.md
+├── mesh_rename_map.md
 │
 ├── urdf/
 │   ├── common.urdf.xacro                 ← shared material/color macros
 │   │
 │   ├── common/                           ← generation-agnostic macros
-│   │   ├── PSM_instrument.urdf.xacro
-│   │   └── psm_tools/
-│   │       ├── PSM_housing.urdf.xacro
-│   │       ├── PSM_roll.urdf.xacro
+│   │   ├── instrument.urdf.xacro
+│   │   ├── endoscope.urdf.xacro
+│   │   ├── RCM_visual.urdf.xacro
+│   │   ├── endoscopes/
+│   │   │   ├── Classic_SD_straight.urdf.xacro
+│   │   │   └── Si_straight.urdf.xacro
+│   │   └── instruments/
+│   │       ├── housing.urdf.xacro
+│   │       ├── roll.urdf.xacro
 │   │       ├── wrist/
-│   │       ├── tip/
-│   │       └── PSM_0091m_wrist.urdf.xacro
+│   │       │   └── 0091m_wrist.urdf.xacro
+│   │       └── tip/
+│   │           ├── 006_tip.urdf.xacro
+│   │           └── 049_tip.urdf.xacro
 │   │
 │   ├── Classic/
 │   │   ├── ECM.urdf.xacro
@@ -85,17 +95,27 @@ dvrk_model/
 │   │       ├── tip/
 │   │       └── yaw/
 │   │
+│   ├── endoscopes/
+│   │   ├── Classic_SD_straight/
+│   │   └── Si_straight/
+│   │
 │   ├── SUJ/
 │   │   ├── Classic/
 │   │   └── Si/
+│   │       ├── ECM/
+│   │       └── PSM/
 │   │
-│   ├── tower.stl
-│   └── _review/
-│       └── orphans/
+│   └── tower.stl
 │
 ├── launch/
 ├── ros2/
+│   ├── launch/
+│   ├── ros2_control/
+│   └── rviz/
 └── rviz/
+    ├── Classic/
+    ├── Si/
+    └── dvrk_si.rviz
 ```
 
 ---
@@ -122,7 +142,7 @@ dvrk_model/
 | Joint name | functional | yaw, pitch, jaw |
 | Mesh file | `{ARM}_{desc}.{stl,dae}` | PSM_yaw.stl |
 | URDF entry | UPPERCASE arm | PSM1.urdf.xacro |
-| Macros | lowercase | psm_base_macros |
+| Macros | lowercase | instrument |
 
 ---
 
@@ -267,13 +287,26 @@ world --[SUJ_fixed_cart (fixed)]--> SUJ_cart
 PSM_base (Classic/Si)
         │
         ▼
-PSM_instrument_macros (common/)
+instrument (common/instrument.urdf.xacro)
         │
-        ├── housing stage (common/psm_tools/PSM_housing.urdf.xacro)
-        ├── roll/shaft stage (common/psm_tools/PSM_roll.urdf.xacro)
-        ├── wrist stage (common/psm_tools/wrist)
-        └── tip stage (common/psm_tools/tip)
+        ├── housing stage (common/instruments/housing.urdf.xacro)
+        ├── roll/shaft stage (common/instruments/roll.urdf.xacro)
+        ├── wrist stage (common/instruments/wrist)
+        └── tip stage (common/instruments/tip)
+
+ECM_base (Classic/Si)
+        │
+        ▼
+endoscope dispatcher (common/endoscope.urdf.xacro)
+        │
+        └── endoscope variants (common/endoscopes)
+            ├── Classic_SD_straight.urdf.xacro
+            └── Si_straight.urdf.xacro
 ```
+
+The endoscope dispatcher includes exactly one variant based on the `endoscope`
+xacro argument. Each variant owns the ECM endoscope visual/collision geometry
+and camera/tip reference frames.
 
 ---
 
@@ -285,7 +318,7 @@ PSM_instrument_macros (common/)
 | pitch | revolute | -π/4 to π/4 |
 | insertion | prismatic | 0 to 0.24 m |
 
-Virtual PSM entry files call `common/PSM_instrument.urdf.xacro` directly, so
+Virtual PSM entry files call `common/instrument.urdf.xacro` directly, so
 tool-family dispatch and Classic/Si instrument compatibility remain identical
 to the physical-arm paths.
 
@@ -325,6 +358,5 @@ The implemented layout follows the physical instrument breakdown directly: share
 - urdf/Classic/archive/psm_base.urdf.xacro (legacy snake base)
 - urdf/Classic/archive/psm_tool_*.urdf.xacro (legacy snake/old tool files)
 - snake_tool meshes (review pending)
-- _review/orphans (unclassified assets)
 
 ---

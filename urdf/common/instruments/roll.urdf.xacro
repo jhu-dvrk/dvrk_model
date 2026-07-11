@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="dvrk_psm_roll" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="dvrk_instrument_roll" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="PSM_instrument_si_roll_shaft"
+  <xacro:macro name="instrument_si_roll_shaft"
                params="prefix parent_link roll_origin">
     <joint name="roll" type="revolute">
       <parent link="${parent_link}"/>
@@ -52,7 +52,7 @@
     </link>
   </xacro:macro>
 
-  <xacro:macro name="PSM_instrument_classic_roll_shaft"
+  <xacro:macro name="instrument_classic_roll_shaft"
                params="prefix parent_link roll_origin">
     <joint name="roll" type="revolute">
       <parent link="${parent_link}"/>
