@@ -38,7 +38,7 @@ def generate_launch_description():
     for arm in ['MTML', 'MTMR']:
         model = [
             PathJoinSubstitution([FindPackageShare('dvrk_model'),
-                                  'urdf/classic_arm/']),
+                                  'urdf/Classic/']),
             '/', arm, '.urdf.xacro'
         ]
         # Use xacro to process robot model at substitution time

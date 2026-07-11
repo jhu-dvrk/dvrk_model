@@ -22,10 +22,9 @@ VALID_ENDOSCOPES = ['Classic_SD_straight', 'Si_straight']
 VALID_INSTRUMENTS = ['400006', '400049', '420006']
 
 
-def valid_arm_names(package_share, urdf_generation):
-    urdf_dir = os.path.join(package_share, 'urdf', urdf_generation)
-    rviz_generation = 'Si' if urdf_generation == 'si_arm' else 'Classic'
-    rviz_dir = os.path.join(package_share, 'rviz', rviz_generation)
+def valid_arm_names(package_share, generation):
+    urdf_dir = os.path.join(package_share, 'urdf', generation)
+    rviz_dir = os.path.join(package_share, 'rviz', generation)
     rviz_names = {
         os.path.splitext(name)[0]
         for name in os.listdir(rviz_dir)
@@ -84,14 +83,13 @@ def create_robot_description(context):
     generation = context.launch_configurations['generation']
     require_choice('generation', generation, VALID_GENERATIONS)
 
-    urdf_generation = 'si_arm' if generation == 'Si' else 'classic_arm'
     dvrk_model_share = get_package_share_directory('dvrk_model')
-    valid_arms = valid_arm_names(dvrk_model_share, urdf_generation)
+    valid_arms = valid_arm_names(dvrk_model_share, generation)
     require_choice('arm', full_name, valid_arms)
 
     xacro_file = os.path.join(dvrk_model_share,
                               'urdf',
-                              urdf_generation,
+                              generation,
                               full_name + '.urdf.xacro')
     instrument = context.launch_configurations.get('instrument', '').strip()
     endoscope = context.launch_configurations.get('endoscope', '').strip()

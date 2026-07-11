@@ -156,7 +156,7 @@ ros2 launch dvrk_model patient_cart.launch.py generation:=Si
 ros2 launch dvrk_model patient_cart.launch.py generation:=Classic simulated:=True
 ros2 launch dvrk_model surgeon_console.launch.py
 # Mesh-frame debug for Si 420006
-ros2 run xacro xacro $(ros2 pkg prefix dvrk_model)/share/dvrk_model/urdf/si_arm/PSM_420006_zero_check.urdf.xacro > /tmp/psm_420006_zero_check.urdf
+ros2 run xacro xacro $(ros2 pkg prefix dvrk_model)/share/dvrk_model/urdf/Si/PSM_420006_zero_check.urdf.xacro > /tmp/psm_420006_zero_check.urdf
 ```
 
 ---
@@ -185,7 +185,7 @@ urdf/
 │       ├── PSM_roll.urdf.xacro
 │       ├── wrist/             # Combined wrist stages by dimension/style
 │       └── tip/               # Jaw and end-effector stages by family
-├── classic_arm/               # Classic arm definitions
+├── Classic/                   # Classic arm definitions
 │   ├── ECM.urdf.xacro
 │   ├── MTML.urdf.xacro
 │   ├── MTMR.urdf.xacro
@@ -194,7 +194,7 @@ urdf/
 │   ├── archive/               # Legacy snake/old tool macros kept for compatibility
 │   ├── SUJ.urdf.xacro
 │   └── *base*.urdf.xacro
-├── si_arm/                    # Si arm definitions
+├── Si/                        # Si arm definitions
 │   ├── ECM.urdf.xacro
 │   ├── PSM{1,2,3}.urdf.xacro
 │   ├── SUJ.urdf.xacro

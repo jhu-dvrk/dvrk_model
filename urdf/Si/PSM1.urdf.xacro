@@ -1,22 +1,20 @@
 <?xml version="1.0" ?>
 <robot name="PSM1" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <!--
-    Classic PSM1 entry point.
-    arg instrument: last 6 digits of instrument model number (default: 400006)
-    arm placed at a typical setup position; adjust xyz/rpy for your rig.
+    Si PSM1 entry point.
+    arg instrument: last 6 digits of instrument model number (default: 420006)
   -->
-  <xacro:arg name="instrument" default="400006"/>
+  <xacro:arg name="instrument" default="420006"/>
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:property name="parent_link" value="$(arg parent_link_)"/>
 
-  <xacro:include filename="$(find dvrk_model)/urdf/classic_arm/PSM_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/PSM_base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/PSM_instrument.urdf.xacro"/>
 
   <link name="${parent_link}"/>
 
   <xacro:base prefix="PSM1_"
-                  parent_link="${parent_link}"
-                  xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                  parent_link="${parent_link}"/>
 
   <xacro:PSM_instrument prefix="PSM1_"
                         parent_link="PSM1_adaptor_link"

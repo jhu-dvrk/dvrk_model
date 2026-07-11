@@ -28,7 +28,7 @@ dvrk_model/
 │   │       ├── tip/
 │   │       └── PSM_0091m_wrist.urdf.xacro
 │   │
-│   ├── classic_arm/
+│   ├── Classic/
 │   │   ├── ECM.urdf.xacro
 │   │   ├── ECM_base.urdf.xacro
 │   │   ├── MTM.urdf.xacro
@@ -42,7 +42,7 @@ dvrk_model/
 │   │   ├── SUJ.urdf.xacro
 │   │   └── archive/
 │   │
-│   ├── si_arm/
+│   ├── Si/
 │   │   ├── ECM.urdf.xacro
 │   │   ├── ECM_base.urdf.xacro
 │   │   ├── PSM1.urdf.xacro
@@ -322,8 +322,8 @@ The implemented layout follows the physical instrument breakdown directly: share
 
 ## Legacy Files
 
-- urdf/classic_arm/archive/psm_base.urdf.xacro (legacy snake base)
-- urdf/classic_arm/archive/psm_tool_*.urdf.xacro (legacy snake/old tool files)
+- urdf/Classic/archive/psm_base.urdf.xacro (legacy snake base)
+- urdf/Classic/archive/psm_tool_*.urdf.xacro (legacy snake/old tool files)
 - snake_tool meshes (review pending)
 - _review/orphans (unclassified assets)
 
