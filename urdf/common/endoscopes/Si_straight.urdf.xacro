@@ -6,7 +6,7 @@
   <!--
     Si straight endoscope.
     Attaches to ${prefix}adaptor_link.
-    Provides its own meshes and a fixed camera tip reference frame.
+    Geometry is generated from meshes/endoscopes/Si_straight/Si_straight.scad.
 
     Future variants Si_down and Si_up will add a 30-degree rotation
     before the tip joint.
@@ -14,47 +14,68 @@
   <xacro:macro name="endoscope"
                params="prefix:='ECM_' parent_link:='ECM_adaptor_link'">
 
-    <!-- Endoscope body: housing + shaft + camera tip, fixed to adaptor_link -->
+    <xacro:property name="camera_tip_z" value="0.7580"/>
+
+    <material name="SiEndoscopeCameraBody"><color rgba="0.34 0.38 0.40 1"/></material>
+    <material name="SiEndoscopeBlack"><color rgba="0.015 0.015 0.014 1"/></material>
+    <material name="SiEndoscopeMetal"><color rgba="0.72 0.72 0.70 1"/></material>
+    <material name="SiEndoscopeGreen"><color rgba="0.00 0.62 0.43 1"/></material>
+    <material name="SiEndoscopeLens"><color rgba="0.005 0.006 0.008 1"/></material>
+
+    <!-- Endoscope body: fixed to adaptor_link, rotates with roll.
+         The 90-degree Z rotation points the camera-head buttons toward the ECM pitch links. -->
     <joint name="endoscope" type="fixed">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${PI_2}"/>
       <parent link="${parent_link}"/>
       <child  link="${prefix}endoscope_link"/>
     </joint>
     <link name="${prefix}endoscope_link">
       <visual>
-        <!-- z=0.2577 compensates for adaptor_link moving 0.2577 m further above RCM -->
-        <!-- housing -->
-        <origin rpy="-1.5708 0.0 -1.5708" xyz="0.0 0.0 0.2577"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_housing.stl"/>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/Si_straight_body.dae"/>
         </geometry>
+        <material name="SiEndoscopeCameraBody"/>
       </visual>
       <visual>
-        <!-- shaft -->
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0417"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_shaft.stl"/>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/Si_straight_black.dae"/>
         </geometry>
-        <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
+        <material name="SiEndoscopeBlack"/>
       </visual>
       <visual>
-        <!-- camera -->
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.2577"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_roll.stl"/>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/Si_straight_metal.dae"/>
         </geometry>
+        <material name="SiEndoscopeMetal"/>
+      </visual>
+      <visual>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/Si_straight_green.dae"/>
+        </geometry>
+        <material name="SiEndoscopeGreen"/>
+      </visual>
+      <visual>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/Si_straight_lens.dae"/>
+        </geometry>
+        <material name="SiEndoscopeLens"/>
       </visual>
       <collision>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0417"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/ECM_shaft.stl"/>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Si_straight/Si_straight_collision.stl"/>
         </geometry>
       </collision>
     </link>
 
     <!-- Convert from adaptor_link into camera reference frame -->
     <joint name="endoscope_frame" type="fixed">
-      <origin rpy="-1.5708 -1.5708 0.0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="-${PI_2} -${PI_2} 0.0" xyz="0.0 0.0 ${camera_tip_z}"/>
       <parent link="${prefix}endoscope_link"/>
       <child  link="${prefix}endoscope_frame_link"/>
     </joint>
@@ -62,7 +83,7 @@
 
     <!-- Offset to physical camera tip -->
     <joint name="tip" type="fixed">
-      <origin xyz="0.0 0.0102 0.0" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}endoscope_frame_link"/>
       <child  link="${prefix}tip_link"/>
     </joint>
