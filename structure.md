@@ -30,6 +30,7 @@ dvrk_model/
 │   │   │   ├── Classic_SD_straight.urdf.xacro
 │   │   │   └── Si_straight.urdf.xacro
 │   │   └── instruments/
+│   │       ├── instruments.yaml
 │   │       ├── housing/
 │   │       │   ├── housing_Classic.urdf.xacro
 │   │       │   └── housing_Si.urdf.xacro

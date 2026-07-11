@@ -64,6 +64,9 @@ meshes/
 
 PSM tool families currently wired into the URDF:
 
+Supported instrument model-to-part mappings live in
+[urdf/common/instruments/instruments.yaml](urdf/common/instruments/instruments.yaml).
+
 | Family | Instrument codes | Mesh support | Verified dimensions |
 |--------|------------------|--------------|---------------------|
 | 006 | `400006`, `420006` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0102 m` |
@@ -109,7 +112,7 @@ When adding a new tool family, keep common geometry shared and only add new file
 3. Reuse the existing roll and shaft assembly in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro) unless the shaft length or roll geometry truly changes.
 4. Add a new part file under `urdf/common/instruments/<part>/` only when the tool needs a distinct physical stage.
 5. Reuse the shared files in `urdf/common/instruments/housing/`, `roll/`, `wrist_pitch/`, `wrist_yaw/`, and `tip/` wherever the mechanical build matches an existing stage.
-6. Add one explicit dispatch branch in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro) for the new instrument code.
+6. Add the model-to-part mapping in [urdf/common/instruments/instruments.yaml](urdf/common/instruments/instruments.yaml).
 7. Validate the result by expanding the xacro for at least one Classic or Si arm that uses the new code.
 
 ---

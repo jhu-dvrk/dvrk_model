@@ -1,4 +1,5 @@
 import os
+import yaml
 from ament_index_python.packages import get_package_share_directory
 
 from launch_ros.actions import Node
@@ -19,15 +20,21 @@ from launch.substitutions import (
 
 VALID_GENERATIONS = ['Classic', 'Si']
 VALID_ENDOSCOPES = ['Classic_SD_straight', 'Si_straight']
-VALID_INSTRUMENTS = [
-    '400001', '400003', '400006', '400007', '400033', '400035',
-    '400036', '400048', '400049', '400093', '400127', '400172',
-    '400178', '400179', '400181', '400189', '400205', '400207',
-    '400208', '400230', '400296',
-    '420001', '420006', '420007', '420033', '420036', '420048',
-    '420049', '420093', '420172', '420178', '420179', '420181',
-    '420205', '420230', '420296', '420327',
-]
+
+
+def psm_instruments():
+    yaml_file = os.path.join(
+        get_package_share_directory('dvrk_model'),
+        'urdf', 'common', 'instruments', 'instruments.yaml')
+    with open(yaml_file, 'r') as stream:
+        return yaml.safe_load(stream)['instruments']
+
+
+PSM_INSTRUMENTS = psm_instruments()
+VALID_INSTRUMENTS = sorted(PSM_INSTRUMENTS.keys())
+VALID_INSTRUMENT_OPTIONS = ', '.join(
+    '{} ({})'.format(model, PSM_INSTRUMENTS[model]['name'])
+    for model in VALID_INSTRUMENTS)
 
 
 def valid_arm_names(package_share, generation):
@@ -53,11 +60,11 @@ def valid_options_message(options):
     return ', '.join(options)
 
 
-def require_choice(name, value, options):
+def require_choice(name, value, options, options_message=None):
     if value not in options:
         raise RuntimeError(
             "Invalid {} '{}'. Valid options: {}".format(
-                name, value, valid_options_message(options)))
+                name, value, options_message or valid_options_message(options)))
 
 
 # Create a list of ROS topics that will provide all the joint states
@@ -116,11 +123,14 @@ def create_robot_description(context):
                 endoscope, full_name, valid_options_message(VALID_ENDOSCOPES)))
 
     if full_name.startswith('PSM'):
-        require_choice('instrument', instrument, VALID_INSTRUMENTS)
+        require_choice('instrument',
+                       instrument,
+                       VALID_INSTRUMENTS,
+                       VALID_INSTRUMENT_OPTIONS)
     elif context.launch_configurations.get('instrument', '').strip() != '':
         raise RuntimeError(
             "Invalid instrument '{}' for arm '{}'. The instrument argument is only valid for PSM arms. Valid PSM instruments: {}".format(
-                instrument, full_name, valid_options_message(VALID_INSTRUMENTS)))
+                instrument, full_name, VALID_INSTRUMENT_OPTIONS))
 
     show_rcm = context.launch_configurations.get('show_rcm', 'true').strip()
     mappings = {'arm': full_name, 'instrument': instrument, 'show_rcm': show_rcm}
