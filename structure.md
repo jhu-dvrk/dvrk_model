@@ -46,6 +46,8 @@ dvrk_model/
 │   │       └── tip/
 │   │           ├── tip_006.urdf.xacro
 │   │           ├── tip_049.urdf.xacro
+│   │           ├── tip_093.urdf.xacro
+│   │           ├── tip_179.urdf.xacro
 │   │           └── tip_placeholder.urdf.xacro
 │   │
 │   ├── Classic/
@@ -134,8 +136,18 @@ dvrk_model/
 │   │       │   ├── tip_006_2_archived.stl
 │   │       │   └── Classic/
 │   │       │       └── tip_006.dae
-│   │       └── 049/
-│   │           └── tip_049.stl
+│   │       ├── 049/
+│   │       │   └── tip_049.stl
+│   │       ├── 093/
+│   │       │   ├── tip_093_1.obj
+│   │       │   ├── tip_093_1.mtl
+│   │       │   ├── tip_093_2.obj
+│   │       │   └── tip_093_2.mtl
+│   │       └── 179/
+│   │           ├── tip_179_1.obj
+│   │           ├── tip_179_1.mtl
+│   │           ├── tip_179_2.obj
+│   │           └── tip_179_2.mtl
 │   │
 │   ├── endoscopes/
 │   │   ├── Classic_SD_straight/
@@ -373,6 +385,8 @@ to the physical-arm paths.
 |-----|------|
 | 006 | standard needle driver |
 | 049 | cadiere forceps |
+| 093 | prograsp forceps |
+| 179 | monopolar curved scissors |
 | placeholder | 5 mm box visuals for supported tools without tip meshes |
 | ECM | camera tool |
 
