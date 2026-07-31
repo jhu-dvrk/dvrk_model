@@ -30,7 +30,10 @@
 
     <link name="${prefix}jaw_1_link">
       <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <!-- Rotate tip 180 degrees about world Y (local Z) and shift hinge -->
+        <origin 
+          rpy="0.0 0.0 ${PI}" 
+          xyz="0.0 0.01305 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/179/tip_179_1.obj" scale="0.001 0.001 0.001"/>
         </geometry>
@@ -48,7 +51,10 @@
 
     <link name="${prefix}jaw_2_link">
       <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <!-- Rotate mirrored jaw 180 degrees about world Y (local Z) -->
+        <origin 
+          rpy="0.0 0.0 ${PI}" 
+          xyz="0.0 0.01305 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/179/tip_179_2.obj" scale="0.001 0.001 0.001"/>
         </geometry>
@@ -58,9 +64,10 @@
     <joint name="tool_tip" type="fixed">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}tool_tip_link"/>
-      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0155 0.0"/>
+      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0155 -0.0016"/>
     </joint>
     <link name="${prefix}tool_tip_link"/>
+
   </xacro:macro>
 
 </robot>
