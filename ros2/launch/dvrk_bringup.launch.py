@@ -80,7 +80,8 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "generation",
-            description="Generation of dVRK(Classic/Si)",
+            choices=["Classic", "Si", "Virtual"],
+            description="Generation of dVRK (Classic/Si/Virtual)",
         )
     )
     controllers_file = LaunchConfiguration("controllers_file")

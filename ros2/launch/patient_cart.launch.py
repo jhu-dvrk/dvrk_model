@@ -29,7 +29,12 @@ def generate_launch_description():
     virtual_generation = PythonExpression(["'", generation, "' == 'Virtual'"])
 
     ld = LaunchDescription([
-        DeclareLaunchArgument('generation', default_value='Si'),
+        DeclareLaunchArgument(
+            'generation',
+            default_value='Si',
+            choices=['Classic', 'Si', 'Virtual'],
+            description='dVRK system generation'
+        ),
         DeclareLaunchArgument('simulated', default_value='true'),
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         DeclareLaunchArgument('show_rcm', default_value='true'),

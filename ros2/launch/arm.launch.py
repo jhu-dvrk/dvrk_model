@@ -80,7 +80,11 @@ def generate_launch_description():
 
     ld = LaunchDescription([
         DeclareLaunchArgument('arm'),
-        DeclareLaunchArgument('generation'),
+        DeclareLaunchArgument(
+            'generation',
+            choices=['Classic', 'Si', 'Virtual'],
+            description='dVRK system generation'
+        ),
         DeclareLaunchArgument(
             'instrument',
             default_value='',

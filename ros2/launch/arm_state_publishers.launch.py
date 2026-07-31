@@ -181,7 +181,11 @@ def generate_launch_description():
 
     ld = LaunchDescription([
         DeclareLaunchArgument('arm'),
-        DeclareLaunchArgument('generation'),
+        DeclareLaunchArgument(
+            'generation',
+            choices=['Classic', 'Si', 'Virtual'],
+            description='dVRK system generation'
+        ),
         DeclareLaunchArgument('instrument', default_value=''),
         DeclareLaunchArgument('endoscope', default_value=''),
         DeclareLaunchArgument('use_sim_time', default_value='false'),
