@@ -23,9 +23,11 @@
     <material name="SiEndoscopeLens"><color rgba="0.005 0.006 0.008 1"/></material>
 
     <!-- Endoscope body: fixed to adaptor_link, rotates with roll.
+         Shifted -0.3751 m along Z to compensate for the full 0.7580 m physical scope length
+         relative to the 0.3829 m adaptor height, aligning tip with RCM at joint 3 = 0.
          The 90-degree Z rotation points the camera-head buttons toward the ECM pitch links. -->
     <joint name="endoscope" type="fixed">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${PI_2}"/>
+      <origin xyz="0.0 0.0 -0.3751" rpy="0.0 0.0 ${PI_2}"/>
       <parent link="${parent_link}"/>
       <child  link="${prefix}endoscope_link"/>
     </joint>
