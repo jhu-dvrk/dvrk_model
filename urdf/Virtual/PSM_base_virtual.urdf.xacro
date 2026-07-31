@@ -2,17 +2,18 @@
 <robot name="dvrk_psm_virtual" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
 
   <!--
     Virtual PSM base — simulator variant.
 
     Replaces the full parallelogram arm with 3 massless, geometry-free
-    joints all located at the fixed RCM (trocar) frame in world.
+    joints all located at the fixed RCM (trocar) frame.
     This is sufficient for simulation when only the instrument matters.
 
     DOF layout (same joint names as full model — ROS-compatible):
-      Joint 1: yaw   (revolute  z, ±π/2)
-      Joint 2: pitch (revolute  y, ±π/4)
+      Joint 1: yaw   (revolute -y, ±π/2, matching PSM Si)
+      Joint 2: pitch (revolute -x, ±π/4, matching PSM Si)
       Joint 3: insertion   (prismatic z,  0–0.240 m)
 
     All three links share a small but non-zero inertia so physics
@@ -25,8 +26,9 @@
       prefix    — arm instance prefix, e.g. "PSM1_"
       adaptor_offset — instrument_base offset from RCM (Classic: 0.4318,
                        Si: 0.4826)
-      rcm_xyz   — trocar position in world frame (default: origin)
-      rcm_rpy   — trocar orientation in world frame (default: identity)
+      parent_link — link to attach the RCM to (typically "world")
+      rcm_xyz   — trocar position in parent_link frame (default: origin)
+      rcm_rpy   — trocar orientation in parent_link frame (default: identity)
                   rpy convention: roll-pitch-yaw (radians)
   -->
 
@@ -35,26 +37,29 @@
 
   <xacro:macro name="base_virtual"
                params="prefix
+                       parent_link:='world'
                        adaptor_offset:='0.4826'
                        rcm_xyz:='0 0 0'
                        rcm_rpy:='0 0 0'">
 
-    <!-- Fixed anchor: world → RCM frame (trocar location) -->
+    <!-- Fixed anchor: parent_link -> RCM frame (trocar location) -->
     <joint name="${prefix}RCM_fixed" type="fixed">
-      <parent link="world"/>
+      <parent link="${parent_link}"/>
       <child  link="${prefix}RCM_link"/>
       <origin xyz="${rcm_xyz}" rpy="${rcm_rpy}"/>
     </joint>
 
     <!-- RCM frame link — not a DOF, just a named coordinate frame -->
-    <link name="${prefix}RCM_link"/>
+    <link name="${prefix}RCM_link">
+      <xacro:rcm_visual/>
+    </link>
 
     <!-- ── Joint 1: yaw ───────────────────────────────────────────── -->
-    <!--   Revolute about z at the RCM. Models the yaw of the PSM arm.      -->
+    <!--   Revolute about -y at the RCM. Models the yaw of the PSM arm (matching PSM Si). -->
     <joint name="yaw" type="revolute">
       <parent link="${prefix}RCM_link"/>
       <child  link="${prefix}RCM_yaw_link"/>
-      <axis xyz="0.0 0.0 1"/>
+      <axis xyz="0.0 -1.0 0.0"/>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <limit lower="-1.5707963" upper="1.5707963"
              effort="50" velocity="1.0"/>
@@ -70,11 +75,11 @@
     </link>
 
     <!-- ── Joint 2: pitch ─────────────────────────────────────────── -->
-    <!--   Revolute about y at the RCM. Models the pitch of the PSM arm.    -->
+    <!--   Revolute about -x at the RCM. Models the pitch of the PSM arm (matching PSM Si). -->
     <joint name="pitch" type="revolute">
       <parent link="${prefix}RCM_yaw_link"/>
       <child  link="${prefix}RCM_pitch_link"/>
-      <axis xyz="0.0 1 0.0"/>
+      <axis xyz="-1.0 0.0 0.0"/>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <limit lower="-0.7853982" upper="0.7853982"
              effort="50" velocity="1.0"/>

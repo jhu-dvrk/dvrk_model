@@ -18,7 +18,7 @@ from launch.substitutions import (
     PathJoinSubstitution,
 )
 
-VALID_GENERATIONS = ['Classic', 'Si']
+VALID_GENERATIONS = ['Classic', 'Si', 'Virtual']
 VALID_ENDOSCOPES = ['Classic_SD_straight', 'Si_straight']
 
 
@@ -39,17 +39,10 @@ VALID_INSTRUMENT_OPTIONS = ', '.join(
 
 def valid_arm_names(package_share, generation):
     urdf_dir = os.path.join(package_share, 'urdf', generation)
-    rviz_dir = os.path.join(package_share, 'rviz', generation)
-    rviz_names = {
-        os.path.splitext(name)[0]
-        for name in os.listdir(rviz_dir)
-        if name.endswith('.rviz')
-    }
     return sorted(
         os.path.splitext(os.path.splitext(name)[0])[0]
         for name in os.listdir(urdf_dir)
         if name.endswith('.urdf.xacro')
-        and os.path.splitext(os.path.splitext(name)[0])[0] in rviz_names
         and not name.endswith('_base.urdf.xacro')
         and not name.endswith('_zero_check.urdf.xacro')
         and name not in ['SUJ.urdf.xacro']
@@ -108,7 +101,7 @@ def create_robot_description(context):
                               full_name + '.urdf.xacro')
     instrument = context.launch_configurations.get('instrument', '').strip()
     endoscope = context.launch_configurations.get('endoscope', '').strip()
-    generation_prefix = '420' if generation == 'Si' else '400'
+    generation_prefix = '420' if generation in ['Si', 'Virtual'] else '400'
     if instrument == '':
         instrument = generation_prefix + '006'
     elif instrument.isdigit() and len(instrument) == 3:
@@ -137,7 +130,10 @@ def create_robot_description(context):
     if full_name == 'ECM' and endoscope != '':
         mappings['endoscope'] = endoscope
     if context.launch_configurations.get('suj') == 'true':
-        mappings['parent_link_'] = 'SUJ_' + full_name + '_RCM'
+        if generation == 'Virtual':
+            mappings['parent_link_'] = full_name + '_base'
+        else:
+            mappings['parent_link_'] = 'SUJ_' + full_name + '_RCM'
 
     robot_description_config = xacro.process_file(xacro_file,
                                                   mappings = mappings)

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<robot name="ECM" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="endoscope" default="Si_straight"/>
+  <xacro:arg name="parent_link_" default="world"/>
+  <xacro:arg name="adaptor_offset" default="0.3829"/>
+  <xacro:arg name="rcm_xyz" default="0 0 0"/>
+  <xacro:arg name="rcm_rpy" default="0 0 0"/>
+  <xacro:property name="parent_link" value="$(arg parent_link_)"/>
+
+  <xacro:include filename="$(find dvrk_model)/urdf/Virtual/ECM_base_virtual.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/endoscope.urdf.xacro"/>
+
+  <link name="${parent_link}"/>
+  <xacro:dvrk_materials/>
+
+  <xacro:ecm_base_virtual prefix="ECM_"
+                          parent_link="${parent_link}"
+                          adaptor_offset="$(arg adaptor_offset)"
+                          rcm_xyz="$(arg rcm_xyz)"
+                          rcm_rpy="$(arg rcm_rpy)"/>
+
+  <xacro:endoscope prefix="ECM_"
+                   parent_link="ECM_adaptor_link"/>
+</robot>

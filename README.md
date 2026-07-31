@@ -131,9 +131,12 @@ All launch files require a `generation` argument:
 
 - `generation:=Classic`
 - `generation:=Si`
+- `generation:=Virtual` for the ROS 2 virtual patient cart
 
-The current ROS 2 launch mapping exposes `Classic` and `Si` generations.
-Virtual PSM files are available under `urdf/Virtual/` for direct xacro use.
+The current ROS 2 launch mapping exposes `Classic` and `Si` generations for
+physical arm visualizations.  The ROS 2 patient cart launch also supports the
+`Virtual` generation for a simulated patient cart with three virtual PSMs and
+one virtual ECM.
 
 As of 2024, the MTMs and the surgeon's console can only be "Classic", so the `generation` argument is not used for those launch files.
 
@@ -146,11 +149,12 @@ There is also an optional `instrument` argument for PSM arms.
 
 - `instrument:=420006` → explicit Si 006 selection
 - `instrument:=400006` → explicit Classic 006 selection
-- `instrument:=006` → shorthand; resolves to `420006` for `generation:=Si`, `400006` for `generation:=Classic`
+- `instrument:=006` → shorthand; resolves to `420006` for `generation:=Si` or `generation:=Virtual`, `400006` for `generation:=Classic`
 
 If `instrument` is omitted, `arm.launch.py` selects by generation:
 
 - `generation:=Si` defaults to `instrument:=420006`
+- `generation:=Virtual` defaults to `instrument:=420006`
 - `generation:=Classic` defaults to `instrument:=400006`
 
 For Si 420006, default mesh paths in URDF/Xacro use the current OBJ files
@@ -166,11 +170,65 @@ ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Classic instrument:=4
 ros2 launch dvrk_model arm.launch.py arm:=MTMR generation:=Classic simulated:=True
 ros2 launch dvrk_model arm.launch.py arm:=ECM generation:=Classic
 ros2 launch dvrk_model patient_cart.launch.py generation:=Si
+ros2 launch dvrk_model patient_cart.launch.py generation:=Virtual
+ros2 launch dvrk_model patient_cart.launch.py generation:=Virtual show_rcm:=False
 ros2 launch dvrk_model patient_cart.launch.py generation:=Classic simulated:=True
 ros2 launch dvrk_model surgeon_console.launch.py
 # Mesh-frame debug for Si 420006
 ros2 run xacro xacro $(ros2 pkg prefix dvrk_model)/share/dvrk_model/urdf/Si/PSM_420006_zero_check.urdf.xacro > /tmp/psm_420006_zero_check.urdf
 ```
+
+### ROS 2 Virtual Patient Cart
+
+The virtual patient cart is intended for ROS 2 simulation and visualization
+without the full SUJ geometry.  It starts `dvrk_system` with the fixed SUJ
+configuration and four kinematic arms:
+
+- `ECM`
+- `PSM1`
+- `PSM2`
+- `PSM3`
+
+From a built workspace:
+
+```bash
+cd ~/wss/model
+source /opt/ros/jazzy/setup.bash
+source install/setup.bash
+ros2 launch dvrk_model patient_cart.launch.py generation:=Virtual
+```
+
+For visualization only, when `dvrk_system` is already running elsewhere:
+
+```bash
+ros2 launch dvrk_model patient_cart.launch.py generation:=Virtual simulated:=False
+```
+
+For `generation:=Virtual`, the launch file does not start a separate SUJ
+`robot_state_publisher`.  Instead, `dvrk_system` uses the `SUJ_Fixed` component
+from `system-patient-cart-Virtual-simulated.json`, and the fixed SUJ provides
+the base frames:
+
+- `Cart` to `ECM_base`
+- `Cart` to `PSM1_base`
+- `Cart` to `PSM2_base`
+- `Cart` to `PSM3_base`
+
+The virtual arm URDFs attach their RCM frame to these `<arm>_base` frames.  This
+keeps the relative PSM-to-ECM pose in the fixed SUJ configuration, not in the ROS
+2 launch file.  To tune the virtual cart layout, update the fixed SUJ arm file,
+for example:
+
+```text
+sawIntuitiveResearchKit/share/arm/suj-fixed-simulated.json
+```
+
+The Virtual PSMs use the Si instrument family by default, so omitted instruments
+resolve to `420006`.  The Virtual ECM uses the Si straight endoscope by default.
+
+RCM spheres are shown by default for patient-cart visualizations.  To hide them,
+set `show_rcm:=False`; this applies to `generation:=Virtual`, `generation:=Si`,
+and `generation:=Classic`.
 
 ---
 
@@ -213,7 +271,9 @@ urdf/
 │   ├── PSM{1,2,3}.urdf.xacro
 │   ├── SUJ.urdf.xacro
 │   └── *base*.urdf.xacro
-└── Virtual/                   # Virtual PSM entry points and base
+└── Virtual/                   # Virtual PSM and ECM entry points and bases
+    ├── ECM.urdf.xacro
+    ├── ECM_base_virtual.urdf.xacro
     ├── PSM{1,2,3}.urdf.xacro
     └── PSM_base_virtual.urdf.xacro
 ```
@@ -226,6 +286,7 @@ urdf/
 
 - `PSM{1,2,3}.urdf.xacro`: PSM arm with instrument (arg: `instrument`, default: 400006 Classic, 420006 Si)
 - `Virtual/PSM{1,2,3}.urdf.xacro`: Virtual PSM entry points using shared `common/instrument.urdf.xacro`
+- `Virtual/ECM.urdf.xacro`: Virtual ECM entry point using shared `common/endoscope.urdf.xacro`
 - `MTM{L,R}.urdf.xacro`: Master Tool Manipulator (left/right)
 - `ECM.urdf.xacro`: Endoscope Camera Manipulator
 

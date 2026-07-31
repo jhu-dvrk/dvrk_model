@@ -3,10 +3,12 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
 from launch.conditions import IfCondition
+from launch.conditions import UnlessCondition
 from launch import LaunchContext, LaunchDescription, Substitution
 from typing import Text
 
@@ -15,15 +17,24 @@ from launch.substitutions import (
     FindExecutable,
     LaunchConfiguration,
     PathJoinSubstitution,
+    PythonExpression,
 )
 
 def generate_launch_description():
     generation = LaunchConfiguration('generation')
     simulated = LaunchConfiguration('simulated', default = 'true')
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
+    show_rcm = LaunchConfiguration('show_rcm', default = 'true')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.  Funny enough joint and robot state publishers don't have the same name for that parameter :-(
+    virtual_generation = PythonExpression(["'", generation, "' == 'Virtual'"])
 
-    ld = LaunchDescription()
+    ld = LaunchDescription([
+        DeclareLaunchArgument('generation', default_value='Si'),
+        DeclareLaunchArgument('simulated', default_value='true'),
+        DeclareLaunchArgument('use_sim_time', default_value='false'),
+        DeclareLaunchArgument('show_rcm', default_value='true'),
+        DeclareLaunchArgument('rate', default_value='50.0'),
+    ])
 
 
     # dVRK system
@@ -63,6 +74,7 @@ def generate_launch_description():
         namespace = 'SUJ',
         executable = 'joint_state_publisher',
         name = 'SUJ_joint_state_publisher',
+        condition = UnlessCondition(virtual_generation),
         parameters = [{'use_sim_time': use_sim_time,
                        'source_list': ['/SUJ/PSM1/measured_js',
                                        '/SUJ/PSM2/measured_js',
@@ -76,6 +88,7 @@ def generate_launch_description():
         namespace = 'SUJ',
         executable = 'robot_state_publisher',
         name = 'SUJ_robot_state_publisher',
+        condition = UnlessCondition(virtual_generation),
         parameters = [{'use_sim_time': use_sim_time,
                        'robot_description': description,
                        'publish_frequency': rate}],
@@ -98,7 +111,8 @@ def generate_launch_description():
                 'generation': generation,
                 'use_sim_time': use_sim_time,
                 'rate': rate,
-                'suj': 'true'
+                'suj': 'true',
+                'show_rcm': show_rcm
             }.items()
         )
         ld.add_action(publisher_nodes)
