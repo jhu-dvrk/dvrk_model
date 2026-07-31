@@ -76,7 +76,10 @@
     <xacro:if value="${str(tip) == '179'}">
       <xacro:tip_179 prefix="${prefix}"/>
     </xacro:if>
-    <xacro:if value="${str(tip) not in ['006', '6', '049', '49', '093', '93', '179']}">
+    <xacro:if value="${str(tip) not in ['006', '6', 
+                                        '049', '49', 
+                                        '093', '93', 
+                                        '179']}">
       <xacro:tip_placeholder prefix="${prefix}"/>
     </xacro:if>
   </xacro:macro>
