@@ -30,6 +30,7 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_049.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_093.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_179.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_309.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_placeholder.urdf.xacro"/>
 
   <xacro:property name="instrument_table"
@@ -76,10 +77,14 @@
     <xacro:if value="${str(tip) == '179'}">
       <xacro:tip_179 prefix="${prefix}"/>
     </xacro:if>
+    <xacro:if value="${str(tip) == '309'}">
+      <xacro:tip_309 prefix="${prefix}"/>
+    </xacro:if>
     <xacro:if value="${str(tip) not in ['006', '6', 
                                         '049', '49', 
                                         '093', '93', 
-                                        '179']}">
+                                        '179',
+                                        '309']}">
       <xacro:tip_placeholder prefix="${prefix}"/>
     </xacro:if>
   </xacro:macro>
