@@ -39,15 +39,18 @@ dvrk_model/
 │   │       │   └── roll_4670.urdf.xacro
 │   │       ├── wrist_pitch/
 │   │       │   ├── wrist_pitch_0091.urdf.xacro
-│   │       │   └── wrist_pitch_0107.urdf.xacro
+│   │       │   ├── wrist_pitch_0107.urdf.xacro
+│   │       │   └── wrist_pitch_0167.urdf.xacro
 │   │       ├── wrist_yaw/
 │   │       │   ├── wrist_yaw_0091.urdf.xacro
-│   │       │   └── wrist_yaw_0107.urdf.xacro
+│   │       │   ├── wrist_yaw_0107.urdf.xacro
+│   │       │   └── wrist_yaw_0167.urdf.xacro
 │   │       └── tip/
 │   │           ├── tip_006.urdf.xacro
 │   │           ├── tip_049.urdf.xacro
 │   │           ├── tip_093.urdf.xacro
 │   │           ├── tip_179.urdf.xacro
+│   │           ├── tip_309.urdf.xacro
 │   │           └── tip_placeholder.urdf.xacro
 │   │
 │   ├── Classic/
@@ -143,11 +146,16 @@ dvrk_model/
 │   │       │   ├── tip_093_1.mtl
 │   │       │   ├── tip_093_2.obj
 │   │       │   └── tip_093_2.mtl
-│   │       └── 179/
+│   │       ├── 179/
 │   │           ├── tip_179_1.obj
 │   │           ├── tip_179_1.mtl
 │   │           ├── tip_179_2.obj
 │   │           └── tip_179_2.mtl
+│   │       └── 309/
+│   │           ├── tip_309_1.obj
+│   │           ├── tip_309_1.mtl
+│   │           ├── tip_309_2.obj
+│   │           └── tip_309_2.mtl
 │   │
 │   ├── endoscopes/
 │   │   ├── Classic_SD_straight/
@@ -387,6 +395,7 @@ to the physical-arm paths.
 | 049 | cadiere forceps |
 | 093 | prograsp forceps |
 | 179 | monopolar curved scissors |
+| 309 | mega suturecut needle driver |
 | placeholder | 5 mm box visuals for supported tools without tip meshes |
 | ECM | camera tool |
 
@@ -396,7 +405,6 @@ Unsupported-family notes are kept in the docs only:
 - 117 and 143: JSON files do not use the standard wrist_pitch/wrist_yaw joints.
 - 183 and 184: wrist yaw offset A = 0.0093 m.
 - 194: wrist yaw offset A = 0.0112 m.
-- 309: wrist yaw offset A = 0.0100 m.
 - 410298: stapler-specific roll and wrist geometry.
 
 The implemented layout follows the physical instrument breakdown directly: shared body stage (housing plus roll and shaft), then wrist and tip stage files. Tool families with missing tip meshes share `tip_placeholder.urdf.xacro`.

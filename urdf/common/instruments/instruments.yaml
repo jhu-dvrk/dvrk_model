@@ -65,8 +65,8 @@ instruments:
   '400093':
     housing: Classic
     roll: '4162'
-    wrist_pitch: '0107'
-    wrist_yaw: '0107'
+    wrist_pitch: '0167'
+    wrist_yaw: '0167'
     tip: '093'
     name: Prograsp Forceps
   '400127':
@@ -205,8 +205,8 @@ instruments:
   '420093':
     housing: Si
     roll: '4670'
-    wrist_pitch: '0107'
-    wrist_yaw: '0107'
+    wrist_pitch: '0167'
+    wrist_yaw: '0167'
     tip: '093'
     name: Prograsp Forceps
   '420172':

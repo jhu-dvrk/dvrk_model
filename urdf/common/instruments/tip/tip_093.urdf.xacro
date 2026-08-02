@@ -25,12 +25,12 @@
       <axis xyz="0.0 0.0 1"/>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
-      <mimic joint="jaw" multiplier="0.5"/>
+      <mimic joint="jaw" multiplier="-0.5"/>
     </joint>
 
     <link name="${prefix}jaw_1_link">
       <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 0.0 ${PI}" xyz="0.0 0.0286 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_1.obj" scale="0.001 0.001 0.001"/>
         </geometry>
@@ -43,12 +43,12 @@
       <axis xyz="0.0 0.0 1"/>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
-      <mimic joint="jaw" multiplier="-0.5"/>
+      <mimic joint="jaw" multiplier="0.5"/>
     </joint>
 
     <link name="${prefix}jaw_2_link">
       <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 0.0 ${PI}" xyz="0.0 0.0286 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_2.obj" scale="0.001 0.001 0.001"/>
         </geometry>

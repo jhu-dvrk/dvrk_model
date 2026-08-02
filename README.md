@@ -73,7 +73,7 @@ Supported instrument model-to-part mappings live in
 |--------|------------------|--------------|---------------------|
 | 006 | `400006`, `420006` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0102 m` |
 | 049 | `400049`, `420049` | shared 049 mesh | wrist yaw offset `A = 0.0091 m` |
-| 093 | `400093`, `420093` | Classic and Si | wrist yaw offset `A = 0.0107 m`, `tool_tip y = 0.0286 m` |
+| 093 | `400093`, `420093` | Classic and Si | wrist yaw offset `A = 0.0167 m`, `tool_tip y = 0.0286 m` |
 | 179 | `400179`, `420179` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0155 m` |
 | Placeholder tips | `400001`, `400003`, `400007`, `400033`, `400035`, `400036`, `400048`, `400127`, `400172`, `400178`, `400181`, `400189`, `400205`, `400207`, `400208`, `400230`, `400296`, `420001`, `420007`, `420033`, `420036`, `420048`, `420172`, `420178`, `420181`, `420205`, `420230`, `420296`, `420327` | 5 mm box placeholders for missing tip meshes | JSON-derived roll and wrist yaw offsets using existing part IDs |
 
@@ -87,7 +87,6 @@ Current unsupported-family notes:
 - `117` and `143`: JSON files do not use the standard wrist_pitch/wrist_yaw joints.
 - `183` and `184`: wrist yaw offset `A = 0.0093 m`.
 - `194`: wrist yaw offset `A = 0.0112 m`.
-- `309`: wrist yaw offset `A = 0.0100 m`.
 - `410298`: stapler-specific roll and wrist geometry.
 
 ## Instrument Mesh Naming
