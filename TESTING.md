@@ -102,3 +102,25 @@ ros2 run xacro xacro urdf/Virtual/PSM1.urdf.xacro instrument:=420006 > /tmp/virt
 ros2 run xacro xacro urdf/Virtual/PSM2.urdf.xacro instrument:=400049 > /tmp/virtual_psm2_400049.urdf
 ros2 run xacro xacro urdf/Virtual/PSM3.urdf.xacro instrument:=420006 > /tmp/virtual_psm3_420006.urdf
 ```
+
+---
+
+## Instrument TF/Link Validation (One-by-One)
+
+Use the checker below to verify each instrument chain for:
+- naming scheme (`PSM1_..._link`),
+- expected parent/child stage joints,
+- full connectivity from `adaptor_link` to jaw and tool-tip links.
+
+Single instrument:
+
+```bash
+python3 scripts/verify_instrument_tf.py --instrument 420006
+python3 scripts/verify_instrument_tf.py --instrument 400172
+```
+
+All instruments in `instruments.yaml`:
+
+```bash
+python3 scripts/verify_instrument_tf.py --all
+```
