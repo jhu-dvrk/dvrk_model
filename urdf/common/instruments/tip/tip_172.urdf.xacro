@@ -25,7 +25,7 @@
     <joint name="jaw_1" type="revolute">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}jaw_1_link"/>
-      <axis xyz="1.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1.0"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="0.5"/>
@@ -33,7 +33,7 @@
 
     <link name="${prefix}jaw_1_link">
       <visual>
-        <origin xyz="0.0 0.021 0.0" rpy="0 ${PI_2} ${PI}"/>
+        <origin xyz="0.0 0.021 0.0" rpy="0 ${PI} ${PI}"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_1.obj"
                 scale="0.1 0.1 0.1"/>
@@ -44,7 +44,7 @@
     <joint name="jaw_2" type="revolute">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}jaw_2_link"/>
-      <axis xyz="1.0 0.0 0.0"/>
+      <axis xyz="0.0 0.0 1.0"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
       <mimic joint="jaw" multiplier="-0.5"/>
@@ -52,7 +52,7 @@
 
     <link name="${prefix}jaw_2_link">
       <visual>
-        <origin xyz="0.0 0.021 0.0" rpy="0 ${PI_2} ${PI}"/>
+        <origin xyz="0.0 0.021 0.0" rpy="0 ${PI} ${PI}"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_2.obj"
                 scale="0.1 0.1 0.1"/>

@@ -19,41 +19,48 @@
       </visual>
     </link>
 
-    <joint name="jaw_1" type="revolute">
-      <parent link="${prefix}wrist_yaw_link"/>
-      <child link="${prefix}jaw_1_link"/>
-      <axis xyz="0.0 0.0 -1.0"/>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
-      <mimic joint="jaw" multiplier="0.5"/>
-    </joint>
+  <joint name="jaw_1" type="revolute">
+    <parent link="${prefix}wrist_yaw_link"/>
+    <child link="${prefix}jaw_1_link"/>
+    <axis xyz="0.0 0.0 -1.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+    <mimic joint="jaw" multiplier="0.5"/>
+  </joint>
 
-    <link name="${prefix}jaw_1_link">
-      <visual>
-        <origin rpy="0.0 0.0  ${PI}" xyz="0.0 0.0286 0.0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_1.obj" scale="0.001 0.001 0.001"/>
-        </geometry>
-      </visual>
-    </link>
+  <link name="${prefix}jaw_1_link">
+    <visual>
+      <origin 
+        xyz="0.0 0.021 0.0" rpy="0 0 ${PI}"/>
+      <geometry>
+        <mesh 
+          filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_1.obj"
+          scale="0.1 0.1 0.1"/>
+      </geometry>
+    </visual>
+  </link>
 
-    <joint name="jaw_2" type="revolute">
-      <parent link="${prefix}wrist_yaw_link"/>
-      <child link="${prefix}jaw_2_link"/>
-      <axis xyz="0.0 0.0 -1.0"/>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
-      <mimic joint="jaw" multiplier="-0.5"/>
-    </joint>
 
-    <link name="${prefix}jaw_2_link">
-      <visual>
-        <origin rpy="0.0 0.0 ${PI}" xyz="0.0 0.0286 0.0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_2.obj" scale="0.001 0.001 0.001"/>
-        </geometry>
-      </visual>
-    </link>
+  <joint name="jaw_2" type="revolute">
+    <parent link="${prefix}wrist_yaw_link"/>
+    <child link="${prefix}jaw_2_link"/>
+    <axis xyz="0.0 0.0 -1.0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+    <mimic joint="jaw" multiplier="-0.5"/>
+  </joint>
+
+  <link name="${prefix}jaw_2_link">
+    <visual>
+      <origin 
+        xyz="0.0 0.021 0.0" rpy="0 0 ${PI}"/>
+      <geometry>
+        <mesh 
+          filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_2.obj"
+          scale="0.1 0.1 0.1"/>
+      </geometry>
+    </visual>
+  </link>
 
     <joint name="tool_tip" type="fixed">
       <parent link="${prefix}wrist_yaw_link"/>
