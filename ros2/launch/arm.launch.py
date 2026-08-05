@@ -8,7 +8,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
 from launch.conditions import IfCondition
 from launch import LaunchContext, LaunchDescription
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch.actions import DeclareLaunchArgument
 
 def psm_instruments():
@@ -33,13 +33,20 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default = 'false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.
 
+    # Virtual uses the Virtual URDF, but its simulated PSM system configuration
+    # is the same as the Si configuration.
+    system_generation = PythonExpression([
+        "'Si' if '", generation, "' == 'Virtual' else '", generation, "'"
+    ])
+    rviz_generation = system_generation
+
     system_json = [
         PathJoinSubstitution([FindPackageShare('dvrk_config'), 'system', '']),
-        '/system-', arm, '_', generation, '_KIN_SIMULATED.json',
+        '/system-', arm, '_', system_generation, '_KIN_SIMULATED.json',
     ]
 
     rviz_config_file = [
-        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'rviz', generation, '']),
+        PathJoinSubstitution([FindPackageShare('dvrk_model'), 'rviz', rviz_generation, '']),
         '/', arm, '.rviz',
     ]
 

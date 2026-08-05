@@ -44,6 +44,7 @@ def valid_arm_names(package_share, generation):
         for name in os.listdir(urdf_dir)
         if name.endswith('.urdf.xacro')
         and not name.endswith('_base.urdf.xacro')
+        and not name.endswith('_base_virtual.urdf.xacro')
         and not name.endswith('_zero_check.urdf.xacro')
         and name not in ['SUJ.urdf.xacro']
     )
@@ -90,6 +91,11 @@ def create_robot_description(context):
     full_name = context.launch_configurations['arm']
     generation = context.launch_configurations['generation']
     require_choice('generation', generation, VALID_GENERATIONS)
+
+    if full_name.startswith('MTM') and generation != 'Classic':
+        raise RuntimeError(
+            "MTM arms (MTML/MTMR) are only supported with generation:=Classic; "
+            "generation '{}' is not supported for {}.".format(generation, full_name))
 
     dvrk_model_share = get_package_share_directory('dvrk_model')
     valid_arms = valid_arm_names(dvrk_model_share, generation)
