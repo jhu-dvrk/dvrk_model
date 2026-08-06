@@ -2,13 +2,11 @@
 # www.blender.org
 
 newmtl tool_jaw_left
+Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
+Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
-illum 2
-map_Ns S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_jaw_left_Roughness.png
-map_refl S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_jaw_left_Metallic.png
-map_Bump -bm 1.000000 S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_jaw_left_Normal.png
+illum 1
