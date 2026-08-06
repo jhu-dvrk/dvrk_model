@@ -40,11 +40,11 @@ dvrk_model/
 │   │       ├── wrist_pitch/
 │   │       │   ├── wrist_pitch_0091.urdf.xacro
 │   │       │   ├── wrist_pitch_0107.urdf.xacro
-│   │       │   └── wrist_pitch_0167.urdf.xacro
+│   │       │   └── wrist_pitch_0107_80.urdf.xacro
 │   │       ├── wrist_yaw/
 │   │       │   ├── wrist_yaw_0091.urdf.xacro
 │   │       │   ├── wrist_yaw_0107.urdf.xacro
-│   │       │   └── wrist_yaw_0167.urdf.xacro
+│   │       │   └── wrist_yaw_0107_90.urdf.xacro
 │   │       └── tip/
 │   │           ├── tip_006.urdf.xacro
 │   │           ├── tip_049.urdf.xacro

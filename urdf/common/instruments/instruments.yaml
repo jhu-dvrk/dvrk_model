@@ -65,8 +65,8 @@ instruments:
   '400093':
     housing: Classic
     roll: '4162'
-    wrist_pitch: '0167'
-    wrist_yaw: '0167'
+    wrist_pitch: '0107_80'
+    wrist_yaw: '0107'
     tip: '093'
     name: Prograsp Forceps
   '400127':
@@ -79,8 +79,8 @@ instruments:
   '400172':
     housing: Classic
     roll: '4162'
-    wrist_pitch: '0167'
-    wrist_yaw: '0167'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107_90'
     tip: '172'
     name: Maryland Bipolar Forceps
   '400178':
@@ -205,15 +205,15 @@ instruments:
   '420093':
     housing: Si
     roll: '4670'
-    wrist_pitch: '0167'
-    wrist_yaw: '0167'
+    wrist_pitch: '0107_80'
+    wrist_yaw: '0107'
     tip: '093'
     name: Prograsp Forceps
   '420172':
     housing: Si
     roll: '4670'
-    wrist_pitch: '0167'
-    wrist_yaw: '0167'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107_90'
     tip: '172'
     name: Maryland Bipolar Forceps
   '420178':
