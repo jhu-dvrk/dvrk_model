@@ -27,6 +27,7 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0107_80.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0091.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107_73.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107_90.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_006.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_049.urdf.xacro"/>
@@ -34,6 +35,7 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_172.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_179.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_309.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_327.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_placeholder.urdf.xacro"/>
 
   <xacro:property name="instrument_table"
@@ -70,6 +72,9 @@
     <xacro:if value="${str(wrist_yaw) == '0107' or str(wrist_yaw) == '107'}">
       <xacro:wrist_yaw_0107 prefix="${prefix}"/>
     </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0107_73'}">
+      <xacro:wrist_yaw_0107_73 prefix="${prefix}"/>
+    </xacro:if>
     <xacro:if value="${str(wrist_yaw) == '0107_90'}">
       <xacro:wrist_yaw_0107_90 prefix="${prefix}"/>
     </xacro:if>
@@ -92,12 +97,16 @@
     <xacro:if value="${str(tip) == '309'}">
       <xacro:tip_309 prefix="${prefix}"/>
     </xacro:if>
+    <xacro:if value="${str(tip) == '327'}">
+      <xacro:tip_327 prefix="${prefix}"/>
+    </xacro:if>
     <xacro:if value="${str(tip) not in ['006', '6', 
                                         '049', '49', 
                                         '093', '93', 
                                         '172',
                                         '179',
-                                        '309']}">
+                                        '309',
+                                        '327']}">
       <xacro:tip_placeholder prefix="${prefix}"/>
     </xacro:if>
   </xacro:macro>
