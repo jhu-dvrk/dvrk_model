@@ -1,0 +1,26 @@
+# Blender 5.2.0 LTS MTL File: 'None'
+# www.blender.org
+
+newmtl tool__rope
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Z:/Medical_Project/1_Intuitive/New Instruments/2.1.2.09 mega_suture_cut/mega_suture_cut/Final map/PBR Metallic Roughness/tool__rope_BaseColor.png
+map_Ns Z:/Medical_Project/1_Intuitive/New Instruments/2.1.2.09 mega_suture_cut/mega_suture_cut/Final map/PBR Metallic Roughness/tool__rope_Roughness.png
+map_refl Z:/Medical_Project/1_Intuitive/New Instruments/2.1.2.09 mega_suture_cut/mega_suture_cut/Final map/PBR Metallic Roughness/tool__rope_Metallic.png
+map_Bump -bm 1.000000 Z:/Medical_Project/1_Intuitive/New Instruments/2.1.2.09 mega_suture_cut/mega_suture_cut/Final map/PBR Metallic Roughness/tool__rope_Normal.png
+
+newmtl tool_wrist
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Ns Z:/Medical_Project/1_Intuitive/New Instruments/2.1.2.09 mega_suture_cut/mega_suture_cut/Final map/PBR Metallic Roughness/tool_wrist_Roughness.png
+map_refl Z:/Medical_Project/1_Intuitive/New Instruments/2.1.2.09 mega_suture_cut/mega_suture_cut/Final map/PBR Metallic Roughness/tool_wrist_Metallic.png
+map_Bump -bm 1.000000 Z:/Medical_Project/1_Intuitive/New Instruments/2.1.2.09 mega_suture_cut/mega_suture_cut/Final map/PBR Metallic Roughness/tool_wrist_Normal.png
