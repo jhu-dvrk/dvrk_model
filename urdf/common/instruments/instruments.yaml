@@ -104,6 +104,27 @@ instruments:
     wrist_yaw: '0091'
     tip: '181'
     name: Resano Forceps
+  '400183':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '183'
+    name: Permanent Cautery Hook
+  '400184':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '184'
+    name: Permanent Cautery Spatula
+  '400194':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0112'
+    wrist_yaw: '0112'
+    tip: '194'
+    name: Mega Needle Driver
   '400189':
     housing: Classic
     roll: '4162'
@@ -237,6 +258,27 @@ instruments:
     wrist_yaw: '0091'
     tip: '181'
     name: Resano Forceps
+  '420183':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '183'
+    name: Permanent Cautery Hook
+  '420184':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '184'
+    name: Permanent Cautery Spatula
+  '420194':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0112'
+    wrist_yaw: '0112'
+    tip: '194'
+    name: Mega Needle Driver
   '420205':
     housing: Si
     roll: '4670'

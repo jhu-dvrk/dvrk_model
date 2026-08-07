@@ -23,16 +23,23 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4162.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4670.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0091.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0093.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0100.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0107.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0112.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0091.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0093.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0100.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0112.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_006.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_049.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_093.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_172.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_179.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_183.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_184.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_194.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_309.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_327.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_placeholder.urdf.xacro"/>
@@ -59,20 +66,32 @@
     <xacro:if value="${str(wrist_pitch) == '0091' or str(wrist_pitch) == '91'}">
       <xacro:wrist_pitch_0091 prefix="${prefix}"/>
     </xacro:if>
+    <xacro:if value="${str(wrist_pitch) == '0093' or str(wrist_pitch) == '93'}">
+      <xacro:wrist_pitch_0093 prefix="${prefix}"/>
+    </xacro:if>
     <xacro:if value="${str(wrist_pitch) == '0100' or str(wrist_pitch) == '100'}">
       <xacro:wrist_pitch_0100 prefix="${prefix}"/>
     </xacro:if>
     <xacro:if value="${str(wrist_pitch) == '0107' or str(wrist_pitch) == '107'}">
       <xacro:wrist_pitch_0107 prefix="${prefix}"/>
     </xacro:if>
+    <xacro:if value="${str(wrist_pitch) == '0112' or str(wrist_pitch) == '112'}">
+      <xacro:wrist_pitch_0112 prefix="${prefix}"/>
+    </xacro:if>
     <xacro:if value="${str(wrist_yaw) == '0091' or str(wrist_yaw) == '91'}">
       <xacro:wrist_yaw_0091 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0093' or str(wrist_yaw) == '93'}">
+      <xacro:wrist_yaw_0093 prefix="${prefix}"/>
     </xacro:if>
     <xacro:if value="${str(wrist_yaw) == '0100' or str(wrist_yaw) == '100'}">
       <xacro:wrist_yaw_0100 prefix="${prefix}"/>
     </xacro:if>
     <xacro:if value="${str(wrist_yaw) == '0107' or str(wrist_yaw) == '107'}">
       <xacro:wrist_yaw_0107 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0112' or str(wrist_yaw) == '112'}">
+      <xacro:wrist_yaw_0112 prefix="${prefix}"/>
     </xacro:if>
 
     <xacro:if value="${str(tip) == '006' or str(tip) == '6'}">
@@ -90,6 +109,15 @@
     <xacro:if value="${str(tip) == '179'}">
       <xacro:tip_179 prefix="${prefix}"/>
     </xacro:if>
+    <xacro:if value="${str(tip) == '183'}">
+      <xacro:tip_183 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '184'}">
+      <xacro:tip_184 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '194'}">
+      <xacro:tip_194 prefix="${prefix}"/>
+    </xacro:if>
     <xacro:if value="${str(tip) == '309'}">
       <xacro:tip_309 prefix="${prefix}"/>
     </xacro:if>
@@ -101,6 +129,9 @@
                                         '093', '93', 
                                         '172',
                                         '179',
+                                        '183',
+                                        '184',
+                                        '194',
                                         '309',
                                         '327']}">
       <xacro:tip_placeholder prefix="${prefix}"/>
