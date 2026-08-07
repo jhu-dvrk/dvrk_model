@@ -9,7 +9,7 @@
       <child link="${prefix}wrist_pitch_link"/>
       <axis xyz="0.0 0.0 1"/>
       <origin rpy="-${PI_2} -${PI_2} 0.0" xyz="0.0 0.0 0.0"/>
-      <limit lower="-1.2217" upper="1.2217" velocity=".4" effort="1000"/>
+      <limit lower="-1.39626" upper="1.39626" velocity=".4" effort="1000"/>
     </joint>
 
     <link name="${prefix}wrist_pitch_link">
