@@ -4,12 +4,34 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
   <xacro:macro name="tip_093" params="prefix">
-    <joint name="jaw" type="revolute">
+    <!--
+      The ProGrasp jaw hinge is offset from wrist_yaw and this offset changes
+      as the jaw opens.  URDF mimic joints are affine, so approximate the
+      measured 7.7 mm (closed) to 5.5 mm (60 degree open) relationship with
+      a prismatic joint along the wrist-yaw Y axis:
+
+        distance = 0.0077 - (0.0022 / 1.0472) * jaw
+
+      Keep jaw as the single actuated joint; jaw_axis, jaw_1 and jaw_2 are
+      dependent joints.
+    -->
+    <joint name="jaw_axis" type="prismatic">
       <parent link="${prefix}wrist_yaw_link"/>
+      <child link="${prefix}jaw_axis_link"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <limit lower="0.0055" upper="0.0077" velocity="0.001" effort="1000"/>
+      <mimic joint="jaw" multiplier="-0.002100845" offset="0.0077"/>
+    </joint>
+
+    <link name="${prefix}jaw_axis_link"/>
+
+    <joint name="jaw" type="revolute">
+      <parent link="${prefix}jaw_axis_link"/>
       <child link="${prefix}jaw_link"/>
       <axis xyz="1.0 0.0 0.0"/>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-      <limit lower="-0.349066" upper="1.39626" velocity=".4" effort="1000"/>
+      <limit lower="0.0" upper="1.0472" velocity=".4" effort="1000"/>
     </joint>
 
     <link name="${prefix}jaw_link">
@@ -20,7 +42,8 @@
     </link>
 
   <joint name="jaw_1" type="revolute">
-    <parent link="${prefix}wrist_yaw_link"/>
+    <!-- Keep the tip hinge axes independent of the jaw-link rotation. -->
+    <parent link="${prefix}jaw_axis_link"/>
     <child link="${prefix}jaw_1_link"/>
     <axis xyz="0.0 0.0 -1.0"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -33,16 +56,16 @@
       <origin 
         xyz="0.0 0.021 0.0" rpy="0 0 ${PI}"/>
       <geometry>
-        <mesh 
-          filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_1.obj"
-          scale="0.1 0.1 0.1"/>
+        <mesh
+          filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_1.obj"
+          scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
   </link>
 
 
   <joint name="jaw_2" type="revolute">
-    <parent link="${prefix}wrist_yaw_link"/>
+    <parent link="${prefix}jaw_axis_link"/>
     <child link="${prefix}jaw_2_link"/>
     <axis xyz="0.0 0.0 -1.0"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -55,9 +78,9 @@
       <origin 
         xyz="0.0 0.021 0.0" rpy="0 0 ${PI}"/>
       <geometry>
-        <mesh 
-          filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_2.obj"
-          scale="0.1 0.1 0.1"/>
+        <mesh
+          filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_2.obj"
+          scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
   </link>
