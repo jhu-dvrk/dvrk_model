@@ -1,0 +1,24 @@
+# Blender 5.2.0 LTS MTL File: 'None'
+# www.blender.org
+
+newmtl tool_jaw_non_transparent
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Ns U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_jaw_Roughness.png
+map_refl U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_jaw_Metallic.png
+map_Bump -bm 1.000000 U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_jaw_Normal.png
+
+newmtl tool_jaw_transparent
+Ns 360.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
