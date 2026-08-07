@@ -149,8 +149,8 @@ instruments:
   '400309':
     housing: Classic
     roll: '4162'
-    wrist_pitch: '0091'
-    wrist_yaw: '0091'
+    wrist_pitch: '0100'
+    wrist_yaw: '0100'
     tip: '309'
     name: Mega Suturecut Needle Driver
   '420001':
@@ -261,8 +261,8 @@ instruments:
   '420309':
     housing: Si
     roll: '4670'
-    wrist_pitch: '0091'
-    wrist_yaw: '0091'
+    wrist_pitch: '0100'
+    wrist_yaw: '0100'
     tip: '309'
     name: Mega Suturecut Needle Driver
   '420327':

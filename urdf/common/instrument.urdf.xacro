@@ -23,9 +23,11 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4162.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4670.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0091.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0100.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0107.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0107_80.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0091.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0100.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107_73.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107_90.urdf.xacro"/>
@@ -60,6 +62,9 @@
     <xacro:if value="${str(wrist_pitch) == '0091' or str(wrist_pitch) == '91'}">
       <xacro:wrist_pitch_0091 prefix="${prefix}"/>
     </xacro:if>
+    <xacro:if value="${str(wrist_pitch) == '0100' or str(wrist_pitch) == '100'}">
+      <xacro:wrist_pitch_0100 prefix="${prefix}"/>
+    </xacro:if>
     <xacro:if value="${str(wrist_pitch) == '0107' or str(wrist_pitch) == '107'}">
       <xacro:wrist_pitch_0107 prefix="${prefix}"/>
     </xacro:if>
@@ -68,6 +73,9 @@
     </xacro:if>
     <xacro:if value="${str(wrist_yaw) == '0091' or str(wrist_yaw) == '91'}">
       <xacro:wrist_yaw_0091 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0100' or str(wrist_yaw) == '100'}">
+      <xacro:wrist_yaw_0100 prefix="${prefix}"/>
     </xacro:if>
     <xacro:if value="${str(wrist_yaw) == '0107' or str(wrist_yaw) == '107'}">
       <xacro:wrist_yaw_0107 prefix="${prefix}"/>
