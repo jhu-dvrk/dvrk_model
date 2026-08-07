@@ -2,28 +2,24 @@
 # www.blender.org
 
 newmtl tool_rope
-Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
-Ks 0.500000 0.500000 0.500000
+Ns 150.000000
+Ka 0.250000 0.250000 0.250000
+Kd 0.450000 0.450000 0.450000
+Ks 0.600000 0.600000 0.600000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Ns U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_rope_Roughness.png
-map_refl U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_rope_Metallic.png
-map_Bump -bm 1.000000 U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_rope_Normal.png
 
 newmtl tool_wrist_non_transparent
+Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
+Kd 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Ns U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_wrist_Roughness.png
-map_refl U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_wrist_Metallic.png
-map_Bump -bm 1.000000 U:/1_Intuitive/New Instruments/Permanent_Cautery_Spatula/Permanent_Cautery_Spatula/maps/PBR Metallic Roughness/tool_wrist_Normal.png
 
 newmtl tool_wrist_transparent
 Ns 250.000000
