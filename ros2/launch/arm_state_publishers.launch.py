@@ -7,6 +7,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.parameter_descriptions import ParameterValue
 import launch_ros.descriptions
 from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
+from launch.conditions import IfCondition, UnlessCondition
 from launch import LaunchContext, LaunchDescription, Substitution
 from typing import Text
 import xacro
@@ -66,18 +67,26 @@ def require_choice(name, value, options, options_message=None):
 class ArmSourceListSubstitution(Substitution):
     """Generate source list for a given arm"""
 
-    def __init__(self, arm: LaunchConfiguration):
+    def __init__(self,
+                 arm: LaunchConfiguration,
+                 instrument: LaunchConfiguration):
         super().__init__()
         self.__arm = arm
+        self.__instrument = instrument
 
     def describe(self) -> Text:
         return 'ArmSourceList({})'.format(self.__arm.describe())
 
     def perform(self, context: LaunchContext) -> Text:
         arm = self.__arm.perform(context)
+        instrument = self.__instrument.perform(context).strip()
         source_list = ['measured_js']
         if arm.startswith('PSM'):
-            source_list.append('jaw/measured_js')
+            # Cautery tools 183/184 have no jaw actuation; ignore jaw topic.
+            if instrument.endswith('183') or instrument.endswith('184'):
+                source_list.append('jaw_zero_js')
+            else:
+                source_list.append('jaw/measured_js')
         elif arm.startswith('MTM'):
             source_list.append('gripper/measured_js')
 
@@ -156,6 +165,7 @@ def generate_launch_description():
     generation = LaunchConfiguration('generation')
     instrument = LaunchConfiguration('instrument', default='')
     endoscope = LaunchConfiguration('endoscope', default='')
+    direct_control = LaunchConfiguration('direct_control', default='false')
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     suj = LaunchConfiguration('suj', default='false')
     rate = LaunchConfiguration('rate', default = 50.0)  # Hz, default is 10 so we're increasing that a bit.
@@ -166,9 +176,31 @@ def generate_launch_description():
         namespace = arm,
         executable = 'joint_state_publisher',
         name = 'joint_state_publisher',
+        condition = UnlessCondition(direct_control),
         parameters = [{'use_sim_time': use_sim_time,
-                       'source_list': ArmSourceListSubstitution(arm),
+                       'source_list': ArmSourceListSubstitution(arm, instrument),
                        'rate': rate}],
+        output = "both",
+    )
+
+    joint_state_publisher_gui_node = Node(
+        package = 'joint_state_publisher_gui',
+        namespace = arm,
+        executable = 'joint_state_publisher_gui',
+        name = 'joint_state_publisher',
+        condition = IfCondition(direct_control),
+        parameters = [{'use_sim_time': use_sim_time,
+                       'rate': rate}],
+        output = "both",
+    )
+
+    jaw_zero_publisher_node = Node(
+        package = 'dvrk_model',
+        namespace = arm,
+        executable = 'jaw_zero_publisher.py',
+        name = 'jaw_zero_publisher',
+        parameters = [{'use_sim_time': use_sim_time,
+                       'instrument': instrument}],
         output = "both",
     )
 
@@ -194,12 +226,19 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument('instrument', default_value=''),
         DeclareLaunchArgument('endoscope', default_value=''),
+        DeclareLaunchArgument(
+            'direct_control',
+            default_value='false',
+            description='Use joint_state_publisher_gui for manual joint control instead of mirroring incoming joint-state topics'
+        ),
         DeclareLaunchArgument('use_sim_time', default_value='false'),
         DeclareLaunchArgument('suj', default_value='false'),
         DeclareLaunchArgument('rate', default_value='50.0'),
         DeclareLaunchArgument('show_rcm', default_value='true'),
         create_robot_description_arg,
         joint_state_publisher_node,
+        joint_state_publisher_gui_node,
+        jaw_zero_publisher_node,
         robot_state_publisher_node,
     ])
 

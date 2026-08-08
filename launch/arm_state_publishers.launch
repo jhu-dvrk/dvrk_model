@@ -10,6 +10,9 @@
   <arg name="suj"
        default="False"/>
 
+  <arg name="direct_control"
+       default="False"/>
+
   <arg name="_urdf"
        default="$(find dvrk_model)/urdf/$(arg generation)/$(arg urdf_file).urdf.xacro"/>
 
@@ -27,15 +30,23 @@
     <param name="rate"
            value="$(arg rate)"/>
 
-    <rosparam param="source_list" subst_value="True">
-      [/$(arg arm)/measured_js,
-      /$(arg arm)/jaw/measured_js,
-      /$(arg arm)/gripper/measured_js]
-    </rosparam>
+          <group unless="$(eval direct_control)">
+               <rosparam param="source_list" subst_value="True">
+                    [/$(arg arm)/measured_js,
+                    /$(arg arm)/jaw/measured_js,
+                    /$(arg arm)/gripper/measured_js]
+               </rosparam>
 
-    <node name="joint_state_publisher"
-          pkg="joint_state_publisher"
-          type="joint_state_publisher"/>
+               <node name="joint_state_publisher"
+                              pkg="joint_state_publisher"
+                              type="joint_state_publisher"/>
+          </group>
+
+          <group if="$(eval direct_control)">
+               <node name="joint_state_publisher"
+                              pkg="joint_state_publisher_gui"
+                              type="joint_state_publisher_gui"/>
+          </group>
 
     <node name="robot_state_publisher"
           pkg="robot_state_publisher"

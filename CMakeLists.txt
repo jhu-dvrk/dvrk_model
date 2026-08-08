@@ -27,6 +27,10 @@ else (catkin_FOUND)
       scripts/verify_instrument_tf.py
       DESTINATION share/${PROJECT_NAME}/scripts)
 
+    install (PROGRAMS
+      scripts/jaw_zero_publisher.py
+      DESTINATION lib/${PROJECT_NAME})
+
     ament_package ()
   endif (ament_cmake_FOUND)
 
