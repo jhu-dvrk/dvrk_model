@@ -8,13 +8,13 @@
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}jaw_link"/>
       <axis xyz="0.0 0.0 1.0"/>
-      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0038 0.0"/>
       <limit lower="0.0" upper="0.5" velocity=".4" effort="1000"/>
     </joint>
 
     <link name="${prefix}jaw_link">
       <visual>
-        <origin rpy="0.0 0.0 ${PI}" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 ${PI} ${PI}" xyz="0.0 0.0122768 -0.00015"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/183/tip_183.obj" scale="0.1 0.1 0.1"/>
         </geometry>
@@ -24,7 +24,7 @@
     <joint name="tool_tip" type="fixed">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}tool_tip_link"/>
-      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0123 0.0"/>
+      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0160768 0.0"/>
     </joint>
 
     <link name="${prefix}tool_tip_link"/>

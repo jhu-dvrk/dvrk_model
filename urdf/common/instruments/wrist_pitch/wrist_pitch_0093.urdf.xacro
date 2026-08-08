@@ -14,13 +14,12 @@
 
     <link name="${prefix}wrist_pitch_link">
       <visual>
-        <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.039 -0.013864 0.0"/>
+        <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.027066 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/wrist_pitch/0093/wrist_pitch_0093.obj" scale="0.1 0.1 0.1"/>
         </geometry>
       </visual>
       <!-- Uncomment this block to show wrist_pitch_link frame triad in RViz -->
-      <!--
       <visual>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
@@ -57,7 +56,6 @@
           <color rgba="0.0 0.0 1.0 1.0"/>
         </material>
       </visual>
-      -->
     </link>
   </xacro:macro>
 
