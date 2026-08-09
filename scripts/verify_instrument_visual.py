@@ -25,6 +25,7 @@ import yaml
 
 
 MAX_DIMENSIONS = (0.07, 0.01, 0.01)
+SI_ROLL_MAX_DIMENSIONS = (0.12, 0.02, 0.02)
 ORIGIN_TOLERANCE = 1.0e-6
 TARGET_LINKS = (
     "wrist_pitch_link",
@@ -201,6 +202,32 @@ def format_dimensions(dimensions: Sequence[float]) -> str:
     return " x ".join(f"{value * 100.0:.2f} cm" for value in dimensions)
 
 
+def combined_visual_bounds(
+    root: Path, link_name: str, link: ET.Element
+) -> Tuple[Optional[Bounds], List[str]]:
+    bounds = Bounds()
+    meshes_found = 0
+    errors: List[str] = []
+    for visual in link.findall("visual"):
+        mesh = visual.find("geometry/mesh")
+        if mesh is None:
+            continue
+        try:
+            visual_bounds = transformed_mesh_bounds(root, mesh, visual)
+        except (OSError, ValueError) as exc:
+            errors.append(f"{link_name}: {exc}")
+            continue
+        meshes_found += 1
+        for index in range(3):
+            bounds.minimum[index] = min(
+                bounds.minimum[index], visual_bounds.minimum[index]
+            )
+            bounds.maximum[index] = max(
+                bounds.maximum[index], visual_bounds.maximum[index]
+            )
+    return (bounds if meshes_found else None), errors
+
+
 def check_visuals(
     root: Path, instrument: str, config: Mapping[str, str], xml_text: str
 ) -> InstrumentResult:
@@ -223,28 +250,11 @@ def check_visuals(
             result.errors.append(f"missing visual link {link_name}")
             continue
 
-        bounds = Bounds()
-        meshes_found = 0
-        for visual in link.findall("visual"):
-            mesh = visual.find("geometry/mesh")
-            if mesh is None:
-                continue
-            try:
-                visual_bounds = transformed_mesh_bounds(root, mesh, visual)
-            except (OSError, ValueError) as exc:
-                result.errors.append(f"{link_name}: {exc}")
-                continue
-            meshes_found += 1
-            for index in range(3):
-                bounds.minimum[index] = min(
-                    bounds.minimum[index], visual_bounds.minimum[index]
-                )
-                bounds.maximum[index] = max(
-                    bounds.maximum[index], visual_bounds.maximum[index]
-                )
+        bounds, errors = combined_visual_bounds(root, link_name, link)
+        result.errors.extend(errors)
 
         # Some instruments intentionally use an empty jaw_link frame.
-        if not meshes_found:
+        if bounds is None:
             continue
 
         dimensions = bounds.dimensions
@@ -260,6 +270,31 @@ def check_visuals(
                 f"{link_name}: visual bounds do not contain the link origin; "
                 f"bounds are {format_dimensions(dimensions)}"
             )
+
+    # Si roll meshes are OBJ assets and can be oversized by a 10x scale typo,
+    # which makes downstream wrist/jaw geometry look hidden inside the shaft.
+    if str(config.get("housing", "")) == "Si":
+        roll_link_name = "PSM1_roll_link"
+        roll_link = links.get(roll_link_name)
+        if roll_link is None:
+            result.errors.append(f"missing visual link {roll_link_name}")
+        else:
+            roll_bounds, roll_errors = combined_visual_bounds(root, roll_link_name, roll_link)
+            result.errors.extend(roll_errors)
+            if roll_bounds is not None:
+                roll_dimensions = roll_bounds.dimensions
+                if not dimensions_fit_envelope(roll_dimensions):
+                    if not all(
+                        actual <= expected + ORIGIN_TOLERANCE
+                        for actual, expected in zip(
+                            sorted(roll_dimensions, reverse=True), SI_ROLL_MAX_DIMENSIONS
+                        )
+                    ):
+                        result.errors.append(
+                            f"{roll_link_name}: visual bounds {format_dimensions(roll_dimensions)} "
+                            f"look oversized for Si roll; expected <= 12.00 cm x 2.00 cm x 2.00 cm. "
+                            "This often hides the wrist inside the shaft."
+                        )
     return result
 
 
