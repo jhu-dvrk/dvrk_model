@@ -124,3 +124,26 @@ All instruments in `instruments.yaml`:
 ```bash
 python3 scripts/verify_instrument_tf.py --all
 ```
+
+## Instrument DH and Asset Validation
+
+The DH checker compares every instrument in `instruments.yaml` with the
+corresponding JSON in the `dvrk_config` ROS package.  It also checks the
+instrument Xacro stages and referenced meshes:
+
+```bash
+python3 scripts/verify_instrument_dh.py
+python3 scripts/verify_instrument_dh.py -v
+python3 scripts/verify_instrument_dh.py --instrument 420006
+```
+
+When checking an uninstalled source tree, provide the tool directory
+explicitly:
+
+```bash
+python3 scripts/verify_instrument_dh.py \
+  --dvrk-tool-dir /path/to/sawIntuitiveResearchKit/share/tool
+```
+
+Missing production tip meshes are reported as warnings when the configured
+instrument uses the repository's intentional `tip_placeholder` model.

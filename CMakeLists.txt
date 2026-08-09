@@ -25,6 +25,7 @@ else (catkin_FOUND)
 
     install (PROGRAMS
       scripts/verify_instrument_tf.py
+      scripts/verify_instrument_dh.py
       DESTINATION share/${PROJECT_NAME}/scripts)
 
     install (PROGRAMS
