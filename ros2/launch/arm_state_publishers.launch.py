@@ -200,7 +200,7 @@ def generate_launch_description():
         executable = 'jaw_zero_publisher.py',
         name = 'jaw_zero_publisher',
         parameters = [{'use_sim_time': use_sim_time,
-                       'instrument': instrument}],
+                       'instrument': ParameterValue(instrument, value_type = str)}],
         output = "both",
     )
 

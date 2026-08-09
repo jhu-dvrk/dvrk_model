@@ -8,10 +8,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_rope_BaseColor.png
-map_Ns S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_rope_Roughness.png
-map_refl S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_rope_Metallic.png
-map_Bump -bm 1.000000 S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_rope_Normal.png
 
 newmtl tool_wrist
 Ka 1.000000 1.000000 1.000000
@@ -21,6 +17,3 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Ns S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_wrist_Roughness.png
-map_refl S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_wrist_Metallic.png
-map_Bump -bm 1.000000 S:/Server 2/client_work/Medical/Assets/Models/tools/Clip_applier/Ready to sent/Final map/PBR Metaric Roughness/tool_wrist_Normal.png

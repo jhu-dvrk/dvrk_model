@@ -8,7 +8,8 @@ from sensor_msgs.msg import JointState
 class JawZeroPublisher(Node):
     def __init__(self):
         super().__init__('jaw_zero_publisher')
-        instrument = self.declare_parameter('instrument', '').value.strip()
+        # Launch parameter typing can vary (string vs int); normalize to string.
+        instrument = str(self.declare_parameter('instrument', '').value).strip()
         self._active = instrument.endswith('183') or instrument.endswith('184')
 
         if not self._active:

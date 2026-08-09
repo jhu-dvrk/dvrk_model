@@ -9,28 +9,21 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Ns Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_base_Roughness.png
-map_refl Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_base_Metallic.png
-map_Bump -bm 1.000000 Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_base_Normal.png
 
 newmtl tool_rope.002
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Kd 0.040000 0.040000 0.040000
+Ks 0.300000 0.300000 0.300000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_BaseColor.png
-map_Ns Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_Roughness.png
-map_refl Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_Metallic.png
-map_Bump -bm 1.000000 Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_Normal.png
 
 newmtl tool_shaft
-Ns 360.000000
 Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
+Kd 0.200000 0.200000 0.200000
+Ks 0.400000 0.400000 0.400000
 Ke 0.000000 0.000000 0.000000
 Ni 1.500000
 d 1.000000
 illum 2
-map_Kd S:/Server 2/client_work/Medical/Assets/Models/Tools/cadiere_foreceps/fbx
