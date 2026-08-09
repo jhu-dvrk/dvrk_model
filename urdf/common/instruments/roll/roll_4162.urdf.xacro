@@ -18,6 +18,7 @@
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/roll/4162/roll_4162.dae"/>
         </geometry>
+        <material name="roll_4162_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
       </visual>
       <collision>
         <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 -0.0091"/>

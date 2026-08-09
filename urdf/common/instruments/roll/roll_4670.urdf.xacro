@@ -18,24 +18,12 @@
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj"/>
         </geometry>
-        <material name=""><color rgba="0.79216 0.81961 0.93333 1"/></material>
+        <material name="roll_4670_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
       </visual>
       <collision>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.216"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj"/>
-        </geometry>
-      </collision>
-      <visual>
-        <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 -0.0091"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670_connector.stl"/>
-        </geometry>
-      </visual>
-      <collision>
-        <origin rpy="0.0 0.0 1.5708" xyz="0.0 0.0 -0.0091"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670_connector.stl"/>
         </geometry>
       </collision>
     </link>
