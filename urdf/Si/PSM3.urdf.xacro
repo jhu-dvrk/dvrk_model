@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="PSM3" xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:arg name="instrument" default="420006"/>
+  <xacro:arg name="is_virtual" default="false"/>
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:property name="parent_link" value="$(arg parent_link_)"/>
 
@@ -13,6 +14,7 @@
                   parent_link="${parent_link}"/>
 
   <xacro:instrument prefix="PSM3_"
-                        instrument="$(arg instrument)"/>
+                        instrument="$(arg instrument)"
+                        is_virtual="$(arg is_virtual)"/>
 
 </robot>

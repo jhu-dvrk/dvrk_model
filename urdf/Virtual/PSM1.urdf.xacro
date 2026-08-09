@@ -13,6 +13,7 @@
       adaptor_offset — instrument_base offset from the RCM
   -->
   <xacro:arg name="instrument"   default="420006"/>
+  <xacro:arg name="is_virtual"  default="true"/>
   <xacro:arg name="parent_link_" default="world"/>
   <xacro:arg name="adaptor_offset" default="0.4826"/>
   <xacro:arg name="rcm_xyz"      default="0 0 0"/>
@@ -33,6 +34,7 @@
 
   <!-- Instrument: identical to Classic/Si — attaches at PSM_adaptor_link -->
   <xacro:instrument prefix="PSM1_"
-                        instrument="$(arg instrument)"/>
+                        instrument="$(arg instrument)"
+                        is_virtual="$(arg is_virtual)"/>
 
 </robot>

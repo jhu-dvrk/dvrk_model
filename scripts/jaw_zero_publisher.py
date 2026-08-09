@@ -13,7 +13,7 @@ class JawZeroPublisher(Node):
 
         if not self._active:
             self.get_logger().info(
-                'Jaw zero clamp disabled for instrument "%s"', instrument)
+                f'Jaw zero clamp disabled for instrument "{instrument}"')
             return
 
         self._publisher = self.create_publisher(JointState, 'jaw_zero_js', 10)
@@ -23,7 +23,7 @@ class JawZeroPublisher(Node):
             self._handle_jaw_state,
             10)
         self.get_logger().info(
-            'Jaw zero clamp enabled for instrument "%s"', instrument)
+            f'Jaw zero clamp enabled for instrument "{instrument}"')
 
     def _handle_jaw_state(self, message: JointState) -> None:
         clamped = JointState()
