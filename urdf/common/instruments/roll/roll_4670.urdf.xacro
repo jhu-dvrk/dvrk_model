@@ -14,16 +14,16 @@
 
     <link name="${prefix}roll_link">
       <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.216"/>
+        <origin rpy="-${PI_2} 0.0 0.0" xyz="0.0 0.0 0.0734"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj" scale="0.1 0.1 0.1"/>
         </geometry>
         <material name="roll_4670_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
       </visual>
       <collision>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.216"/>
+        <origin rpy="-${PI_2} 0.0 0.0" xyz="0.0 0.0 0.0734"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj" scale="0.1 0.1 0.1"/>
         </geometry>
       </collision>
     </link>

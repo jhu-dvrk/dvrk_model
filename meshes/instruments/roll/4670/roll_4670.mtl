@@ -1,62 +1,36 @@
-# Blender MTL File: 'psm-not-joined_jack_mix_05.blend'
-# Material Count: 6
+# Blender 5.2.0 LTS MTL File: 'None'
+# www.blender.org
 
-newmtl Shape
-Ns 10.000005
+newmtl tool_base.002
 Ka 1.000000 1.000000 1.000000
-Kd 0.026455 0.026915 0.027210
+Kd 0.800000 0.800000 0.800000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.000000
+Ni 1.500000
 d 1.000000
 illum 2
+map_Ns Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_base_Roughness.png
+map_refl Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_base_Metallic.png
+map_Bump -bm 1.000000 Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_base_Normal.png
 
-newmtl Shape.017
-Ns 10.000005
+newmtl tool_rope.002
 Ka 1.000000 1.000000 1.000000
-Kd 0.062745 0.792157 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.450000
+Ni 1.500000
 d 1.000000
 illum 2
+map_Kd Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_BaseColor.png
+map_Ns Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_Roughness.png
+map_refl Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_Metallic.png
+map_Bump -bm 1.000000 Z:/Medical_Project/1_Intuitive/New Instruments/large_needle_driver/large needle driver/Final maps/PBR metaric roughness/tool_rope_Normal.png
 
-newmtl Shape.019
-Ns 10.000005
+newmtl tool_shaft
+Ns 360.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.080342 0.081132 0.083531
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 3
-
-newmtl Shape.037
-Ns 90.000007
-Ka 1.000000 1.000000 1.000000
-Kd 0.898039 0.917647 0.929412
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.000000
-d 1.000000
-illum 3
-
-newmtl Shape.039
-Ns 10.000005
-Ka 1.000000 1.000000 1.000000
-Kd 0.000000 0.501961 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
+Ni 1.500000
 d 1.000000
 illum 2
-
-newmtl Shape.040
-Ns 10.000005
-Ka 1.000000 1.000000 1.000000
-Kd 1.000000 0.501961 0.250980
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 2
+map_Kd S:/Server 2/client_work/Medical/Assets/Models/Tools/cadiere_foreceps/fbx
