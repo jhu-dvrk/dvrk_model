@@ -1,4 +1,5 @@
 import os
+import tempfile
 import yaml
 from ament_index_python.packages import get_package_share_directory
 
@@ -153,8 +154,24 @@ def create_robot_description(context):
     robot_description_config = xacro.process_file(xacro_file,
                                                   mappings = mappings)
     robot_description_xml = robot_description_config.toxml()
-    return [SetLaunchConfiguration(name = 'robot_description',
-                                   value = robot_description_xml)]
+    # joint_state_publisher (ROS 2 Jazzy package) initializes from a file path
+    # argument, or waits for /robot_description topic. Provide a temp URDF file
+    # to avoid startup races and topic-mode waiting.
+    tmp = tempfile.NamedTemporaryFile(
+        mode='w',
+        suffix='_' + full_name + '.urdf',
+        prefix='dvrk_model_',
+        delete=False,
+    )
+    with tmp:
+        tmp.write(robot_description_xml)
+
+    return [
+        SetLaunchConfiguration(name = 'robot_description',
+                               value = robot_description_xml),
+        SetLaunchConfiguration(name = 'robot_description_file',
+                               value = tmp.name)
+    ]
 
 
 create_robot_description_arg = OpaqueFunction(function = create_robot_description)
@@ -177,10 +194,15 @@ def generate_launch_description():
         executable = 'joint_state_publisher',
         name = 'joint_state_publisher',
         condition = UnlessCondition(direct_control),
+        arguments = [LaunchConfiguration('robot_description_file')],
         parameters = [{'use_sim_time': use_sim_time,
+                       'use_robot_description_topic': False,
+                       'robot_description': launch_ros.descriptions.ParameterValue(
+                           LaunchConfiguration('robot_description'),
+                           value_type = str),
                        'source_list': ArmSourceListSubstitution(arm, instrument),
                        'rate': rate}],
-        output = "both",
+        output = "log",
     )
 
     joint_state_publisher_gui_node = Node(
@@ -189,9 +211,14 @@ def generate_launch_description():
         executable = 'joint_state_publisher_gui',
         name = 'joint_state_publisher',
         condition = IfCondition(direct_control),
+        arguments = [LaunchConfiguration('robot_description_file')],
         parameters = [{'use_sim_time': use_sim_time,
+                       'use_robot_description_topic': False,
+                       'robot_description': launch_ros.descriptions.ParameterValue(
+                           LaunchConfiguration('robot_description'),
+                           value_type = str),
                        'rate': rate}],
-        output = "both",
+        output = "log",
     )
 
     jaw_zero_publisher_node = Node(
@@ -201,7 +228,7 @@ def generate_launch_description():
         name = 'jaw_zero_publisher',
         parameters = [{'use_sim_time': use_sim_time,
                        'instrument': ParameterValue(instrument, value_type = str)}],
-        output = "both",
+        output = "log",
     )
 
     robot_state_publisher_node = Node(
@@ -213,8 +240,9 @@ def generate_launch_description():
                        'robot_description': launch_ros.descriptions.ParameterValue(
                            LaunchConfiguration('robot_description'),
                            value_type = str),
+                       'publish_robot_description': True,
                        'publish_frequency': rate}],
-        output = "both",
+        output = "log",
     )
 
     ld = LaunchDescription([

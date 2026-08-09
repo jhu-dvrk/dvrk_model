@@ -4,6 +4,7 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch_ros.actions import Node
 from launch.actions import IncludeLaunchDescription
+from launch.actions import SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
 from launch.conditions import IfCondition
@@ -56,7 +57,7 @@ def generate_launch_description():
         executable = 'dvrk_system',
         condition = IfCondition(simulated),
         arguments = ['-j', system_json],
-        output = 'both',
+        output = 'log',
     )
 
     publisher_nodes = IncludeLaunchDescription(
@@ -82,10 +83,11 @@ def generate_launch_description():
         executable = 'rviz2',
         name = 'rviz2',
         arguments = ['-d', rviz_config_file],
-        output = 'both',
+        output = 'log',
     )
 
     ld = LaunchDescription([
+        SetEnvironmentVariable('RMW_FASTRTPS_USE_SHM', '0'),
         DeclareLaunchArgument('arm'),
         DeclareLaunchArgument(
             'generation',
