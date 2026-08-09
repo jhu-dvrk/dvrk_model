@@ -14,13 +14,13 @@
 
     <link name="${prefix}wrist_yaw_link">
       <visual>
-        <origin rpy="${PI} 0.0 ${PI}" xyz="-0.000236 -0.02775 0.0"/>
+        <origin rpy="${PI} 0.0 ${PI}" xyz="0.0 -0.0206 -0.00005065"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/wrist_yaw/0107/wrist_yaw_0107.obj" scale="0.1 0.1 0.1"/>
         </geometry>
       </visual>
       <!-- Uncomment this block to show wrist_yaw_link frame triad in RViz -->
-      <!--
+      
       <visual>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
@@ -57,7 +57,7 @@
           <color rgba="0.0 0.0 1.0 1.0"/>
         </material>
       </visual>
-      -->
+     
     </link>
   </xacro:macro>
 
