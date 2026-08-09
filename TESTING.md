@@ -147,3 +147,15 @@ python3 scripts/verify_instrument_dh.py \
 
 Missing production tip meshes are reported as warnings when the configured
 instrument uses the repository's intentional `tip_placeholder` model.
+
+## Instrument Visual Validation
+
+The visual checker expands the selected PSM Xacro, applies mesh scales and
+visual origins, and validates wrist/jaw mesh bounds against a sorted
+7 cm x 1 cm x 1 cm envelope. Wrist visual bounds must also contain their link
+reference origin:
+
+~~~~bash
+python3 scripts/verify_instrument_visual.py --instrument 420006
+python3 scripts/verify_instrument_visual.py --all
+~~~~
