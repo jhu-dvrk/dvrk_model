@@ -20,7 +20,7 @@
         </geometry>
       </visual>
       <!-- Uncomment this block to show wrist_pitch_link frame triad in RViz -->
-      <!--
+<!--       
       <visual>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
