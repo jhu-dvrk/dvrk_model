@@ -19,43 +19,7 @@
           <mesh filename="package://dvrk_model/meshes/instruments/wrist_pitch/0093/wrist_pitch_0093.obj" scale="0.1 0.1 0.1"/>
         </geometry>
       </visual>
-      <!-- Uncomment this block to show wrist_pitch_link frame triad in RViz -->
-      <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-        <geometry>
-          <sphere radius="0.0008"/>
-        </geometry>
-        <material name="wrist_pitch_frame_origin">
-          <color rgba="0.0 0.7 1.0 1.0"/>
-        </material>
-      </visual>
-      <visual>
-        <origin rpy="0.0 ${PI_2} 0.0" xyz="0.003 0.0 0.0"/>
-        <geometry>
-          <cylinder length="0.006" radius="0.00035"/>
-        </geometry>
-        <material name="wrist_pitch_frame_x">
-          <color rgba="1.0 0.0 0.0 1.0"/>
-        </material>
-      </visual>
-      <visual>
-        <origin rpy="-${PI_2} 0.0 0.0" xyz="0.0 0.003 0.0"/>
-        <geometry>
-          <cylinder length="0.006" radius="0.00035"/>
-        </geometry>
-        <material name="wrist_pitch_frame_y">
-          <color rgba="0.0 1.0 0.0 1.0"/>
-        </material>
-      </visual>
-      <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.003"/>
-        <geometry>
-          <cylinder length="0.006" radius="0.00035"/>
-        </geometry>
-        <material name="wrist_pitch_frame_z">
-          <color rgba="0.0 0.0 1.0 1.0"/>
-        </material>
-      </visual>
+
     </link>
   </xacro:macro>
 

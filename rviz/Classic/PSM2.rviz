@@ -45,7 +45,7 @@ Visualization Manager:
       Marker Scale: 0.20000000298023224
       Name: TF
       Show Arrows: true
-      Show Axes: true
+      Show Axes: false
       Show Names: true
       Tree:
         {}

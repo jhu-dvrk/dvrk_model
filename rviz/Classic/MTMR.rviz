@@ -39,7 +39,7 @@ Visualization Manager:
       Marker Scale: 0.2
       Name: TF
       Show Arrows: true
-      Show Axes: true
+      Show Axes: false
       Show Names: true
       Tree:
         {}

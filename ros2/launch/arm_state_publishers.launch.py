@@ -69,25 +69,18 @@ class ArmSourceListSubstitution(Substitution):
     """Generate source list for a given arm"""
 
     def __init__(self,
-                 arm: LaunchConfiguration,
-                 instrument: LaunchConfiguration):
+                 arm: LaunchConfiguration):
         super().__init__()
         self.__arm = arm
-        self.__instrument = instrument
 
     def describe(self) -> Text:
         return 'ArmSourceList({})'.format(self.__arm.describe())
 
     def perform(self, context: LaunchContext) -> Text:
         arm = self.__arm.perform(context)
-        instrument = self.__instrument.perform(context).strip()
         source_list = ['measured_js']
         if arm.startswith('PSM'):
-            # Cautery tools 183/184 have no jaw actuation; ignore jaw topic.
-            if instrument.endswith('183') or instrument.endswith('184'):
-                source_list.append('jaw_zero_js')
-            else:
-                source_list.append('jaw/measured_js')
+            source_list.append('jaw/measured_js')
         elif arm.startswith('MTM'):
             source_list.append('gripper/measured_js')
 
@@ -200,7 +193,7 @@ def generate_launch_description():
                        'robot_description': launch_ros.descriptions.ParameterValue(
                            LaunchConfiguration('robot_description'),
                            value_type = str),
-                       'source_list': ArmSourceListSubstitution(arm, instrument),
+                       'source_list': ArmSourceListSubstitution(arm),
                        'rate': rate}],
         output = "log",
     )
@@ -218,16 +211,6 @@ def generate_launch_description():
                            LaunchConfiguration('robot_description'),
                            value_type = str),
                        'rate': rate}],
-        output = "log",
-    )
-
-    jaw_zero_publisher_node = Node(
-        package = 'dvrk_model',
-        namespace = arm,
-        executable = 'jaw_zero_publisher.py',
-        name = 'jaw_zero_publisher',
-        parameters = [{'use_sim_time': use_sim_time,
-                       'instrument': ParameterValue(instrument, value_type = str)}],
         output = "log",
     )
 
@@ -266,7 +249,6 @@ def generate_launch_description():
         create_robot_description_arg,
         joint_state_publisher_node,
         joint_state_publisher_gui_node,
-        jaw_zero_publisher_node,
         robot_state_publisher_node,
     ])
 
