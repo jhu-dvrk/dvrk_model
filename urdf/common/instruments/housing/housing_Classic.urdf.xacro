@@ -14,13 +14,13 @@
       <visual>
         <origin rpy="0.0 0.0 ${PI_2}" xyz="0.0 0.0 0.0904"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/housing_Classic.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/housing_Classic_body.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="0.0 0.0 ${PI_2}" xyz="0.0 0.0 0.0904"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/housing_Classic.dae"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/housing_Classic_body.dae"/>
         </geometry>
       </collision>
     </link>
