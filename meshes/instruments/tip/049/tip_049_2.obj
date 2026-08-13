@@ -1,6 +1,6 @@
 # Blender 5.2.0 LTS
 # www.blender.org
-mtllib tips_049_2obj.mtl
+mtllib tip_049_2.mtl
 o tool_Jaw_Right
 v -0.002584 0.145454 0.000174
 v -0.002584 0.145450 0.012836
