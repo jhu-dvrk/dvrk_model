@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_psm_virtual" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
+
+  <!--
+    Virtual PSM base — simulator variant.
+
+    Replaces the full parallelogram arm with 3 massless, geometry-free
+    joints all located at the fixed RCM (trocar) frame.
+    This is sufficient for simulation when only the instrument matters.
+
+    DOF layout (same joint names as full model — ROS-compatible):
+      Joint 1: yaw   (revolute -y, ±π/2, matching PSM Si)
+      Joint 2: pitch (revolute -x, ±π/4, matching PSM Si)
+      Joint 3: insertion   (prismatic z,  0–0.240 m)
+
+    All three links share a small but non-zero inertia so physics
+    simulators (Gazebo, Isaac) can integrate without singularities.
+
+    Output: ends at ${prefix}adaptor_link — identical to the
+    full Classic/Si base so instrument attaches without modification.
+
+    Parameters:
+      prefix    — arm instance prefix, e.g. "PSM1_"
+      adaptor_offset — instrument_base offset from RCM (Classic: 0.4318,
+                       Si: 0.4826)
+      parent_link — link to attach the RCM to (typically "world")
+      rcm_xyz   — trocar position in parent_link frame (default: origin)
+      rcm_rpy   — trocar orientation in parent_link frame (default: identity)
+                  rpy convention: roll-pitch-yaw (radians)
+  -->
+
+  <xacro:property name="virtual_mass"  value="0.001"/>  <!-- 1 gram -->
+  <xacro:property name="virtual_inertia" value="1e-6"/>  <!-- 1e-6 kg·m² -->
+
+  <xacro:macro name="base_virtual"
+               params="prefix
+                       parent_link:='world'
+                       adaptor_offset:='0.4826'
+                       rcm_xyz:='0 0 0'
+                       rcm_rpy:='0 0 0'">
+
+    <!-- Fixed anchor: parent_link -> RCM frame (trocar location) -->
+    <joint name="${prefix}RCM_fixed" type="fixed">
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}RCM_link"/>
+      <origin xyz="${rcm_xyz}" rpy="${rcm_rpy}"/>
+    </joint>
+
+    <!-- RCM frame link — not a DOF, just a named coordinate frame -->
+    <link name="${prefix}RCM_link">
+      <xacro:rcm_visual/>
+    </link>
+
+    <!-- ── Joint 1: yaw ───────────────────────────────────────────── -->
+    <!--   Revolute about -y at the RCM. Models the yaw of the PSM arm (matching PSM Si). -->
+    <joint name="yaw" type="revolute">
+      <parent link="${prefix}RCM_link"/>
+      <child  link="${prefix}RCM_yaw_link"/>
+      <axis xyz="0.0 -1.0 0.0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <limit lower="-1.5707963" upper="1.5707963"
+             effort="50" velocity="1.0"/>
+    </joint>
+
+    <link name="${prefix}RCM_yaw_link">
+      <inertial>
+        <mass value="${virtual_mass}"/>
+        <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
+                                          iyy="${virtual_inertia}" iyz="0"
+                                                                    izz="${virtual_inertia}"/>
+      </inertial>
+    </link>
+
+    <!-- ── Joint 2: pitch ─────────────────────────────────────────── -->
+    <!--   Revolute about -x at the RCM. Models the pitch of the PSM arm (matching PSM Si). -->
+    <joint name="pitch" type="revolute">
+      <parent link="${prefix}RCM_yaw_link"/>
+      <child  link="${prefix}RCM_pitch_link"/>
+      <axis xyz="-1.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <limit lower="-0.7853982" upper="0.7853982"
+             effort="50" velocity="1.0"/>
+    </joint>
+
+    <link name="${prefix}RCM_pitch_link">
+      <inertial>
+        <mass value="${virtual_mass}"/>
+        <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
+                                          iyy="${virtual_inertia}" iyz="0"
+                                                                    izz="${virtual_inertia}"/>
+      </inertial>
+    </link>
+
+    <!-- ── Joint 3: insertion ───────────────────────────────────────────── -->
+    <!--   Prismatic along the PSM DH insertion axis. Models insertion depth. -->
+    <!--   adaptor_link serves as the insertion child AND the handoff link -->
+    <!--   to instrument (same name as in Classic/Si base).            -->
+    <joint name="insertion" type="prismatic">
+      <parent link="${prefix}RCM_pitch_link"/>
+      <child  link="${prefix}adaptor_link"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin xyz="0.0 0.0 ${adaptor_offset}" rpy="${PI} 0.0 ${-PI_2}"/>
+      <limit lower="0.0" upper="0.240"
+             effort="50" velocity="0.4"/>
+    </joint>
+
+    <!--
+      adaptor_link — identical name to Classic/Si boundary link.
+      instrument attaches here; no change needed for any generation.
+    -->
+    <link name="${prefix}adaptor_link">
+      <inertial>
+        <mass value="${virtual_mass}"/>
+        <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
+                                          iyy="${virtual_inertia}" iyz="0"
+                                                                    izz="${virtual_inertia}"/>
+      </inertial>
+    </link>
+
+  </xacro:macro>
+
+</robot>

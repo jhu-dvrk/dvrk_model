@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_instrument_tip_172" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
+  <xacro:macro name="tip_172" params="prefix">
+
+    <joint name="jaw" type="revolute">
+      <parent link="${prefix}wrist_yaw_link"/>
+      <child link="${prefix}jaw_link"/>
+      <axis xyz="1.0 0.0 0.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <limit lower="-0.349066" upper="1.39626" velocity=".4" effort="1000"/>
+    </joint>
+
+    <link name="${prefix}jaw_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0 0 0"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="jaw_1" type="revolute">
+      <parent link="${prefix}wrist_yaw_link"/>
+      <child link="${prefix}jaw_1_link"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+      <mimic joint="jaw" multiplier="0.5"/>
+    </joint>
+
+    <link name="${prefix}jaw_1_link">
+      <visual>
+        <origin xyz="0.0 0.021 0.0" rpy="0 ${PI} ${PI}"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_1.obj"
+                scale="0.1 0.1 0.1"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="jaw_2" type="revolute">
+      <parent link="${prefix}wrist_yaw_link"/>
+      <child link="${prefix}jaw_2_link"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+      <mimic joint="jaw" multiplier="-0.5"/>
+    </joint>
+
+    <link name="${prefix}jaw_2_link">
+      <visual>
+        <origin xyz="0.0 0.021 0.0" rpy="0 ${PI} ${PI}"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/tip/172/tip_172_2.obj"
+                scale="0.1 0.1 0.1"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="tool_tip" type="fixed">
+      <parent link="${prefix}wrist_yaw_link"/>
+      <child link="${prefix}tool_tip_link"/>
+      <origin xyz="0.0 0.021 0.0" rpy="0 ${PI_2} ${PI_2}"/>
+    </joint>
+
+    <link name="${prefix}tool_tip_link"/>
+
+  </xacro:macro>
+
+</robot>

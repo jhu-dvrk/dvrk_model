@@ -42,7 +42,7 @@
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
             </joint>
-            <joint name="wrist_pitch">
+            <joint name="tip_pitch">
                 <command_interface name="position">
                 <param name="min">-1.5707</param>
                 <param name="max"> 1.5707</param>
@@ -50,14 +50,14 @@
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
             </joint>
-            <joint name="wrist_yaw">
+            <joint name="tip_yaw">
                 <command_interface name="position">
                 <param name="min">-1.5707</param>
                 <param name="max"> 1.5707</param>
                 </command_interface>
                 <state_interface name="position"/>
                 <state_interface name="velocity"/>
-            </joint>          
+            </joint>
         </ros2_control>
     </xacro:macro>
     </robot>

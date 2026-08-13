@@ -80,7 +80,8 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "generation",
-            description="Generation of dVRK(Classic/Si)",
+            choices=["Classic", "Si", "Virtual"],
+            description="Generation of dVRK (Classic/Si/Virtual)",
         )
     )
     controllers_file = LaunchConfiguration("controllers_file")
@@ -96,7 +97,7 @@ def generate_launch_description():
         [
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
-            PathJoinSubstitution([FindPackageShare(description_package), 'urdf',generation ,'']),
+            PathJoinSubstitution([FindPackageShare(description_package), 'urdf', generation ,'']),
             arm_name,
             '.urdf.xacro'
         ]),value_type=str)

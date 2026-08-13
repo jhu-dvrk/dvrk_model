@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot name="PSM_420006_zero_check" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!--
+    Zero-check view for Si 420006 meshes. (for debugging purposes)
+    All visuals are attached to one fixed link with identity transforms.
+    Use this to validate raw mesh frame consistency before joint calibration.
+  -->
+  <xacro:arg name="parent_link_" default="world"/>
+  <xacro:property name="parent_link" value="$(arg parent_link_)"/>
+
+  <link name="${parent_link}"/>
+
+  <joint name="zero_check_fixed" type="fixed">
+    <parent link="${parent_link}"/>
+    <child link="assembly_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <link name="assembly_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://dvrk_model/meshes/instruments/wrist_pitch/0091/wrist_pitch_0091.obj"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://dvrk_model/meshes/instruments/wrist_yaw/0091/wrist_yaw_0091.obj"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_1.obj"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_2.obj"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

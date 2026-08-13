@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_instrument_roll_4162" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
+  <xacro:macro name="roll_4162" params="prefix">
+    <joint name="roll" type="revolute">
+      <parent link="${prefix}adaptor_link"/>
+      <child link="${prefix}roll_link"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.4162"/>
+      <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
+    </joint>
+
+    <link name="${prefix}roll_link">
+      <visual>
+        <origin rpy="-${PI_2} 0.0 ${PI_2}" xyz="0.0 0.0 0.02975"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj" scale="0.1 0.1 0.1"/>
+        </geometry>
+        <material name="roll_4670_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
+      </visual>
+      <collision>
+        <origin rpy="-${PI_2} 0.0 0.0" xyz="0.0 0.0 0.02975"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj" scale="0.1 0.1 0.1"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+</robot>

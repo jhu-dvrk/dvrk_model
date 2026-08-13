@@ -95,7 +95,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        ECM_mounting_point:
+        SUJ_ECM_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -172,7 +172,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_mounting_point:
+        SUJ_PSM1_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -181,7 +181,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM1_tool_parent:
+        PSM1_adaptor:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -275,7 +275,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM2_mounting_point:
+        SUJ_PSM2_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -284,7 +284,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM2_tool_parent:
+        PSM2_adaptor:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -378,7 +378,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM3_mounting_point:
+        SUJ_PSM3_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -387,7 +387,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM3_tool_parent:
+        PSM3_adaptor:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -448,7 +448,7 @@ Visualization Manager:
       Enabled: true
       Links:
         All Links Enabled: true
-        ECM_mounting_point:
+        SUJ_ECM_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -456,104 +456,104 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        PSM1_mounting_point:
+        SUJ_PSM1_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        PSM2_mounting_point:
+        SUJ_PSM2_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        PSM3_mounting_point:
+        SUJ_PSM3_RCM:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        SUJ_ECM_link_0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        SUJ_ECM_link_1:
+        SUJ_ECM_L0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_ECM_link_2:
+        SUJ_ECM_L1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_ECM_link_3:
+        SUJ_ECM_L2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM1_link_0:
+        SUJ_ECM_L3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM1_link_1:
+        SUJ_PSM1_L0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM1_link_2:
+        SUJ_PSM1_L1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM1_link_3:
+        SUJ_PSM1_L2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM2_link_0:
+        SUJ_PSM1_L3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM2_link_1:
+        SUJ_PSM2_L0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM2_link_2:
+        SUJ_PSM2_L1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM2_link_3:
+        SUJ_PSM2_L2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM3_link_0:
+        SUJ_PSM2_L3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM3_link_1:
+        SUJ_PSM3_L0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM3_link_2:
+        SUJ_PSM3_L1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM3_link_3:
+        SUJ_PSM3_L2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_PSM3_link_4:
+        SUJ_PSM3_L3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        SUJ_column:
+        SUJ_PSM3_L4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        SUJ_cart:
           Alpha: 1
           Show Axes: false
           Show Trail: false

@@ -23,6 +23,12 @@ else (catkin_FOUND)
       endif ()
     endforeach ()
 
+    install (PROGRAMS
+      scripts/verify_instrument_tf.py
+      scripts/verify_instrument_dh.py
+      scripts/verify_instrument_visual.py
+      DESTINATION share/${PROJECT_NAME}/scripts)
+
     ament_package ()
   endif (ament_cmake_FOUND)
 

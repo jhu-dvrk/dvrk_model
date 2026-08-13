@@ -5,23 +5,23 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
   <link name="world"/>
-  <joint name="fixed" type="fixed">
+  <joint name="SUJ_fixed_cart" type="fixed">
     <origin
-        xyz="0 0 0.167458"
-        rpy="0 0 0" />
+        xyz="0.0 0.0 0.167458"
+        rpy="0.0 0.0 0.0" />
     <parent link="world"/>
-    <child link="base_link"/>
+    <child link="SUJ_cart"/>
   </joint>
 
   <link
-      name="base_link">
+      name="SUJ_cart">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/base_link.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_cart.stl" />
       </geometry>
       <material
           name="">
@@ -31,23 +31,23 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/base_link.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_cart.stl" />
       </geometry>
     </collision>
   </link>
   <link
-      name="suj_psm2_L0">
+      name="SUJ_PSM2_L0">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L0.stl" />
       </geometry>
       <material
           name="">
@@ -57,11 +57,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L0.stl" />
       </geometry>
     </collision>
   </link>
@@ -72,11 +72,11 @@
         xyz="0.1912 -0.101599999999999 0.761099999999999"
         rpy="-${PI} 0.0 ${PI}" />
     <parent
-        link="base_link" />
+        link="SUJ_cart" />
     <child
-        link="suj_psm2_L0" />
+        link="SUJ_PSM2_L0" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
     <limit
         lower="-0.3798"
         upper="0.8425"
@@ -84,14 +84,14 @@
         velocity="50" />
   </joint>
   <link
-      name="suj_psm2_L1">
+      name="SUJ_PSM2_L1">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L1.stl" />
       </geometry>
       <material
           name="">
@@ -101,11 +101,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L1.stl" />
       </geometry>
     </collision>
   </link>
@@ -113,24 +113,24 @@
       name="SUJ_PSM2_J1"
       type="continuous">
     <origin
-        xyz="0 0 0"
-        rpy="0 0 ${PI/2}" />
+        xyz="0.0 0.0 0.0"
+        rpy="0.0 0.0 ${PI/2}" />
     <parent
-        link="suj_psm2_L0" />
+        link="SUJ_PSM2_L0" />
     <child
-        link="suj_psm2_L1" />
+        link="SUJ_PSM2_L1" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
   </joint>
   <link
-      name="suj_psm2_L2">
+      name="SUJ_PSM2_L2">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
       <material
           name="">
@@ -140,11 +140,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
     </collision>
   </link>
@@ -152,24 +152,24 @@
       name="SUJ_PSM2_J2"
       type="continuous">
     <origin
-        xyz="0 0.4318 -0.17125"
+        xyz="0.0 0.4318 -0.17125"
         rpy="${PI} 0.0 ${PI/2}" />
     <parent
-        link="suj_psm2_L1" />
+        link="SUJ_PSM2_L1" />
     <child
-        link="suj_psm2_L2" />
+        link="SUJ_PSM2_L2" />
     <axis
-        xyz="0 0 1" />
+        xyz="0.0 0.0 1" />
   </joint>
   <link
-      name="suj_psm2_L3">
+      name="SUJ_PSM2_L3">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM12_L3.stl" />
       </geometry>
       <material
           name="">
@@ -179,11 +179,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM12_L3.stl" />
       </geometry>
     </collision>
   </link>
@@ -191,24 +191,24 @@
       name="SUJ_PSM2_J3"
       type="continuous">
     <origin
-        xyz="0.4318 0 0"
-        rpy="-${PI/2} 0 -${PI/2}" />
+        xyz="0.4318 0.0 0.0"
+        rpy="-${PI/2} 0.0 -${PI/2}" />
     <parent
-        link="suj_psm2_L2" />
+        link="SUJ_PSM2_L2" />
     <child
-        link="suj_psm2_L3" />
+        link="SUJ_PSM2_L3" />
     <axis
-        xyz="0 -1 0" />
+        xyz="0.0 -1 0.0" />
   </joint>
   <link
-      name="suj_psm2_L4">
+      name="SUJ_PSM2_L4">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl" />
       </geometry>
       <material
           name="">
@@ -218,11 +218,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm2_L4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl" />
       </geometry>
     </collision>
   </link>
@@ -230,38 +230,38 @@
       name="SUJ_PSM2_J4"
       type="continuous">
     <origin
-        xyz="0 0.0730499999999998 0.0609999999999997"
+        xyz="0.0 0.0730499999999998 0.0609999999999997"
         rpy="${PI/2} 0.0 ${PI}" />
     <parent
-        link="suj_psm2_L3" />
+        link="SUJ_PSM2_L3" />
     <child
-        link="suj_psm2_L4" />
+        link="SUJ_PSM2_L4" />
     <axis
-        xyz="0 1 0" />
+        xyz="0.0 1 0.0" />
   </joint>
 
-  <link name="PSM2_mounting_point"/>
+  <link name="SUJ_PSM2_RCM"/>
   <joint
-      name="PSM2_RCM"
+      name="SUJ_PSM2_fixed_RCM"
       type="fixed">
     <origin
         xyz="0.0 0.8343 -0.04984"
         rpy="0.0 ${PI} 0.0" />
     <parent
-        link="suj_psm2_L4" />
+        link="SUJ_PSM2_L4" />
     <child
-        link="PSM2_mounting_point" />
+        link="SUJ_PSM2_RCM" />
   </joint>
 
   <link
-      name="suj_ecm_L0">
+      name="SUJ_ECM_L0">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L0.stl" />
       </geometry>
       <material
           name="">
@@ -271,11 +271,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L0.stl" />
       </geometry>
     </collision>
   </link>
@@ -283,14 +283,14 @@
       name="SUJ_ECM_J0"
       type="prismatic">
     <origin
-        xyz="0 0.0896 0.7611"
-        rpy="${PI} 0 -${PI/2}" />
+        xyz="0.0 0.0896 0.7611"
+        rpy="${PI} 0.0 -${PI/2}" />
     <parent
-        link="base_link" />
+        link="SUJ_cart" />
     <child
-        link="suj_ecm_L0" />
+        link="SUJ_ECM_L0" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
     <limit
         lower="-0.3798"
         upper="0.8425"
@@ -298,14 +298,14 @@
         velocity="50" />
   </joint>
   <link
-      name="suj_ecm_L1">
+      name="SUJ_ECM_L1">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L1.stl" />
       </geometry>
       <material
           name="">
@@ -315,11 +315,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L1.stl" />
       </geometry>
     </collision>
   </link>
@@ -327,24 +327,24 @@
       name="SUJ_ECM_J1"
       type="continuous">
     <origin
-        xyz="0 0 0"
-        rpy="${PI} 0 ${PI/2}" />
+        xyz="0.0 0.0 0.0"
+        rpy="${PI} 0.0 ${PI/2}" />
     <parent
-        link="suj_ecm_L0" />
+        link="SUJ_ECM_L0" />
     <child
-        link="suj_ecm_L1" />
+        link="SUJ_ECM_L1" />
     <axis
-        xyz="0 0 1" />
+        xyz="0.0 0.0 1" />
   </joint>
   <link
-      name="suj_ecm_L2">
+      name="SUJ_ECM_L2">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
       <material
           name="">
@@ -354,11 +354,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
     </collision>
   </link>
@@ -366,24 +366,24 @@
       name="SUJ_ECM_J2"
       type="continuous">
     <origin
-        xyz="0 -0.4318 0.17125"
-        rpy="${PI} 0 -${PI/2}" />
+        xyz="0.0 -0.4318 0.17125"
+        rpy="${PI} 0.0 -${PI/2}" />
     <parent
-        link="suj_ecm_L1" />
+        link="SUJ_ECM_L1" />
     <child
-        link="suj_ecm_L2" />
+        link="SUJ_ECM_L2" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
   </joint>
   <link
-      name="suj_ecm_L3">
+      name="SUJ_ECM_L3">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_L3.stl" />
       </geometry>
       <material
           name="">
@@ -393,11 +393,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_ecm_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_ECM_L3.stl" />
       </geometry>
     </collision>
   </link>
@@ -408,35 +408,35 @@
         xyz="0.4318 0.0 0.052"
         rpy="${PI/2} 0.0 0.0" />
     <parent
-        link="suj_ecm_L2" />
+        link="SUJ_ECM_L2" />
     <child
-        link="suj_ecm_L3" />
+        link="SUJ_ECM_L3" />
     <axis
-        xyz="0 -1 0" />
+        xyz="0.0 -1 0.0" />
   </joint>
 
-  <link name="ECM_mounting_point"/>
+  <link name="SUJ_ECM_RCM"/>
   <joint
-      name="ECM_RCM"
+      name="SUJ_ECM_fixed_RCM"
       type="fixed">
     <origin
         xyz="-0.45788 0.55053 0.0"
         rpy="${PI/2} ${PI} -${PI/4}" />
     <parent
-        link="suj_ecm_L3" />
+        link="SUJ_ECM_L3" />
     <child
-        link="ECM_mounting_point" />
+        link="SUJ_ECM_RCM" />
   </joint>
 
   <link
-      name="suj_psm1_L0">
+      name="SUJ_PSM1_L0">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L0.stl" />
       </geometry>
       <material
           name="">
@@ -446,11 +446,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L0.stl" />
       </geometry>
     </collision>
   </link>
@@ -459,13 +459,13 @@
       type="prismatic">
     <origin
         xyz="-0.191199999999999 -0.1016 0.761099999999999"
-        rpy="${PI} 0 0" />
+        rpy="${PI} 0.0 0.0" />
     <parent
-        link="base_link" />
+        link="SUJ_cart" />
     <child
-        link="suj_psm1_L0" />
+        link="SUJ_PSM1_L0" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
     <limit
         lower="-0.3798"
         upper="0.8425"
@@ -473,14 +473,14 @@
         velocity="50" />
   </joint>
   <link
-      name="suj_psm1_L1">
+      name="SUJ_PSM1_L1">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L1.stl" />
       </geometry>
       <material
           name="">
@@ -490,11 +490,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L1.stl" />
       </geometry>
     </collision>
   </link>
@@ -502,24 +502,24 @@
       name="SUJ_PSM1_J1"
       type="continuous">
     <origin
-        xyz="0 0 0"
-        rpy="0 0 ${PI/2}" />
+        xyz="0.0 0.0 0.0"
+        rpy="0.0 0.0 ${PI/2}" />
     <parent
-        link="suj_psm1_L0" />
+        link="SUJ_PSM1_L0" />
     <child
-        link="suj_psm1_L1" />
+        link="SUJ_PSM1_L1" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
   </joint>
   <link
-      name="suj_psm1_L2">
+      name="SUJ_PSM1_L2">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
       <material
           name="">
@@ -529,11 +529,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
     </collision>
   </link>
@@ -541,24 +541,24 @@
       name="SUJ_PSM1_J2"
       type="continuous">
     <origin
-        xyz="0 0.4318 -0.171250000000001"
-        rpy="${PI} 0 ${PI/2}" />
+        xyz="0.0 0.4318 -0.171250000000001"
+        rpy="${PI} 0.0 ${PI/2}" />
     <parent
-        link="suj_psm1_L1" />
+        link="SUJ_PSM1_L1" />
     <child
-        link="suj_psm1_L2" />
+        link="SUJ_PSM1_L2" />
     <axis
-        xyz="0 0 1" />
+        xyz="0.0 0.0 1" />
   </joint>
   <link
-      name="suj_psm1_L3">
+      name="SUJ_PSM1_L3">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM12_L3.stl" />
       </geometry>
       <material
           name="">
@@ -568,11 +568,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM12_L3.stl" />
       </geometry>
     </collision>
   </link>
@@ -580,24 +580,24 @@
       name="SUJ_PSM1_J3"
       type="continuous">
     <origin
-        xyz="0.4318 0 0"
-        rpy="${PI/2} 0 -${PI/2}" />
+        xyz="0.4318 0.0 0.0"
+        rpy="${PI/2} 0.0 -${PI/2}" />
     <parent
-        link="suj_psm1_L2" />
+        link="SUJ_PSM1_L2" />
     <child
-        link="suj_psm1_L3" />
+        link="SUJ_PSM1_L3" />
     <axis
-        xyz="0 1 0" />
+        xyz="0.0 1 0.0" />
   </joint>
   <link
-      name="suj_psm1_L4">
+      name="SUJ_PSM1_L4">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl" />
       </geometry>
       <material
           name="">
@@ -607,11 +607,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm1_L4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl" />
       </geometry>
     </collision>
   </link>
@@ -619,38 +619,38 @@
       name="SUJ_PSM1_J4"
       type="continuous">
     <origin
-        xyz="0 -0.0730499999999998 -0.0609999999999999"
-        rpy="-${PI/2} 0 ${PI}" />
+        xyz="0.0 -0.0730499999999998 -0.0609999999999999"
+        rpy="-${PI/2} 0.0 ${PI}" />
     <parent
-        link="suj_psm1_L3" />
+        link="SUJ_PSM1_L3" />
     <child
-        link="suj_psm1_L4" />
+        link="SUJ_PSM1_L4" />
     <axis
-        xyz="0 1 0" />
+        xyz="0.0 1 0.0" />
   </joint>
 
-  <link name="PSM1_mounting_point"/>
+  <link name="SUJ_PSM1_RCM"/>
   <joint
-      name="PSM1_RCM"
+      name="SUJ_PSM1_fixed_RCM"
       type="fixed">
     <origin
         xyz="0.0 0.8343 -0.04984"
         rpy="0.0 ${PI} 0.0" />
     <parent
-        link="suj_psm1_L4" />
+        link="SUJ_PSM1_L4" />
     <child
-        link="PSM1_mounting_point" />
+        link="SUJ_PSM1_RCM" />
   </joint>
 
   <link
-      name="suj_psm3_L0">
+      name="SUJ_PSM3_L0">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_L0.stl" />
       </geometry>
       <material
           name="">
@@ -660,11 +660,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L0.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_L0.stl" />
       </geometry>
     </collision>
   </link>
@@ -672,14 +672,14 @@
       name="SUJ_PSM3_J0"
       type="prismatic">
     <origin
-        xyz="0 0.0895999999999999 0.3813"
-        rpy="${PI} 0 -${PI/2}" />
+        xyz="0.0 0.0895999999999999 0.3813"
+        rpy="${PI} 0.0 -${PI/2}" />
     <parent
-        link="base_link" />
+        link="SUJ_cart" />
     <child
-        link="suj_psm3_L0" />
+        link="SUJ_PSM3_L0" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
     <limit
         lower="0"
         upper="1.2223"
@@ -687,14 +687,14 @@
         velocity="50" />
   </joint>
   <link
-      name="suj_psm3_L1">
+      name="SUJ_PSM3_L1">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_L1.stl" />
       </geometry>
       <material
           name="">
@@ -704,11 +704,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L1.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_L1.stl" />
       </geometry>
     </collision>
   </link>
@@ -716,24 +716,24 @@
       name="SUJ_PSM3_J1"
       type="continuous">
     <origin
-        xyz="0 0 0"
-        rpy="${PI} 0 ${PI/2}" />
+        xyz="0.0 0.0 0.0"
+        rpy="${PI} 0.0 ${PI/2}" />
     <parent
-        link="suj_psm3_L0" />
+        link="SUJ_PSM3_L0" />
     <child
-        link="suj_psm3_L1" />
+        link="SUJ_PSM3_L1" />
     <axis
-        xyz="0 0 1" />
+        xyz="0.0 0.0 1" />
   </joint>
   <link
-      name="suj_psm3_L2">
+      name="SUJ_PSM3_L2">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
       <material
           name="">
@@ -743,11 +743,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="${PI} 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L2.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_L2.stl" />
       </geometry>
     </collision>
   </link>
@@ -755,24 +755,24 @@
       name="SUJ_PSM3_J2"
       type="continuous">
     <origin
-        xyz="0 -0.5842 -0.000249999999999639"
-        rpy="${PI} 0 -${PI/2}" />
+        xyz="0.0 -0.5842 -0.000249999999999639"
+        rpy="${PI} 0.0 -${PI/2}" />
     <parent
-        link="suj_psm3_L1" />
+        link="SUJ_PSM3_L1" />
     <child
-        link="suj_psm3_L2" />
+        link="SUJ_PSM3_L2" />
     <axis
-        xyz="0 0 -1" />
+        xyz="0.0 0.0 -1" />
   </joint>
   <link
-      name="suj_psm3_L3">
+      name="SUJ_PSM3_L3">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_L3.stl" />
       </geometry>
       <material
           name="">
@@ -782,11 +782,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L3.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_PSM3_L3.stl" />
       </geometry>
     </collision>
   </link>
@@ -794,24 +794,24 @@
       name="SUJ_PSM3_J3"
       type="continuous">
     <origin
-        xyz="0.431800000000001 0 0"
-        rpy="${PI/2} 0 -${PI/2}" />
+        xyz="0.431800000000001 0.0 0.0"
+        rpy="${PI/2} 0.0 -${PI/2}" />
     <parent
-        link="suj_psm3_L2" />
+        link="SUJ_PSM3_L2" />
     <child
-        link="suj_psm3_L3" />
+        link="SUJ_PSM3_L3" />
     <axis
-        xyz="0 -1 0" />
+        xyz="0.0 -1 0.0" />
   </joint>
   <link
-      name="suj_psm3_L4">
+      name="SUJ_PSM3_L4">
     <visual>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl" />
       </geometry>
       <material
           name="">
@@ -821,11 +821,11 @@
     </visual>
     <collision>
       <origin
-          xyz="0 0 0"
-          rpy="0 0 0" />
+          xyz="0.0 0.0 0.0"
+          rpy="0.0 0.0 0.0" />
       <geometry>
         <mesh
-            filename="package://dvrk_model/meshes/Classic/SUJ/suj_psm3_L4.stl" />
+            filename="package://dvrk_model/meshes/SUJ/Classic/SUJ_Classic_PSM_L4.stl" />
       </geometry>
     </collision>
   </link>
@@ -833,27 +833,27 @@
       name="SUJ_PSM3_J4"
       type="continuous">
     <origin
-        xyz="0 -0.199949999999999 -0.061"
-        rpy="-${PI/2} 0 0" />
+        xyz="0.0 -0.199949999999999 -0.061"
+        rpy="-${PI/2} 0.0 0.0" />
     <parent
-        link="suj_psm3_L3" />
+        link="SUJ_PSM3_L3" />
     <child
-        link="suj_psm3_L4" />
+        link="SUJ_PSM3_L4" />
     <axis
-        xyz="0 1 0" />
+        xyz="0.0 1 0.0" />
   </joint>
 
-  <link name="PSM3_mounting_point"/>
+  <link name="SUJ_PSM3_RCM"/>
   <joint
-      name="PSM3_RCM"
+      name="SUJ_PSM3_fixed_RCM"
       type="fixed">
     <origin
         xyz="0.0 0.8343 -0.04984"
         rpy="0.0 ${PI} 0.0" />
     <parent
-        link="suj_psm3_L4" />
+        link="SUJ_PSM3_L4" />
     <child
-        link="PSM3_mounting_point" />
+        link="SUJ_PSM3_RCM" />
   </joint>
 
 </robot>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_instrument_tip_184" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
+  <xacro:macro name="tip_184" params="prefix">
+    <joint name="jaw" type="fixed">
+      <parent link="${prefix}wrist_yaw_link"/>
+      <child link="${prefix}jaw_link"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    </joint>
+
+    <link name="${prefix}jaw_link">
+      <visual>
+        <origin rpy="0.0 0.0 ${PI}" xyz="0.0 0.0160768 -0.00015"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/tip/184/tip_184.obj" scale="0.1 0.1 0.1"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name="tool_tip" type="fixed">
+      <parent link="${prefix}wrist_yaw_link"/>
+      <child link="${prefix}tool_tip_link"/>
+      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0160768 0.0"/>
+    </joint>
+
+    <link name="${prefix}tool_tip_link"/>
+  </xacro:macro>
+
+</robot>

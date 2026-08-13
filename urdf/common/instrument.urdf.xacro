@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_instrument" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--
+    Instrument macro — generation-agnostic.
+
+    Attaches to ${prefix}adaptor_link from the PSM base.
+
+    Instruments are assembled from four physical stages:
+      1. housing
+      2. roll
+      3. wrist_pitch + wrist_yaw
+      4. tip
+
+    Parameters:
+      prefix        — arm instance prefix, e.g. "PSM1_"
+      instrument    — last 6 digits of instrument model number (e.g. "420006")
+      is_virtual    — omit the instrument housing visual/collision for virtual PSMs
+  -->
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/housing/housing_Classic.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/housing/housing_Si.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4162.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4670.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0091.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0093.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0100.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0107.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0112.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0091.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0093.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0100.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0112.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_006.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_049.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_093.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_172.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_179.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_183.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_184.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_194.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_309.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_327.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_placeholder.urdf.xacro"/>
+
+  <xacro:property name="instrument_table"
+                  value="${xacro.load_yaml('$(find dvrk_model)/urdf/common/instruments/instruments.yaml')['instruments']}"/>
+
+  <xacro:macro name="instrument_model"
+               params="prefix housing roll wrist_pitch wrist_yaw tip is_virtual:=false">
+    <xacro:if value="${str(housing) == 'Classic' and str(is_virtual).lower() not in ['true', '1']}">
+      <xacro:housing_Classic prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(housing) == 'Si' and str(is_virtual).lower() not in ['true', '1']}">
+      <xacro:housing_Si prefix="${prefix}"/>
+    </xacro:if>
+
+    <xacro:if value="${str(roll) == '4162'}">
+      <xacro:roll_4162 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(roll) == '4670'}">
+      <xacro:roll_4670 prefix="${prefix}"/>
+    </xacro:if>
+
+    <xacro:if value="${str(wrist_pitch) == '0091' or str(wrist_pitch) == '91'}">
+      <xacro:wrist_pitch_0091 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_pitch) == '0093' or str(wrist_pitch) == '93'}">
+      <xacro:wrist_pitch_0093 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_pitch) == '0100' or str(wrist_pitch) == '100'}">
+      <xacro:wrist_pitch_0100 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_pitch) == '0107' or str(wrist_pitch) == '107'}">
+      <xacro:wrist_pitch_0107 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_pitch) == '0112' or str(wrist_pitch) == '112'}">
+      <xacro:wrist_pitch_0112 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0091' or str(wrist_yaw) == '91'}">
+      <xacro:wrist_yaw_0091 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0093' or str(wrist_yaw) == '93'}">
+      <xacro:wrist_yaw_0093 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0100' or str(wrist_yaw) == '100'}">
+      <xacro:wrist_yaw_0100 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0107' or str(wrist_yaw) == '107'}">
+      <xacro:wrist_yaw_0107 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(wrist_yaw) == '0112' or str(wrist_yaw) == '112'}">
+      <xacro:wrist_yaw_0112 prefix="${prefix}"/>
+    </xacro:if>
+
+    <xacro:if value="${str(tip) == '006' or str(tip) == '6'}">
+      <xacro:tip_006 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '049' or str(tip) == '49'}">
+      <xacro:tip_049 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '093' or str(tip) == '93'}">
+      <xacro:tip_093 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '172'}">
+      <xacro:tip_172 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '179'}">
+      <xacro:tip_179 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '183'}">
+      <xacro:tip_183 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '184'}">
+      <xacro:tip_184 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '194'}">
+      <xacro:tip_194 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '309'}">
+      <xacro:tip_309 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) == '327'}">
+      <xacro:tip_327 prefix="${prefix}"/>
+    </xacro:if>
+    <xacro:if value="${str(tip) not in ['006', '6', 
+                                        '049', '49', 
+                                        '093', '93', 
+                                        '172',
+                                        '179',
+                                        '183',
+                                        '184',
+                                        '194',
+                                        '309',
+                                        '327']}">
+      <xacro:tip_placeholder prefix="${prefix}"/>
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:macro name="instrument"
+               params="prefix instrument is_virtual:=false">
+    <xacro:property name="model" value="${instrument_table[str(instrument)]}"/>
+    <xacro:if value="${xacro.message('Using instrument ' + str(instrument) + ': ' + str(model['name'])) or False}"/>
+    <xacro:instrument_model prefix="${prefix}"
+                            housing="${model['housing']}"
+                            roll="${model['roll']}"
+                            wrist_pitch="${model['wrist_pitch']}"
+                            wrist_yaw="${model['wrist_yaw']}"
+                            tip="${model['tip']}"
+                            is_virtual="${is_virtual}"/>
+
+  </xacro:macro>
+
+</robot>

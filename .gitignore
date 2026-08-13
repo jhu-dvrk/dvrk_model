@@ -1,17 +1,41 @@
-*/lib/*
-*/build/*
+# Build / install folders
+build/
+install/
+log/
+lib/
+bin/
+
+# ROS generated files
 */msg_gen/*
 */srv_gen/*
-*/bin/*
+
+# Temp files
 *~
+*.pyc
+*.log
+*.html
+
+# ROS controller manager generated files
 controller_manager_msgs/src/controller_manager_msgs/msg/*
 controller_manager_msgs/src/controller_manager_msgs/srv/*
 controller_manager_msgs/src/controller_manager_msgs/__init__.py
-*.pyc
+
+# IDE / editor
 qtcreator-build-*
 CMakeLists.txt.user
-cisstLog.txt
 .ropeproject
-*.log
-*.html
+
+# Logs
+cisstLog.txt
+
+# Config
 config
+cisstLog-2026-06-26-14-35-07.txt
+cisstLog-2026-06-26-14-35-44.txt
+cisstLog-2026-06-26-14-40-17.txt
+cisstLog-2026-06-26-14-40-54.txt
+cisstLog-2026-06-26-14-41-12.txt
+cisstLog-2026-06-26-14-41-35.txt
+cisstLog-2026-06-26-14-42-22.txt
+cisstLog-2026-06-26-14-46-50.txt
+cisstLog-2026-06-26-15-35-26.txt

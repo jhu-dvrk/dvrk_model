@@ -1,0 +1,316 @@
+instruments:
+  '400001':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '001'
+    name: Potts Scissors
+  '400003':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '003'
+    name: Small Clip Applier
+  '400006':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '006'
+    name: Large Needle Driver
+  '400007':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '007'
+    name: Round Tip Scissors
+  '400033':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '033'
+    name: Black Diamond Micro Forceps
+  '400035':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '035'
+    name: Round Tooth Forceps
+  '400036':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '036'
+    name: DeBakey Forceps
+  '400048':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '048'
+    name: Long Tip Forceps
+  '400049':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '049'
+    name: Cadiere Forceps
+  '400093':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '093'
+    name: Prograsp Forceps
+  '400127':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '127'
+    name: Bowel Grasper
+  '400172':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '172'
+    name: Maryland Bipolar Forceps
+  '400178':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '178'
+    name: Curved Scissors
+  '400179':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '179'
+    name: Monopolar Curved Scissors
+  '400181':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '181'
+    name: Resano Forceps
+  '400183':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '183'
+    name: Permanent Cautery Hook
+  '400184':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '184'
+    name: Permanent Cautery Spatula
+  '400194':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0112'
+    wrist_yaw: '0112'
+    tip: '194'
+    name: Mega Needle Driver
+  '400189':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '189'
+    name: Double Fenestrated Grasper
+  '400205':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '205'
+    name: Fenestrated Bipolar Forceps
+  '400207':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '207'
+    name: Tenaculum Forceps
+  '400208':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '208'
+    name: Thoracic Grasper
+  '400230':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '230'
+    name: Large Clip Applier
+  '400296':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '296'
+    name: Large Suturecut Needle Driver
+  '400309':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0100'
+    wrist_yaw: '0100'
+    tip: '309'
+    name: Mega Suturecut Needle Driver
+  '420001':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '001'
+    name: Potts Scissors
+  '420006':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '006'
+    name: Large Needle Driver
+  '420007':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '007'
+    name: Round Tip Scissors
+  '420033':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '033'
+    name: Black Diamond Micro Forceps
+  '420036':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '036'
+    name: DeBakey Forceps
+  '420048':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '048'
+    name: Long Tip Forceps
+  '420049':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '049'
+    name: Cadiere Forceps
+  '420093':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '093'
+    name: Prograsp Forceps
+  '420172':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '172'
+    name: Maryland Bipolar Forceps
+  '420178':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '178'
+    name: Curved Scissors
+  '420179':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '179'
+    name: Monopolar Curved Scissors
+  '420181':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '181'
+    name: Resano Forceps
+  '420183':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '183'
+    name: Permanent Cautery Hook
+  '420184':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0093'
+    wrist_yaw: '0093'
+    tip: '184'
+    name: Permanent Cautery Spatula
+  '420194':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0112'
+    wrist_yaw: '0112'
+    tip: '194'
+    name: Mega Needle Driver
+  '420205':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '205'
+    name: Fenestrated Bipolar Forceps
+  '420230':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '230'
+    name: Large Clip Applier
+  '420296':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: '296'
+    name: Large Suturecut Needle Driver
+  '420309':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0100'
+    wrist_yaw: '0100'
+    tip: '309'
+    name: Mega Suturecut Needle Driver
+  '420327':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '327'
+    name: Medium-large Clip Applier

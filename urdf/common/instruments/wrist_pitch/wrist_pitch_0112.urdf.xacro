@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_instrument_wrist_pitch_0112" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
+  <xacro:macro name="wrist_pitch_0112" params="prefix">
+    <joint name="wrist_pitch" type="revolute">
+      <parent link="${prefix}roll_link"/>
+      <child link="${prefix}wrist_pitch_link"/>
+      <axis xyz="0.0 0.0 1"/>
+      <origin rpy="-${PI_2} -${PI_2} 0.0" xyz="0.0 0.0 0.0"/>
+      <limit lower="-1.2217" upper="1.2217" velocity=".4" effort="1000"/>
+    </joint>
+
+    <link name="${prefix}wrist_pitch_link">
+      <visual>
+        <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.02375 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/wrist_pitch/0112/wrist_pitch_0112.obj" scale="0.1 0.1 0.1"/>
+        </geometry>
+      </visual>
+
+    </link>
+  </xacro:macro>
+
+</robot>

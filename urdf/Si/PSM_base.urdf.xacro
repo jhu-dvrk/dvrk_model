@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_psm_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
+
+  <!--
+    Si PSM arm — 3 actuated DOF:
+      Joint 1: yaw    (revolute, yaw)
+      Joint 2: pitch  (revolute, pitch, parallelogram linkage ×3)
+      Joint 3: insertion (prismatic)
+
+    Macro output: ends at ${prefix}adaptor_link.
+    instrument attaches here and owns roll onward.
+
+    Inertial data retained from original Si CAD export.
+  -->
+
+  <xacro:macro name="base"
+               params="prefix parent_link
+                       xyz:='0.0 0.0 0.0'
+                       rpy:='0.0 0.0 0.0'">
+
+    <!-- RCM reference frame (root of the arm when loaded directly) -->
+    <link name="${prefix}RCM_link">
+      <xacro:rcm_visual/>
+    </link>
+
+    <joint name="${prefix}rcm_fixed" type="fixed">
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}RCM_link"/>
+      <origin rpy="${rpy}" xyz="${xyz}"/>
+    </joint>
+
+    <!-- link 0: arm base -->
+    <link name="${prefix}base_link">
+      <inertial>
+        <origin xyz="-0.080771 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <mass value="1.5188"/>
+        <inertia ixx="0.002395"  ixy="-2.6476E-18" ixz="-1.3484E-18"
+                                  iyy="0.0040794"   iyz="4.2598E-10"
+                                                     izz="0.0043778"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_base.stl"/>
+        </geometry>
+        <material name=""><color rgba="0.80000 0.80000 0.80000 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_base.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- fixed joint: RCM_link → base_link -->
+    <joint name="${prefix}base_fixed" type="fixed">
+      <parent link="${prefix}RCM_link"/>
+      <child  link="${prefix}base_link"/>
+      <origin xyz="0.0 -0.84316314 0.0" rpy="0.0 0.0 ${PI_2}"/>
+    </joint>
+
+    <!-- link 1: yaw body -->
+    <link name="${prefix}yaw_link">
+      <inertial>
+        <origin xyz="0.1461 0.090363 -0.024957" rpy="0.0 0.0 0.0"/>
+        <mass value="1.7571"/>
+        <inertia ixx="0.0049404" ixy="-0.0035267" ixz="0.0045945"
+                                  iyy="0.019686"   iyz="0.00070407"
+                                                    izz="0.020795"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_yaw.stl"/>
+        </geometry>
+        <material name=""><color rgba="0.80000 0.80000 0.80000 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_yaw.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- joint 1: yaw -->
+    <joint name="yaw" type="revolute">
+      <origin xyz="0.158 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}base_link"/>
+      <child  link="${prefix}yaw_link"/>
+      <axis xyz="-1.0 0.0 0.0"/>
+      <limit lower="-3.14" upper="3.14" effort="0.0" velocity="0.0"/>
+    </joint>
+
+    <!-- link 2: pitch arm -->
+    <link name="${prefix}pitch_link">
+      <inertial>
+        <origin xyz="0.083895 -0.00073113 -0.028998" rpy="0.0 0.0 0.0"/>
+        <mass value="4.017"/>
+        <inertia ixx="0.012797"  ixy="-0.0002464"  ixz="0.0011164"
+                                  iyy="0.026307"    iyz="8.5164E-05"
+                                                     izz="0.025616"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch.stl"/>
+        </geometry>
+        <material name=""><color rgba="0.80000 0.80000 0.80000 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- joint 2: pitch -->
+    <joint name="pitch" type="revolute">
+      <origin xyz="0.2987 0.0 -0.071222" rpy="0.0 -1.1345 -3.1416"/>
+      <parent link="${prefix}yaw_link"/>
+      <child  link="${prefix}pitch_link"/>
+      <axis xyz="0.0 -1 0.0"/>
+      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+    </joint>
+
+    <!-- link 3: pitch parallelogram arm (mimic pitch) —— child of pitch_2 joint -->
+    <link name="${prefix}pitch_2_link">
+      <inertial>
+        <origin xyz="0.11824 0.0 0.12932" rpy="0.0 0.0 0.0"/>
+        <mass value="2.1982"/>
+        <inertia ixx="0.0076428"  ixy="-2.8207E-19" ixz="-0.0074855"
+                                   iyy="0.032839"    iyz="-1.4256E-19"
+                                                      izz="0.026585"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_3.stl"/>
+        </geometry>
+        <material name=""><color rgba="0.80000 0.80000 0.80000 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_3.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="pitch_2" type="revolute">
+      <origin xyz="0.2032 0.0 0.0" rpy="0.0 -0.90761 -3.1416"/>
+      <parent link="${prefix}pitch_link"/>
+      <child  link="${prefix}pitch_2_link"/>
+      <axis xyz="0.0 1 0.0"/>
+      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+      <mimic joint="pitch" multiplier="-1"/>
+    </joint>
+
+    <!-- link 4: pitch parallelogram distal (mimic pitch) — child of pitch_3 joint -->
+    <link name="${prefix}pitch_3_link">
+      <inertial>
+        <origin xyz="0.041219 0.0 0.13651" rpy="0.0 0.0 0.0"/>
+        <mass value="0.75206"/>
+        <inertia ixx="0.018546"   ixy="3.3933E-09"  ixz="0.00048607"
+                                   iyy="0.018573"    iyz="-1.7077E-08"
+                                                      izz="0.00039277"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_4.stl"/>
+        </geometry>
+        <material name=""><color rgba="0.80000 0.80000 0.80000 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Si/USM/USM_pitch_4.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="pitch_3" type="revolute">
+      <origin xyz="0.35966 0.0 0.16013" rpy="0.0 -0.063963 0.0"/>
+      <parent link="${prefix}pitch_2_link"/>
+      <child  link="${prefix}pitch_3_link"/>
+      <axis xyz="0.0 1 0.0"/>
+      <limit lower="-3.14" upper="3.14" effort="0" velocity="0"/>
+      <mimic joint="pitch" multiplier="1"/>
+    </joint>
+
+    <!--
+      joint 3: insertion (prismatic)
+      The adaptor link is the instrument_base frame from PSM_Si.json.
+      This local transform keeps the adaptor on the insertion/roll axis,
+      0.4826 m from the RCM at zero insertion.
+    -->
+    <joint name="insertion" type="prismatic">
+      <origin xyz="0.11523752 0.0 0.31095531" rpy="${PI} 0.0 ${-PI}"/>
+      <parent link="${prefix}pitch_3_link"/>
+      <child  link="${prefix}adaptor_link"/>
+      <axis xyz="0.0 0.0 1"/>
+      <limit lower="0.0" upper="0.299" velocity="0.4" effort="1000"/>
+    </joint>
+
+    <!--
+      adaptor_link — boundary link; instrument attaches here.
+      No geometry; same name as Classic so instrument is
+      generation-agnostic.
+    -->
+    <link name="${prefix}adaptor_link"/>
+
+  </xacro:macro>
+
+</robot>

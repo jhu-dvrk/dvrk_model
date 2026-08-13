@@ -1,14 +1,20 @@
 <?xml version="1.0" ?>
 <robot name="PSM3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="instrument" default="420006"/>
+  <xacro:arg name="is_virtual" default="false"/>
+  <xacro:arg name="parent_link_" default="world"/>
+  <xacro:property name="parent_link" value="$(arg parent_link_)"/>
 
-  <xacro:property name="tool_name" value="P420006"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Si/PSM_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instrument.urdf.xacro"/>
 
-  <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_base.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/Si/psm_tool.urdf.xacro"/>
+  <link name="${parent_link}"/>
 
-  <link name="world"/>
-  <xacro:psm_base
-      prefix="PSM3_"
-      parent_link="world"/>
-  <xacro:psm_tool tool_name="${tool_name}" prefix="PSM3_" parent_link="PSM3_tool_parent"/>
+  <xacro:base prefix="PSM3_"
+                  parent_link="${parent_link}"/>
+
+  <xacro:instrument prefix="PSM3_"
+                        instrument="$(arg instrument)"
+                        is_virtual="$(arg is_virtual)"/>
+
 </robot>

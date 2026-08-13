@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_ecm_virtual" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/RCM_visual.urdf.xacro"/>
+
+  <!--
+    Virtual ECM base for simulator/visualization use.
+
+    It exposes the same active joint names as the physical ECM models:
+      yaw, pitch, insertion, roll.
+
+    The chain is intentionally geometry-free; the endoscope macro owns the
+    visible tool geometry and attaches at ${prefix}adaptor_link.
+  -->
+
+  <xacro:property name="virtual_mass" value="0.001"/>
+  <xacro:property name="virtual_inertia" value="1e-6"/>
+
+  <xacro:macro name="ecm_base_virtual"
+               params="prefix
+                       parent_link:='world'
+                       adaptor_offset:='0.3829'
+                       rcm_xyz:='0 0 0'
+                       rcm_rpy:='0 0 0'">
+
+    <joint name="${prefix}RCM_fixed" type="fixed">
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}RCM_link"/>
+      <origin xyz="${rcm_xyz}" rpy="${rcm_rpy}"/>
+    </joint>
+    <link name="${prefix}RCM_link">
+      <xacro:rcm_visual/>
+    </link>
+
+    <joint name="yaw" type="revolute">
+      <parent link="${prefix}RCM_link"/>
+      <child  link="${prefix}yaw_link"/>
+      <axis xyz="0.0 -1.0 0.0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <limit lower="-1.5707963" upper="1.5707963" effort="50" velocity="1.0"/>
+    </joint>
+    <link name="${prefix}yaw_link">
+      <inertial>
+        <mass value="${virtual_mass}"/>
+        <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
+                 iyy="${virtual_inertia}" iyz="0"
+                 izz="${virtual_inertia}"/>
+      </inertial>
+    </link>
+
+    <joint name="pitch" type="revolute">
+      <parent link="${prefix}yaw_link"/>
+      <child  link="${prefix}pitch_link"/>
+      <axis xyz="-1.0 0.0 0.0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <limit lower="-0.7853982" upper="0.7853982" effort="50" velocity="1.0"/>
+    </joint>
+    <link name="${prefix}pitch_link">
+      <inertial>
+        <mass value="${virtual_mass}"/>
+        <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
+                 iyy="${virtual_inertia}" iyz="0"
+                 izz="${virtual_inertia}"/>
+      </inertial>
+    </link>
+
+    <joint name="insertion" type="prismatic">
+      <parent link="${prefix}pitch_link"/>
+      <child  link="${prefix}insertion_link"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <origin xyz="0.0 0.0 ${adaptor_offset}" rpy="${PI} 0.0 ${PI_2}"/>
+      <limit lower="0.0" upper="0.299" effort="50" velocity="0.4"/>
+    </joint>
+    <link name="${prefix}insertion_link">
+      <inertial>
+        <mass value="${virtual_mass}"/>
+        <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
+                 iyy="${virtual_inertia}" iyz="0"
+                 izz="${virtual_inertia}"/>
+      </inertial>
+    </link>
+
+    <joint name="roll" type="revolute">
+      <parent link="${prefix}insertion_link"/>
+      <child  link="${prefix}roll_link"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <limit lower="-4.53786" upper="4.53786" effort="50" velocity="1.0"/>
+    </joint>
+    <link name="${prefix}roll_link">
+      <inertial>
+        <mass value="${virtual_mass}"/>
+        <inertia ixx="${virtual_inertia}" ixy="0" ixz="0"
+                 iyy="${virtual_inertia}" iyz="0"
+                 izz="${virtual_inertia}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}adaptor_fixed" type="fixed">
+      <parent link="${prefix}roll_link"/>
+      <child  link="${prefix}adaptor_link"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </joint>
+    <link name="${prefix}adaptor_link"/>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_instrument_housing_classic" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
+  <xacro:macro name="housing_Classic" params="prefix">
+    <joint name="${prefix}housing_fixed" type="fixed">
+      <parent link="${prefix}adaptor_link"/>
+      <child link="${prefix}housing_link"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+    </joint>
+
+    <link name="${prefix}housing_link">
+      <visual>
+        <origin rpy="0.0 0.0 ${PI_2}" xyz="0.0 0.0 0.0904"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/housing_Classic_body.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin rpy="0.0 0.0 ${PI_2}" xyz="0.0 0.0 0.0904"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/instruments/housing/Classic/housing_Classic_body.dae"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+</robot>

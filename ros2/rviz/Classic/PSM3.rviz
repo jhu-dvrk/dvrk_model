@@ -66,36 +66,36 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        PSM3_outer_insertion_link:
+        PSM3_insertion_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM3_outer_pitch_back_link:
+        PSM3_pitch_back_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM3_outer_pitch_bottom_link:
+        PSM3_pitch_bottom_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM3_outer_pitch_front_link:
+        PSM3_pitch_front_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM3_outer_pitch_link:
+        PSM3_pitch_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        PSM3_outer_pitch_top_link:
+        PSM3_pitch_top_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        PSM3_outer_yaw_link:
+        PSM3_yaw_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -166,7 +166,7 @@ Visualization Manager:
       Marker Scale: 0.019999999552965164
       Name: TF
       Show Arrows: true
-      Show Axes: true
+      Show Axes: false
       Show Names: true
       Tree:
         {}

@@ -1,0 +1,661 @@
+<?xml version="1.0"?>
+<robot name="dvrk_si" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="SUJ" params="prefix parent_link xyz rpy">
+        <xacro:if value="${prefix == 'PSM1_' or prefix == 'PSM2_'}">
+            <link
+                name="SUJ_${prefix}L0">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L0.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L0.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J0"
+                type="prismatic">
+                <origin
+                xyz="${xyz}"
+                rpy="${rpy}" />
+                <parent
+                link="${parent_link}" />
+                <child
+                link="SUJ_${prefix}L0" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="0.0"
+                upper="0.512"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L1">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L1.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L1.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J1"
+                type="revolute">
+                <origin
+                xyz="-0.024998 0.0 0.59"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L0" />
+                <child
+                link="SUJ_${prefix}L1" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.141"
+                upper="3.141"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L2">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L2.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L2.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J2"
+                type="revolute">
+                <origin
+                xyz="0.4575 0.0 0.144"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L1" />
+                <child
+                link="SUJ_${prefix}L2" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.141"
+                upper="3.141"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L3">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L3.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM12/SUJ_PSM12_L3.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J3"
+                type="revolute">
+                <origin
+                xyz="0.458 0.0 -0.01875"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L2" />
+                <child
+                link="SUJ_${prefix}L3" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.141"
+                upper="3.141"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link name="SUJ_${prefix}L4"/>
+            <joint
+                name="SUJ_${prefix}fixed_J4"
+                type="fixed">
+                <origin
+                xyz="0.045255 0.0 -0.045255"
+                rpy="0.0 0.7854 0.0" />
+                <parent
+                link="SUJ_${prefix}L3" />
+                <child
+                link="SUJ_${prefix}L4" />
+            </joint>
+            <link name="SUJ_${prefix}RCM"/>
+            <joint
+                name="SUJ_${prefix}fixed_RCM"
+                type="fixed">
+                <origin
+                xyz="0.8343 0.0 0.0"
+                rpy="0.0 0.0 ${-PI / 2.0}" />
+                <parent
+                link="SUJ_${prefix}L4" />
+                <child
+                link="SUJ_${prefix}RCM" />
+            </joint>
+        </xacro:if>
+
+
+        <xacro:if value="${prefix == 'PSM3_'}">
+             <link
+                name="SUJ_${prefix}L0">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L0.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L0.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J0"
+                type="prismatic">
+                <origin
+                xyz="${xyz}"
+                rpy="${rpy}" />
+                <parent
+                link="${parent_link}" />
+                <child
+                link="SUJ_${prefix}L0" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="0.0"
+                upper="0.512"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L1">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L1.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L1.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J1"
+                type="revolute">
+                <origin
+                xyz="-0.024998 0.0 0.513"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L0" />
+                <child
+                link="SUJ_${prefix}L1" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.14"
+                upper="3.14"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L2">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L2.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L2.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J2"
+                type="revolute">
+                <origin
+                xyz="0.3429 0.0 -0.1942"
+                rpy="${PI} 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L1" />
+                <child
+                link="SUJ_${prefix}L2" />
+                <axis
+                xyz="0.0 0.0 -1.0" />
+                <limit
+                lower="-3.14"
+                upper="3.14"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L3">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L3.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L3.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J3"
+                type="revolute">
+                <origin
+                xyz="0.4575 0.0 -0.0722"
+                rpy="${PI} 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L2" />
+                <child
+                link="SUJ_${prefix}L3" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.14"
+                upper="3.14"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L4">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L4.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/PSM/PSM3/SUJ_PSM3_L4.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J4"
+                type="revolute">
+                <origin
+                xyz="0.458 0.0 -0.01875"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L3" />
+                <child
+                link="SUJ_${prefix}L4" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.14"
+                upper="3.14"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link name="SUJ_${prefix}L5"/>
+            <joint
+                name="SUJ_${prefix}fixed_J5"
+                type="fixed">
+                <origin
+                xyz="0.045254 0.0 -0.11671"
+                rpy="0.0 0.2618 0.0" />
+                <parent
+                link="SUJ_${prefix}L4" />
+                <child
+                link="SUJ_${prefix}L5" />
+            </joint>
+            <link name="SUJ_${prefix}RCM"/>
+            <joint
+                name="SUJ_${prefix}fixed_RCM"
+                type="fixed">
+                <origin
+                xyz="0.8343 0.0 0.0"
+                rpy="0.0 0.0 ${-PI / 2.0}" />
+                <parent
+                link="SUJ_${prefix}L5" />
+                <child
+                link="SUJ_${prefix}RCM" />
+            </joint>
+        </xacro:if>
+
+
+
+        <xacro:if value="${prefix == 'ECM_'}">
+            <link
+                name="SUJ_${prefix}L0">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L0.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L0.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J0"
+                type="prismatic">
+                <origin
+                xyz="${xyz}"
+                rpy="${rpy}" />
+                <parent
+                link="${parent_link}" />
+                <child
+                link="SUJ_${prefix}L0" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="0.0"
+                upper="0.512"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L1">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L1.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L1.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J1"
+                type="revolute">
+                <origin
+                xyz="-0.025 0.0 0.5232"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L0" />
+                <child
+                link="SUJ_${prefix}L1" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.14"
+                upper="3.14"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L2">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L2.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L2.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J2"
+                type="revolute">
+                <origin
+                xyz="0.3302 0.0 0.1313"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L1" />
+                <child
+                link="SUJ_${prefix}L2" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.14"
+                upper="3.14"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link
+                name="SUJ_${prefix}L3">
+                <visual>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                    rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L3.stl" />
+                </geometry>
+                <material
+                    name="">
+                    <color
+                    rgba="0.80000 0.80000 0.80000 1.0" />
+                </material>
+                </visual>
+                <collision>
+                <origin
+                    xyz="0.0 0.0 0.0"
+                rpy="0.0 0.0 0.0" />
+                <geometry>
+                    <mesh
+                    filename="package://dvrk_model/meshes/SUJ/Si/ECM/SUJ_ECM_L3.stl" />
+                </geometry>
+                </collision>
+            </link>
+            <joint
+                name="SUJ_${prefix}J3"
+                type="revolute">
+                <origin
+                xyz="0.3302 0.0 0.064"
+                rpy="0.0 0.0 0.0" />
+                <parent
+                link="SUJ_${prefix}L2" />
+                <child
+                link="SUJ_${prefix}L3" />
+                <axis
+                xyz="0.0 0.0 1.0" />
+                <limit
+                lower="-3.14"
+                upper="3.14"
+                effort="0.0"
+                velocity="0.0" />
+            </joint>
+            <link name="SUJ_${prefix}L4"/>
+            <joint
+                name="SUJ_${prefix}fixed_J4"
+                type="fixed">
+                <origin
+                xyz="0.12857 0.0 -0.0109"
+                rpy="0.0 1.2217 0.0" />
+                <parent
+                link="SUJ_${prefix}L3" />
+                <child
+                link="SUJ_${prefix}L4" />
+            </joint>
+            <link name="SUJ_${prefix}RCM"/>
+            <joint
+                name="SUJ_${prefix}fixed_RCM"
+                type="fixed">
+                <origin
+                xyz="0.8343 0.0 0.0"
+                rpy="0.0 0.0 ${-PI / 2.0}" />
+                <parent
+                link="SUJ_${prefix}L4" />
+                <child
+                link="SUJ_${prefix}RCM" />
+            </joint>
+        </xacro:if>
+    </xacro:macro>
+</robot>

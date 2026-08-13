@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_rcm_visual" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Declare the global argument for showing/hiding RCM -->
+  <xacro:arg name="show_rcm" default="true"/>
+
+  <xacro:macro name="rcm_visual" params="prefix:='' parent_link:='RCM_link'">
+    <xacro:if value="$(arg show_rcm)">
+      <!-- A semi-transparent red sphere to visualize the Remote Center of Motion -->
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <sphere radius="0.015"/>
+        </geometry>
+        <material name="RCM_Red">
+          <color rgba="0.8 0.1 0.1 0.6"/>
+        </material>
+      </visual>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

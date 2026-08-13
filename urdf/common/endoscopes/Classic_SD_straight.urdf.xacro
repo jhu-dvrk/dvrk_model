@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="dvrk_endoscope_classic_sd_straight" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
+
+  <!--
+    Classic SD straight endoscope.
+    Attaches to ${prefix}adaptor_link.
+    Provides its own mesh and a fixed tip reference frame.
+  -->
+  <xacro:macro name="endoscope"
+               params="prefix:='ECM_' parent_link:='ECM_adaptor_link'">
+
+    <!-- Endoscope body: fixed to adaptor_link, rotates with roll -->
+    <joint name="endoscope" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <parent link="${parent_link}"/>
+      <child  link="${prefix}endoscope_link"/>
+    </joint>
+    <link name="${prefix}endoscope_link">
+      <visual>
+        <!-- z=0.010 compensates for adaptor_link moving 0.010 m further above RCM -->
+        <origin xyz="0.0 0.0 0.010" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Classic_SD_straight/ECM_tool.stl"/>
+        </geometry>
+        <material name="DaVinciLightGray"><color rgba="0.7 0.7 0.7 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/endoscopes/Classic_SD_straight/ECM_tool.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Fixed transform to endoscope tip reference frame -->
+    <joint name="tip" type="fixed">
+      <origin xyz="0.0 0.0 0.37364" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}endoscope_link"/>
+      <child  link="${prefix}tip_link"/>
+    </joint>
+    <link name="${prefix}tip_link"/>
+
+  </xacro:macro>
+
+</robot>

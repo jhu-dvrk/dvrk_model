@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="tool_name" default="sca"/>
+  <xacro:arg name="parent_link_" default="world"/>
+  <xacro:property name="parent_link" default="$(arg parent_link_)"/>
+
+  <xacro:include filename="$(find dvrk_model)/urdf/Classic/archive/psm_base.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/Classic/archive/psm_tool.urdf.xacro"/>
+
+  <xacro:macro name="psm" params="prefix parent_link xyz rpy">
+    <xacro:psm_base
+        prefix="${prefix}"
+        parent_link="${parent_link}"
+        xyz="${xyz}" rpy="${rpy}"/>
+  </xacro:macro>
+
+  <link name="${parent_link}"/>
+
+</robot>
