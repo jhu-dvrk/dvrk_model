@@ -14,7 +14,7 @@
 
     <link name="${prefix}wrist_pitch_link">
       <visual>
-        <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.027066 0.0 0.0"/>
+        <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.026801 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/wrist_pitch/0093/wrist_pitch_0093.obj" scale="0.1 0.1 0.1"/>
         </geometry>
