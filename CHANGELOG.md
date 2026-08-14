@@ -1,6 +1,16 @@
 Change log
 ==========
 
+2.5.0 (TBD)
+===========
+
+* New features:
+  * Updated instrument models and visuals.
+* Bug fixes:
+  * Updated ROS 2 launch paths for Jazzy and Rolling.
+* Documentation:
+  * Added a disclaimer for Intuitive instrument meshes.
+
 2.4.0 (2026-01-07)
 ==================
 
