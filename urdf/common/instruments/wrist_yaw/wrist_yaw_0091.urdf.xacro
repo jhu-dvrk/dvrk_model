@@ -20,6 +20,13 @@
         </geometry>
       </visual>
 
+      <collision>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.000236"/>
+        <geometry>
+          <cylinder radius="0.005" length="0.010"/>
+        </geometry>
+      </collision>
+
     </link>
   </xacro:macro>
 
