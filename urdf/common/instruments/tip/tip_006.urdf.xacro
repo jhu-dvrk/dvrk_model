@@ -38,7 +38,7 @@
       <collision>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_1.obj"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_1_collision.obj"/>
         </geometry>
       </collision>
     </link>
@@ -62,7 +62,7 @@
       <collision>
         <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_2.obj"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_2_collision.obj"/>
         </geometry>
       </collision>
     </link>

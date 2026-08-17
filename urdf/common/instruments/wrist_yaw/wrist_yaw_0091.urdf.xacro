@@ -19,12 +19,6 @@
           <mesh filename="package://dvrk_model/meshes/instruments/wrist_yaw/0091/wrist_yaw_0091.obj"/>
         </geometry>
       </visual>
-      <collision>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.000236"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/wrist_yaw/0091/wrist_yaw_0091.obj"/>
-        </geometry>
-      </collision>
 
     </link>
   </xacro:macro>
