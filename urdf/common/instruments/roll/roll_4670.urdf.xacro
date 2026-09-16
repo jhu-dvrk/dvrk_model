@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
-  <xacro:macro name="roll_4670" params="prefix">
+  <xacro:macro name="roll_4670" params="prefix add_colors:=false">
     <joint name="roll" type="revolute">
       <parent link="${prefix}adaptor_link"/>
       <child link="${prefix}roll_link"/>
@@ -18,7 +18,10 @@
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj" scale="0.1 0.1 0.1"/>
         </geometry>
-        <material name="roll_4670_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
+        <xacro:if value="${str(add_colors).lower() not in ['true', '1']}">
+          <material name="roll_4670_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
+        </xacro:if>
+        <xacro:instrument_link_color add_colors="${add_colors}" kind="roll"/>
       </visual>
       <collision>
         <origin rpy="-${PI_2} 0.0 0.0" xyz="0.0 0.0 0.02975"/>

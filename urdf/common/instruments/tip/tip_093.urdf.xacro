@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
-  <xacro:macro name="tip_093" params="prefix">
+  <xacro:macro name="tip_093" params="prefix add_colors:=false">
     <!--
       The ProGrasp jaw hinge is offset from wrist_yaw and this offset changes
       as the jaw opens.  URDF mimic joints are affine, so approximate the
@@ -55,6 +55,7 @@
           filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_1.obj"
           scale="0.001 0.001 0.001"/>
       </geometry>
+    <xacro:instrument_link_color add_colors="${add_colors}" kind="tip"/>
     </visual>
   </link>
 
@@ -77,6 +78,7 @@
           filename="package://dvrk_model/meshes/instruments/tip/093/tip_093_2.obj"
           scale="0.001 0.001 0.001"/>
       </geometry>
+    <xacro:instrument_link_color add_colors="${add_colors}" kind="tip"/>
     </visual>
   </link>
 

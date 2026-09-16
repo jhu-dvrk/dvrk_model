@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
 
-  <xacro:macro name="tip_006" params="prefix">
+  <xacro:macro name="tip_006" params="prefix add_colors:=false">
     <joint name="jaw" type="revolute">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}jaw_link"/>
@@ -29,6 +29,7 @@
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_1.obj"/>
         </geometry>
+      <xacro:instrument_link_color add_colors="${add_colors}" kind="tip"/>
       </visual>
     </link>
 
@@ -47,6 +48,7 @@
         <geometry>
           <mesh filename="package://dvrk_model/meshes/instruments/tip/006/tip_006_2.obj"/>
         </geometry>
+      <xacro:instrument_link_color add_colors="${add_colors}" kind="tip"/>
       </visual>
     </link>
 
