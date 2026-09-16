@@ -34,12 +34,7 @@
       <limit lower="0.0" upper="1.0472" velocity=".4" effort="1000"/>
     </joint>
 
-    <link name="${prefix}jaw_link">
-      <visual>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
-        <geometry><box size="0 0 0"/></geometry>
-      </visual>
-    </link>
+    <link name="${prefix}jaw_link"/>
 
   <joint name="jaw_1" type="revolute">
     <!-- Keep the tip hinge axes independent of the jaw-link rotation. -->

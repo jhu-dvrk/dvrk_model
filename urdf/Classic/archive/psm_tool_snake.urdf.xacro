@@ -92,14 +92,7 @@
     </joint>
 
     <!-- link 11-0: Outer open angle virtual -->
-    <link name="${prefix}tool_wrist_snake_ee_link_0">
-      <visual>
-        <origin rpy="0 0 0" xyz="0 0 0.0"/>
-        <geometry>
-          <box size="0 0 0" />
-        </geometry>
-      </visual>
-    </link>
+    <link name="${prefix}tool_wrist_snake_ee_link_0"/>
 
     <!-- joint 11-1: Outer open angle 1  -->
     <joint name="jaw_mimic_1" type="revolute">
