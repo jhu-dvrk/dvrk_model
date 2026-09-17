@@ -31,6 +31,11 @@
         </geometry>
       <xacro:instrument_link_color add_colors="${add_colors}" kind="tip"/>
       </visual>
+      <collision>
+        <!-- Mesh-aligned jaw envelope; it follows jaw_1 directly. -->
+        <origin xyz="0.0000005 0.0036195 0.000469" rpy="0.0 0.0 0.0"/>
+        <geometry><box size="0.004825 0.012065 0.003000"/></geometry>
+      </collision>
     </link>
 
     <joint name="jaw_2" type="revolute">
@@ -50,6 +55,11 @@
         </geometry>
       <xacro:instrument_link_color add_colors="${add_colors}" kind="tip"/>
       </visual>
+      <collision>
+        <!-- Mesh-aligned jaw envelope; it follows jaw_2 directly. -->
+        <origin xyz="-0.0000005 0.0036195 -0.0004945" rpy="0.0 0.0 0.0"/>
+        <geometry><box size="0.004825 0.012065 0.003000"/></geometry>
+      </collision>
     </link>
 
     <joint name="tool_tip" type="fixed">

@@ -20,6 +20,11 @@
         </geometry>
       <xacro:instrument_link_color add_colors="${add_colors}" kind="pitch"/>
       </visual>
+      <collision>
+        <!-- Mesh-aligned bounding box; refine against CAD later. -->
+        <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0042213 -0.00001255 -0.00003155"/>
+        <geometry><box size="0.0062955 0.0145274 0.0063857"/></geometry>
+      </collision>
 
     </link>
   </xacro:macro>

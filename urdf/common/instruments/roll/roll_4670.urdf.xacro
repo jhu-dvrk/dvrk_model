@@ -24,9 +24,10 @@
         <xacro:instrument_link_color add_colors="${add_colors}" kind="roll"/>
       </visual>
       <collision>
-        <origin rpy="-${PI_2} 0.0 0.0" xyz="0.0 0.0 0.02975"/>
+        <!-- Mesh-aligned shaft envelope (the OBJ shaft axis is local Y). -->
+        <origin rpy="${PI} 0.0 0.0" xyz="0.0 0.0 -0.27677977"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj" scale="0.1 0.1 0.1"/>
+          <cylinder radius="0.0043725" length="0.5596247"/>
         </geometry>
       </collision>
     </link>
