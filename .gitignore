@@ -11,7 +11,8 @@ bin/
 
 # Temp files
 *~
-*.pyc
+__pycache__/
+*.py[cod]
 *.log
 *.html
 
