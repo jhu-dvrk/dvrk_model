@@ -34,6 +34,7 @@
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0112.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_006.urdf.xacro"/>
+  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_007.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_049.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_093.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_172.urdf.xacro"/>
@@ -121,6 +122,9 @@
     <xacro:if value="${str(tip) == '006' or str(tip) == '6'}">
       <xacro:tip_006 prefix="${prefix}" add_colors="${add_colors}"/>
     </xacro:if>
+    <xacro:if value="${str(tip) == '007' or str(tip) == '7'}">
+      <xacro:tip_007 prefix="${prefix}" add_colors="${add_colors}"/>
+    </xacro:if>
     <xacro:if value="${str(tip) == '049' or str(tip) == '49'}">
       <xacro:tip_049 prefix="${prefix}" add_colors="${add_colors}"/>
     </xacro:if>
@@ -148,7 +152,8 @@
     <xacro:if value="${str(tip) == '327'}">
       <xacro:tip_327 prefix="${prefix}" add_colors="${add_colors}"/>
     </xacro:if>
-    <xacro:if value="${str(tip) not in ['006', '6', 
+    <xacro:if value="${str(tip) not in ['006', '6',
+                                        '007', '7',
                                         '049', '49', 
                                         '093', '93', 
                                         '172',
