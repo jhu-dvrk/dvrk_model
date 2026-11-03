@@ -85,11 +85,16 @@ Supported instrument model-to-part mappings live in
 
 | Family | Instrument codes | Mesh support | Verified dimensions |
 |--------|------------------|--------------|---------------------|
-| 006 | `400006`, `420006` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0102 m` |
+| 006 | `400006`, `420006` | Classic and Si | wrist yaw offset `A = 0.0091 m` |
 | 049 | `400049`, `420049` | shared 049 mesh | wrist yaw offset `A = 0.0091 m` |
-| 093 | `400093`, `420093` | Classic and Si | wrist yaw offset `A = 0.0107 m`, `tool_tip y = 0.0286 m` |
-| 179 | `400179`, `420179` | Classic and Si | wrist yaw offset `A = 0.0091 m`, `tool_tip y = 0.0155 m` |
+| 093 | `400093`, `420093` | Classic and Si | wrist yaw offset `A = 0.0107 m` |
+| 179 | `400179`, `420179` | Classic and Si | wrist yaw offset `A = 0.0091 m` |
 | Placeholder tips | `400001`, `400003`, `400007`, `400033`, `400035`, `400036`, `400048`, `400127`, `400172`, `400178`, `400181`, `400189`, `400205`, `400207`, `400208`, `400230`, `400296`, `420001`, `420007`, `420033`, `420036`, `420048`, `420172`, `420178`, `420181`, `420205`, `420230`, `420296`, `420327` | 5 mm box placeholders for missing tip meshes | JSON-derived roll and wrist yaw offsets using existing part IDs |
+
+`tool_tip_link` uses the tool JSON `tooltip_offset`: zero local translation
+and RPY `(0, pi/2, pi/2)`. It attaches to the final wrist-yaw frame for standard
+tips. For `093`, it attaches after the `jaw_axis` prismatic joint, so it follows
+the moving jaw hinge (7.7 mm at zero jaw opening and 5.5 mm at 60 degrees).
 
 Shared roll dimensions remain generation-specific in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro):
 
@@ -158,11 +163,17 @@ There is also an optional `simulated` argument (default: `True`).
 - `simulated:=True` → starts the `dvrk_robot dvrk_system` node with a simulated configuration
 - `simulated:=False` → only visualization (assumes system node is running elsewhere)
 
-There is also an optional `instrument` argument for PSM arms.
+There is also an optional `instrument` argument for PSM arms. When provided, it must be a full six-digit model ID.
 
 - `instrument:=420006` → explicit Si 006 selection
 - `instrument:=400006` → explicit Classic 006 selection
-- `instrument:=006` → shorthand; resolves to `420006` for `generation:=Si` or `generation:=Virtual`, `400006` for `generation:=Classic`
+
+For single-arm kinematic simulation, the selected instrument configures both the URDF and `dvrk_system`.
+The launch file passes a per-arm `--tool` argument using the existing full-model
+selector (for example, `PSM1=:400007[1]`). It uses the installed system file
+and creates no temporary system or arm configurations. Revision 1 preserves
+the standard, non-geared 420006 default. This requires a `dvrk_robot` and
+`sawIntuitiveResearchKit` build supporting `--tool` and `arm_overrides`.
 
 If `instrument` is omitted, `arm.launch.py` selects by generation:
 
@@ -178,7 +189,6 @@ For Si 420006, default mesh paths in URDF/Xacro use the current OBJ files
 
 ```bash
 ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si instrument:=420006
-ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si instrument:=006
 ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Classic instrument:=420006
 ros2 launch dvrk_model arm.launch.py arm:=MTMR generation:=Classic simulated:=True
 ros2 launch dvrk_model arm.launch.py arm:=ECM generation:=Classic

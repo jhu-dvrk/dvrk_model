@@ -110,11 +110,8 @@ def create_robot_description(context):
                               full_name + '.urdf.xacro')
     instrument = context.launch_configurations.get('instrument', '').strip()
     endoscope = context.launch_configurations.get('endoscope', '').strip()
-    generation_prefix = '420' if generation in ['Si', 'Virtual'] else '400'
     if instrument == '':
-        instrument = generation_prefix + '006'
-    elif instrument.isdigit() and len(instrument) == 3:
-        instrument = generation_prefix + instrument
+        instrument = '420006' if generation in ['Si', 'Virtual'] else '400006'
 
     if full_name == 'ECM':
         if endoscope != '':

@@ -3,7 +3,7 @@ import yaml
 from ament_index_python.packages import get_package_share_directory
 
 from launch_ros.actions import Node
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, OpaqueFunction
 from launch.actions import SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
@@ -25,6 +25,33 @@ def supported_psm_instruments_message():
         '{} ({})'.format(model, instruments[model]['name'])
         for model in sorted(instruments.keys()))
 
+def create_simulated_robot(context):
+    arm = LaunchConfiguration('arm').perform(context)
+    generation = LaunchConfiguration('generation').perform(context)
+    system_generation = 'Si' if generation == 'Virtual' else generation
+    system_file = os.path.join(
+        get_package_share_directory('dvrk_config'), 'system',
+        'system-{}_{}_KIN_SIMULATED.json'.format(arm, system_generation))
+    arguments = ['-j', system_file]
+
+    if arm.startswith('PSM'):
+        instrument = LaunchConfiguration('instrument').perform(context).strip()
+        if instrument == '':
+            instrument = '420006' if generation in ['Si', 'Virtual'] else '400006'
+        if instrument not in psm_instruments():
+            raise RuntimeError('Unsupported PSM instrument: {}'.format(instrument))
+        # The tool index accepts a full model without a name via :MODEL.
+        # Revision 1 retains the existing 420006 default (before geared jaws).
+        arguments.extend(['--tool', '{}=:{}[1]'.format(arm, instrument)])
+
+    return [Node(
+        package='dvrk_robot',
+        executable='dvrk_system',
+        arguments=arguments,
+        output='log',
+    )]
+
+
 def generate_launch_description():
     arm = LaunchConfiguration('arm')
     generation = LaunchConfiguration('generation')
@@ -41,23 +68,15 @@ def generate_launch_description():
     ])
     rviz_generation = system_generation
 
-    system_json = [
-        PathJoinSubstitution([FindPackageShare('dvrk_config'), 'system', '']),
-        '/system-', arm, '_', system_generation, '_KIN_SIMULATED.json',
-    ]
-
     rviz_config_file = [
         PathJoinSubstitution([FindPackageShare('dvrk_model'), 'rviz', rviz_generation, '']),
         '/', arm, '.rviz',
     ]
 
     # Declare nodes
-    dvrk_node = Node(
-        package = 'dvrk_robot',
-        executable = 'dvrk_system',
-        condition = IfCondition(simulated),
-        arguments = ['-j', system_json],
-        output = 'log',
+    dvrk_node = OpaqueFunction(
+        function=create_simulated_robot,
+        condition=IfCondition(simulated),
     )
 
     publisher_nodes = IncludeLaunchDescription(
@@ -97,7 +116,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'instrument',
             default_value='',
-            description='PSM instrument model. Supported: {}'.format(
+            description='Six-digit PSM instrument model ID. Supported: {}'.format(
                 supported_psm_instruments_message())),
         DeclareLaunchArgument('endoscope', default_value=''),
         DeclareLaunchArgument('simulated', default_value='true'),

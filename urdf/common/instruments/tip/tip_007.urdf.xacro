@@ -5,7 +5,7 @@
 
   <!-- Round Tip Scissors: source meshes are in meters in the wrist-yaw frame.
        Jaw limits follow ROUND_TIP_SCISSORS_400007/420007.json.
-       The visual tip offset is estimated from the distal mesh bounds. -->
+       The tool-tip frame follows the tool JSON control-frame convention. -->
   <xacro:macro name="tip_007" params="prefix add_colors:=false">
     <joint name="jaw" type="revolute">
       <parent link="${prefix}wrist_yaw_link"/>
@@ -58,7 +58,7 @@
     <joint name="tool_tip" type="fixed">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}tool_tip_link"/>
-      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.01055 0.0"/>
+      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0 0.0"/>
     </joint>
     <link name="${prefix}tool_tip_link"/>
   </xacro:macro>

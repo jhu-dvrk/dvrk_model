@@ -70,7 +70,7 @@
       <child link="${prefix}tool_tip_link"/>
       <origin
         rpy="0.0 ${PI_2} ${PI_2}"
-        xyz="0.0 0.0155 -0.0016"/>
+        xyz="0.0 0.0 0.0"/>
     </joint>
 
     <link name="${prefix}tool_tip_link"/>

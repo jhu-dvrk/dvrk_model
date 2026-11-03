@@ -82,10 +82,11 @@
     </visual>
   </link>
 
+    <!-- The tool-tip frame follows the moving jaw hinge. -->
     <joint name="tool_tip" type="fixed">
-      <parent link="${prefix}wrist_yaw_link"/>
+      <parent link="${prefix}jaw_axis_link"/>
       <child link="${prefix}tool_tip_link"/>
-      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0286 0.0"/>
+      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0 0.0"/>
     </joint>
     <link name="${prefix}tool_tip_link"/>
   </xacro:macro>

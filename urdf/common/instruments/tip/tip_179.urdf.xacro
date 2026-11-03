@@ -20,7 +20,8 @@
       <axis xyz="0.0 0.0 1"/>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
-      <mimic joint="jaw" multiplier="0.5"/>
+      <!-- Positive jaw opens blade 1 toward +X and blade 2 toward -X. -->
+      <mimic joint="jaw" multiplier="-0.5"/>
     </joint>
 
     <link name="${prefix}jaw_1_link">
@@ -42,7 +43,7 @@
       <axis xyz="0.0 0.0 1"/>
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
       <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
-      <mimic joint="jaw" multiplier="-0.5"/>
+      <mimic joint="jaw" multiplier="0.5"/>
     </joint>
 
     <link name="${prefix}jaw_2_link">
@@ -61,7 +62,7 @@
     <joint name="tool_tip" type="fixed">
       <parent link="${prefix}wrist_yaw_link"/>
       <child link="${prefix}tool_tip_link"/>
-      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0155 -0.0016"/>
+      <origin rpy="0.0 ${PI_2} ${PI_2}" xyz="0.0 0.0 0.0"/>
     </joint>
     <link name="${prefix}tool_tip_link"/>
 

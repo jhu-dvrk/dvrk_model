@@ -13,21 +13,33 @@
     </joint>
 
     <link name="${prefix}roll_link">
+      <!-- Original Classic shaft dimensions from housing_Classic.dae.
+           Keep the shaft on roll_link so virtual instruments retain it when
+           the housing is hidden. The shaft starts 0.041 m from adaptor_link. -->
       <visual>
-        <origin rpy="-${PI_2} 0.0 ${PI_2}" xyz="0.0 0.0 0.02975"/>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.1918"/>
         <geometry>
-          <mesh filename="package://dvrk_model/meshes/instruments/roll/4670/roll_4670.obj" scale="0.1 0.1 0.1"/>
+          <cylinder radius="0.0042" length="0.3668"/>
         </geometry>
         <xacro:if value="${str(add_colors).lower() not in ['true', '1']}">
-          <material name="roll_4670_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
+          <material name="roll_4162_shaft"><color rgba="0.55 0.55 0.55 1"/></material>
         </xacro:if>
         <xacro:instrument_link_color add_colors="${add_colors}" kind="roll"/>
       </visual>
-      <collision>
-        <!-- Mesh-aligned shaft envelope (the OBJ shaft axis is local Y). -->
-        <origin rpy="${PI} 0.0 0.0" xyz="0.0 0.0 -0.27677977"/>
+      <!-- Detailed wrist base includes the four pitch-axis pulleys. The
+           shared geometry is exported in roll_link coordinates without the Si shaft. -->
+      <visual>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
         <geometry>
-          <cylinder radius="0.0043725" length="0.5596247"/>
+          <mesh filename="package://dvrk_model/meshes/instruments/roll/4162/roll_4162_base.obj"/>
+        </geometry>
+        <xacro:instrument_link_color add_colors="${add_colors}" kind="roll"/>
+      </visual>
+      <collision>
+        <!-- Envelope of the Classic shaft and detailed wrist base. -->
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.1860837"/>
+        <geometry>
+          <cylinder radius="0.00421" length="0.3782326"/>
         </geometry>
       </collision>
     </link>
