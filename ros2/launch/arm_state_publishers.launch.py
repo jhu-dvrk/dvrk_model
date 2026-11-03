@@ -32,11 +32,34 @@ def psm_instruments():
         return yaml.safe_load(stream)['instruments']
 
 
+def instrument_options_message(instruments):
+    groups = {}
+    for model, config in sorted(instruments.items()):
+        key = (config['name'], config['tip'] == 'placeholder')
+        groups.setdefault(key, []).append(model)
+    for key, models in groups.items():
+        labels = []
+        remaining = set(models)
+        for model in models:
+            if model not in remaining:
+                continue
+            counterpart = '42' + model[2:] if model.startswith('40') else None
+            if counterpart in remaining:
+                labels.append('4x' + model[2:])
+                remaining.remove(counterpart)
+            else:
+                labels.append(model)
+        groups[key] = labels
+    return '\n'.join(
+        '  {}: {}{}'.format(
+            ', '.join(models), name,
+            ' (placeholder tip)' if placeholder else '')
+        for (name, placeholder), models in groups.items())
+
+
 PSM_INSTRUMENTS = psm_instruments()
 VALID_INSTRUMENTS = sorted(PSM_INSTRUMENTS.keys())
-VALID_INSTRUMENT_OPTIONS = ', '.join(
-    '{} ({})'.format(model, PSM_INSTRUMENTS[model]['name'])
-    for model in VALID_INSTRUMENTS)
+VALID_INSTRUMENT_OPTIONS = '\n' + instrument_options_message(PSM_INSTRUMENTS)
 
 
 def valid_arm_names(package_share, generation):

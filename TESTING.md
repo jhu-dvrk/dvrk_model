@@ -125,6 +125,18 @@ All instruments in `instruments.yaml`:
 python3 scripts/verify_instrument_tf.py --all
 ```
 
+## Instrument Assembly Regression Tests
+
+With ROS and Xacro available:
+
+```bash
+python3 -m unittest discover -s scripts/tests
+```
+
+These tests expand a temporary source tree to verify that new roll and tip
+parts are selected from the YAML without assembly changes, explicit
+placeholders work, and missing part files fail expansion.
+
 ## Instrument DH and Asset Validation
 
 The DH checker compares every instrument in `instruments.yaml` with the
@@ -145,8 +157,8 @@ python3 scripts/verify_instrument_dh.py \
   --dvrk-tool-dir /path/to/sawIntuitiveResearchKit/share/tool
 ```
 
-Missing production tip meshes are reported as warnings when the configured
-instrument uses the repository's intentional `tip_placeholder` model.
+Entries with `tip: placeholder` are reported as warnings. Other missing part
+files are errors.
 
 ## Instrument Visual Validation
 

@@ -19,11 +19,33 @@ def psm_instruments():
     with open(yaml_file, 'r') as stream:
         return yaml.safe_load(stream)['instruments']
 
+def instrument_options_message(instruments):
+    groups = {}
+    for model, config in sorted(instruments.items()):
+        key = (config['name'], config['tip'] == 'placeholder')
+        groups.setdefault(key, []).append(model)
+    for key, models in groups.items():
+        labels = []
+        remaining = set(models)
+        for model in models:
+            if model not in remaining:
+                continue
+            counterpart = '42' + model[2:] if model.startswith('40') else None
+            if counterpart in remaining:
+                labels.append('4x' + model[2:])
+                remaining.remove(counterpart)
+            else:
+                labels.append(model)
+        groups[key] = labels
+    return '\n'.join(
+        '  {}: {}{}'.format(
+            ', '.join(models), name,
+            ' (placeholder tip)' if placeholder else '')
+        for (name, placeholder), models in groups.items())
+
+
 def supported_psm_instruments_message():
-    instruments = psm_instruments()
-    return ', '.join(
-        '{} ({})'.format(model, instruments[model]['name'])
-        for model in sorted(instruments.keys()))
+    return instrument_options_message(psm_instruments())
 
 def create_simulated_robot(context):
     arm = LaunchConfiguration('arm').perform(context)
@@ -39,7 +61,9 @@ def create_simulated_robot(context):
         if instrument == '':
             instrument = '420006' if generation in ['Si', 'Virtual'] else '400006'
         if instrument not in psm_instruments():
-            raise RuntimeError('Unsupported PSM instrument: {}'.format(instrument))
+            raise RuntimeError(
+                'Unsupported PSM instrument: {}. Valid options:\n{}'.format(
+                    instrument, supported_psm_instruments_message()))
         # The tool index accepts a full model without a name via :MODEL.
         # Revision 1 retains the existing 420006 default (before geared jaws).
         arguments.extend(['--tool', '{}=:{}[1]'.format(arm, instrument)])
@@ -116,7 +140,7 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'instrument',
             default_value='',
-            description='Six-digit PSM instrument model ID. Supported: {}'.format(
+            description='Six-digit PSM instrument model ID. Supported:\n{}'.format(
                 supported_psm_instruments_message())),
         DeclareLaunchArgument('endoscope', default_value=''),
         DeclareLaunchArgument('simulated', default_value='true'),

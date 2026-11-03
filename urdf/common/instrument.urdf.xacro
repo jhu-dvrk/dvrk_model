@@ -19,33 +19,6 @@
   -->
 
   <xacro:include filename="$(find dvrk_model)/urdf/common.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/housing/housing_Classic.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/housing/housing_Si.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4162.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/roll/roll_4670.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0091.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0093.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0100.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0107.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_pitch/wrist_pitch_0112.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0091.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0093.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0100.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0107.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/wrist_yaw/wrist_yaw_0112.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_006.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_007.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_049.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_093.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_172.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_179.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_183.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_184.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_194.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_309.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_327.urdf.xacro"/>
-  <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/tip/tip_placeholder.urdf.xacro"/>
-
   <xacro:property name="instrument_table"
                   value="${xacro.load_yaml('$(find dvrk_model)/urdf/common/instruments/instruments.yaml')['instruments']}"/>
 
@@ -72,99 +45,26 @@
     </xacro:if>
   </xacro:macro>
 
+  <xacro:macro name="instrument_stage" params="part code prefix add_colors:=false">
+    <!-- Xacro converts numeric arguments to integers; restore leading zeros. -->
+    <xacro:property name="part_name" value="${part + '_' + (str(code) if str(code) == 'placeholder' else str(code).zfill(3 if part == 'tip' else 4))}"/>
+    <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/${part}/${part_name}.urdf.xacro"/>
+    <xacro:call macro="${part_name}" prefix="${prefix}" add_colors="${add_colors}"/>
+  </xacro:macro>
+
   <xacro:macro name="instrument_model"
                params="prefix housing roll wrist_pitch wrist_yaw tip is_virtual:=false add_colors:=false">
-    <xacro:if value="${str(housing) == 'Classic' and str(is_virtual).lower() not in ['true', '1']}">
-      <xacro:housing_Classic prefix="${prefix}"/>
-    </xacro:if>
-    <xacro:if value="${str(housing) == 'Si' and str(is_virtual).lower() not in ['true', '1']}">
-      <xacro:housing_Si prefix="${prefix}"/>
-    </xacro:if>
-
-    <xacro:if value="${str(roll) == '4162'}">
-      <xacro:roll_4162 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(roll) == '4670'}">
-      <xacro:roll_4670 prefix="${prefix}" add_colors="${add_colors}"/>
+    <!-- Part files and macro names follow the IDs in instruments.yaml.
+         Missing geometry must be mapped explicitly to tip: placeholder. -->
+    <xacro:if value="${str(is_virtual).lower() not in ['true', '1']}">
+      <xacro:include filename="$(find dvrk_model)/urdf/common/instruments/housing/housing_${housing}.urdf.xacro"/>
+      <xacro:call macro="${'housing_' + str(housing)}" prefix="${prefix}"/>
     </xacro:if>
 
-    <xacro:if value="${str(wrist_pitch) == '0091' or str(wrist_pitch) == '91'}">
-      <xacro:wrist_pitch_0091 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_pitch) == '0093' or str(wrist_pitch) == '93'}">
-      <xacro:wrist_pitch_0093 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_pitch) == '0100' or str(wrist_pitch) == '100'}">
-      <xacro:wrist_pitch_0100 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_pitch) == '0107' or str(wrist_pitch) == '107'}">
-      <xacro:wrist_pitch_0107 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_pitch) == '0112' or str(wrist_pitch) == '112'}">
-      <xacro:wrist_pitch_0112 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_yaw) == '0091' or str(wrist_yaw) == '91'}">
-      <xacro:wrist_yaw_0091 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_yaw) == '0093' or str(wrist_yaw) == '93'}">
-      <xacro:wrist_yaw_0093 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_yaw) == '0100' or str(wrist_yaw) == '100'}">
-      <xacro:wrist_yaw_0100 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_yaw) == '0107' or str(wrist_yaw) == '107'}">
-      <xacro:wrist_yaw_0107 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(wrist_yaw) == '0112' or str(wrist_yaw) == '112'}">
-      <xacro:wrist_yaw_0112 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-
-    <xacro:if value="${str(tip) == '006' or str(tip) == '6'}">
-      <xacro:tip_006 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '007' or str(tip) == '7'}">
-      <xacro:tip_007 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '049' or str(tip) == '49'}">
-      <xacro:tip_049 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '093' or str(tip) == '93'}">
-      <xacro:tip_093 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '172'}">
-      <xacro:tip_172 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '179'}">
-      <xacro:tip_179 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '183'}">
-      <xacro:tip_183 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '184'}">
-      <xacro:tip_184 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '194'}">
-      <xacro:tip_194 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '309'}">
-      <xacro:tip_309 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) == '327'}">
-      <xacro:tip_327 prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
-    <xacro:if value="${str(tip) not in ['006', '6',
-                                        '007', '7',
-                                        '049', '49', 
-                                        '093', '93', 
-                                        '172',
-                                        '179',
-                                        '183',
-                                        '184',
-                                        '194',
-                                        '309',
-                                        '327']}">
-      <xacro:tip_placeholder prefix="${prefix}" add_colors="${add_colors}"/>
-    </xacro:if>
+    <xacro:instrument_stage part="roll" code="${roll}" prefix="${prefix}" add_colors="${add_colors}"/>
+    <xacro:instrument_stage part="wrist_pitch" code="${wrist_pitch}" prefix="${prefix}" add_colors="${add_colors}"/>
+    <xacro:instrument_stage part="wrist_yaw" code="${wrist_yaw}" prefix="${prefix}" add_colors="${add_colors}"/>
+    <xacro:instrument_stage part="tip" code="${tip}" prefix="${prefix}" add_colors="${add_colors}"/>
   </xacro:macro>
 
   <xacro:macro name="instrument"

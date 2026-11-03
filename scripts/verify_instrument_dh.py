@@ -293,12 +293,10 @@ def check_urdf_assets(
     tip_code = str(config.get("tip"))
     tip = xacro_path(root, "tip", tip_code)
     if not tip.is_file():
-        placeholder = root / "urdf" / "common" / "instruments" / "tip" / "tip_placeholder.urdf.xacro"
-        if placeholder.is_file():
-            result.warnings.append(f"tip {tip_code} uses tip_placeholder.urdf.xacro")
-        else:
-            result.errors.append(f"missing tip Xacro and placeholder for tip {tip_code}")
+        result.errors.append(f"missing tip Xacro: {tip}")
         return
+    if tip_code == "placeholder":
+        result.warnings.append("tip geometry is explicitly mapped to tip_placeholder.urdf.xacro")
     try:
         for mesh in mesh_paths(root, tip):
             if not mesh.is_file():

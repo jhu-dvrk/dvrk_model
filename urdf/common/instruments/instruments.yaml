@@ -1,17 +1,19 @@
+# Each stage selects <stage>/<stage>_<ID>.urdf.xacro and its matching macro.
+# Use tip: placeholder explicitly when the tip geometry is unavailable.
 instruments:
   '400001':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '001'
+    tip: placeholder
     name: Potts Scissors
   '400003':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '003'
+    tip: placeholder
     name: Small Clip Applier
   '400006':
     housing: Classic
@@ -32,28 +34,28 @@ instruments:
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '033'
+    tip: placeholder
     name: Black Diamond Micro Forceps
   '400035':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '035'
+    tip: placeholder
     name: Round Tooth Forceps
   '400036':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '036'
+    tip: placeholder
     name: DeBakey Forceps
   '400048':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '048'
+    tip: placeholder
     name: Long Tip Forceps
   '400049':
     housing: Classic
@@ -74,7 +76,7 @@ instruments:
     roll: '4162'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '127'
+    tip: placeholder
     name: Bowel Grasper
   '400172':
     housing: Classic
@@ -88,7 +90,7 @@ instruments:
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '178'
+    tip: placeholder
     name: Curved Scissors
   '400179':
     housing: Classic
@@ -102,7 +104,7 @@ instruments:
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '181'
+    tip: placeholder
     name: Resano Forceps
   '400183':
     housing: Classic
@@ -130,42 +132,42 @@ instruments:
     roll: '4162'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '189'
+    tip: placeholder
     name: Double Fenestrated Grasper
   '400205':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '205'
+    tip: placeholder
     name: Fenestrated Bipolar Forceps
   '400207':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '207'
+    tip: placeholder
     name: Tenaculum Forceps
   '400208':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '208'
+    tip: placeholder
     name: Thoracic Grasper
   '400230':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '230'
+    tip: placeholder
     name: Large Clip Applier
   '400296':
     housing: Classic
     roll: '4162'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '296'
+    tip: placeholder
     name: Large Suturecut Needle Driver
   '400309':
     housing: Classic
@@ -174,13 +176,27 @@ instruments:
     wrist_yaw: '0100'
     tip: '309'
     name: Mega Suturecut Needle Driver
+  '400327':
+    housing: Classic
+    roll: '4162'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: '327'
+    name: Medium-large Clip Applier
   '420001':
     housing: Si
     roll: '4670'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '001'
+    tip: placeholder
     name: Potts Scissors
+  '420003':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: placeholder
+    name: Small Clip Applier
   '420006':
     housing: Si
     roll: '4670'
@@ -200,21 +216,28 @@ instruments:
     roll: '4670'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '033'
+    tip: placeholder
     name: Black Diamond Micro Forceps
+  '420035':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0091'
+    wrist_yaw: '0091'
+    tip: placeholder
+    name: Round Tooth Forceps
   '420036':
     housing: Si
     roll: '4670'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '036'
+    tip: placeholder
     name: DeBakey Forceps
   '420048':
     housing: Si
     roll: '4670'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '048'
+    tip: placeholder
     name: Long Tip Forceps
   '420049':
     housing: Si
@@ -230,6 +253,13 @@ instruments:
     wrist_yaw: '0107'
     tip: '093'
     name: Prograsp Forceps
+  '420127':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: placeholder
+    name: Bowel Grasper
   '420172':
     housing: Si
     roll: '4670'
@@ -242,7 +272,7 @@ instruments:
     roll: '4670'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '178'
+    tip: placeholder
     name: Curved Scissors
   '420179':
     housing: Si
@@ -256,7 +286,7 @@ instruments:
     roll: '4670'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '181'
+    tip: placeholder
     name: Resano Forceps
   '420183':
     housing: Si
@@ -272,6 +302,13 @@ instruments:
     wrist_yaw: '0093'
     tip: '184'
     name: Permanent Cautery Spatula
+  '420189':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: placeholder
+    name: Double Fenestrated Grasper
   '420194':
     housing: Si
     roll: '4670'
@@ -284,21 +321,35 @@ instruments:
     roll: '4670'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '205'
+    tip: placeholder
     name: Fenestrated Bipolar Forceps
+  '420207':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: placeholder
+    name: Tenaculum Forceps
+  '420208':
+    housing: Si
+    roll: '4670'
+    wrist_pitch: '0107'
+    wrist_yaw: '0107'
+    tip: placeholder
+    name: Thoracic Grasper
   '420230':
     housing: Si
     roll: '4670'
     wrist_pitch: '0107'
     wrist_yaw: '0107'
-    tip: '230'
+    tip: placeholder
     name: Large Clip Applier
   '420296':
     housing: Si
     roll: '4670'
     wrist_pitch: '0091'
     wrist_yaw: '0091'
-    tip: '296'
+    tip: placeholder
     name: Large Suturecut Needle Driver
   '420309':
     housing: Si

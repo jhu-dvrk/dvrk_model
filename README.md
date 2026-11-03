@@ -78,25 +78,23 @@ meshes/
 
 ## Supported PSM Tool Families
 
-PSM tool families currently wired into the URDF:
-
-Supported instrument model-to-part mappings live in
+Instrument model-to-part mappings live in
 [urdf/common/instruments/instruments.yaml](urdf/common/instruments/instruments.yaml).
+The shared assembly loads each selected stage directly from
+`urdf/common/instruments/<stage>/<stage>_<ID>.urdf.xacro` and calls the
+matching `<stage>_<ID>` macro. Adding a part file and its YAML mapping requires
+no changes to the assembly's include lists or selection logic.
 
-| Family | Instrument codes | Mesh support | Verified dimensions |
-|--------|------------------|--------------|---------------------|
-| 006 | `400006`, `420006` | Classic and Si | wrist yaw offset `A = 0.0091 m` |
-| 049 | `400049`, `420049` | shared 049 mesh | wrist yaw offset `A = 0.0091 m` |
-| 093 | `400093`, `420093` | Classic and Si | wrist yaw offset `A = 0.0107 m` |
-| 179 | `400179`, `420179` | Classic and Si | wrist yaw offset `A = 0.0091 m` |
-| Placeholder tips | `400001`, `400003`, `400007`, `400033`, `400035`, `400036`, `400048`, `400127`, `400172`, `400178`, `400181`, `400189`, `400205`, `400207`, `400208`, `400230`, `400296`, `420001`, `420007`, `420033`, `420036`, `420048`, `420172`, `420178`, `420181`, `420205`, `420230`, `420296`, `420327` | 5 mm box placeholders for missing tip meshes | JSON-derived roll and wrist yaw offsets using existing part IDs |
+Entries with `tip: placeholder` explicitly select a 5 mm box for tip geometry
+that is not yet available. All other part IDs must resolve to existing Xacro
+files; a missing file fails expansion rather than silently substituting geometry.
 
 `tool_tip_link` uses the tool JSON `tooltip_offset`: zero local translation
 and RPY `(0, pi/2, pi/2)`. It attaches to the final wrist-yaw frame for standard
 tips. For `093`, it attaches after the `jaw_axis` prismatic joint, so it follows
 the moving jaw hinge (7.7 mm at zero jaw opening and 5.5 mm at 60 degrees).
 
-Shared roll dimensions remain generation-specific in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro):
+The YAML selects roll stages with these origins:
 
 - Classic roll origin `D = 0.4162 m`
 - Si roll origin `D = 0.4670 m`
@@ -104,8 +102,6 @@ Shared roll dimensions remain generation-specific in [urdf/common/instrument.urd
 Families that need new roll or wrist geometry are intentionally not wired yet.
 Current unsupported-family notes:
 - `117` and `143`: JSON files do not use the standard wrist_pitch/wrist_yaw joints.
-- `183` and `184`: wrist yaw offset `A = 0.0093 m`.
-- `194`: wrist yaw offset `A = 0.0112 m`.
 - `410298`: stapler-specific roll and wrist geometry.
 
 ## Instrument Mesh Naming
@@ -134,7 +130,7 @@ When adding a new tool family, keep common geometry shared and only add new file
 3. Reuse the existing roll and shaft assembly in [urdf/common/instrument.urdf.xacro](urdf/common/instrument.urdf.xacro) unless the shaft length or roll geometry truly changes.
 4. Add a new part file under `urdf/common/instruments/<part>/` only when the tool needs a distinct physical stage.
 5. Reuse the shared files in `urdf/common/instruments/housing/`, `roll/`, `wrist_pitch/`, `wrist_yaw/`, and `tip/` wherever the mechanical build matches an existing stage.
-6. Add the model-to-part mapping in [urdf/common/instruments/instruments.yaml](urdf/common/instruments/instruments.yaml).
+6. Add the model-to-part mapping in [urdf/common/instruments/instruments.yaml](urdf/common/instruments/instruments.yaml). Use `tip: placeholder` when tip geometry is unavailable. The stage file must define a macro matching its filename, accepting `prefix` and, except for housing, `add_colors:=false`.
 7. Validate the result by expanding the xacro for at least one Classic or Si arm that uses the new code.
 
 ---
