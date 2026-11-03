@@ -126,27 +126,25 @@
       </inertial>
     </link>
 
-    <joint name="shoulder_pitch_parallel" type="revolute">
-      <parent link="${prefix}outer_yaw_link"/>
+    <joint name="elbow_pitch_parallel_top" type="revolute">
+      <parent link="${prefix}back_parallel_link"/>
       <child link="${prefix}top_parallel_link"/>
-      <origin rpy="${-PI/2} ${-PI/2} 0.0" xyz="0.0 0.0 0.0"/>
+      <origin rpy="0.0 0.0 ${PI/2}" xyz="0.0 0.0 0.065"/>
       <axis xyz="0.0 0.0 1"/>
-      <!--rotates about  x axis-->
-      <!--limit effort and velocity picked arbitrarily check-->
       <limit effort="100.0" lower="${-PI/2}" upper="${PI/2}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
-      <mimic joint="shoulder_pitch" multiplier="1"/>
+      <mimic joint="elbow_pitch" multiplier="1" offset="0"/>
     </joint>
 
     <link name="${prefix}top_parallel_link">
       <visual>
-        <origin rpy="0.0 0.0 ${-PI/2}" xyz="0.0 0.0 0.065"/>
+        <origin rpy="0.0 0.0 ${-PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch_parallel.dae"/>
         </geometry>
       </visual>
       <collision>
-        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0.0 0.0 ${-PI}" xyz="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_shoulder_pitch_parallel.dae"/>
         </geometry>
@@ -155,6 +153,32 @@
         <mass value=".5"/>
         <inertia ixx="5.0" ixy="0.0" ixz="0.0" iyy="5.0" iyz="0.0" izz="5.0"/>
       </inertial>
+    </link>
+
+
+    <joint name="elbow_pitch_parallel_front" type="revolute">
+      <parent link="${prefix}top_parallel_link"/>
+      <child link="${prefix}front_parallel_link"/>
+      <origin rpy="0.0 0.0 ${-PI/2}" xyz="-0.1 0.0 -0.03"/>
+      <axis xyz="0.0 0.0 1"/>
+      <limit effort="100.0" lower="${-PI/2}" upper="${PI/2}" velocity="10"/>
+      <joint_properties damping="1.0" friction="0.0"/>
+      <mimic joint="elbow_pitch" multiplier="-1" offset="0"/>
+    </joint>
+
+    <link name="${prefix}front_parallel_link">
+      <visual>
+        <origin rpy="0.0 0.0 ${-PI/2}" xyz="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_arm.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin rpy="0.0 0.0 ${-PI/2}" xyz="0.0 0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_arm.dae"/>
+        </geometry>
+      </collision>
     </link>
 
 
@@ -170,6 +194,14 @@
     </joint>
 
     <link name="${prefix}bottom_parallel_link">
+      <!-- Elbow axle through the 3 mm radius bore and the 64 mm wide fork. -->
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.003" length="0.064"/>
+        </geometry>
+        <material name="MTM_elbow_axle"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
       <visual>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/arms/Classic/MTM/MTM_elbow_pitch.dae"/>
