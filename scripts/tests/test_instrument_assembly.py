@@ -10,6 +10,8 @@ from unittest.mock import patch
 import xacro
 import yaml
 
+from scripts.verify_instrument_visual import combined_visual_bounds
+
 
 class InstrumentAssemblyTest(unittest.TestCase):
     def setUp(self):
@@ -65,6 +67,28 @@ class InstrumentAssemblyTest(unittest.TestCase):
         with self.assertRaises(xacro.XacroException) as error:
             self.expand()
         self.assertIn("tip_999.urdf.xacro", str(error.exception))
+
+    def test_si_shaft_meets_housing_and_collision_contains_mesh(self):
+        # Compare actual asset bounds in adaptor coordinates. The old shaft
+        # extended about 90 mm behind the adaptor, through the housing.
+        urdf = self.expand()
+        source = Path(__file__).resolve().parents[2]
+        roll = urdf.find("link[@name='PSM1_roll_link']")
+        housing = urdf.find("link[@name='PSM1_housing_link']")
+        shaft_bounds, errors = combined_visual_bounds(source, "roll", roll)
+        self.assertFalse(errors)
+        housing_bounds, errors = combined_visual_bounds(source, "housing", housing)
+        self.assertFalse(errors)
+        roll_z = float(urdf.find("joint[@name='roll']/origin").get("xyz").split()[2])
+        self.assertAlmostEqual(
+            roll_z + shaft_bounds.minimum[2], housing_bounds.maximum[2], places=6
+        )
+        self.assertLess(abs(shaft_bounds.maximum[2]), 0.004)
+        collision = roll.find("collision")
+        center = float(collision.find("origin").get("xyz").split()[2])
+        half_length = float(collision.find("geometry/cylinder").get("length")) / 2
+        self.assertLessEqual(center - half_length, shaft_bounds.minimum[2] + 1e-8)
+        self.assertGreaterEqual(center + half_length, shaft_bounds.maximum[2] - 1e-8)
 
 
 if __name__ == "__main__":

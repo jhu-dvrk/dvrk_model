@@ -24,10 +24,10 @@
         <xacro:instrument_link_color add_colors="${add_colors}" kind="roll"/>
       </visual>
       <collision>
-        <!-- Mesh-aligned shaft envelope (the OBJ shaft axis is local Y). -->
-        <origin rpy="${PI} 0.0 0.0" xyz="0.0 0.0 -0.27677977"/>
+        <!-- Envelope of the shortened shaft and detailed wrist base. -->
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.2062707"/>
         <geometry>
-          <cylinder radius="0.0043725" length="0.5596247"/>
+          <cylinder radius="0.0043725" length="0.4186066"/>
         </geometry>
       </collision>
     </link>

@@ -25,7 +25,8 @@ import yaml
 
 
 MAX_DIMENSIONS = (0.07, 0.01, 0.01)
-SI_ROLL_MAX_DIMENSIONS = (0.12, 0.02, 0.02)
+# The Si shaft spans the housing-to-wrist distance of roughly 0.42 m.
+SI_ROLL_MAX_DIMENSIONS = (0.47, 0.02, 0.02)
 ORIGIN_TOLERANCE = 1.0e-6
 TARGET_LINKS = (
     "wrist_pitch_link",
@@ -292,7 +293,7 @@ def check_visuals(
                     ):
                         result.errors.append(
                             f"{roll_link_name}: visual bounds {format_dimensions(roll_dimensions)} "
-                            f"look oversized for Si roll; expected <= 12.00 cm x 2.00 cm x 2.00 cm. "
+                            f"look oversized for Si roll; expected <= 47.00 cm x 2.00 cm x 2.00 cm. "
                             "This often hides the wrist inside the shaft."
                         )
     return result
