@@ -94,10 +94,24 @@ and RPY `(0, pi/2, pi/2)`. It attaches to the final wrist-yaw frame for standard
 tips. For `093`, it attaches after the `jaw_axis` prismatic joint, so it follows
 the moving jaw hinge (7.7 mm at zero jaw opening and 5.5 mm at 60 degrees).
 
+The 5 mm Round Tip Scissors (`400141` Classic, `420141` S/Si) use six
+independent arm joints and a snake wrist with half-angle mimic joints.
+Their meshes and URDF derive from
+[zixingjiang/dvrk_description](https://github.com/zixingjiang/dvrk_description/tree/2a29763608fd619082dec112f07014256cc62c22)
+and have been modified for dvrk_model; see the [asset notes](meshes/instruments/wrist/0034/README.md).
+Tool configurations reuse existing 5 mm needle-driver parameters; scissors-specific
+hardware calibration remains unverified.
+
+```bash
+ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Classic instrument:=400141
+ros2 launch dvrk_model arm.launch.py arm:=PSM1 generation:=Si instrument:=420141
+```
+
 The YAML selects roll stages with these origins:
 
 - Classic roll origin `D = 0.4162 m`
 - Si roll origin `D = 0.4670 m`
+- 5 mm snake roll origins `D = 0.4024 m` (Classic) / `0.4532 m` (Si)
 
 Families that need new roll or wrist geometry are intentionally not wired yet.
 Current unsupported-family notes:
@@ -131,6 +145,8 @@ When adding a new tool family, keep common geometry shared and only add new file
 4. Add a new part file under `urdf/common/instruments/<part>/` only when the tool needs a distinct physical stage.
 5. Reuse the shared files in `urdf/common/instruments/housing/`, `roll/`, `wrist_pitch/`, `wrist_yaw/`, and `tip/` wherever the mechanical build matches an existing stage.
 6. Add the model-to-part mapping in [urdf/common/instruments/instruments.yaml](urdf/common/instruments/instruments.yaml). Use `tip: placeholder` when tip geometry is unavailable. The stage file must define a macro matching its filename, accepting `prefix` and, except for housing, `add_colors:=false`.
+   For an interleaved snake wrist, select `wrist: '0034'` instead of separate
+   `wrist_pitch` / `wrist_yaw` stages.
 7. Validate the result by expanding the xacro for at least one Classic or Si arm that uses the new code.
 
 ---

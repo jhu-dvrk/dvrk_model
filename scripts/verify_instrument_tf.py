@@ -147,14 +147,31 @@ def verify_instrument(
 
     links, child_to_parent, joint_links = parse_urdf(xml_text)
 
-    required_links = {f"{prefix}{suffix}" for suffix in REQUIRED_STAGE_LINK_SUFFIXES}
+    expected_joints = dict(EXPECTED_STAGE_JOINTS)
+    suffixes = set(REQUIRED_STAGE_LINK_SUFFIXES)
+    if "wrist_pitch1" in joint_links or f"{prefix}wrist_pitch1" in joint_links:
+        expected_joints.pop("wrist_pitch")
+        expected_joints.pop("wrist_yaw")
+        expected_joints.update({
+            "wrist_pitch": ("roll_link", "wrist_pitch_input_link"),
+            "wrist_yaw": ("roll_link", "wrist_yaw_input_link"),
+            "wrist_pitch1": ("roll_link", "wrist_pitch1_link"),
+            "wrist_yaw1": ("wrist_pitch1_link", "wrist_yaw1_link"),
+            "wrist_yaw2": ("wrist_yaw1_link", "wrist_yaw2_link"),
+            "wrist_pitch2": ("wrist_yaw2_link", "wrist_pitch2_link"),
+            "jaw_mount": ("wrist_pitch2_link", "jaw_mount_link"),
+        })
+        for name in ("jaw", "jaw_1", "jaw_2", "tool_tip"):
+            expected_joints[name] = ("jaw_mount_link", expected_joints[name][1])
+        suffixes = {suffix for pair in expected_joints.values() for suffix in pair}
+    required_links = {f"{prefix}{suffix}" for suffix in suffixes}
 
     missing_links = sorted(required_links - links)
     if missing_links:
         errors.append("Missing required instrument links: " + ", ".join(missing_links))
 
     # Naming scheme: all required stage links must use the exact PSM prefix.
-    for suffix in sorted(REQUIRED_STAGE_LINK_SUFFIXES):
+    for suffix in sorted(suffixes):
         expected_name = f"{prefix}{suffix}"
         if expected_name not in links:
             continue
@@ -162,7 +179,7 @@ def verify_instrument(
             errors.append(f"Naming mismatch for link {expected_name}")
 
     # Parent/child checks for stage joints.
-    for joint_name, (expected_parent_suffix, expected_child_suffix) in EXPECTED_STAGE_JOINTS.items():
+    for joint_name, (expected_parent_suffix, expected_child_suffix) in expected_joints.items():
         joint_candidates = [joint_name, f"{prefix}{joint_name}"]
         selected_joint_name = ""
         for candidate in joint_candidates:
@@ -184,16 +201,7 @@ def verify_instrument(
 
     # Connectivity checks via ancestor traversal.
     base = f"{prefix}adaptor_link"
-    must_reach = [
-        f"{prefix}housing_link",
-        f"{prefix}roll_link",
-        f"{prefix}wrist_pitch_link",
-        f"{prefix}wrist_yaw_link",
-        f"{prefix}jaw_link",
-        f"{prefix}jaw_1_link",
-        f"{prefix}jaw_2_link",
-        f"{prefix}tool_tip_link",
-    ]
+    must_reach = sorted(required_links)
 
     for target in must_reach:
         cur = target

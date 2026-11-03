@@ -175,6 +175,29 @@ def check_dh(
         return
     assert joints is not None
 
+    if str(config.get("wrist")) == "0034":
+        if data.get("snake-like") is not True:
+            errors.append("5mm wrist requires snake-like: true")
+        expected_d = {"Classic": 0.4024, "Si": 0.4532}.get(str(config.get("housing")))
+        expected = {
+            "roll": (0.0, 0.0, 0.0, expected_d),
+            "wrist_pitch1": (-1.5708, 0.0, -1.5708, 0.0),
+            "wrist_yaw1": (-1.5708, 0.0034, 0.0, 0.0),
+            "wrist_yaw2": (0.0, 0.0034, 0.0, 0.0),
+            "wrist_pitch2": (1.5708, 0.0034, 1.5708, 0.0),
+        }
+        if set(joints) != set(expected):
+            errors.append("5mm wrist requires roll, pitch1, yaw1, yaw2, pitch2 DH joints")
+        if expected_d is None or str(config.get("roll")) != f"{expected_d * 10000:.0f}":
+            errors.append("5mm roll does not match housing generation")
+        for name, values in expected.items():
+            if name not in joints:
+                continue
+            for field, value in zip(("alpha", "A", "offset", "D"), values):
+                if value is not None:
+                    check_number(errors, joints[name], field, value)
+        return
+
     required = ("roll", "wrist_pitch", "wrist_yaw")
     for name in required:
         if name not in joints:
@@ -218,18 +241,24 @@ def xacro_path(root: Path, part: str, value: str) -> Path:
 
 def check_xacro_dh(root: Path, config: Mapping[str, Any], result: InstrumentResult) -> None:
     """Check the numeric origins used by dvrk_model's stage Xacros."""
-    housing = str(config.get("housing"))
-    wrist_code = str(config.get("wrist_yaw"))
-    expected_d = EXPECTED_ROLL_D.get(housing)
-    expected_a = EXPECTED_WRIST_A.get(wrist_code)
-    if expected_d is None or expected_a is None:
-        return
+    if str(config.get("wrist")) == "0034":
+        checks = [("roll", "roll", "z", {"Classic": 0.4024, "Si": 0.4532}[str(config["housing"])])]
+        checks += [("wrist", name, "x", value) for name, value in (
+            ("wrist_pitch1", 0.0), ("wrist_yaw1", 0.0034),
+            ("wrist_yaw2", 0.0034), ("wrist_pitch2", 0.0034))]
+    else:
+        housing = str(config.get("housing"))
+        wrist_code = str(config.get("wrist_yaw"))
+        expected_d = EXPECTED_ROLL_D.get(housing)
+        expected_a = EXPECTED_WRIST_A.get(wrist_code)
+        if expected_d is None or expected_a is None:
+            return
 
-    checks = [
-        ("roll", "roll", "z", expected_d),
-        ("wrist_pitch", "wrist_pitch", "x", 0.0),
-        ("wrist_yaw", "wrist_yaw", "x", expected_a),
-    ]
+        checks = [
+            ("roll", "roll", "z", expected_d),
+            ("wrist_pitch", "wrist_pitch", "x", 0.0),
+            ("wrist_yaw", "wrist_yaw", "x", expected_a),
+        ]
     for part, joint_name, coordinate, expected in checks:
         path = xacro_path(root, part, str(config.get(part)))
         if not path.is_file():
@@ -276,6 +305,10 @@ def check_urdf_assets(
         "wrist_pitch": str(config.get("wrist_pitch")),
         "wrist_yaw": str(config.get("wrist_yaw")),
     }
+    if config.get("wrist"):
+        values.pop("wrist_pitch")
+        values.pop("wrist_yaw")
+        values["wrist"] = str(config["wrist"])
     for part, value in values.items():
         path = xacro_path(root, part, value)
         if not path.is_file():

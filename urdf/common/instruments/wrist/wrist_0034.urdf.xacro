@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Each physical hinge has two short pivot pins on its local Z axis.
+       Their inner ends stop at the 1.5 mm bore radius; the outer ends are
+       flush with the nominal 2.5 mm disk radius. -->
+  <xacro:macro name="wrist_0034_pivot_pair" params="">
+    <visual name="pivot_positive">
+      <origin xyz="0 0 0.002"/>
+      <geometry><cylinder radius="0.0005" length="0.001"/></geometry>
+      <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+    </visual>
+    <visual name="pivot_negative">
+      <origin xyz="0 0 -0.002"/>
+      <geometry><cylinder radius="0.0005" length="0.001"/></geometry>
+      <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+    </visual>
+  </xacro:macro>
+
+  <xacro:macro name="wrist_0034" params="prefix add_colors:=false">
+    <!-- Independent bend angles are supplied by the six-joint PSM state.
+         Empty driver links let both physical joints mimic half of that angle. -->
+    <joint name="wrist_pitch" type="revolute">
+      <parent link="${prefix}roll_link"/><child link="${prefix}wrist_pitch_input_link"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-0.7853982" upper="0.7853982" velocity=".4" effort="1000"/>
+    </joint>
+    <link name="${prefix}wrist_pitch_input_link"/>
+    <joint name="wrist_yaw" type="revolute">
+      <parent link="${prefix}roll_link"/><child link="${prefix}wrist_yaw_input_link"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-0.7853982" upper="0.7853982" velocity=".4" effort="1000"/>
+    </joint>
+    <link name="${prefix}wrist_yaw_input_link"/>
+
+    <joint name="wrist_pitch1" type="revolute">
+      <parent link="${prefix}roll_link"/><child link="${prefix}wrist_pitch1_link"/>
+      <origin xyz="0 0 0" rpy="-${PI_2} -${PI_2} 0"/><axis xyz="0 0 1"/>
+      <limit lower="-0.3926991" upper="0.3926991" velocity=".4" effort="1000"/>
+      <mimic joint="wrist_pitch" multiplier="0.5"/>
+    </joint>
+    <link name="${prefix}wrist_pitch1_link">
+      <visual>
+        <origin rpy="-${PI_2} 0 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/pitch1.stl"/></geometry>
+        <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+      </visual>
+      <xacro:wrist_0034_pivot_pair/>
+      <collision>
+        <origin rpy="-${PI_2} 0 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/pitch1.stl"/></geometry>
+      </collision>
+    </link>
+    <joint name="wrist_yaw1" type="revolute">
+      <parent link="${prefix}wrist_pitch1_link"/><child link="${prefix}wrist_yaw1_link"/>
+      <origin xyz="0.0034 0 0" rpy="-${PI_2} 0 0"/><axis xyz="0 0 1"/>
+      <limit lower="-0.3926991" upper="0.3926991" velocity=".4" effort="1000"/>
+      <mimic joint="wrist_yaw" multiplier="0.5"/>
+    </joint>
+    <link name="${prefix}wrist_yaw1_link">
+      <visual>
+        <origin rpy="-${PI_2} 0 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/yaw1.stl"/></geometry>
+        <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+      </visual>
+      <xacro:wrist_0034_pivot_pair/>
+      <collision>
+        <origin rpy="-${PI_2} 0 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/yaw1.stl"/></geometry>
+      </collision>
+    </link>
+    <joint name="wrist_yaw2" type="revolute">
+      <parent link="${prefix}wrist_yaw1_link"/><child link="${prefix}wrist_yaw2_link"/>
+      <origin xyz="0.0034 0 0" rpy="0 0 0"/><axis xyz="0 0 1"/>
+      <limit lower="-0.3926991" upper="0.3926991" velocity=".4" effort="1000"/>
+      <mimic joint="wrist_yaw" multiplier="0.5"/>
+    </joint>
+    <link name="${prefix}wrist_yaw2_link">
+      <visual>
+        <origin rpy="-${PI_2} 0 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/yaw2.stl"/></geometry>
+        <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+      </visual>
+      <xacro:wrist_0034_pivot_pair/>
+      <collision>
+        <origin rpy="-${PI_2} 0 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/yaw2.stl"/></geometry>
+      </collision>
+    </link>
+    <joint name="wrist_pitch2" type="revolute">
+      <parent link="${prefix}wrist_yaw2_link"/><child link="${prefix}wrist_pitch2_link"/>
+      <origin xyz="0.0034 0 0" rpy="${PI_2} -${PI_2} 0"/><axis xyz="0 0 1"/>
+      <limit lower="-0.3926991" upper="0.3926991" velocity=".4" effort="1000"/>
+      <mimic joint="wrist_pitch" multiplier="0.5"/>
+    </joint>
+    <link name="${prefix}wrist_pitch2_link">
+      <visual>
+        <origin rpy="0 ${PI_2} 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/pitch2.stl"/></geometry>
+        <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+      </visual>
+      <xacro:wrist_0034_pivot_pair/>
+      <collision>
+        <origin rpy="0 ${PI_2} 0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/pitch2.stl"/></geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+</robot>

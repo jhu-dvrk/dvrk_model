@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="roll_4532" params="prefix add_colors:=false">
+    <joint name="roll" type="revolute">
+      <parent link="${prefix}adaptor_link"/><child link="${prefix}roll_link"/>
+      <origin xyz="0 0 0.4532" rpy="0 0 0"/><axis xyz="0 0 1"/>
+      <limit lower="-4.53786" upper="4.53786" velocity=".4" effort="1000"/>
+    </joint>
+    <link name="${prefix}roll_link">
+      <!-- 5mm shaft from housing face to the snake wrist base. -->
+      <visual>
+        <origin xyz="0 0 -0.202237000"/>
+        <geometry><cylinder radius="0.0025" length="0.399074000"/></geometry>
+        <material name="shaft_5mm"><color rgba="0.2 0.2 0.2 1"/></material>
+      </visual>
+      <visual>
+        <!-- Align the wrist-base clevis with the first pitch disk. -->
+        <origin rpy="0 0 ${PI_2}"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/wrist/0034/roll.stl"/></geometry>
+        <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 -0.200887000"/>
+        <geometry><cylinder radius="0.0025" length="0.401774000"/></geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+</robot>

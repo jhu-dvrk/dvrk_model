@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="tip_141" params="prefix add_colors:=false">
+    <joint name="jaw_mount" type="fixed">
+      <parent link="${prefix}wrist_pitch2_link"/><child link="${prefix}jaw_mount_link"/>
+      <origin xyz="0 -0.0077 0" rpy="0 -${PI_4} 0"/>
+    </joint>
+    <link name="${prefix}jaw_mount_link"/>
+    <joint name="jaw" type="revolute">
+      <parent link="${prefix}jaw_mount_link"/><child link="${prefix}jaw_link"/>
+      <axis xyz="0 0 1"/><limit lower="-0.349066" upper="0.872665" velocity=".4" effort="1000"/>
+    </joint>
+    <link name="${prefix}jaw_link"/>
+    <joint name="jaw_1" type="revolute">
+      <parent link="${prefix}jaw_mount_link"/><child link="${prefix}jaw_1_link"/>
+      <origin rpy="0 0 0"/><axis xyz="0 0 1"/>
+      <limit lower="-0.174533" upper="0.4363325" velocity=".4" effort="1000"/>
+      <mimic joint="jaw" multiplier="0.5"/>
+    </joint>
+    <link name="${prefix}jaw_1_link">
+      <visual>
+        <origin rpy="0 0 -${PI_2}"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/tip/141/tip_141.stl"/></geometry>
+        <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 -${PI_2}"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/tip/141/tip_141.stl"/></geometry>
+      </collision>
+    </link>
+    <joint name="jaw_2" type="revolute">
+      <parent link="${prefix}jaw_mount_link"/><child link="${prefix}jaw_2_link"/>
+      <origin rpy="0 ${PI} 0"/><axis xyz="0 0 1"/>
+      <limit lower="-0.174533" upper="0.4363325" velocity=".4" effort="1000"/>
+      <mimic joint="jaw" multiplier="0.5"/>
+    </joint>
+    <link name="${prefix}jaw_2_link">
+      <visual>
+        <origin rpy="0 0 -${PI_2}"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/tip/141/tip_141.stl"/></geometry>
+        <material name="instrument_5mm_metal"><color rgba="0.6 0.6 0.6 1"/></material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 -${PI_2}"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/instruments/tip/141/tip_141.stl"/></geometry>
+      </collision>
+    </link>
+    <joint name="tool_tip" type="fixed">
+      <parent link="${prefix}jaw_mount_link"/><child link="${prefix}tool_tip_link"/>
+      <origin xyz="0.005 0 0" rpy="${PI_2} ${PI} 0"/>
+    </joint>
+    <link name="${prefix}tool_tip_link"/>
+  </xacro:macro>
+</robot>

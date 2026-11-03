@@ -53,7 +53,7 @@
   </xacro:macro>
 
   <xacro:macro name="instrument_model"
-               params="prefix housing roll wrist_pitch wrist_yaw tip is_virtual:=false add_colors:=false">
+               params="prefix housing roll tip wrist_pitch:=none wrist_yaw:=none wrist:=standard is_virtual:=false add_colors:=false">
     <!-- Part files and macro names follow the IDs in instruments.yaml.
          Missing geometry must be mapped explicitly to tip: placeholder. -->
     <xacro:if value="${str(is_virtual).lower() not in ['true', '1']}">
@@ -62,8 +62,13 @@
     </xacro:if>
 
     <xacro:instrument_stage part="roll" code="${roll}" prefix="${prefix}" add_colors="${add_colors}"/>
-    <xacro:instrument_stage part="wrist_pitch" code="${wrist_pitch}" prefix="${prefix}" add_colors="${add_colors}"/>
-    <xacro:instrument_stage part="wrist_yaw" code="${wrist_yaw}" prefix="${prefix}" add_colors="${add_colors}"/>
+    <xacro:if value="${str(wrist) == 'standard'}">
+      <xacro:instrument_stage part="wrist_pitch" code="${wrist_pitch}" prefix="${prefix}" add_colors="${add_colors}"/>
+      <xacro:instrument_stage part="wrist_yaw" code="${wrist_yaw}" prefix="${prefix}" add_colors="${add_colors}"/>
+    </xacro:if>
+    <xacro:unless value="${str(wrist) == 'standard'}">
+      <xacro:instrument_stage part="wrist" code="${wrist}" prefix="${prefix}" add_colors="${add_colors}"/>
+    </xacro:unless>
     <xacro:instrument_stage part="tip" code="${tip}" prefix="${prefix}" add_colors="${add_colors}"/>
   </xacro:macro>
 
@@ -74,8 +79,9 @@
     <xacro:instrument_model prefix="${prefix}"
                             housing="${model['housing']}"
                             roll="${model['roll']}"
-                            wrist_pitch="${model['wrist_pitch']}"
-                            wrist_yaw="${model['wrist_yaw']}"
+                            wrist_pitch="${model.get('wrist_pitch', 'none')}"
+                            wrist_yaw="${model.get('wrist_yaw', 'none')}"
+                            wrist="${model.get('wrist', 'standard')}"
                             tip="${model['tip']}"
                             is_virtual="${is_virtual}"
                             add_colors="${add_colors}"/>

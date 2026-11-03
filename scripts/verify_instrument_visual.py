@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import math
+import struct
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
@@ -146,6 +147,17 @@ def transform_point(
 
 
 def mesh_vertices(path: Path) -> Iterable[Vector]:
+    if path.suffix.lower() == ".stl":
+        data = path.read_bytes()
+        if len(data) < 84:
+            raise ValueError(f"invalid binary STL: {path}")
+        count = struct.unpack_from("<I", data, 80)[0]
+        if len(data) != 84 + 50 * count:
+            raise ValueError(f"invalid binary STL size: {path}")
+        for face in range(count):
+            for vertex in range(3):
+                yield struct.unpack_from("<fff", data, 84 + face * 50 + 12 + vertex * 12)
+        return
     if path.suffix.lower() != ".obj":
         raise ValueError(f"unsupported visual mesh format {path.suffix!r}: {path}")
     with path.open("r", encoding="utf-8", errors="replace") as stream:
@@ -240,7 +252,11 @@ def check_visuals(
         if link.get("name")
     }
 
-    for suffix in TARGET_LINKS:
+    targets = TARGET_LINKS
+    if str(config.get("wrist")) == "0034":
+        targets = ("wrist_pitch1_link", "wrist_yaw1_link", "wrist_yaw2_link",
+                   "wrist_pitch2_link", "jaw_1_link", "jaw_2_link")
+    for suffix in targets:
         link_name = f"PSM1_{suffix}"
         link = links.get(link_name)
         if link is None:
@@ -264,7 +280,7 @@ def check_visuals(
                 f"{link_name}: visual bounds {format_dimensions(dimensions)} "
                 f"exceed sorted envelope 7.00 cm x 1.00 cm x 1.00 cm"
             )
-        if suffix in ("wrist_pitch_link", "wrist_yaw_link") and not bounds.contains_origin(
+        if suffix.startswith("wrist_") and not bounds.contains_origin(
             ORIGIN_TOLERANCE
         ):
             result.errors.append(

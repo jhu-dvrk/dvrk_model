@@ -78,6 +78,12 @@ instruments:
     wrist_yaw: '0107'
     tip: placeholder
     name: Bowel Grasper
+  '400141':
+    housing: Classic
+    roll: '4024'
+    wrist: '0034'
+    tip: '141'
+    name: 5mm Round Tip Scissors
   '400172':
     housing: Classic
     roll: '4162'
@@ -260,6 +266,12 @@ instruments:
     wrist_yaw: '0107'
     tip: placeholder
     name: Bowel Grasper
+  '420141':
+    housing: Si
+    roll: '4532'
+    wrist: '0034'
+    tip: '141'
+    name: 5mm Round Tip Scissors
   '420172':
     housing: Si
     roll: '4670'
