@@ -42,14 +42,23 @@
       <origin rpy="${rpy}" xyz="${xyz}"/>
     </joint>
 
+    <!-- Classic CAD from zixingjiang/dvrk_description at commit
+         2a29763608fd619082dec112f07014256cc62c22. See the mesh SOURCES.md.
+         CAD frames are aligned to this package's RCM/DH frames; actuated joint
+         origins and limits remain independent of the passive visual branches. -->
     <!-- link 0: base -->
     <link name="${prefix}base_link">
       <visual>
-        <origin rpy="1.5708 0.0 3.1416" xyz="0.039 -0.40788 -0.07879"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_base.dae"/>
-        </geometry>
+        <origin xyz="0.0 -0.4864 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_base.stl"/></geometry>
+        <material name="${prefix}base_link_material">
+          <color rgba="0.89804 0.91765 0.92941 1"/>
+        </material>
       </visual>
+      <collision>
+        <origin xyz="0.0 -0.4864 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_base.stl"/></geometry>
+      </collision>
     </link>
 
     <!-- joint 1: yaw -->
@@ -64,10 +73,31 @@
     <!-- link 1: yaw -->
     <link name="${prefix}yaw_link">
       <visual>
-        <origin rpy="3.1416 0.0 1.5708" xyz="0.0125 0.0 0.5265"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_yaw.dae"/>
-        </geometry>
+        <origin xyz="0.0 0.0 0.4864" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_yaw.stl"/></geometry>
+        <material name="${prefix}yaw_link_material">
+          <color rgba="0.89804 0.91765 0.92941 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.4864" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_yaw.stl"/></geometry>
+      </collision>
+      <!-- Yaw support pin: CAD bore radius 6.2 mm, spanning CAD Z -117.4 to -96.4 mm. -->
+      <visual name="${prefix}yaw_lower_pin">
+        <origin xyz="0.0 0.0 0.3795" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.0062" length="0.021"/></geometry>
+        <material name="${prefix}yaw_lower_pin_material">
+          <color rgba="0.25 0.32 0.38 1.0"/>
+        </material>
+      </visual>
+      <!-- Yaw support pin: spanning CAD Z 163.7 to 196.4 mm. -->
+      <visual name="${prefix}yaw_upper_pin">
+        <origin xyz="0.0 0.0 0.66645" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.0062" length="0.0327"/></geometry>
+        <material name="${prefix}yaw_upper_pin_material">
+          <color rgba="0.25 0.32 0.38 1.0"/>
+        </material>
       </visual>
     </link>
 
@@ -91,16 +121,29 @@
       <parent link="${prefix}yaw_link"/>
       <child  link="${prefix}pitch_2_link"/>
       <axis xyz="0.0 0.0 1"/>
-      <origin rpy="-1.5708 -1.5708 0.0" xyz="0.0 0.0295 0.5185"/>
+      <origin xyz="0.0 0.0 0.516" rpy="-${PI_2} -0.29073 0.0"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
     <link name="${prefix}pitch_2_link">
       <visual>
-        <origin rpy="0.0 0.0 -0.27129" xyz="0.0 0.0 0.0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_2.dae"/>
-        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_2.stl"/></geometry>
+        <material name="${prefix}pitch_2_link_material">
+          <color rgba="0.25098 0.25098 0.25098 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_2.stl"/></geometry>
+      </collision>
+      <!-- Back pitch pivot: 6.35 mm diameter pin across the yaw support and fork. -->
+      <visual name="${prefix}pitch_back_pin">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.003175" length="0.1445"/></geometry>
+        <material name="${prefix}pitch_back_pin_material">
+          <color rgba="0.85 0.88 0.90 1.0"/>
+        </material>
       </visual>
     </link>
 
@@ -109,16 +152,29 @@
       <parent link="${prefix}yaw_link"/>
       <child  link="${prefix}pitch_3_link"/>
       <axis xyz="0.0 0.0 1"/>
-      <origin rpy="-1.5708 -1.5708 0.0" xyz="0.0 0.0295 0.4285"/>
+      <origin xyz="0.0 0.0 0.420" rpy="-${PI_2} -0.29073 0.0"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
     <link name="${prefix}pitch_3_link">
       <visual>
-        <origin rpy="0.0 0.0 -0.27129" xyz="0.0 0.0 0.0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_3.dae"/>
-        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_3.stl"/></geometry>
+        <material name="${prefix}pitch_3_link_material">
+          <color rgba="0.25098 0.25098 0.25098 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_3.stl"/></geometry>
+      </collision>
+      <!-- Front pitch pivot: 6.35 mm diameter pin across the yaw support and link. -->
+      <visual name="${prefix}pitch_front_pin">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.003175" length="0.1445"/></geometry>
+        <material name="${prefix}pitch_front_pin_material">
+          <color rgba="0.85 0.88 0.90 1.0"/>
+        </material>
       </visual>
     </link>
 
@@ -127,16 +183,45 @@
       <parent link="${prefix}pitch_2_link"/>
       <child  link="${prefix}pitch_4_link"/>
       <axis xyz="0.0 0.0 1"/>
-      <origin rpy="0.0 0.0 0.0" xyz="0.04178 0.15007 -0.0137"/>
+      <origin xyz="0.15 0.0 0.0" rpy="0.0 0.0 1.8615"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
     <link name="${prefix}pitch_4_link">
       <visual>
-        <origin rpy="0.0 -1.5708 0.0" xyz="0.009 0.0 0.0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_4.dae"/>
-        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_4.stl"/></geometry>
+        <material name="${prefix}pitch_4_link_material">
+          <color rgba="0.25098 0.25098 0.25098 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_4.stl"/></geometry>
+      </collision>
+      <!-- Bottom linkage pivot: pin across the 89 mm outer fork width. -->
+      <visual name="${prefix}pitch_bottom_pin">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.003175" length="0.089"/></geometry>
+        <material name="${prefix}pitch_bottom_pin_material">
+          <color rgba="0.85 0.88 0.90 1.0"/>
+        </material>
+      </visual>
+      <!-- Front short-link pivot: spans bottom fork Z -22.5 mm to front link Z 58.5 mm. -->
+      <visual name="${prefix}pitch_front_bottom_pin">
+        <origin xyz="0.096 0.0 0.018" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.003175" length="0.081"/></geometry>
+        <material name="${prefix}pitch_front_bottom_pin_material">
+          <color rgba="0.85 0.88 0.90 1.0"/>
+        </material>
+      </visual>
+      <!-- Distal bottom pivot: spans the 95 mm fork around the insertion carrier. -->
+      <visual name="${prefix}pitch_bottom_carrier_pin">
+        <origin xyz="0.516 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.003175" length="0.095"/></geometry>
+        <material name="${prefix}pitch_bottom_carrier_pin_material">
+          <color rgba="0.85 0.88 0.90 1.0"/>
+        </material>
       </visual>
     </link>
 
@@ -145,16 +230,37 @@
       <parent link="${prefix}pitch_2_link"/>
       <child  link="${prefix}pitch_5_link"/>
       <axis xyz="0.0 0.0 1"/>
-      <origin rpy="0.0 0.0 0.0" xyz="0.04209 0.18695 -0.02412"/>
+      <origin xyz="0.18366 0.014121 0.0" rpy="0.0 0.0 1.8615"/>
       <mimic joint="pitch" multiplier="-1"/>
     </joint>
 
     <link name="${prefix}pitch_5_link">
       <visual>
-        <origin rpy="0.0 -1.5708 0.0" xyz="0.009 0.0 0.0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_5.dae"/>
-        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_5.stl"/></geometry>
+        <material name="${prefix}pitch_5_link_material">
+          <color rgba="0.25098 0.25098 0.25098 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_pitch_5.stl"/></geometry>
+      </collision>
+      <!-- Top linkage pivot: pin across the 89 mm outer fork width. -->
+      <visual name="${prefix}pitch_top_pin">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.003175" length="0.089"/></geometry>
+        <material name="${prefix}pitch_top_pin_material">
+          <color rgba="0.85 0.88 0.90 1.0"/>
+        </material>
+      </visual>
+      <!-- Distal top pivot: spans the 95 mm fork around the insertion carrier. -->
+      <visual name="${prefix}pitch_top_carrier_pin">
+        <origin xyz="0.516 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><cylinder radius="0.003175" length="0.095"/></geometry>
+        <material name="${prefix}pitch_top_carrier_pin_material">
+          <color rgba="0.85 0.88 0.90 1.0"/>
+        </material>
       </visual>
     </link>
 
@@ -163,17 +269,22 @@
       <parent link="${prefix}pitch_4_link"/>
       <child  link="${prefix}insertion_link"/>
       <axis xyz="0.0 0.0 1"/>
-      <origin rpy="0.0 0.0 0.0" xyz="-0.520 0.0 -0.0155"/>
+      <origin xyz="0.516 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <mimic joint="pitch" multiplier="1"/>
     </joint>
 
     <link name="${prefix}insertion_link">
       <visual>
-        <origin rpy="0.0 -1.5708 1.5708" xyz="0.02528 0.429 0.0"/>
-        <geometry>
-          <mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_insertion.dae"/>
-        </geometry>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_insertion.stl"/></geometry>
+        <material name="${prefix}insertion_link_material">
+          <color rgba="0.64706 0.61961 0.58824 1"/>
+        </material>
       </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_insertion.stl"/></geometry>
+      </collision>
     </link>
 
     <!-- joint 3: insertion (prismatic) -->
@@ -187,11 +298,23 @@
 
     <!--
       link 3: adaptor_link
-      Massless boundary link — handoff point to instrument.
+      Massless boundary link and adapter/carriage visual — handoff to instrument.
       This is the instrument_base frame from the kinematic JSON: aligned
       with the insertion/roll axis and offset 0.4318 m from the RCM.
     -->
-    <link name="${prefix}adaptor_link"/>
+    <link name="${prefix}adaptor_link">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_adapter.stl"/></geometry>
+        <material name="${prefix}adaptor_link_material">
+          <color rgba="1 0.55686 0.058824 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <geometry><mesh filename="package://dvrk_model/meshes/arms/Classic/PSM/PSM_adapter.stl"/></geometry>
+      </collision>
+    </link>
 
   </xacro:macro>
 
