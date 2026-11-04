@@ -1,7 +1,7 @@
 # ROS models for the dVRK
 
 This repository is usually cloned along the rest of the dVRK repositories using the `vcs` command. See build instructions for the dVRK:  
-https://github.com/jhu-dvrk/sawIntuitiveResearchKit/wiki ➡️ **Software installation**
+https://dvrk.readthedocs.io/main/pages/software/compilation.html
 
 ---
 
