@@ -394,7 +394,7 @@ to the physical-arm paths.
 | 006 | standard needle driver |
 | 049 | cadiere forceps |
 | 093 | prograsp forceps |
-| 179 | monopolar curved scissors |
+| 179 | shared curved scissors and monopolar curved scissors tip (400178, 420178, 400179, 420179) |
 | 309 | mega suturecut needle driver |
 | placeholder | 5 mm box visuals for supported tools without tip meshes |
 | ECM | camera tool |
