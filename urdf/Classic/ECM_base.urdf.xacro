@@ -73,7 +73,7 @@
       <origin xyz="0.0731999999999783 0.0 0.101460000000185" rpy="${PI_2} 0.0 ${PI_2}"/>
       <parent link="${prefix}base_link"/>
       <child  link="${prefix}yaw_link"/>
-      <axis xyz="0.0 0.0 1"/>
+      <axis xyz="0.0 0.0 -1"/>
       <limit lower="-1.595183" upper="1.581733" effort="1000" velocity="10"/>
     </joint>
 
@@ -239,7 +239,7 @@
       <origin xyz="0.0609999999999996 0.0 -0.010" rpy="0.0 0.0 0.0"/>
       <parent link="${prefix}insertion_link"/>
       <child  link="${prefix}roll_link"/>
-      <axis xyz="0.0 0.0 -1"/>
+      <axis xyz="0.0 0.0 1"/>
       <limit lower="-1.552676" upper="1.566741" effort="1000" velocity="10"/>
     </joint>
 

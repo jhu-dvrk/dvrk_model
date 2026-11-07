@@ -8,8 +8,7 @@
     Attaches to ${prefix}adaptor_link.
     Geometry is generated from meshes/endoscopes/Si_straight/Si_straight.scad.
 
-    Future variants Si_down and Si_up will add a 30-degree rotation
-    before the tip joint.
+    Lens orientation is selected by the shared endoscope catalogue.
   -->
   <xacro:macro name="endoscope"
                params="prefix:='ECM_' parent_link:='ECM_adaptor_link'">
@@ -75,21 +74,7 @@
       </collision>
     </link>
 
-    <!-- Convert from adaptor_link into camera reference frame -->
-    <joint name="endoscope_frame" type="fixed">
-      <origin rpy="-${PI_2} -${PI_2} 0.0" xyz="0.0 0.0 ${camera_tip_z}"/>
-      <parent link="${prefix}endoscope_link"/>
-      <child  link="${prefix}endoscope_frame_link"/>
-    </joint>
-    <link name="${prefix}endoscope_frame_link"/>
-
-    <!-- Offset to physical camera tip -->
-    <joint name="tip" type="fixed">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-      <parent link="${prefix}endoscope_frame_link"/>
-      <child  link="${prefix}tip_link"/>
-    </joint>
-    <link name="${prefix}tip_link"/>
+    <xacro:ecm_camera_frames prefix="${prefix}" parent_link="${parent_link}" lens_z="${camera_tip_z - 0.3751}"/>
 
   </xacro:macro>
 

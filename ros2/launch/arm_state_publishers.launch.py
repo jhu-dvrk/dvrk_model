@@ -21,7 +21,10 @@ from launch.substitutions import (
 )
 
 VALID_GENERATIONS = ['Classic', 'Si', 'Virtual']
-VALID_ENDOSCOPES = ['Classic_SD_straight', 'Si_straight']
+with open(os.path.join(get_package_share_directory('dvrk_model'),
+                       'urdf/common/endoscopes/endoscopes.yaml')) as stream:
+    _endoscopes = yaml.safe_load(stream)
+VALID_ENDOSCOPES = sorted(set(_endoscopes['scopes']) | set(_endoscopes['aliases']))
 
 
 def psm_instruments():

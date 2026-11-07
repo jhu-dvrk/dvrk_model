@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- The controller lens frame uses X left, Y up, Z forward.
+       UP=-30 and DOWN=+30 are post-multiplied about its local X axis,
+       exactly as in mtsIntuitiveResearchKitECM::set_endoscope_type.
+       The optical child converts to ROS X right, Y down, Z forward. -->
+  <xacro:macro name="ecm_camera_frames" params="prefix parent_link lens_z">
+    <joint name="tip" type="fixed">
+      <parent link="${parent_link}"/><child link="${prefix}tip_link"/>
+      <origin xyz="0 0 ${lens_z}" rpy="${endoscope_parameters['angle_degrees'] * PI / 180.0} 0 ${PI_2}"/>
+    </joint>
+    <link name="${prefix}tip_link"/>
+    <joint name="${prefix}optical_joint" type="fixed">
+      <parent link="${prefix}tip_link"/><child link="${prefix}optical"/>
+      <origin rpy="0 0 ${PI}"/>
+    </joint>
+    <link name="${prefix}optical"/>
+  </xacro:macro>
+</robot>

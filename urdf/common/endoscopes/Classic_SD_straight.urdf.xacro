@@ -27,20 +27,14 @@
         <material name="DaVinciLightGray"><color rgba="0.7 0.7 0.7 1"/></material>
       </visual>
       <collision>
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.0 0.0 0.010" rpy="0.0 0.0 0.0"/>
         <geometry>
           <mesh filename="package://dvrk_model/meshes/endoscopes/Classic_SD_straight/ECM_tool.stl"/>
         </geometry>
       </collision>
     </link>
 
-    <!-- Fixed transform to endoscope tip reference frame -->
-    <joint name="tip" type="fixed">
-      <origin xyz="0.0 0.0 0.37364" rpy="0.0 0.0 0.0"/>
-      <parent link="${prefix}endoscope_link"/>
-      <child  link="${prefix}tip_link"/>
-    </joint>
-    <link name="${prefix}tip_link"/>
+    <xacro:ecm_camera_frames prefix="${prefix}" parent_link="${parent_link}" lens_z="0.38364"/>
 
   </xacro:macro>
 

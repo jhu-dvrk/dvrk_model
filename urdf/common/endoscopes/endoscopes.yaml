@@ -1,0 +1,14 @@
+scopes:
+  Classic_SD_straight: {body: Classic_SD_straight, angle_degrees: 0}
+  Classic_SD_up: {body: Classic_SD_straight, angle_degrees: -30}
+  Classic_SD_down: {body: Classic_SD_straight, angle_degrees: 30}
+  Si_straight: {body: Si_straight, angle_degrees: 0}
+  Si_up: {body: Si_straight, angle_degrees: -30}
+  Si_down: {body: Si_straight, angle_degrees: 30}
+aliases:
+  Classic_SD_STRAIGHT: Classic_SD_straight
+  Classic_SD_UP: Classic_SD_up
+  Classic_SD_DOWN: Classic_SD_down
+  Si_HD_STRAIGHT: Si_straight
+  Si_HD_UP: Si_up
+  Si_HD_DOWN: Si_down
